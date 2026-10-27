@@ -1,0 +1,138 @@
+{
+  "brand": { "name": "Demandez à l'Algérie", "tagline": "Des réponses claires sur les services publics algériens, tirées des pages officielles." },
+  "strip": { "independent": "Indépendant · ce n'est pas un site gouvernemental" },
+  "nav": { "ask": "Poser une question", "translate": "Comprendre un document", "directory": "Sites officiels", "about": "À propos", "logout": "Se déconnecter", "menu": "Menu" },
+  "lang": { "label": "Langue", "en": "English", "fr": "Français", "ar": "العربية", "dz": "الدارجة" },
+  "footer": {
+    "independent": "Projet indépendant · sans lien avec le Gouvernement algérien",
+    "confirm": "Vérifiez toujours sur la page officielle avant d'agir."
+  },
+  "login": {
+    "title": "Cette démo est privée",
+    "intro": "Saisissez le mot de passe qui vous a été communiqué pour essayer le service.",
+    "password": "Mot de passe",
+    "submit": "Ouvrir la démo",
+    "error": "Mot de passe incorrect. Vérifiez-le et réessayez.",
+    "tooMany": "Trop de tentatives. Patientez une minute puis réessayez.",
+    "notConfigured": "Le mot de passe du site n'a pas encore été configuré."
+  },
+  "ask": {
+    "heading": "Quelle démarche voulez-vous faire ?",
+    "sub": "Posez votre question sur un document, une procédure ou un service. Les réponses proviennent uniquement de pages officielles du gouvernement algérien, avec des liens pour vérifier.",
+    "label": "Votre question",
+    "placeholder": "Par exemple : comment renouveler mon passeport ?",
+    "submit": "Demander",
+    "asking": "Recherche dans les pages officielles…",
+    "examples": "Essayez l'une de ces questions",
+    "exampleList": [
+      "Comment renouveler mon passeport biométrique ?",
+      "Comment obtenir un extrait de naissance 12S en ligne ?",
+      "Comment demander un extrait de casier judiciaire ?",
+      "Comment s'affilier à la CNAS en tant que salarié ?",
+      "Où et quand sont publiés les résultats du Bac ?",
+      "Comment suivre mon dossier de logement AADL ?",
+      "Comment s'inscrire comme auto-entrepreneur ?",
+      "Comment commander la carte Edahabia d'Algérie Poste ?"
+    ],
+    "redacted": "Nous avons retiré {n} numéro(s) personnel(s) de votre question avant l'envoi. Vous n'avez jamais besoin de les indiquer ici.",
+    "tooLong": "Votre question doit faire moins de {max} caractères.",
+    "empty": "Saisissez d'abord une question.",
+    "sources": "Sources",
+    "answeredIn": "Réponse en {lang}, la langue de votre question.",
+    "helpful": "Cette réponse vous a-t-elle aidé ?",
+    "yes": "Oui",
+    "no": "Non",
+    "thanks": "Merci pour votre retour.",
+    "error": "Un problème est survenu pendant la réponse. Réessayez dans un instant.",
+    "rateLimited": "Vous posez beaucoup de questions d'un coup. Patientez une minute puis réessayez.",
+    "again": "Poser une autre question",
+    "privacyHint": "N'indiquez pas de numéro d'identité, de téléphone ou de carte. Nous les retirons automatiquement.",
+    "chars": "{n} / {max}"
+  },
+  "translate": {
+    "heading": "Comprendre un document officiel",
+    "sub": "Collez un texte ou importez une lettre, un formulaire ou une décision. Obtenez une traduction complète, ou un résumé simple avec ce que vous devez faire.",
+    "pasteLabel": "Collez le texte",
+    "placeholder": "Collez ici le texte du document…",
+    "or": "ou",
+    "upload": "Importer un PDF ou une photo",
+    "uploadHint": "PDF, JPG, PNG ou WebP, 5 Mo maximum",
+    "remove": "Retirer le fichier",
+    "tooLarge": "Ce fichier dépasse 5 Mo. Essayez un scan plus léger ou une seule page.",
+    "badType": "Ce type de fichier n'est pas pris en charge. Utilisez un PDF, JPG, PNG ou WebP.",
+    "target": "Traduire en",
+    "mode": "Que souhaitez-vous ?",
+    "modeFull": "Traduction complète",
+    "modeSummary": "Résumé simple + ce que vous devez faire",
+    "submit": "Obtenir le résultat",
+    "working": "Lecture du document…",
+    "privacy": "Votre document est traité uniquement pour produire ce résultat. Il n'est pas conservé.",
+    "redacted": "Nous avons retiré {n} numéro(s) personnel(s) du texte collé avant l'envoi.",
+    "needInput": "Collez un texte ou choisissez d'abord un fichier.",
+    "result": "Résultat",
+    "error": "Impossible de traiter ce document. Réessayez, ou utilisez un scan plus net.",
+    "disclaimer": "La traduction automatique peut comporter des erreurs. Pour toute démarche officielle, fiez-vous au document original."
+  },
+  "directory": {
+    "heading": "Sites officiels",
+    "sub": "Les sites officiels du gouvernement algérien que consulte le service, classés par thème.",
+    "search": "Filtrer les sites",
+    "searchPlaceholder": "Nom ou domaine, par ex. CNAS",
+    "pages": "{n} pages indexées",
+    "empty": "Aucun site ne correspond à « {q} ».",
+    "count": "{n} sites"
+  },
+  "categories": {
+    "federal-core": "Gouvernement et ministères",
+    "identity-travel": "Identité, état civil et voyage",
+    "tax-business": "Impôts et entreprises",
+    "social-protection": "Sécurité sociale et aides",
+    "jobs-education": "Emploi et éducation",
+    "health": "Santé",
+    "utilities": "Logement, énergie et poste",
+    "law-justice": "Droit et justice",
+    "police-safety": "Police et sécurité",
+    "regulators": "Autorités de régulation",
+    "wilayas": "Wilayas",
+    "diaspora": "Algériens à l'étranger",
+    "stats-data": "Statistiques et données"
+  },
+  "about": {
+    "title": "À propos",
+    "lead": "Une seule porte d'entrée vers l'information des services publics algériens. Vous posez votre question avec vos mots ; nous trouvons la page officielle qui y répond.",
+    "sections": [
+      {
+        "title": "Comment ça marche",
+        "body": [
+          "Nous lisons régulièrement les sites officiels du gouvernement algérien, principalement en .gov.dz et .dz, y compris les guides et formulaires PDF qu'ils publient.",
+          "Quand vous posez une question, le système cherche dans cette collection en français, en arabe et en anglais, et retient les passages les plus pertinents.",
+          "Un modèle d'IA rédige la réponse uniquement à partir de ces passages. Chaque information renvoie à la page d'où elle provient.",
+          "Si les pages officielles dont nous disposons ne couvrent pas votre question, la réponse le dit clairement et vous oriente vers le site officiel le plus pertinent."
+        ]
+      },
+      {
+        "title": "Ce n'est pas un site gouvernemental",
+        "body": [
+          "Ce service est un projet indépendant. Il n'est ni affilié, ni approuvé, ni géré par le Gouvernement algérien, un ministère, une wilaya ou un organisme public.",
+          "Nous ne pouvons pas déposer de demande, prendre de rendez-vous ni consulter vos dossiers personnels.",
+          "Nous ne donnons aucun conseil juridique, fiscal, médical ou financier.",
+          "Les procédures, tarifs et délais changent. Vérifiez toujours sur la page officielle avant d'agir."
+        ]
+      },
+      {
+        "title": "Votre vie privée",
+        "body": [
+          "Les numéros d'identité, de téléphone, les e-mails et les numéros de compte ou de carte sont retirés dans votre navigateur avant l'envoi de votre question.",
+          "Nous ne conservons pas l'historique de vos conversations.",
+          "Les documents que vous importez sont traités uniquement pour produire le résultat et ne sont pas conservés."
+        ]
+      },
+      {
+        "title": "Neutralité",
+        "body": [
+          "Les réponses décrivent uniquement les procédures officielles. Nous ne prenons pas position sur les partis, les candidats ou les questions politiques. Pour les élections, nous expliquons seulement comment s'inscrire et voter selon les sources officielles."
+        ]
+      }
+    ]
+  }
+}

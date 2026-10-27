@@ -1,0 +1,138 @@
+{
+  "brand": { "name": "Ask Algeria", "tagline": "Plain answers about Algerian public services, from official pages." },
+  "strip": { "independent": "Independent · not a government website" },
+  "nav": { "ask": "Ask", "translate": "Understand a document", "directory": "Official sites", "about": "About", "logout": "Sign out", "menu": "Menu" },
+  "lang": { "label": "Language", "en": "English", "fr": "Français", "ar": "العربية", "dz": "الدارجة" },
+  "footer": {
+    "independent": "Independent project · not affiliated with the Government of Algeria",
+    "confirm": "Always confirm on the official page before you act."
+  },
+  "login": {
+    "title": "This demo is private",
+    "intro": "Enter the password you were given to try Ask Algeria.",
+    "password": "Password",
+    "submit": "Open the demo",
+    "error": "That password is not right. Check it and try again.",
+    "tooMany": "Too many attempts. Wait a minute and try again.",
+    "notConfigured": "The site password has not been set up yet."
+  },
+  "ask": {
+    "heading": "What do you need to sort out?",
+    "sub": "Ask about a document, a procedure or an office. Answers come only from official Algerian government pages, with links so you can check.",
+    "label": "Your question",
+    "placeholder": "For example: how do I renew my passport?",
+    "submit": "Ask",
+    "asking": "Searching official pages…",
+    "examples": "Try one of these",
+    "exampleList": [
+      "How do I renew my biometric passport?",
+      "How do I get a 12S birth certificate online?",
+      "How do I request a criminal record extract (casier judiciaire)?",
+      "How do I register with CNAS as an employee?",
+      "Where and when are Bac results published?",
+      "How do I follow my AADL housing application?",
+      "How do I register as an auto-entrepreneur?",
+      "How do I order an Edahabia card from Algérie Poste?"
+    ],
+    "redacted": "We removed {n} personal number(s) from your question before sending it. You never need to share them here.",
+    "tooLong": "Please keep your question under {max} characters.",
+    "empty": "Type a question first.",
+    "sources": "Sources",
+    "answeredIn": "Answered in {lang}, the language of your question.",
+    "helpful": "Was this helpful?",
+    "yes": "Yes",
+    "no": "No",
+    "thanks": "Thanks for the feedback.",
+    "error": "Something went wrong while answering. Try again in a moment.",
+    "rateLimited": "You're asking very quickly. Wait a minute, then try again.",
+    "again": "Ask another question",
+    "privacyHint": "Don't include ID, phone or card numbers. We remove them automatically.",
+    "chars": "{n} / {max}"
+  },
+  "translate": {
+    "heading": "Understand an official document",
+    "sub": "Paste text or upload a letter, form or decision. Get a full translation, or a plain-language summary with what you need to do.",
+    "pasteLabel": "Paste the text",
+    "placeholder": "Paste the text of the document here…",
+    "or": "or",
+    "upload": "Upload a PDF or photo",
+    "uploadHint": "PDF, JPG, PNG or WebP, up to 5 MB",
+    "remove": "Remove file",
+    "tooLarge": "That file is larger than 5 MB. Try a smaller scan or a single page.",
+    "badType": "That file type isn't supported. Use a PDF, JPG, PNG or WebP.",
+    "target": "Translate into",
+    "mode": "What do you want?",
+    "modeFull": "Full translation",
+    "modeSummary": "Plain-language summary + what you need to do",
+    "submit": "Get the result",
+    "working": "Reading the document…",
+    "privacy": "Your document is processed only to produce this result. It is not stored.",
+    "redacted": "We removed {n} personal number(s) from the pasted text before sending it.",
+    "needInput": "Paste some text or choose a file first.",
+    "result": "Result",
+    "error": "We couldn't process that document. Try again, or try a clearer scan.",
+    "disclaimer": "Machine translation can contain mistakes. For anything official, rely on the original document."
+  },
+  "directory": {
+    "heading": "Official sites",
+    "sub": "The official Algerian government websites Ask Algeria reads from, grouped by topic.",
+    "search": "Filter sites",
+    "searchPlaceholder": "Name or domain, e.g. CNAS",
+    "pages": "{n} pages indexed",
+    "empty": "No site matches “{q}”.",
+    "count": "{n} sites"
+  },
+  "categories": {
+    "federal-core": "Government & ministries",
+    "identity-travel": "Identity, civil status & travel",
+    "tax-business": "Tax & business",
+    "social-protection": "Social security & benefits",
+    "jobs-education": "Jobs & education",
+    "health": "Health",
+    "utilities": "Housing, energy & post",
+    "law-justice": "Law & justice",
+    "police-safety": "Police & safety",
+    "regulators": "Regulators",
+    "wilayas": "Wilayas",
+    "diaspora": "Algerians abroad",
+    "stats-data": "Statistics & data"
+  },
+  "about": {
+    "title": "About Ask Algeria",
+    "lead": "One front door to Algerian public-service information. You ask in your own words; we find the official page that answers it.",
+    "sections": [
+      {
+        "title": "How it works",
+        "body": [
+          "We regularly read official Algerian government websites, mostly .gov.dz and .dz domains, including the PDF guides and forms they publish.",
+          "When you ask a question, the system searches that collection in French, Arabic and English and picks the most relevant passages.",
+          "An AI model writes the answer using only those passages. Every fact links to the page it came from.",
+          "If the official pages we have don't cover your question, the answer says so and points you to the most relevant official site."
+        ]
+      },
+      {
+        "title": "This is not a government website",
+        "body": [
+          "Ask Algeria is an independent project. It is not affiliated with, endorsed by or operated by the Government of Algeria or any ministry, wilaya or public body.",
+          "We can't submit applications, book appointments or look up your personal records.",
+          "We don't give legal, tax, medical or financial advice.",
+          "Procedures, fees and deadlines change. Always confirm on the official page before you act."
+        ]
+      },
+      {
+        "title": "Your privacy",
+        "body": [
+          "ID numbers, phone numbers, emails and bank or card numbers are removed in your browser before your question is sent.",
+          "We don't keep a history of your conversations.",
+          "Documents you upload are processed only to produce your result and are not stored."
+        ]
+      },
+      {
+        "title": "Neutrality",
+        "body": [
+          "Answers describe official procedures only. We don't take positions on parties, candidates or political questions. For elections, we only explain how to register and vote according to official sources."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1934 @@
+[
+  {
+    "name_en": "Presidency of the Republic",
+    "name_fr": "Présidence de la République",
+    "name_ar": "رئاسة الجمهورية",
+    "domain": "el-mouradia.dz",
+    "url": "https://www.el-mouradia.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Presidential decrees, communiqués, Council of Ministers statements",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Prime Minister's Office",
+    "name_fr": "Premier Ministère",
+    "name_ar": "الوزارة الأولى",
+    "domain": "premier-ministre.gov.dz",
+    "url": "https://www.premier-ministre.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Government action plan, government meeting communiqués",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "National People's Assembly",
+    "name_fr": "Assemblée Populaire Nationale",
+    "name_ar": "المجلس الشعبي الوطني",
+    "domain": "apn.dz",
+    "url": "https://www.apn.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Lower house: bills, laws under debate, deputies",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Council of the Nation",
+    "name_fr": "Conseil de la Nation",
+    "name_ar": "مجلس الأمة",
+    "domain": "majliselouma.dz",
+    "url": "https://www.majliselouma.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Upper house: legislation, sessions",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of the Interior and Local Authorities",
+    "name_fr": "Ministère de l'Intérieur et des Collectivités Locales",
+    "name_ar": "وزارة الداخلية والجماعات المحلية",
+    "domain": "interieur.gov.dz",
+    "url": "https://www.interieur.gov.dz/",
+    "category": "identity-travel",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Civil status, passport/CNI, driving licence, local administration procedures",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia citations; linked from wilayaoran.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Finance",
+    "name_fr": "Ministère des Finances",
+    "name_ar": "وزارة المالية",
+    "domain": "mf.gov.dz",
+    "url": "https://www.mf.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Finance laws, budget, parent domain for tax e-services (jibayatic, nif, tabioucom)",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); DGI notice cited by algerie360",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of National Defence",
+    "name_fr": "Ministère de la Défense Nationale",
+    "name_ar": "وزارة الدفاع الوطني",
+    "domain": "mdn.dz",
+    "url": "https://www.mdn.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "National service (service national) info, military recruitment, Gendarmerie section",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); subpages fetched OK",
+    "notes": "Root blocked robots but /site_cgn/ pages fetched"
+  },
+  {
+    "name_en": "Ministry of Energy and Renewable Energies",
+    "name_fr": "Ministère de l'Énergie et des Énergies Renouvelables",
+    "name_ar": "وزارة الطاقة والطاقات المتجددة",
+    "domain": "energy.gov.dz",
+    "url": "https://www.energy.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Energy policy, fuel/electricity sector news",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK (English version)",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Mujahideen and Rights Holders",
+    "name_fr": "Ministère des Moudjahidine et des Ayants Droit",
+    "name_ar": "وزارة المجاهدين وذوي الحقوق",
+    "domain": "m-moudjahidine.dz",
+    "url": "https://www.m-moudjahidine.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Veterans' pensions and rights-holder benefits",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Religious Affairs and Wakfs",
+    "name_fr": "Ministère des Affaires Religieuses et des Wakfs",
+    "name_ar": "وزارة الشؤون الدينية والأوقاف",
+    "domain": "marw.dz",
+    "url": "https://www.marw.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Hajj/Omra procedures, zakat, mosques",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Culture and Arts",
+    "name_fr": "Ministère de la Culture et des Arts",
+    "name_ar": "وزارة الثقافة والفنون",
+    "domain": "m-culture.gov.dz",
+    "url": "https://www.m-culture.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Cultural events, heritage, artist status",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Post and Telecommunications",
+    "name_fr": "Ministère de la Poste et des Télécommunications",
+    "name_ar": "وزارة البريد والمواصلات السلكية واللاسلكية",
+    "domain": "mpt.dz",
+    "url": "https://www.mpt.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Telecom/postal policy, digital services",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "MFA list uses mpt.dz; mpt.gov.dz also responded robots (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Youth and Sports",
+    "name_fr": "Ministère de la Jeunesse et des Sports",
+    "name_ar": "وزارة الشباب والرياضة",
+    "domain": "mjs.gov.dz",
+    "url": "https://www.mjs.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Youth programmes, sports federations",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Industry",
+    "name_fr": "Ministère de l'Industrie",
+    "name_ar": "وزارة الصناعة",
+    "domain": "mdipi.gov.dz",
+    "url": "https://www.mdipi.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Industrial policy, industrial zones",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Agriculture and Rural Development",
+    "name_fr": "Ministère de l'Agriculture et du Développement Rural",
+    "name_ar": "وزارة الفلاحة والتنمية الريفية",
+    "domain": "minagri.dz",
+    "url": "https://www.minagri.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Farmer support schemes, agricultural cards, subsidies",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Communication",
+    "name_fr": "Ministère de la Communication",
+    "name_ar": "وزارة الاتصال",
+    "domain": "ministerecommunication.gov.dz",
+    "url": "https://www.ministerecommunication.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Press accreditation, media regulation",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Public Works and Transport",
+    "name_fr": "Ministère des Travaux Publics et des Transports",
+    "name_ar": "وزارة الأشغال العمومية",
+    "domain": "mtp.gov.dz",
+    "url": "https://www.mtp.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Roads, infrastructure projects",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Water Resources",
+    "name_fr": "Ministère des Ressources en Eau",
+    "name_ar": "وزارة الموارد المائية",
+    "domain": "mre.gov.dz",
+    "url": "https://www.mre.gov.dz/",
+    "category": "utilities",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Water policy, water supply programmes",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Tourism and Handicrafts",
+    "name_fr": "Ministère du Tourisme et de l'Artisanat",
+    "name_ar": "وزارة السياحة والصناعة التقليدية",
+    "domain": "mtatf.gov.dz",
+    "url": "https://www.mtatf.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Tourism, artisan cards, travel agency licensing",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Relations with Parliament",
+    "name_fr": "Ministère des Relations avec le Parlement",
+    "name_ar": "وزارة العلاقات مع البرلمان",
+    "domain": "mrp.gov.dz",
+    "url": "https://www.mrp.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Legislative agenda tracking",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Environment",
+    "name_fr": "Ministère de l'Environnement",
+    "name_ar": "وزارة البيئة",
+    "domain": "meer.gov.dz",
+    "url": "https://www.meer.gov.dz/",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Environmental permits, regulations",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Dzair Digital Services – National Digital Services Portal",
+    "name_fr": "Portail national des services numériques (Dzair Digital Services)",
+    "name_ar": "البوابة الوطنية للخدمات الرقمية",
+    "domain": "dzds.dz",
+    "url": "https://dzds.dz/fr-fr",
+    "category": "federal-core",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Single government portal: birth/marriage/death certificates, casier judiciaire, nationality certificate, CNAS/CASNOS, unemployment allowance",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Press (algerie360) names dzds.dz as the official single portal launched by the government (Ministry of Digitization and Statistics); APS reports on the portal; algerie360 warns .com/.online copies are fake",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Biometric Passport & ID Portal (Ministry of Interior)",
+    "name_fr": "Portail passeport / CNIBE – Ministère de l'Intérieur",
+    "name_ar": "بوابة جواز السفر وبطاقة التعريف البيومترية",
+    "domain": "passeport.interieur.gov.dz",
+    "url": "https://passeport.interieur.gov.dz/",
+    "category": "identity-travel",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online biometric CNI request, passport application tracking",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Embassy of Algeria in Canberra (embcanberra.mfa.gov.dz) cites passeport.interieur.gov.dz/fr/DemandeCNIBE_FR/Demande",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "12S Birth Certificate Request (Ministry of Interior)",
+    "name_fr": "Demande d'extrait de naissance 12S",
+    "name_ar": "طلب شهادة الميلاد 12خ",
+    "domain": "demande12s.interieur.gov.dz",
+    "url": "http://demande12s.interieur.gov.dz/",
+    "category": "identity-travel",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online request for 12S special birth certificate (needed for passport)",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Cited by Consulate General London (cglondon.mfa.gov.dz/consular-services/12-s) and Embassy Abu Dhabi",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Directorate General of Taxes",
+    "name_fr": "Direction Générale des Impôts",
+    "name_ar": "المديرية العامة للضرائب",
+    "domain": "mfdgi.gov.dz",
+    "url": "https://www.mfdgi.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "fr",
+      "ar"
+    ],
+    "languages_verified": false,
+    "description": "Tax guides, calendars, forms, tax law, links to Jibayatic",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK; DGI official reference domain per DGI notice",
+    "notes": ""
+  },
+  {
+    "name_en": "Jibayatic – Online Tax Declaration & Payment",
+    "name_fr": "Jibayatic – Télédéclaration et télépaiement",
+    "name_ar": "جبايتك",
+    "domain": "jibayatic.mf.gov.dz",
+    "url": "https://jibayatic.mf.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online tax filing and e-payment",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "TSA-Algérie: DGI moved Jibayatic to jibayatic.mf.gov.dz on 26 Apr 2026 (formerly jibayatic.mfdgi.gov.dz / jibayatic.dz)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "NIF Online – Tax ID",
+    "name_fr": "NIF en ligne",
+    "name_ar": "رقم التعريف الجبائي عبر الخط",
+    "domain": "nifenligne.mf.gov.dz",
+    "url": "https://nifenligne.mf.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online tax identification number (NIF) request",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "TSA-Algérie citing DGI (replaces nifenligne.mfdgi.gov.dz)",
+    "notes": ""
+  },
+  {
+    "name_en": "Tabioucom – Stamp Duty Payment",
+    "name_fr": "Tabioucom – Paiement du timbre",
+    "name_ar": "طابعكم",
+    "domain": "tabioucom.mf.gov.dz",
+    "url": "https://tabioucom.mf.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online purchase of fiscal stamps (e.g., passport stamp duty)",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360 citing DGI warning listing official payment portals",
+    "notes": ""
+  },
+  {
+    "name_en": "Qassimatouka – Car Vignette",
+    "name_fr": "Qassimatouka – Vignette automobile",
+    "name_ar": "قسيمتك",
+    "domain": "qassimatouka.mf.gov.dz",
+    "url": "https://qassimatouka.mf.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online purchase of annual car vignette",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360 citing DGI warning listing official payment portals",
+    "notes": ""
+  },
+  {
+    "name_en": "Algerian Customs",
+    "name_fr": "Direction Générale des Douanes",
+    "name_ar": "المديرية العامة للجمارك",
+    "domain": "douane.gov.dz",
+    "url": "https://www.douane.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Customs tariffs, traveller allowances, vehicle import rules",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Press cites alces.douane.gov.dz; MFA embassy notices on customs",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "ALCES – Customs Traveller Declarations",
+    "name_fr": "ALCES – Déclaration en ligne (douanes)",
+    "name_ar": "",
+    "domain": "alces.douane.gov.dz",
+    "url": "https://alces.douane.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online currency declaration and Titre de Passage Douanier for travellers/diaspora",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360 article on online customs declaration",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Trade",
+    "name_fr": "Ministère du Commerce",
+    "name_ar": "وزارة التجارة",
+    "domain": "commerce.gov.dz",
+    "url": "https://www.commerce.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Trade regulations, CNRC info, consumer protection, list of regulators",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); many pages indexed (fr/ar/en)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Sidjilcom – CNRC Online Trade Register",
+    "name_fr": "Sidjilcom – Registre de commerce électronique (CNRC)",
+    "name_ar": "سجلكم",
+    "domain": "sidjilcom.cnrc.dz",
+    "url": "https://sidjilcom.cnrc.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online commercial register: name reservation, registration, extracts",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Ministry of Commerce has a 'Portail du CNRC' page; Sidjilcom widely cited (zoomalgerie, upgrowth)",
+    "notes": "Domain from secondary sources; confirm; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Algerian Investment Promotion Agency (AAPI)",
+    "name_fr": "Agence Algérienne de Promotion de l'Investissement",
+    "name_ar": "الوكالة الجزائرية لترقية الاستثمار",
+    "domain": "aapi.dz",
+    "url": "https://aapi.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": false,
+    "description": "Investment incentives, guichet unique, project registration",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Embassy of Algeria Nairobi page cites www.aapi.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Investor Digital Platform",
+    "name_fr": "Plateforme numérique de l'investisseur",
+    "name_ar": "المنصة الرقمية للمستثمر",
+    "domain": "invest.gov.dz",
+    "url": "https://invest.gov.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": false,
+    "description": "Online investment project submission, land offers, incentives",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "TSA-Algérie: AAPI platform at invest.gov.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Startup.dz – National Startup Portal",
+    "name_fr": "Startup.dz – Portail national des startups",
+    "name_ar": "البوابة الوطنية للمؤسسات الناشئة",
+    "domain": "startup.dz",
+    "url": "https://startup.dz/",
+    "category": "tax-business",
+    "languages": [
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Startup label, Algerian Startup Fund, incubator label",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK; footer credits Ministry of Knowledge Economy, Startups and Micro-enterprises",
+    "notes": ""
+  },
+  {
+    "name_en": "NESDA (ex-ANSEJ) – Entrepreneurship Support Agency",
+    "name_fr": "Agence Nationale d'Appui et de Développement de l'Entrepreneuriat",
+    "name_ar": "الوكالة الوطنية لدعم وتنمية المقاولاتية",
+    "domain": "nesda.dz",
+    "url": "https://www.nesda.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Micro-enterprise financing for young entrepreneurs",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "nesda.dz/Home/InscriptionCNRC indexed in search results",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Safqatic – Public Procurement Portal",
+    "name_fr": "Safqatic – Portail des marchés publics",
+    "name_ar": "صفقاتك",
+    "domain": "safqatic.dz",
+    "url": "https://www.safqatic.dz/",
+    "category": "tax-business",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Public tenders and procurement notices",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "dead",
+    "evidence": "Many tender PDFs indexed at safqatic.dz/docs/offres",
+    "notes": "Fetch returned 'Request Rejected' WAF page"
+  },
+  {
+    "name_en": "CNAS – National Social Insurance Fund (employees)",
+    "name_fr": "Caisse Nationale des Assurances Sociales",
+    "name_ar": "الصندوق الوطني للتأمينات الاجتماعية",
+    "domain": "cnas.dz",
+    "url": "https://www.cnas.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Chifa card, affiliation, reimbursements, employer télédéclaration",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Algerie360 cites www.cnas.dz as official; El-Hanaa subdomain fetched OK",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "CNAS El-Hanaa e-Services",
+    "name_fr": "Espace El-Hanaa – CNAS",
+    "name_ar": "فضاء الهناء",
+    "domain": "elhanaa.cnas.dz",
+    "url": "https://elhanaa.cnas.dz/",
+    "category": "social-protection",
+    "languages": [
+      "fr",
+      "ar"
+    ],
+    "languages_verified": true,
+    "description": "Insured persons' online space: affiliation certificate, sick-leave indemnities, reimbursements",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK (title 'ELHANAA - CNAS')",
+    "notes": ""
+  },
+  {
+    "name_en": "CASNOS – Social Security for Self-Employed",
+    "name_fr": "Caisse Nationale de Sécurité Sociale des Non-Salariés",
+    "name_ar": "الصندوق الوطني للضمان الاجتماعي لغير الأجراء",
+    "domain": "casnos.com.dz",
+    "url": "https://casnos.com.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Self-employed contributions, agencies, remote declaration",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Guide (demarchesdz) labels casnos.com.dz official; damancom.casnos.dz linked from it",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Damancom – CASNOS Online Services",
+    "name_fr": "Damancom – CASNOS",
+    "name_ar": "ضمانكم",
+    "domain": "damancom.casnos.dz",
+    "url": "https://damancom.casnos.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online contribution declaration, remote pension request for non-salaried",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Legal-doctrine article on CASNOS launching Damancom",
+    "notes": ""
+  },
+  {
+    "name_en": "CNR – National Retirement Fund",
+    "name_fr": "Caisse Nationale des Retraites",
+    "name_ar": "الصندوق الوطني للتقاعد",
+    "domain": "cnr.dz",
+    "url": "https://www.cnr.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Pension rights, income attestations, Retraite DZ app",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Guide (demarchesdz) cites www.cnr.dz and dz.cnr.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "ANEM – National Employment Agency",
+    "name_fr": "Agence Nationale de l'Emploi",
+    "name_ar": "الوكالة الوطنية للتشغيل",
+    "domain": "anem.dz",
+    "url": "https://www.anem.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Job seeker registration, job offers (Wassit)",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Algerie360: ANEM announced its site www.anem.dz on its official Facebook",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Minha – Unemployment Allowance Platform",
+    "name_fr": "Plateforme Minha – Allocation chômage",
+    "name_ar": "منحة البطالة",
+    "domain": "minha.anem.dz",
+    "url": "https://minha.anem.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Unemployment allowance applications, appointments, renewals",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Widely cited by press (radioalgerie, dzair-tube 'Minha platform')",
+    "notes": "Exact hostname from secondary sources; verify"
+  },
+  {
+    "name_en": "Ministry of Labour, Employment and Social Security",
+    "name_fr": "Ministère du Travail, de l'Emploi et de la Sécurité Sociale",
+    "name_ar": "وزارة العمل والتشغيل والضمان الاجتماعي",
+    "domain": "mtess.gov.dz",
+    "url": "https://www.mtess.gov.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Labour law, social security, employment schemes",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of National Solidarity, Family and Women",
+    "name_fr": "Ministère de la Solidarité Nationale, de la Famille et de la Condition de la Femme",
+    "name_ar": "وزارة التضامن الوطني والأسرة وقضايا المرأة",
+    "domain": "msnfcf.gov.dz",
+    "url": "https://www.msnfcf.gov.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Disability allowance, social aid, family support",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Housing, Urban Planning and the City",
+    "name_fr": "Ministère de l'Habitat, de l'Urbanisme et de la Ville",
+    "name_ar": "وزارة السكن والعمران والمدينة",
+    "domain": "mhuv.gov.dz",
+    "url": "https://www.mhuv.gov.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Housing programmes (AADL, LPP, rural, social), building permits",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "AADL – National Housing Improvement & Development Agency",
+    "name_fr": "Agence Nationale de l'Amélioration et du Développement du Logement",
+    "name_ar": "الوكالة الوطنية لتحسين السكن وتطويره (عدل)",
+    "domain": "aadl.dz",
+    "url": "https://www.aadl.dz/",
+    "category": "social-protection",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "AADL rent-to-own: subscriber accounts, payments, AADL 3",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "ObservAlgérie (Mar 2025) calls www.aadl.dz the agency's official site",
+    "notes": "Older domain aadl.com.dz; AADL3 2024 signup used aadl3inscription2024.dz (temporary)"
+  },
+  {
+    "name_en": "CNL – National Housing Fund",
+    "name_fr": "Caisse Nationale du Logement",
+    "name_ar": "الصندوق الوطني للسكن",
+    "domain": "cnl.gov.dz",
+    "url": "https://www.cnl.gov.dz/",
+    "category": "social-protection",
+    "languages": [
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "State housing aid programmes (rural, LPA), eligibility",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK ('Programmes d'aide au logement de l'État')",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of National Education",
+    "name_fr": "Ministère de l'Éducation Nationale",
+    "name_ar": "وزارة التربية الوطنية",
+    "domain": "education.gov.dz",
+    "url": "https://www.education.gov.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "School calendar, exam announcements, circulars",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "ONEC – National Office of Exams and Competitions",
+    "name_fr": "Office National des Examens et Concours",
+    "name_ar": "الديوان الوطني للامتحانات والمسابقات",
+    "domain": "onec.dz",
+    "url": "https://www.onec.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Bac, BEM, primary exam registration, past papers",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Linked from education.gov.dz (onec.dz/archives.html)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Baccalaureate Portal (ONEC)",
+    "name_fr": "Portail du Baccalauréat",
+    "name_ar": "موقع البكالوريا",
+    "domain": "bac.onec.dz",
+    "url": "https://bac.onec.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Bac registration and results",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Linked from education.gov.dz",
+    "notes": ""
+  },
+  {
+    "name_en": "BEM Portal (ONEC)",
+    "name_fr": "Portail du BEM",
+    "name_ar": "موقع شهادة التعليم المتوسط",
+    "domain": "bem.onec.dz",
+    "url": "https://bem.onec.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "BEM registration and results",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360 'site officiel ONEC' for BEM 2025 results",
+    "notes": ""
+  },
+  {
+    "name_en": "Parents' Space (Awlya)",
+    "name_fr": "Espace Parents",
+    "name_ar": "فضاء أولياء التلاميذ",
+    "domain": "awlya.education.gov.dz",
+    "url": "https://awlya.education.gov.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Parents check grades, report cards, attendance",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360 hyperlink (text says awlya.education.dz - inconsistent)",
+    "notes": "Verify exact host"
+  },
+  {
+    "name_en": "Tawdif – Education Sector Recruitment",
+    "name_fr": "Tawdif – Recrutement secteur de l'éducation",
+    "name_ar": "منصة التوظيف",
+    "domain": "tawdif.education.gov.dz",
+    "url": "https://tawdif.education.gov.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Teacher/educator recruitment applications",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "MEA Tech Watch report on 2025 recruitment platform",
+    "notes": ""
+  },
+  {
+    "name_en": "ONEFD – Distance Education Office",
+    "name_fr": "Office National d'Enseignement et de Formation à Distance",
+    "name_ar": "الديوان الوطني للتعليم والتكوين عن بعد",
+    "domain": "onefd.edu.dz",
+    "url": "https://www.onefd.edu.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Distance learning courses, past Bac papers",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Linked from education.gov.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Higher Education and Scientific Research",
+    "name_fr": "Ministère de l'Enseignement Supérieur et de la Recherche Scientifique",
+    "name_ar": "وزارة التعليم العالي والبحث العلمي",
+    "domain": "mesrs.dz",
+    "url": "https://www.mesrs.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "University orientation, diploma equivalence, scholarships, platform directory",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "PROGRES – Higher Education Digital Platform",
+    "name_fr": "Progrès – Plateforme numérique",
+    "name_ar": "منصة بروغرس",
+    "domain": "progres.mesrs.dz",
+    "url": "https://progres.mesrs.dz/webetu/login.xhtml",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Student records, diploma authentication, housing, scholarships (eminha)",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Linked from mesrs.dz (student portal, diploma authentication)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "New Bachelors Support (MESRS)",
+    "name_fr": "Accompagnement des nouveaux bacheliers",
+    "name_ar": "مرافقة حاملي البكالوريا الجدد",
+    "domain": "bac.mesrs.dz",
+    "url": "https://bac.mesrs.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "University pre-registration and orientation for new Bac holders",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Linked from mesrs.dz/fr/plateformes-mesrs/",
+    "notes": ""
+  },
+  {
+    "name_en": "Study in Algeria",
+    "name_fr": "Étudier en Algérie",
+    "name_ar": "ادرس في الجزائر",
+    "domain": "studyinalgeria.dz",
+    "url": "https://studyinalgeria.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "en",
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Foreign student admission and university directory",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Linked from mesrs.dz; fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "ONOU – National Office of University Services",
+    "name_fr": "Office National des Œuvres Universitaires",
+    "name_ar": "الديوان الوطني للخدمات الجامعية",
+    "domain": "onou.dz",
+    "url": "https://onou.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Student housing, transport (MyBus), catering",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Linked from mesrs.dz",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Vocational Training and Education",
+    "name_fr": "Ministère de la Formation et de l'Enseignement Professionnels",
+    "name_ar": "وزارة التكوين والتعليم المهنيين",
+    "domain": "mfep.gov.dz",
+    "url": "https://www.mfep.gov.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Vocational training offers, sessions, apprenticeships",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Takwin – Vocational Training Registration",
+    "name_fr": "Takwin – Inscription formation professionnelle",
+    "name_ar": "منصة تكوين",
+    "domain": "takwin.dz",
+    "url": "https://www.takwin.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online registration for vocational training sessions",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Algerie360: Ministry announced Feb 2026 registration via www.takwin.dz",
+    "notes": ""
+  },
+  {
+    "name_en": "DGFP – Directorate General of Public Service",
+    "name_fr": "Direction Générale de la Fonction Publique",
+    "name_ar": "المديرية العامة للوظيفة العمومية",
+    "domain": "dgfp.gov.dz",
+    "url": "https://www.dgfp.gov.dz/",
+    "category": "jobs-education",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Civil service statutes, public recruitment rules and competitions",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Indexed by ahrefs; DGFP concours documents cited by universities",
+    "notes": "concours-fonction-publique.gov.dz also appears in ahrefs (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Health",
+    "name_fr": "Ministère de la Santé",
+    "name_ar": "وزارة الصحة",
+    "domain": "sante.gov.dz",
+    "url": "https://www.sante.gov.dz/",
+    "category": "health",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Health policy, vaccination, hospital info, medical staff circulars",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official website",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "ANPP – National Agency for Pharmaceutical Products",
+    "name_fr": "Agence Nationale des Produits Pharmaceutiques",
+    "name_ar": "الوكالة الوطنية للمواد الصيدلانية",
+    "domain": "anpp.dz",
+    "url": "https://www.anpp.dz/",
+    "category": "health",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Drug registration nomenclature, recalls, pharmacovigilance",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Pasteur Institute of Algeria",
+    "name_fr": "Institut Pasteur d'Algérie",
+    "name_ar": "معهد باستور الجزائر",
+    "domain": "pasteur.dz",
+    "url": "https://www.pasteur.dz/",
+    "category": "health",
+    "languages": [
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Travel vaccinations, rabies/antivenom centres, lab analyses",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Pharmaceutical Industry",
+    "name_fr": "Ministère de l'Industrie Pharmaceutique",
+    "name_ar": "وزارة الصناعة الصيدلانية",
+    "domain": "miph.gov.dz",
+    "url": "https://www.miph.gov.dz/",
+    "category": "health",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": false,
+    "description": "Medicine pricing, homologation, availability",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Ministry PDF indexed at miph.gov.dz/en/wp-content/...",
+    "notes": ""
+  },
+  {
+    "name_en": "Sonelgaz (electricity & gas)",
+    "name_fr": "Sonelgaz",
+    "name_ar": "سونلغاز",
+    "domain": "sonelgaz.dz",
+    "url": "https://www.sonelgaz.dz/",
+    "category": "utilities",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Customer space, bill e-payment (via ELIT), tariffs, outages",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Wikipedia references sonelgaz.dz; guide cites sonelgaz.dz/fr/category/espace-clients",
+    "notes": "State-owned company; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Algérie Poste",
+    "name_fr": "Algérie Poste",
+    "name_ar": "بريد الجزائر",
+    "domain": "poste.dz",
+    "url": "https://www.poste.dz/",
+    "category": "utilities",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "CCP accounts, Edahabia card, BaridiMob, eCCP, parcel tracking",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Wikipedia infobox: www.poste.dz",
+    "notes": "State-owned public enterprise; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Algérie Télécom",
+    "name_fr": "Algérie Télécom",
+    "name_ar": "اتصالات الجزائر",
+    "domain": "algerietelecom.dz",
+    "url": "https://www.algerietelecom.dz/",
+    "category": "utilities",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Internet/landline subscriptions, bill payment, Idoom",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Wikipedia infobox: www.algerietelecom.dz",
+    "notes": "State-owned company; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "SNTF – National Railway Company",
+    "name_fr": "Société Nationale des Transports Ferroviaires",
+    "name_ar": "الشركة الوطنية للنقل بالسكك الحديدية",
+    "domain": "sntf.dz",
+    "url": "https://www.sntf.dz/",
+    "category": "utilities",
+    "languages": [
+      "fr",
+      "ar"
+    ],
+    "languages_verified": true,
+    "description": "Train timetables, fares, online booking",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Ministry of Justice",
+    "name_fr": "Ministère de la Justice",
+    "name_ar": "وزارة العدل",
+    "domain": "mjustice.dz",
+    "url": "https://www.mjustice.dz/",
+    "category": "law-justice",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Courts directory, e-justice, legal procedures",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official site (with /ar/ and /fr/)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Justice e-Services Portal",
+    "name_fr": "Portail électronique – Ministère de la Justice",
+    "name_ar": "البوابة الإلكترونية لوزارة العدل",
+    "domain": "portail.mjustice.dz",
+    "url": "https://portail.mjustice.dz/",
+    "category": "law-justice",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Online casier judiciaire (bulletin n°3), nationality certificate, case tracking",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Algerie360 article on online documents",
+    "notes": "Hostname from press; verify; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Official Journal (JORADP) – Government General Secretariat",
+    "name_fr": "Journal Officiel de la République Algérienne (SGG)",
+    "name_ar": "الجريدة الرسمية",
+    "domain": "joradp.dz",
+    "url": "https://www.joradp.dz/",
+    "category": "law-justice",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "All laws, decrees and official texts (searchable archive)",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK (SGG Algérie / redirects to JORADP)",
+    "notes": ""
+  },
+  {
+    "name_en": "Supreme Court",
+    "name_fr": "Cour Suprême",
+    "name_ar": "المحكمة العليا",
+    "domain": "coursupreme.dz",
+    "url": "https://coursupreme.dz/",
+    "category": "law-justice",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Case law, jurisprudence reviews",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Court PDFs indexed at coursupreme.dz/wp-content/...",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Constitutional Court (formerly Constitutional Council)",
+    "name_fr": "Cour Constitutionnelle",
+    "name_ar": "المحكمة الدستورية",
+    "domain": "conseil-constitutionnel.dz",
+    "url": "https://www.conseil-constitutionnel.dz/",
+    "category": "law-justice",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Constitution text, constitutional decisions, election results proclamation",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
+    "notes": "Institution renamed Cour constitutionnelle (2020); domain may have changed"
+  },
+  {
+    "name_en": "DGSN – National Police",
+    "name_fr": "Direction Générale de la Sûreté Nationale",
+    "name_ar": "المديرية العامة للأمن الوطني",
+    "domain": "dgsn.dz",
+    "url": "https://www.dgsn.dz/",
+    "category": "police-safety",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": false,
+    "description": "Police services, complaints, emergency numbers (1548), police forms",
+    "priority": 1,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Linked from the official Wilaya d'Oran site (wilayaoran.dz); English version reported Jan 2026",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "National Gendarmerie",
+    "name_fr": "Gendarmerie Nationale",
+    "name_ar": "الدرك الوطني",
+    "domain": "mdn.dz",
+    "url": "https://www.mdn.dz/site_cgn/",
+    "category": "police-safety",
+    "languages": [
+      "fr",
+      "ar"
+    ],
+    "languages_verified": false,
+    "description": "Gendarmerie presentation, road safety, recruitment",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Pages fetched OK under mdn.dz/site_cgn/",
+    "notes": ""
+  },
+  {
+    "name_en": "Civil Protection",
+    "name_fr": "Direction Générale de la Protection Civile",
+    "name_ar": "المديرية العامة للحماية المدنية",
+    "domain": "protectioncivile.dz",
+    "url": "https://www.protectioncivile.dz/",
+    "category": "police-safety",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Emergency (14), risk prevention, disaster bulletins",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Wikipedia official website; wilayaoran.dz also links dgpc.dz",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "National Meteorological Office",
+    "name_fr": "Office National de la Météorologie",
+    "name_ar": "الديوان الوطني للأرصاد الجوية",
+    "domain": "meteo.dz",
+    "url": "https://www.meteo.dz/",
+    "category": "police-safety",
+    "languages": [
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Weather forecasts, special weather bulletins (BMS)",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK ('Météo Algérie')",
+    "notes": ""
+  },
+  {
+    "name_en": "CRAAG – Seismology Research Centre",
+    "name_fr": "Centre de Recherche en Astronomie, Astrophysique et Géophysique",
+    "name_ar": "مركز البحث في علم الفلك والفيزياء الفلكية والجيوفيزياء",
+    "domain": "craag.dz",
+    "url": "https://www.craag.dz/",
+    "category": "police-safety",
+    "languages": [
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Earthquake alerts and seismic bulletins",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK; linked from wilayaoran.dz",
+    "notes": ""
+  },
+  {
+    "name_en": "ARPCE – Post & Telecom Regulator",
+    "name_fr": "Autorité de Régulation de la Poste et des Communications Électroniques",
+    "name_ar": "سلطة ضبط البريد والاتصالات الإلكترونية",
+    "domain": "arpce.dz",
+    "url": "https://www.arpce.dz/",
+    "category": "regulators",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Telecom consumer complaints, operator rules",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Bank of Algeria",
+    "name_fr": "Banque d'Algérie",
+    "name_ar": "بنك الجزائر",
+    "domain": "bank-of-algeria.dz",
+    "url": "https://www.bank-of-algeria.dz/",
+    "category": "regulators",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Exchange rates, banking regulations, currency rules",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Many pages indexed (fr and ar)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "COSOB – Stock Exchange Regulator",
+    "name_fr": "Commission d'Organisation et de Surveillance des Opérations de Bourse",
+    "name_ar": "لجنة تنظيم عمليات البورصة ومراقبتها",
+    "domain": "cosob.dz",
+    "url": "https://cosob.dz/",
+    "category": "regulators",
+    "languages": [
+      "fr",
+      "ar"
+    ],
+    "languages_verified": true,
+    "description": "Investor information, listed companies, regulations",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK (cosob.org redirects here)",
+    "notes": ""
+  },
+  {
+    "name_en": "CREG – Electricity and Gas Regulator",
+    "name_fr": "Commission de Régulation de l'Électricité et du Gaz",
+    "name_ar": "لجنة ضبط الكهرباء والغاز",
+    "domain": "creg.gov.dz",
+    "url": "https://creg.gov.dz/",
+    "category": "regulators",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Tariffs, consumer rights for electricity/gas",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Wilaya of Oran",
+    "name_fr": "Wilaya d'Oran",
+    "name_ar": "ولاية وهران",
+    "domain": "wilayaoran.dz",
+    "url": "https://wilayaoran.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Local administrative procedures ('Mes démarches'), wali news",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK, title 'Site Officiel de la wilaya d'Oran'",
+    "notes": ""
+  },
+  {
+    "name_en": "Wilaya of Batna",
+    "name_fr": "Wilaya de Batna",
+    "name_ar": "ولاية باتنة",
+    "domain": "wilaya-batna.gov.dz",
+    "url": "https://wilaya-batna.gov.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": true,
+    "description": "Local directorates, municipalities, announcements",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK, title 'الموقع الرسمي لولاية باتنة'",
+    "notes": ""
+  },
+  {
+    "name_en": "Wilaya of Sétif",
+    "name_fr": "Wilaya de Sétif",
+    "name_ar": "ولاية سطيف",
+    "domain": "wilayasetif.dz",
+    "url": "https://www.wilayasetif.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Local administration, announcements",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "English Wikipedia infobox",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Wilaya of Béjaïa",
+    "name_fr": "Wilaya de Béjaïa",
+    "name_ar": "ولاية بجاية",
+    "domain": "wilaya-bejaia.dz",
+    "url": "https://wilaya-bejaia.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Local administration, announcements",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "English Wikipedia infobox (older: wbejaia.gov.dz)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Wilaya of Blida",
+    "name_fr": "Wilaya de Blida",
+    "name_ar": "ولاية البليدة",
+    "domain": "wilayadeblida.dz",
+    "url": "https://www.wilayadeblida.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Local administration",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "English Wikipedia 'Official website'; Algerie360 notes site not updated for months",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Ministry of Foreign Affairs and National Community Abroad",
+    "name_fr": "Ministère des Affaires Étrangères et de la Communauté Nationale à l'Étranger",
+    "name_ar": "وزارة الشؤون الخارجية والجالية الوطنية بالخارج",
+    "domain": "mfa.gov.dz",
+    "url": "https://www.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "fr",
+      "en"
+    ],
+    "languages_verified": false,
+    "description": "Consular services, visas, document legalisation, travel advisories",
+    "priority": 1,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "DZ Travellers – Citizen Abroad Registration",
+    "name_fr": "DZ Travellers",
+    "name_ar": "مسافرون DZ",
+    "domain": "apcs.mfa.gov.dz",
+    "url": "https://apcs.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Registration of Algerians travelling abroad for crisis assistance",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "robots",
+    "evidence": "Embassy Santiago announcement (embsantiago.mfa.gov.dz)",
+    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)"
+  },
+  {
+    "name_en": "Consulate General in London",
+    "name_fr": "Consulat Général d'Algérie à Londres",
+    "name_ar": "القنصلية العامة للجزائر بلندن",
+    "domain": "cglondon.mfa.gov.dz",
+    "url": "https://cglondon.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "en",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Consular registration, passport/CNI, 12S, civil status (model for all consulates)",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Consulate General in Milan",
+    "name_fr": "Consulat Général d'Algérie à Milan",
+    "name_ar": "القنصلية العامة للجزائر بميلانو",
+    "domain": "cgmilan.mfa.gov.dz",
+    "url": "https://cgmilan.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "en",
+      "it"
+    ],
+    "languages_verified": true,
+    "description": "Full consular services menu (civil status, passport, national service, legalisation)",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "Consulate General in Pontoise (France)",
+    "name_fr": "Consulat Général d'Algérie à Pontoise",
+    "name_ar": "القنصلية العامة للجزائر ببونتواز",
+    "domain": "cpontoise.mfa.gov.dz",
+    "url": "https://cpontoise.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Consular forms (e.g., casier judiciaire request form) for Algerians in France",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Form PDF indexed at cpontoise.mfa.gov.dz/media/...",
+    "notes": ""
+  },
+  {
+    "name_en": "Embassy in Washington",
+    "name_fr": "Ambassade d'Algérie à Washington",
+    "name_ar": "سفارة الجزائر بواشنطن",
+    "domain": "embwashington.mfa.gov.dz",
+    "url": "https://embwashington.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "en",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Consular services for Algerians in the US; customs notices",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Announcement page indexed",
+    "notes": ""
+  },
+  {
+    "name_en": "Embassy in Abu Dhabi",
+    "name_fr": "Ambassade d'Algérie à Abu Dhabi",
+    "name_ar": "سفارة الجزائر بأبوظبي",
+    "domain": "embabudhabi.mfa.gov.dz",
+    "url": "https://embabudhabi.mfa.gov.dz/",
+    "category": "diaspora",
+    "languages": [
+      "ar",
+      "en",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Biometric documents for Algerians in the Gulf",
+    "priority": 3,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK",
+    "notes": ""
+  },
+  {
+    "name_en": "National Statistics Office (ONS)",
+    "name_fr": "Office National des Statistiques",
+    "name_ar": "الديوان الوطني للإحصائيات",
+    "domain": "ons.dz",
+    "url": "https://www.ons.dz/",
+    "category": "stats-data",
+    "languages": [
+      "fr",
+      "ar",
+      "en"
+    ],
+    "languages_verified": true,
+    "description": "Population, CPI/inflation, census, NIS statistical ID",
+    "priority": 2,
+    "reachable": true,
+    "fetch_status": "ok",
+    "evidence": "Fetched OK; Wikipedia official site",
+    "notes": "Homepage shows last update March 2021"
+  },
+  {
+    "name_en": "CENEAP – National Studies Centre for Population and Development",
+    "name_fr": "Centre National d'Études et d'Analyses pour la Population et le Développement",
+    "name_ar": "المركز الوطني للدراسات والتحاليل الخاصة بالسكان والتنمية",
+    "domain": "ceneaped.dz",
+    "url": "https://ceneaped.dz/",
+    "category": "stats-data",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Population and development studies",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Linked from wilayaoran.dz",
+    "notes": ""
+  }
+]
