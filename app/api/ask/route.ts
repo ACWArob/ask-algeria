@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
   }
 
-  let body: { question?: unknown; lang?: unknown; context?: unknown };
+  let body: { question?: unknown; lang?: unknown; context?: unknown; buffer?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -161,7 +161,6 @@ export async function POST(req: Request) {
             },
             { maxRetries: 0, timeout: remaining },
           );
-          req.signal.addEventListener("abort", () => stream.abort());
           const timer = setTimeout(() => stream.abort(), remaining);
           try {
             for await (const ev of stream) {
@@ -191,5 +190,10 @@ export async function POST(req: Request) {
       }
     },
   });
+  if (body.buffer === true) {
+    // Non-streaming fallback: some hosts occasionally drop long streamed responses.
+    const full = await new Response(out).text();
+    return new Response(full, { headers });
+  }
   return new Response(out, { headers });
 }

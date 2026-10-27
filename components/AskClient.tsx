@@ -93,7 +93,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
           const res = await fetch("/api/ask", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: text, lang: locale, context: prev }),
+            body: JSON.stringify({ question: text, lang: locale, context: prev, ...(attempt > 0 ? { buffer: true } : {}) }),
             signal: ac.signal,
           });
           if (res.status === 401) {
@@ -135,8 +135,9 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
           patch(id, { status: "done" });
           return;
         }
-        if (attempt === 0 && !answered.trim()) {
-          patch(id, { status: "loading", answer: "" });
+        if (attempt === 0) {
+          // Retry once in non-streaming mode. Keep any partial text on screen while it loads.
+          patch(id, answered.trim() ? { status: "streaming" } : { status: "loading", answer: "" });
           await new Promise((r) => setTimeout(r, 600));
           continue;
         }
