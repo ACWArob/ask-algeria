@@ -211,13 +211,13 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
     return (
       <div className="flex flex-col items-center">
         {form}
-        <ul className="mt-6 flex flex-wrap justify-center gap-2" aria-label={t.examples}>
-          {t.exampleList.slice(0, 4).map((ex) => (
-            <li key={ex}>
+        <ul className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-6" aria-label={t.examples}>
+          {t.exampleList.slice(0, 4).map((ex, i) => (
+            <li key={ex} className={i >= 3 ? "hidden sm:block" : undefined}>
               <button
                 type="button"
                 onClick={() => void ask(ex)}
-                className="min-h-[40px] rounded-full border border-line px-4 py-1.5 text-[0.9375rem] text-ink transition-colors hover:border-brand hover:bg-brand-soft"
+                className="min-h-[40px] rounded-full border border-line bg-paper px-4 py-1.5 text-[0.9375rem] text-ink transition-colors hover:border-brand hover:bg-brand-soft"
               >
                 {ex}
               </button>

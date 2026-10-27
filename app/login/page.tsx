@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageBackdrop } from "@/components/Backdrop";
 import { Footer, Header, IndependenceStrip } from "@/components/Header";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
@@ -17,6 +18,7 @@ export default function LoginPage({ searchParams }: { searchParams: { error?: st
 
   return (
     <>
+      <PageBackdrop strong />
       <IndependenceStrip dict={dict} />
       <Header dict={dict} locale={locale} authed={false} />
       <main id="main" className="mx-auto flex max-w-5xl justify-center px-4 pt-12 sm:pt-20">

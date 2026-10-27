@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import type { Dict, Locale } from "@/lib/i18n";
 import type { Service } from "@/lib/services";
 import { AskClient, type AskHandle } from "./AskClient";
+import { HeroBackdrop } from "./Backdrop";
 import { ExternalIcon, Icon } from "./Icon";
 
 export function HomeClient({ dict, locale, services }: { dict: Dict; locale: Locale; services: Service[] }) {
@@ -14,17 +15,21 @@ export function HomeClient({ dict, locale, services }: { dict: Dict; locale: Loc
 
   return (
     <>
-      <section className={`mx-auto max-w-3xl ${active ? "pt-8" : "flex min-h-[calc(100svh-12rem)] flex-col justify-center pb-16 pt-10"}`}>
+      {/* Full-bleed wrapper so the scene spans the viewport; html/body clip horizontal overflow. */}
+      <div className={`relative isolate mx-[calc(50%-50vw)] px-[calc(50vw-50%)] ${active ? "" : "-mt-px"}`}>
+        {!active && <HeroBackdrop />}
+      <section className={`mx-auto max-w-3xl ${active ? "pt-8" : "flex min-h-[calc(100svh-12.5rem)] flex-col sm:min-h-[calc(100svh-6rem)] justify-center pb-[132px] pt-6 sm:pb-[260px] sm:pt-10"}`}>
         {!active && (
-          <div className="mb-8 text-center">
+          <div className="mb-6 text-center sm:mb-8">
             <h1 className="display text-[2.25rem] font-semibold sm:text-5xl">{dict.ask.greeting}</h1>
             <p className="mx-auto mt-3 max-w-xl text-muted">{dict.ask.sub}</p>
           </div>
         )}
         <AskClient ref={askRef} dict={dict} locale={locale} onActiveChange={setActive} />
       </section>
+      </div>
 
-      <section aria-labelledby="popular" className="border-t border-line pt-12">
+      <section aria-labelledby="popular" className={`pt-12 ${active ? "mt-12 border-t border-line" : ""}`}>
         <h2 id="popular" className="display text-2xl font-semibold">{s.heading}</h2>
         <p className="mt-1 text-muted">{s.sub}</p>
         <ul className="mt-6 grid gap-x-8 gap-y-2 sm:grid-cols-2">
