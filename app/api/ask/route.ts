@@ -11,6 +11,9 @@ import { anthropic, expandQuery } from "@/lib/llm";
 import { MODELS } from "@/lib/config";
 import { mockAnswer, streamText } from "@/lib/mock";
 import type { AskMeta } from "@/lib/types";
+import { freshness } from "@/lib/freshness";
+import { checkedDate, verificationNotes } from "@/lib/verification";
+import { corpusById } from "@/lib/corpus";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,18 +61,33 @@ export async function POST(req: Request) {
   for (const h of hits) {
     let s = byDoc.get(h.docId);
     if (!s) {
-      s = { n: byDoc.size + 1, title: h.title, url: h.url, domain: h.domain, excerpts: [] };
+      s = { n: byDoc.size + 1, docId: h.docId, title: h.title, url: h.url, domain: h.domain, excerpts: [] };
       byDoc.set(h.docId, s);
     }
     s.excerpts.push(h.text);
   }
   const promptSources = [...byDoc.values()];
 
+  // Freshness + cross-source accuracy notes from the weekly refresh job (optional files).
+  const { state, report } = freshness();
+  const corpus = corpusById();
+  for (const s of promptSources) {
+    const rec = corpus.get(s.docId ?? "");
+    s.checked = checkedDate(rec?.fetched, state[s.url]);
+    if (rec?.extraction === "archived") s.archived = rec.fetched || "unknown date";
+  }
+  const notes = verificationNotes(
+    report,
+    new Map(promptSources.map((s) => [s.docId ?? "", s.n])),
+    (id) => corpus.get(id)?.domain,
+  );
+
   const meta: AskMeta = {
     type: "meta",
     answerLang,
     detectedLang: expansion.lang,
-    sources: promptSources.map(({ n, title, url, domain }) => ({ n, title, url, domain })),
+    sources: promptSources.map(({ n, title, url, domain, checked, archived }) => ({ n, title, url, domain, checked, archived })),
+    notes: notes.length,
     redactedServer: removed,
   };
 
@@ -112,7 +130,7 @@ export async function POST(req: Request) {
           max_tokens: LIMITS.answerMaxTokens,
           thinking: { type: "disabled" },
           system: answerSystemPrompt(answerLang, fallbackSites),
-          messages: [{ role: "user", content: answerUserPrompt(question, promptSources, context) }],
+          messages: [{ role: "user", content: answerUserPrompt(question, promptSources, context, notes) }],
         });
         req.signal.addEventListener("abort", () => stream.abort());
         const seen: Record<string, number> = {};

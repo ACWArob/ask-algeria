@@ -5,8 +5,10 @@ const nextConfig = {
   experimental: {
     // Make sure the corpus/index ship with the serverless function on Netlify.
     outputFileTracingIncludes: {
-      "/api/ask": ["./data/**/*.json"],
-      "/services/passport": ["./data/**/*.json"],
+      // Server code reads these at runtime (corpus, index, page-state, accuracy report).
+      "/api/ask": ["./data/*.json"],
+      "/services/passport": ["./data/*.json"],
+      "/directory": ["./data/*.json"],
     },
   },
   async headers() {

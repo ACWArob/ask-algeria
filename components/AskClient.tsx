@@ -4,6 +4,7 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useSta
 import { fmt, LANGUAGE_NAMES, type Dict, type Locale } from "@/lib/i18n";
 import { redact } from "@/lib/redact";
 import type { AskMeta } from "@/lib/types";
+import { formatDate } from "@/lib/dates";
 import { SendIcon } from "./Icon";
 import { Markdown } from "./Markdown";
 import { ERROR_MARK, readStream } from "./stream";
@@ -308,7 +309,10 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
                     <span className="cite !m-0 shrink-0" aria-hidden="true">{s.n}</span>
                     <span className="min-w-0">
                       <span dir="auto" className="line-clamp-2 block text-sm font-semibold leading-snug text-ink">{s.title}</span>
-                      <span className="block truncate text-xs text-muted" dir="ltr">{s.domain}</span>
+                      <span className="block truncate text-xs text-muted">
+                        <span dir="ltr">{s.domain}</span>
+                        {s.archived ? <> · {fmt(t.archived, { date: formatDate(s.archived, locale) })}</> : s.checked && <> · {fmt(t.checked, { date: formatDate(s.checked, locale) })}</>}
+                      </span>
                     </span>
                   </a>
                 </li>
@@ -319,6 +323,9 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
 
         {status === "done" && (
           <>
+            {(meta?.notes ?? 0) > 0 && (
+              <p className="mt-5 rounded-xl border border-line border-s-4 border-s-accent px-3 py-2 text-sm">{t.disagree}</p>
+            )}
             <p className="mt-5 text-sm font-semibold text-ink">{dict.footer.confirm}</p>
             <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t.helpful}>
               <span className="me-1 text-xs text-muted">{turn.feedback ? t.thanks : t.helpful}</span>

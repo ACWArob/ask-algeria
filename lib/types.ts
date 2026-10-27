@@ -30,6 +30,8 @@ export interface AskMeta {
   type: "meta";
   answerLang: Locale;
   detectedLang: Locale | null;
-  sources: { n: number; title: string; url: string; domain: string }[];
+  sources: { n: number; title: string; url: string; domain: string; checked?: string | null; archived?: string }[];
+  /** Number of cross-source verification notes given to the model (conflicts / possibly outdated). */
+  notes?: number;
   redactedServer: number;
 }

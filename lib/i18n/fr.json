@@ -70,7 +70,10 @@
     "followUp": "Posez une autre question…",
     "newChat": "Nouvelle conversation",
     "you": "Vous",
-    "assistant": "Demandez à l'Algérie"
+    "assistant": "Demandez à l'Algérie",
+    "checked": "Vérifié le {date}",
+    "archived": "Copie archivée, {date}",
+    "disagree": "Certaines pages officielles divergent sur des détails de cette réponse. Confirmez auprès du service."
   },
   "translate": {
     "heading": "Comprendre un document officiel",
@@ -105,7 +108,9 @@
     "empty": "Aucun site ne correspond à « {q} ».",
     "count": "{n} sites",
     "unverified": "Non vérifié",
-    "unverifiedHint": "Nous n'avons pas pu ouvrir ce site automatiquement. Comment nous savons qu'il est officiel :"
+    "unverifiedHint": "Nous n'avons pas pu ouvrir ce site automatiquement. Comment nous savons qu'il est officiel :",
+    "domainPages": "{n} pages dans notre index",
+    "lastChecked": "Dernière vérification le {date}"
   },
   "categories": {
     "federal-core": "Gouvernement et ministères",

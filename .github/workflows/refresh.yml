@@ -1,0 +1,110 @@
+name: Refresh official pages
+
+# Weekly: re-check every corpus page, optionally discover new pages (Apify),
+# cross-check facts between sources (Claude), rebuild the index, run tests,
+# and open/update a PR. Netlify deploys when the PR is merged.
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   ANTHROPIC_API_KEY   optional here; enables the accuracy cross-check (crossref)
+#   APIFY_TOKEN         optional; enables discovery of new pages on priority 1–2 sources
+# Repository setting required for the PR step:
+#   Settings → Actions → General → Workflow permissions → "Allow GitHub Actions to create and approve pull requests"
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays 06:17 UTC
+  workflow_dispatch:
+    inputs:
+      crawl:
+        description: "Run Apify discovery (needs APIFY_TOKEN)"
+        type: boolean
+        default: true
+      crossref:
+        description: "Run the accuracy cross-check (needs ANTHROPIC_API_KEY)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check pages for updates
+        env:
+          # Empty when the secret is missing or discovery is switched off → check-updates skips the crawl.
+          APIFY_TOKEN: ${{ (github.event_name == 'schedule' || inputs.crawl) && secrets.APIFY_TOKEN || '' }}
+        run: npm run check
+
+      - name: Cross-check facts between sources
+        if: ${{ github.event_name == 'schedule' || inputs.crossref }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run crossref # exits cleanly with a message when the key is missing
+
+      - name: Rebuild search index
+        run: npm run index
+
+      - name: Test
+        run: npm test
+
+      - name: Build PR body
+        id: body
+        run: |
+          node --input-type=module <<'EOF' > pr-body.md
+          import { readFileSync, existsSync } from "node:fs";
+          const j = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, "utf8")) : null);
+          const ch = j("data/changes.json") ?? {};
+          const lines = [];
+          lines.push(`Automated weekly refresh (${ch.date ?? new Date().toISOString().slice(0, 10)}).`, "");
+          lines.push(`| Changed | Gone (retired) | Unreachable | Unchanged | New pages |`, `|---:|---:|---:|---:|---:|`);
+          lines.push(`| ${ch.changed?.length ?? 0} | ${ch.gone?.length ?? 0} | ${ch.unreachable?.length ?? 0} | ${ch.unchanged ?? 0} | ${ch.discovered ?? 0} |`, "");
+          if (ch.changed?.length) lines.push("**Changed pages**", ...ch.changed.slice(0, 40).map((c) => `- [${c.title}](${c.url})`), "");
+          if (ch.gone?.length) lines.push("**Retired pages (404/410 twice)**", ...ch.gone.map((c) => `- ${c.url}`), "");
+          lines.push("Unreachable pages are kept as-is (many .gov.dz sites block foreign IPs).", "");
+          if (existsSync("ACCURACY_REPORT.md")) {
+            const md = readFileSync("ACCURACY_REPORT.md", "utf8");
+            const cut = md.length > 50000 ? md.slice(0, 50000) + "\n\n…(truncated; see ACCURACY_REPORT.md)" : md;
+            lines.push("<details open><summary>Accuracy report</summary>", "", cut.replace(/^# Accuracy report\n/, ""), "</details>", "");
+          } else {
+            lines.push("_Accuracy cross-check skipped (no ANTHROPIC_API_KEY secret)._", "");
+          }
+          lines.push("Review changed text, then merge to deploy on Netlify.");
+          console.log(lines.join("\n"));
+          EOF
+
+      - name: Open or update pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: auto/refresh
+          delete-branch: true
+          commit-message: "chore(data): weekly refresh of official pages"
+          title: "Weekly refresh of official pages"
+          body-path: pr-body.md
+          labels: automated, data
+          add-paths: |
+            data/corpus.json
+            data/index.json
+            data/page-state.json
+            data/retired.json
+            data/changes.json
+            data/accuracy-report.json
+            ACCURACY_REPORT.md

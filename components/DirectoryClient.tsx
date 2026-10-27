@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { fmt, type Dict } from "@/lib/i18n";
+import { fmt, type Dict, type Locale } from "@/lib/i18n";
+import { formatDate } from "@/lib/dates";
 
 export interface DirEntry {
   name: string;
@@ -10,6 +11,8 @@ export interface DirEntry {
   url: string;
   category: string;
   pages?: number;
+  /** ISO date of the most recent check of any page of this domain. */
+  checked?: string;
   /** Present only when the site could not be verified by fetching it. */
   evidence?: string;
 }
@@ -24,7 +27,7 @@ function norm(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[̀-ًͯ-ٟ]/g, "");
 }
 
-export function DirectoryClient({ dict, groups }: { dict: Dict; groups: DirGroup[] }) {
+export function DirectoryClient({ dict, groups, locale }: { dict: Dict; groups: DirGroup[]; locale: Locale }) {
   const t = dict.directory;
   const [q, setQ] = useState("");
   const filtered = useMemo(() => {
@@ -62,7 +65,8 @@ export function DirectoryClient({ dict, groups }: { dict: Dict; groups: DirGroup
                   </div>
                   <div className="flex flex-wrap items-baseline gap-x-4 text-sm text-muted sm:justify-end">
                     <span dir="ltr">{e.domain}</span>
-                    {typeof e.pages === "number" && <span>{fmt(t.pages, { n: e.pages })}</span>}
+                    {typeof e.pages === "number" && <span>{fmt(t.domainPages, { n: e.pages })}</span>}
+                    {e.checked && <span>{fmt(t.lastChecked, { date: formatDate(e.checked, locale) })}</span>}
                   </div>
                   {e.evidence && (
                     <details className="group mt-1 text-xs text-muted sm:col-span-2">

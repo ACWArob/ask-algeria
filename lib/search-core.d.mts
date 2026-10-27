@@ -6,6 +6,8 @@ export interface CorpusRecord {
   lang: string;
   topic: string;
   fetched: string;
+  /** "summary" | "near-verbatim" | "verbatim" … (how the text was produced) */
+  extraction?: string;
   text: string;
 }
 export interface Chunk {

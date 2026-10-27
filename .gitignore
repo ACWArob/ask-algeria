@@ -6,3 +6,5 @@ out
 .netlify
 *.tsbuildinfo
 data/apify-raw-*.json
+data/crawl-additions.json
+pr-body.md

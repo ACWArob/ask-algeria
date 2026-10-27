@@ -53,7 +53,8 @@ Note: in production mode the session cookie is `Secure`, so on plain `http://loc
 | `SITE_PASSWORD` | **yes** | Shared demo password |
 | `AUTH_SECRET` | optional | Separate cookie-signing key. If unset, a key is derived from `SITE_PASSWORD` (HMAC-SHA256 with a fixed app salt). |
 | `MOCK_LLM` | optional | `1` = canned responses, no Claude calls |
-| `APIFY_TOKEN` | crawl only | Used by `npm run crawl` |
+| `APIFY_TOKEN` | crawl only | Used by `npm run crawl` (and by `npm run check` for discovery) |
+| `CHECK_CONCURRENCY`, `CHECK_HOST_GAP_MS`, `CROSSREF_MAX_GROUPS` | optional | Refresh-job tuning (defaults: 4, 1000, 40) |
 | `CRAWL_MAX_PAGES`, `CRAWL_PRIORITY_MAX`, `CRAWL_MAX_DEPTH`, `CRAWL_MAX_PDFS` | optional | Crawl tuning (defaults: 150, 2, 3, 40) |
 
 ## Deploying to Netlify
@@ -113,7 +114,39 @@ npm run index
 
 **PDFs**: the script collects same-host `.pdf` links from the crawled pages and extracts their text locally with `unpdf` (up to `CRAWL_MAX_PDFS` per site, 15 MB each). Scanned PDFs with no text layer are skipped.
 
-Results are normalised to the corpus schema, merged with `seed-corpus.json` (seed wins on duplicate URLs), de-duplicated by URL and written to `data/corpus.json`. Commit the new `corpus.json` and the next deploy picks it up.
+Results are normalised to the corpus schema and **merged into** the existing `data/corpus.json`. Existing records win on duplicate URLs, then `seed-corpus.json`, then new pages; URLs listed in `retired.json` are skipped. New URLs are listed in `data/crawl-additions.json`. Commit the new `corpus.json` and the next deploy picks it up.
+
+## Keeping the knowledge current (weekly refresh)
+
+A scheduled job re-checks every page in the corpus, refreshes the ones that changed, retires dead ones and cross-checks facts between official sources.
+
+| Command | What it does |
+|---|---|
+| `npm run check` | `scripts/check-updates.mjs`: fetches every corpus URL (browser-like user agent, 15 s timeout, 4 at a time, ~1 s between requests to the same host). Honours `robots.txt` when it can be fetched and parsed, and proceeds if it can't. Extracts the main text (HTML via `node-html-parser`, PDFs via `unpdf`) and compares a normalised content hash. If `APIFY_TOKEN` is set, it then runs `npm run crawl` to discover new pages on priority 1–2 sources and merges them in. Flags: `--dry-run`, `--limit=N`, `--domains=a.dz,b.dz`, `--no-crawl`. |
+| `npm run crossref` | `scripts/crossref.mjs`: groups records by topic (plus one group per consular post) and asks `claude-haiku-5-5` (thinking disabled, JSON-schema output) to list factual conflicts: fees, documents, validity, deadlines, ages, URLs. Each is classified as *real conflict*, *post-specific difference* or *outdated*. Also flags pages whose newest year mentioned is more than 2 years old. Capped at 40 groups, with each record cut to 1,800 characters (≈100k input tokens per run). Writes `data/accuracy-report.json` and `ACCURACY_REPORT.md`. Use `--dry-run` to print the groups without calling the API. Without `ANTHROPIC_API_KEY` it prints a message and exits 0. |
+| `npm run refresh` | `check` + `crossref` + `index`. |
+
+**Page states** (`data/page-state.json`, keyed by URL: `hash, lastChecked, lastChanged, status, httpStatus`):
+- `ok`: same content as last time. The first successful check only records a baseline hash and keeps the curated summary text.
+- `changed`: the hash differs from the last check. The record's text is replaced with the fresh extraction, `fetched` is set to today and `extraction` to `"verbatim"`.
+- `unreachable`: timeout, network error, 4xx/5xx other than 404/410, block page, or disallowed by robots.txt. Nothing is dropped: many `.gov.dz` sites block foreign IPs, so this is expected.
+- `gone`: 404/410 (or a soft-404 page) on **two consecutive** checks. The record is removed from `corpus.json` and kept in `data/retired.json`.
+
+Each run also writes `data/changes.json`, which is used for the PR body.
+
+**How the app uses it.** When an answer's sources are involved in a *real conflict* or *outdated* finding, or are stale, `/api/ask` adds a short `<verification_notes>` block to the prompt. The answer then says, for example, "Sources disagree on the fee: $75 [1] vs $70 [3]; confirm with the consulate", and the UI shows a small "official pages disagree" note. Source cards show "Checked <date>": the page-state `lastChecked` for a successful check, otherwise the record's `fetched` date. The Directory shows, per domain, how many pages are indexed and when they were last checked. All these files are optional; the app works without them.
+
+**GitHub Actions** (`.github/workflows/refresh.yml`) runs every Monday at 06:17 UTC, and also on demand from the *Actions* tab. Steps: `npm ci` → check (+ crawl) → crossref → index → test. It then opens or updates the PR on branch `auto/refresh` (via `peter-evans/create-pull-request@v6`) with a change summary and `ACCURACY_REPORT.md` in the body. Merging the PR triggers the Netlify deploy.
+
+To enable it:
+1. Push the repo to GitHub and connect it to Netlify.
+2. Add repository secrets under *Settings → Secrets and variables → Actions*:
+   - `ANTHROPIC_API_KEY`: needed for the accuracy cross-check; without it that step is skipped.
+   - `APIFY_TOKEN` (optional): enables discovery of new pages.
+3. Under *Settings → Actions → General → Workflow permissions*, choose "Read and write" and tick "Allow GitHub Actions to create and approve pull requests".
+4. Run it once by hand: *Actions → Refresh official pages → Run workflow*.
+
+Note: GitHub runners are outside Algeria, so expect a share of `.gov.dz` pages to show as `unreachable` every week. Consulate pages (`*.mfa.gov.dz`) are usually reachable.
 
 ## Privacy
 
@@ -150,7 +183,8 @@ lib/
   prompts.ts       system prompts (answers, query expansion, translation)
   i18n/            en.json, fr.json, ar.json, dz.json + helpers
 data/              sources.json, seed-corpus.json, corpus.json, index.json
-scripts/           crawl.mjs (Apify), build-index.mjs
+scripts/           crawl.mjs (Apify), build-index.mjs, check-updates.mjs, crossref.mjs, lib/refresh-core.mjs
+.github/workflows/ refresh.yml (weekly refresh PR)
 tests/             vitest
 middleware.ts      password gate + noindex header
 netlify.toml

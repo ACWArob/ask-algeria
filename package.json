@@ -11,7 +11,10 @@
     "typecheck": "tsc --noEmit",
     "crawl": "node scripts/crawl.mjs",
     "index": "node scripts/build-index.mjs",
-    "prebuild": "node scripts/build-index.mjs"
+    "prebuild": "node scripts/build-index.mjs",
+    "check": "node scripts/check-updates.mjs",
+    "crossref": "node scripts/crossref.mjs",
+    "refresh": "npm run check && npm run crossref && npm run index"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",
@@ -36,6 +39,7 @@
     "autoprefixer": "^10.6.2",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.35",
+    "node-html-parser": "^9.0.5",
     "postcss": "^8.5.32",
     "tailwindcss": "^3.4.19",
     "typescript": "5.9",

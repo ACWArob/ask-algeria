@@ -21,7 +21,7 @@ import { extractText, getDocumentProxy } from "unpdf";
 import { normalizeCorpus } from "../lib/search-core.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const dataDir = path.join(root, "data");
+const dataDir = process.env.DATA_DIR ? path.resolve(process.env.DATA_DIR) : path.join(root, "data");
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.replace(/^--/, "").split("=")).map(([k, v]) => [k, v ?? true]));
 
 const MAX_PAGES = Number(process.env.CRAWL_MAX_PAGES ?? args["max-pages"] ?? 150);
@@ -35,8 +35,10 @@ const ACTOR = "apify/website-content-crawler";
 const sources = JSON.parse(await readFile(path.join(dataDir, "sources.json"), "utf8"));
 const onlyDomains = typeof args.domains === "string" ? new Set(args.domains.split(",").map((d) => d.trim())) : null;
 
+// Skip only sites known to be dead. Many official sites block automated fetchers from some
+// networks (fetch_status "robots"/"not_tested"), and Apify's proxies may still reach them.
 const targets = sources
-  .filter((s) => s && s.url && s.reachable !== false)
+  .filter((s) => s && s.url && s.fetch_status !== "dead")
   .filter((s) => (onlyDomains ? onlyDomains.has(s.domain) : Number(s.priority ?? 3) <= PRIORITY_MAX))
   .sort((a, b) => Number(a.priority ?? 3) - Number(b.priority ?? 3));
 
@@ -190,10 +192,26 @@ await Promise.all(
   }),
 );
 
-// Merge: seed corpus first (hand-checked), then crawled pages; de-dupe by URL.
-const seedPath = path.join(dataDir, "seed-corpus.json");
-const seed = existsSync(seedPath) ? JSON.parse(await readFile(seedPath, "utf8")) : [];
-const merged = normalizeCorpus([...normalizeCorpus(seed), ...results]);
-await writeFile(path.join(dataDir, "corpus.json"), JSON.stringify(merged, null, 0));
-console.log(`\nWrote data/corpus.json: ${merged.length} documents (${seed.length} seed + ${results.length} crawled, de-duplicated).`);
+// Merge. Existing corpus records win (they are curated or already refreshed by check-updates),
+// then the seed corpus, then newly discovered pages. De-duplicated by URL; retired URLs stay out.
+const readJson = async (f, d) => (existsSync(path.join(dataDir, f)) ? JSON.parse(await readFile(path.join(dataDir, f), "utf8")) : d);
+const existing = normalizeCorpus(await readJson("corpus.json", []));
+const seed = normalizeCorpus(await readJson("seed-corpus.json", []));
+const retired = new Set((await readJson("retired.json", [])).map((r) => canon(r.url)));
+const day = new Date().toISOString().slice(0, 10);
+const fresh = results
+  .filter((r) => !retired.has(canon(r.url)))
+  .map((r) => ({ ...r, fetched: day, extraction: "verbatim" }));
+const merged = normalizeCorpus([...existing, ...seed, ...fresh]);
+const added = merged.length - normalizeCorpus([...existing, ...seed]).length;
+await writeFile(path.join(dataDir, "corpus.json"), JSON.stringify(merged, null, 1));
+await writeFile(
+  path.join(dataDir, "crawl-additions.json"),
+  JSON.stringify({ date: day, added: merged.slice(merged.length - added).map((r) => ({ id: r.id, url: r.url, title: r.title })) }, null, 1) + "\n",
+);
+console.log(`\nWrote data/corpus.json: ${merged.length} documents (${added} new from the crawl).`);
 console.log("Next: npm run index");
+
+function canon(u) {
+  return String(u).replace(/#.*$/, "").replace(/\/$/, "");
+}

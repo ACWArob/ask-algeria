@@ -70,7 +70,10 @@
     "followUp": "Ask a follow-up…",
     "newChat": "New conversation",
     "you": "You",
-    "assistant": "Ask Algeria"
+    "assistant": "Ask Algeria",
+    "checked": "Checked {date}",
+    "archived": "Archived copy, {date}",
+    "disagree": "Some official pages disagree on details of this answer. Confirm with the office."
   },
   "translate": {
     "heading": "Understand an official document",
@@ -105,7 +108,9 @@
     "empty": "No site matches “{q}”.",
     "count": "{n} sites",
     "unverified": "Not verified",
-    "unverifiedHint": "We couldn't open this site automatically. How we know it's official:"
+    "unverifiedHint": "We couldn't open this site automatically. How we know it's official:",
+    "domainPages": "{n} pages in our index",
+    "lastChecked": "Last checked {date}"
   },
   "categories": {
     "federal-core": "Government & ministries",

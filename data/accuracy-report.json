@@ -1,0 +1,1620 @@
+{
+ "generatedAt": "2026-10-27T23:11:22.601Z",
+ "model": "claude-haiku-5-5",
+ "groupsChecked": 40,
+ "groupsSkipped": 21,
+ "usage": {
+  "inputTokens": 188718,
+  "outputTokens": 41130
+ },
+ "counts": {
+  "real_conflict": 15,
+  "outdated": 5,
+  "post_specific": 46,
+  "stale": 59
+ },
+ "conflicts": [
+  {
+   "id": "c1",
+   "group": "topic:civil_status#1",
+   "topic": "civil_status",
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-transcription-of-civil-records",
+    "value": "Postal applications must include a copy of your signed, valid consular registration card and a prepaid special or recorded delivery envelope; in-person hours Tuesday to Saturday, mornings only"
+   },
+   "b": {
+    "id": "cgny-civilstatus",
+    "value": "No appointment needed; file in person or by mail. Mailed applications must include a USPS Priority Mail return envelope"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (London vs New York) with different postal and office-hour rules; these are office-specific, not contradictory."
+  },
+  {
+   "id": "c2",
+   "group": "topic:civil_status#1",
+   "topic": "civil_status",
+   "field": "documents",
+   "a": {
+    "id": "cgsf-marriages",
+    "value": "original birth certificates of both spouses issued within the last three months"
+   },
+   "b": {
+    "id": "civil-status-embwashington",
+    "value": "recent original birth certificates"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different offices; San Francisco specifies a three-month limit while Washington only says 'recent'. Not a direct contradiction, just less detail on one page."
+  },
+  {
+   "id": "c3",
+   "group": "topic:civil_status#1",
+   "topic": "civil_status",
+   "field": "documents",
+   "a": {
+    "id": "cgsf-births",
+    "value": "for Born in the USA, the parents' names must match the Algerian Civil Status register; Family Book, if available"
+   },
+   "b": {
+    "id": "civil-status-embwashington",
+    "value": "Births: copy of parent's consular card (or passports if unregistered), newborn's original full birth certificate, and a family book or marriage certificate copy"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulate lists different birth documents (e.g., consular card copy vs name matching); both are office-specific requirements."
+  },
+  {
+   "id": "c4",
+   "group": "topic:civil_status#1",
+   "topic": "civil_status",
+   "field": "eligibility",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-transcription-of-civil-records",
+    "value": "the London consulate registers births only for children born in the UK or Ireland"
+   },
+   "b": {
+    "id": "cgny-civilstatus",
+    "value": "Born in another country: same, with the birth certificate from that country"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates with different geographic scope for birth registration; not a contradiction about the same office."
+  },
+  {
+   "id": "c5",
+   "group": "topic:cni",
+   "topic": "cni",
+   "field": "documents",
+   "a": {
+    "id": "cgny-idcard",
+    "value": "Two recent 2x2 inch (51x51 mm) photos, white background, neutral expression, no smile, clear forehead"
+   },
+   "b": {
+    "id": "cni-embwashington-identity-card",
+    "value": "Three (3) similar recent passport-sized photographs"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates/embassies list different photo counts; both are office-specific requirements for different offices (New York consulate vs Washington embassy)."
+  },
+  {
+   "id": "c6",
+   "group": "topic:cni",
+   "topic": "cni",
+   "field": "age",
+   "a": {
+    "id": "cni-cgsanfrancisco-identity-cards",
+    "value": "Children under 12 cannot apply."
+   },
+   "b": {
+    "id": "cgny-idcard",
+    "value": "Children under 12 are exempt from fingerprinting; their presence is not required for filing or collection. Applicants of any age may apply online."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "San Francisco says children under 12 cannot apply, while New York says applicants of any age may apply online and only fingerprinting is exempted for under-12s."
+  },
+  {
+   "id": "c7",
+   "group": "topic:cni",
+   "topic": "cni",
+   "field": "age",
+   "a": {
+    "id": "cni-cgmilan-national-identity-card",
+    "value": "Any applicant, of any age, can apply after obtaining a biometric passport"
+   },
+   "b": {
+    "id": "cni-cgsanfrancisco-identity-cards",
+    "value": "Children under 12 cannot apply."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "Milan states any applicant of any age can apply online, while San Francisco states children under 12 cannot apply."
+  },
+  {
+   "id": "c8",
+   "group": "topic:cni",
+   "topic": "cni",
+   "field": "validity",
+   "a": {
+    "id": "cni-cgsanfrancisco-identity-cards",
+    "value": "Renewal is possible six months before expiration."
+   },
+   "b": {
+    "id": "wilayaoran.dz-carte-nationale-identite",
+    "value": "Renewal may be requested within the three (3) months preceding the expiry date of the card."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "San Francisco says renewal is possible six months before expiration; the Oran wilaya page says renewal may be requested within three months before expiry (Algerian national rule, though the consulate may differ, so this is a genuine inconsistency in stated renewal windows)."
+  },
+  {
+   "id": "c9",
+   "group": "topic:consular_registration#1",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "cgsf-first-time-registration",
+    "value": "two recent passport photos, 2x2 inches (51x51 mm)"
+   },
+   "b": {
+    "id": "cggeneva.mfa.gov.dz-consular-registration",
+    "value": "five recent passport photos 3.5 x 4.5 cm"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different photo counts and sizes, but the pages belong to different consulates (San Francisco vs Geneva) with their own requirements, so this is a legitimate per-post difference."
+  },
+  {
+   "id": "c10",
+   "group": "topic:consular_registration#1",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "cgny-registration",
+    "value": "two recent 2x2 inch (51x51 mm) photos"
+   },
+   "b": {
+    "id": "cggeneva.mfa.gov.dz-consular-registration",
+    "value": "five recent passport photos 3.5 x 4.5 cm"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (New York vs Geneva) set different photo requirements; a per-post difference."
+  },
+  {
+   "id": "c11",
+   "group": "topic:consular_registration#1",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "cgsf-registration-renewal",
+    "value": "two recent standard photos"
+   },
+   "b": {
+    "id": "cggeneva.mfa.gov.dz-consular-registration",
+    "value": "five recent passport photos 3.5 x 4.5 cm"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Renewal at San Francisco and first registration at Geneva are different posts and procedures; not directly comparable."
+  },
+  {
+   "id": "c12",
+   "group": "topic:consular_registration#1",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "cgbrussels.mfa.gov.dz-file-transfer",
+    "value": "Consular card or copy of passport; residence permit; recent proof of address."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-file-transfer",
+    "value": "Original current consular registration card; original proof of legal, permanent residence in the UK; four recent passport-size photographs."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (Brussels vs London) list different transfer documents; per-post requirements."
+  },
+  {
+   "id": "c13",
+   "group": "topic:consular_registration#1",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "cgmilan.mfa.gov.dz-file-transfer",
+    "value": "A residence permit, or a national identity card of the host country for dual citizens (the page text says French national identity card)."
+   },
+   "b": {
+    "id": "cgbrussels.mfa.gov.dz-file-transfer",
+    "value": "The residence permit, or the Belgian or Luxembourgish national identity card for dual citizens."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Milan and Brussels name different national ID cards appropriate to their host countries; per-post difference."
+  },
+  {
+   "id": "c14",
+   "group": "topic:national_service",
+   "topic": "national_service",
+   "field": "deadline",
+   "a": {
+    "id": "cgsf-military-census",
+    "value": "Documents must be submitted before October 1, 2026 (class of 2029, born 2009)"
+   },
+   "b": {
+    "id": "embriyadh.mfa.gov.dz-national-military-service",
+    "value": "Approach the consular authority before December 01, 2027 (class of 2027, born 2007)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The two deadlines concern different birth cohorts (2009 vs 2007) and different consular offices, so they are not contradictory."
+  },
+  {
+   "id": "c15",
+   "group": "topic:national_service",
+   "topic": "national_service",
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-exemption-procedure",
+    "value": "four passport-sized photos is not stated; two passport-sized photographs required for ordinary application"
+   },
+   "b": {
+    "id": "embriyadh.mfa.gov.dz-national-military-service",
+    "value": "Exemption: four photos"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (London vs Riyadh) set different photo counts for exemption; a legitimate office-level difference."
+  },
+  {
+   "id": "c16",
+   "group": "topic:birth_certificate",
+   "topic": "birth_certificate",
+   "field": "eligibility",
+   "a": {
+    "id": "birth-12s-cgistanbul",
+    "value": "Citizens born in Turkey (except Ankara): the Istanbul Consulate accepts S12 requests if the birth certificate is already registered in its civil registers."
+   },
+   "b": {
+    "id": "birth-12s-cglondon",
+    "value": "Consulate of Algeria in London, if you were born in the UK and the birth was registered there."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates handle different birth countries (Turkey vs UK); not a contradiction."
+  },
+  {
+   "id": "c17",
+   "group": "topic:criminal_record",
+   "topic": "criminal_record",
+   "field": "documents",
+   "a": {
+    "id": "cgny-criminal-record",
+    "value": "Algerian citizens abroad: application form (PDF); birth certificate; copy of consular card; pre-paid self-addressed return envelope."
+   },
+   "b": {
+    "id": "cgistanbul.mfa.gov.dz-criminal-record",
+    "value": "Required: 1. Completed criminal record certificate request form. 2. Birth certificate, if born in Algeria. 3. Algerian citizens: Algerian identity card."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates list somewhat different document sets (NY asks for consular card and return envelope; Istanbul asks for identity card, birth certificate only if born in Algeria); these are office-specific requirements, not a contradiction about the same office."
+  },
+  {
+   "id": "c18",
+   "group": "topic:other",
+   "topic": "other",
+   "field": "other",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-transfer-of-remains",
+    "value": "Documents required for the transfer authorisation: birth certificate (if not registered), medical 'Free from infection' certificate, death certificate, 'Out of England' coroner certificate, embalming certificate, undertaker's certificate, Muslim rituals certificate, identity documents including consular card"
+   },
+   "b": {
+    "id": "embriyadh.mfa.gov.dz-transferring-the-body",
+    "value": "File must include: death certificate from the Civil Status Department; burial permit; embalming certificate; transfer authorization; certificate of absence of contagious disease"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The two posts are in different countries (UK and Saudi Arabia) with different local procedures and document lists, so the differing requirements are legitimate and not a contradiction."
+  },
+  {
+   "id": "c19",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "fee",
+   "a": {
+    "id": "cgny-legalization",
+    "value": "'Seventy-Five Dollars USD ($75) USPS money order per each document' (commercial documents); 'Two Dollars and Fifty Cents USD ($2.50) USPS money order' (other documents)"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-others-services",
+    "value": "fee $75 (non-refundable) USPS money order per document (US-issued documents, legalization)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Both list $75 for legalization, but CGNY gives $2.50 for other documents while the Embassy gives only $75 for US-issued documents; these are different offices and document categories, so the difference is not a true contradiction."
+  },
+  {
+   "id": "c20",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "fee",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "Fee: £5"
+   },
+   "b": {
+    "id": "cgny-proxy",
+    "value": "USPS money order of $6.25 per proxy"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates with different currencies (GBP vs USD) for their own offices."
+  },
+  {
+   "id": "c21",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "documents",
+   "a": {
+    "id": "cgny-proxy",
+    "value": "Accepted identity documents: passport, national ID card, consular card, military card"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-power-of-attorney",
+    "value": "Original proof of identity: consular card, passport or national ID; no other documents are accepted"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "CGNY accepts military card as well; the Washington Embassy does not list military card. Different offices with their own rules."
+  },
+  {
+   "id": "c22",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "Documents required - proof of identity, one of: consular registration card; passport; national identity card. 'Other documents are not considered valid.'"
+   },
+   "b": {
+    "id": "cgmilan.mfa.gov.dz-power-of-attorney",
+    "value": "Only a valid Algerian passport or national identity card is accepted as proof of identity."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "London accepts consular card; Milan does not list it. Different consulates with different requirements."
+  },
+  {
+   "id": "c23",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "documents",
+   "a": {
+    "id": "cgsf-power-of-attorney",
+    "value": "notarized copy of your Algerian passport, Algerian ID card, or military card"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-power-of-attorney",
+    "value": "Notarized copy of a valid Algerian ID (consular card, passport or national ID)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "San Francisco accepts military card and Washington accepts consular card; different consulates with separate rules."
+  },
+  {
+   "id": "c24",
+   "group": "topic:legalization",
+   "topic": "legalization",
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "The applicant must be physically present for the Consulate to certify the document. \"Applications made by post are no longer accepted.\""
+   },
+   "b": {
+    "id": "cgny-proxy",
+    "value": "By mail: proxy form signed and notarized before a notary public; notarized copy of the Algerian identity document"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "London no longer accepts postal applications while New York and San Francisco do; different offices, though the London page is the most explicit about discontinuation."
+  },
+  {
+   "id": "c25",
+   "group": "topic:business#2",
+   "topic": "business",
+   "field": "fee",
+   "a": {
+    "id": "nesda.dz-formules-financement",
+    "value": "Triangular financing: owner 5% to 15%, Agency 15% to 25% (unremunerated loan), bank 70%"
+   },
+   "b": {
+    "id": "nesda.dz-extension-activite",
+    "value": "Triangular – 12% to 15% personal, 15% to 18% Agency, 70% bank loan"
+   },
+   "values_differ": true,
+   "classification": "outdated",
+   "outdatedId": "nesda.dz-extension-activite",
+   "explanation": "Both describe the same NESDA triangular financing formula with a 70% bank share, but give different owner and Agency ranges; the formulas page gives a more detailed and differentiated breakdown by beneficiary type and region, so the shorter extension-programme figures are likely superseded. Undated, so the direction is inferred."
+  },
+  {
+   "id": "c26",
+   "group": "topic:passport#2",
+   "topic": "passport",
+   "field": "fee",
+   "a": {
+    "id": "cgmilan.mfa.gov.dz-emergency-passport",
+    "value": "60 € stamp duty; 100 € loss fee"
+   },
+   "b": {
+    "id": "cgsf-emergency-passport",
+    "value": "$75 USD USPS money order"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates charge in different currencies for the emergency passport, which is a legitimate difference by location."
+  },
+  {
+   "id": "c27",
+   "group": "topic:passport#2",
+   "topic": "passport",
+   "field": "fee",
+   "a": {
+    "id": "cgmilan.mfa.gov.dz-passport-renewal",
+    "value": "adults €60; minor children or students €30"
+   },
+   "b": {
+    "id": "cgsf-passports",
+    "value": "Under 19 years old: $37.5; $62.5; $18 (column mapping unclear)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates and currencies (euro vs USD); not directly comparable."
+  },
+  {
+   "id": "c28",
+   "group": "topic:passport#2",
+   "topic": "passport",
+   "field": "deadline",
+   "a": {
+    "id": "embriyadh.mfa.gov.dz-consular-pass-declaration",
+    "value": "submit not less than a week and not more than 10 days before departure"
+   },
+   "b": {
+    "id": "cgsf-laissez-passer",
+    "value": "request submitted at the latest 72 hours before departure"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different document types at different embassies/consulates (Riyadh consular pass vs San Francisco laissez-passer)."
+  },
+  {
+   "id": "c29",
+   "group": "topic:passport#2",
+   "topic": "passport",
+   "field": "contact",
+   "a": {
+    "id": "cgny-mobile-station-chicago-2023",
+    "value": "Contact: ms@algeria-cgny.org"
+   },
+   "b": {
+    "id": "cgsf-passports",
+    "value": "email secretariat@cgalgeriasf.org"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates each use their own contact address."
+  },
+  {
+   "id": "c30",
+   "group": "topic:business#1",
+   "topic": "business",
+   "field": "other",
+   "a": {
+    "id": "anae.dz-accueil-ar",
+    "value": "طلب بطاقة المقاول الذاتي عبر الخط: ... الجنسية حالياً جزائرية – \"Bientôt ouvert à toutes les nationalités\""
+   },
+   "b": {
+    "id": "business-anae-home",
+    "value": "Nationalité : être de nationalité algérienne et résider en Algérie, ou être un étranger résidant en Algérie"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "The online registration page says the form currently only accepts Algerian nationality (foreigners to open later), while the home page says foreign residents are eligible under current regulations."
+  },
+  {
+   "id": "c31",
+   "group": "topic:business#1",
+   "topic": "business",
+   "field": "other",
+   "a": {
+    "id": "anae.dz-liste-activites",
+    "value": "Eight domains with codes (including 080000 Micro-importation)"
+   },
+   "b": {
+    "id": "business-anae-home",
+    "value": "Elle couvre sept domaines : conseil et formation, services numériques, services à la personne, prestations à domicile, loisirs, services aux entreprises, et services culturels et audiovisuels."
+   },
+   "values_differ": true,
+   "classification": "outdated",
+   "outdatedId": "business-anae-home",
+   "explanation": "The activity list has eight domains including micro-importation added by Decree 25-170 (June 2025); the home page's 'sept domaines' predates that addition."
+  },
+  {
+   "id": "c32",
+   "group": "topic:social_security#1",
+   "topic": "social_security",
+   "field": "url",
+   "a": {
+    "id": "social-cgparis-national-pension-system",
+    "value": "teledeclaration.cnas.dz/el_djalya.xhtml"
+   },
+   "b": {
+    "id": "teledeclaration.cnas.dz-affiliation-volontaire-communaute-etranger",
+    "value": "https://teledeclaration.cnas.dz/signup.xhtml (new affiliation); https://teledeclaration.cnas.dz/check-foreign-community.xhtml (track request)"
+   },
+   "values_differ": true,
+   "classification": "outdated",
+   "outdatedId": "social-cgparis-national-pension-system",
+   "explanation": "Both pages concern voluntary affiliation of Algerians abroad to the national pension system, but point to different registration URLs. The Paris consulate notice is dated 2023 and names a different portal path, while the CNAS page (fetched 2026) lists its current signup and tracking pages, so the consulate URL is likely superseded."
+  },
+  {
+   "id": "c33",
+   "group": "topic:consular_visa#1",
+   "topic": "consular_visa",
+   "field": "deadline",
+   "a": {
+    "id": "cgny-visa",
+    "value": "Generally issued within eight or ten days of receipt."
+   },
+   "b": {
+    "id": "cgsf-visa-procedure",
+    "value": "in-person or mailed applications are generally issued within a week of receipt."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "Both are Algerian consulates' processing times for visas in the US, stated as 8-10 days versus about 7 days for the same kind of application; these cannot both be exact, though both are approximate and the difference is minor."
+  },
+  {
+   "id": "c34",
+   "group": "topic:consular_visa#1",
+   "topic": "consular_visa",
+   "field": "eligibility",
+   "a": {
+    "id": "cgny-visa",
+    "value": "residents of its 25-state jurisdiction"
+   },
+   "b": {
+    "id": "cgsf-visa-procedure",
+    "value": "residents of its consular jurisdiction (19 US states)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates cover different jurisdictions (25 states for New York, 19 for San Francisco), which is legitimate."
+  },
+  {
+   "id": "c35",
+   "group": "topic:consular_registration#2",
+   "topic": "consular_registration",
+   "field": "documents",
+   "a": {
+    "id": "embberlin.mfa.gov.dz-consular-registration",
+    "value": "four recent passport photos (3.5 x 4.5 cm)"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-consular-registration-1",
+    "value": "three recent passport-size photos"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different embassies (Berlin vs Washington) state different numbers of photos required for first registration, which is a difference between offices rather than a contradiction for one procedure."
+  },
+  {
+   "id": "c36",
+   "group": "topic:consular_registration#2",
+   "topic": "consular_registration",
+   "field": "fee",
+   "a": {
+    "id": "embwashington.mfa.gov.dz-consular-registration-1",
+    "value": "a $2.50 penalty paid by US Postal Service money order only (for lost, stolen or damaged card renewal)"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-consular-card",
+    "value": "The consular card is free of charge."
+   },
+   "values_differ": true,
+   "classification": "outdated",
+   "outdatedId": "embwashington.mfa.gov.dz-consular-card",
+   "explanation": "The consular-card page says free of charge with no mention of a penalty, while the detailed Washington registration page specifies a $2.50 penalty only for lost/stolen/damaged card replacement during renewal; the two are not strictly contradictory but the simpler page appears less complete."
+  },
+  {
+   "id": "c37",
+   "group": "topic:nationality",
+   "topic": "nationality",
+   "field": "documents",
+   "a": {
+    "id": "cgny-nationality-certificate",
+    "value": "Identity proof (one): state ID, driver license, US passport or passport card, ... or foreign passport; Documents by case include applicant's birth certificate, mother's nationality certificate, etc."
+   },
+   "b": {
+    "id": "nationality-cgsanfrancisco",
+    "value": "Notarized copy of the applicant's official ID (either Algerian or US)"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The two consulates list different identity-proof requirements (NY accepts a range of US/foreign IDs; San Francisco requires a notarized copy of an Algerian or US ID), which is a legitimate per-consulate difference in local procedure."
+  },
+  {
+   "id": "c38",
+   "group": "topic:health#2",
+   "topic": "health",
+   "field": "contact",
+   "a": {
+    "id": "pasteur.dz-centre-de-vaccination-2023-liste",
+    "value": "Prise de rendez-vous par téléphone : +213 (0) 21 67 23 44 et +213 (0) 21 67 25 02, poste 229; horaires du centre : du dimanche au jeudi, 8h00 à 12h00 et 13h00 à 16h00"
+   },
+   "b": {
+    "id": "pasteur.dz-annuaire-des-contacts",
+    "value": "Centre de Prélèvement / Centre de Vaccination : Dr Mohamed Lamine Assad — 23 55 22 09 (Annexe d'El Hamma, standard 23 55 22 13)"
+   },
+   "values_differ": true,
+   "classification": "outdated",
+   "outdatedId": "pasteur.dz-centre-de-vaccination-2023-liste",
+   "explanation": "Both describe the El Hamma vaccination centre but give different phone numbers. The vaccination list is a 2023 document, while the directory is undated and more general, so the 2023 numbers are likely superseded; the excerpts do not state exact dates for the directory."
+  },
+  {
+   "id": "c39",
+   "group": "topic:consular_visa#2",
+   "topic": "consular_visa",
+   "field": "documents",
+   "a": {
+    "id": "consular-national-service-embwashington",
+    "value": "Exemption for social reasons: letter addressed to the Ministry of National Defense; two recent photographs; family civil status record (if married); copies of diplomas, if any; work certificate; parents' family civil status record."
+   },
+   "b": {
+    "id": "consular-national-service-cgsanfrancisco",
+    "value": "Social reasons: also provide a letter addressed to the Ministry of National Defense, submitted through the Consulate ... a copy of the parents' family book."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The two offices list different supporting documents for the social exemption (e.g. San Francisco requires father's death certificate, divorce decree, unemployment proof and brothers' status; Washington requires work certificate and family civil status record). Different consulates may set different lists, and the pages do not state a single contradictory rule."
+  },
+  {
+   "id": "c40",
+   "group": "topic:business#3",
+   "topic": "business",
+   "field": "eligibility",
+   "a": {
+    "id": "business-startup-label-home",
+    "value": "Label ... Il ne peut être obtenu qu'après la création de la société."
+   },
+   "b": {
+    "id": "business-startup-pour-les-startups",
+    "value": "Label projet innovant : destiné aux porteurs de projets qui n'ont pas encore créé leur société"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The startup label requires an existing company, while the separate 'projet innovant' label targets project holders who have not yet created one; these are different labels/procedures, not a contradiction."
+  },
+  {
+   "id": "c41",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "fee",
+   "a": {
+    "id": "cgny-passport",
+    "value": "Standard fees per the official fee page: students and children under 19 - $37.50 (28 pages), $56.25 (48 pages); employed or unemployed - $75.00 (28 pages), $112.50 (48 pages). Fees by USPS money order."
+   },
+   "b": {
+    "id": "passport-cglondon-first-issuance",
+    "value": "Adults: 28-page 55 GBP; 48-page 110 GBP. Minors: 28-page 27.50 GBP; 48-page 55 GBP. Students and children under 19: 27.50 GBP"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (New York vs London) with different currencies (USD vs GBP) and different fee schedules; not a factual contradiction."
+  },
+  {
+   "id": "c43",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "fee",
+   "a": {
+    "id": "passport-cglondon-renewal",
+    "value": "Standard renewal: 55 GBP, paid in cash only at the time of application. Students and children under 19: 27.50 GBP."
+   },
+   "b": {
+    "id": "passport-cglondon-first-issuance",
+    "value": "Passport fee, paid in cash or by postal order at submission"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "Same London consulate: renewal page says cash only, while first-issuance page says cash or postal order for the passport fee."
+  },
+  {
+   "id": "c44",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "validity",
+   "a": {
+    "id": "cgny-emergency-passport",
+    "value": "Its validity is non-extendable and ranges from 3 months to one year depending on purpose."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-emergency-passport",
+    "value": "'The validity period of an Emergency Passport is one year running from its issuing date' and it cannot be extended or renewed."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates; New York states a 3-month to one-year range by purpose, London states a fixed one year. Both pages are for different offices with differing rules."
+  },
+  {
+   "id": "c45",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-consular-pass",
+    "value": "Four recent photographs."
+   },
+   "b": {
+    "id": "cgny-laissez-passer",
+    "value": "two recent photographs"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates (London vs New York) with different photo requirements for the laissez-passer."
+  },
+  {
+   "id": "c46",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "deadline",
+   "a": {
+    "id": "cgny-laissez-passer",
+    "value": "The laissez-passer request must be submitted to our services at the latest, 72 hours before the departure date."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-consular-pass",
+    "value": "Applications for a voluntary return should be made \"at least five (5) working days before the date of travel.\""
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates set different lead times for the laissez-passer/consular pass."
+  },
+  {
+   "id": "c47",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "contact",
+   "a": {
+    "id": "passport-cglondon-first-issuance",
+    "value": "Postal applications are no longer accepted, and passports cannot be mailed."
+   },
+   "b": {
+    "id": "cgny-passport",
+    "value": "Under 12: no fingerprinting or in-person pickup needed; send all documents by mail."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates; London no longer accepts postal applications while New York accepts mailed applications for under-12s."
+  },
+  {
+   "id": "c48",
+   "group": "topic:passport#1",
+   "topic": "passport",
+   "field": "other",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-online-service",
+    "value": "Biometric passports are issued (handed over) Tuesday through Saturday, 8:30 a.m. to 3:30 p.m."
+   },
+   "b": {
+    "id": "cgny-passport",
+    "value": "Passport services require an appointment; all other consular services are available without one."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different consulates with different service arrangements; not directly contradictory."
+  },
+  {
+   "id": "c49",
+   "group": "topic:business#4",
+   "topic": "business",
+   "field": "validity",
+   "a": {
+    "id": "startup.dz-obtenir-renouveler-label-startup",
+    "value": "\"valid for four (4) years and can be renewed once\""
+   },
+   "b": {
+    "id": "startup.dz-pour-les-incubateurs",
+    "value": "\"Tax exemption: two (2) years from the labelling date\""
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different labels and procedures: the startup label validity (4 years) and the incubator tax exemption period (2 years) are separate facts, not contradictory."
+  },
+  {
+   "id": "c50",
+   "group": "topic:business#4",
+   "topic": "business",
+   "field": "other",
+   "a": {
+    "id": "startup.dz-label-scale-up",
+    "value": "\"Seul critère explicite indiqué : la dépense en R&D\" and \"Dépenses en R&D ... 5% de son chiffre d'affaire\""
+   },
+   "b": {
+    "id": "startup.dz-label-startup-formulaire",
+    "value": "\"R&D spending (optional)\""
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different labels: the Scale-up label treats R&D spending as mandatory evidence, while the Startup label form marks it optional. These are separate procedures, not a single contradictory rule."
+  },
+  {
+   "id": "c51",
+   "group": "topic:passport#3",
+   "topic": "passport",
+   "field": "fee",
+   "a": {
+    "id": "embwashington.mfa.gov.dz-biometric-passport-underscore",
+    "value": "lost or damaged: penalty fee (lower for students and minors)"
+   },
+   "b": {
+    "id": "passport-embwashington-biometric-documents",
+    "value": "lost, stolen or damaged passport: $125 penalty paid by money order"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "One page gives an unspecified lower penalty for students/minors; the other states a flat $125 penalty. The amount is not stated on the first page, so this is a missing detail rather than a clear contradiction."
+  },
+  {
+   "id": "c52",
+   "group": "topic:passport#3",
+   "topic": "passport",
+   "field": "documents",
+   "a": {
+    "id": "embwashington.mfa.gov.dz-biometric-passport-underscore",
+    "value": "one passport photo meeting size, background and pose requirements"
+   },
+   "b": {
+    "id": "passport-embwashington-biometric-passport",
+    "value": "Two 2x2 inch passport photos"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "Pages state different photo counts (one vs two) for the same biometric passport procedure at the same embassy."
+  },
+  {
+   "id": "c54",
+   "group": "topic:passport#3",
+   "topic": "passport",
+   "field": "other",
+   "a": {
+    "id": "embwashington.mfa.gov.dz-biometric-passport-underscore",
+    "value": "Children under 12 do not need to be fingerprinted in person or collect the passport at the consulate; all documents are sent by mail"
+   },
+   "b": {
+    "id": "passport-embwashington-biometric-passport",
+    "value": "Children exempt from electronic fingerprint scanning at submission don't need to return for pickup"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "First page sets an age threshold (under 12) for exemption from in-person visits; the other ties exemption to fingerprint-scanning exemption with no age given. Different eligibility criteria for the same exemption."
+  },
+  {
+   "id": "c56",
+   "group": "post:cgmilan",
+   "topic": null,
+   "field": "validity",
+   "a": {
+    "id": "cgmilan.mfa.gov.dz-emergency-passport",
+    "value": "valid for 3 months to 1 year depending on the purpose"
+   },
+   "b": {
+    "id": "passport-cgmilan-first-issue",
+    "value": "Passport validity period: 10 years for adults and 05 years for minors"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Emergency passport and regular biometric passport are different document types, so different validity periods are not a factual conflict."
+  },
+  {
+   "id": "c57",
+   "group": "post:embwashington#2",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "embwashington.mfa.gov.dz-consular-registration-1",
+    "value": "First registration requires three recent passport-size photos"
+   },
+   "b": {
+    "id": "embwashington.mfa.gov.dz-travel-document-laissez-passer",
+    "value": "Two recent passport-size photographs required for laissez-passer; four recent photographs for parental authorization"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different procedures (registration, laissez-passer, travel authorization) with different photo counts."
+  },
+  {
+   "id": "c58",
+   "group": "post:cgsanfrancisco#1",
+   "topic": null,
+   "field": "fee",
+   "a": {
+    "id": "cgsf-first-time-registration",
+    "value": "consular card issued free of charge"
+   },
+   "b": {
+    "id": "cgsf-family-visa",
+    "value": "The visa fee for US passports is 160$ (Non-refundable)."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different procedures (registration card vs. family visa); no shared fee to conflict."
+  },
+  {
+   "id": "c59",
+   "group": "post:cgsanfrancisco#1",
+   "topic": null,
+   "field": "validity",
+   "a": {
+    "id": "cgsf-first-time-registration",
+    "value": "consular card ... valid for five years"
+   },
+   "b": {
+    "id": "cgsf-laissez-passer",
+    "value": "Valid for 30 days"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Validity of different documents (consular card vs. laissez-passer), not the same procedure."
+  },
+  {
+   "id": "c60",
+   "group": "post:cgsanfrancisco#2",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "cgsf-passports",
+    "value": "original 12-S birth certificate"
+   },
+   "b": {
+    "id": "cgsf-transfer-of-file",
+    "value": "Original full-size birth certificate ('Copie integrale', E.C 12) if born in Algeria, or any birth certificate if born abroad"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Passports requires an original 12-S birth certificate, while transfer of file accepts any birth certificate for those born abroad; different procedures with different rules."
+  },
+  {
+   "id": "c61",
+   "group": "post:cgsanfrancisco#2",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "cgsf-registration-renewal",
+    "value": "self-addressed stamped envelope"
+   },
+   "b": {
+    "id": "cgsf-passports",
+    "value": "a USPS Priority Mail return envelope"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "Different procedures; return envelope type differs by service."
+  },
+  {
+   "id": "c62",
+   "group": "post:cglondon#2",
+   "topic": null,
+   "field": "validity",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "Documents required - proof of identity, one of: consular registration card; passport; national identity card."
+   },
+   "b": {
+    "id": "consular-non-registered-cglondon",
+    "value": "Accepted proof: an Algerian passport, a national identity card, or a military card with a photograph."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "The power of attorney page lists consular registration card, passport or national identity card as accepted identity proof, while the non-registered citizens page lists Algerian passport, national identity card or military card for nationality proof; the accepted document lists for the same service (power of attorney) differ, with military card and consular registration card each appearing on only one page."
+  },
+  {
+   "id": "c63",
+   "group": "post:cglondon#2",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "Other documents are not considered valid."
+   },
+   "b": {
+    "id": "consular-non-registered-cglondon",
+    "value": "Required documents: proof of identity and nationality (one of the accepted documents above); two photographs."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "The power of attorney page requires only proof of identity with no photographs, while the non-registered citizens page requires two photographs for the same service."
+  },
+  {
+   "id": "c64",
+   "group": "post:cglondon#2",
+   "topic": null,
+   "field": "fee",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-power-of-attorney",
+    "value": "Fee: £5."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-transcription-of-civil-records",
+    "value": "Applicants in Ireland must include an £8 postal order for return postage"
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The £5 power of attorney fee and the £8 postage charge are for different procedures and different purposes."
+  },
+  {
+   "id": "c65",
+   "group": "post:cglondon#2",
+   "topic": null,
+   "field": "deadline",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-opening-hours",
+    "value": "Passport service, civil status office (Etat civil) and other services: Tuesday to Saturday, 9:00 am to 3:00 pm."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-transcription-of-civil-records",
+    "value": "In-person applications are accepted Tuesday to Saturday, mornings only, 9 am to 12 noon."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "The opening hours page gives civil status hours of 9:00 am to 3:00 pm, while the civil records page gives in-person acceptance as mornings only, 9 am to 12 noon, for the same office and service."
+  },
+  {
+   "id": "c66",
+   "group": "post:cglondon#2",
+   "topic": null,
+   "field": "deadline",
+   "a": {
+    "id": "cglondon.mfa.gov.dz-online-service",
+    "value": "Biometric passports are issued (handed over) Tuesday through Saturday, 8:30 a.m. to 3:30 p.m."
+   },
+   "b": {
+    "id": "cglondon.mfa.gov.dz-opening-hours",
+    "value": "Passport service, civil status office (Etat civil) and other services: Tuesday to Saturday, 9:00 am to 3:00 pm."
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "The passport issuance hours on the online service page (8:30 a.m. to 3:30 p.m.) differ from the passport service hours on the opening hours page (9:00 am to 3:00 pm)."
+  },
+  {
+   "id": "c67",
+   "group": "post:algeria-cgny.org#1",
+   "topic": null,
+   "field": "other",
+   "a": {
+    "id": "cgny-appointments",
+    "value": "Public hours: Tuesday to Saturday, 9 am to 3 pm; closed Sunday and Monday."
+   },
+   "b": {
+    "id": "cgny-hours-holidays",
+    "value": "Visa collection: Tuesday to Friday, 9:00 am to 3:00 pm."
+   },
+   "values_differ": true,
+   "classification": "post_specific",
+   "explanation": "The appointments page gives general public hours only, while the hours page separately lists visa collection hours (Tuesday to Friday), which is a different service with its own schedule rather than a contradiction."
+  },
+  {
+   "id": "c68",
+   "group": "post:algeria-cgny.org#2",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "cgny-registration",
+    "value": "first-time: original full-size birth certificate (E.C 12 Copie integrale if born in Algeria)"
+   },
+   "b": {
+    "id": "cgny-passport",
+    "value": "First-time: original 12-S birth certificate"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "Both describe a first-time Algerian consular document requiring an original birth certificate for the same New York consulate, but one specifies a full-size E.C 12 copy and the other a 12-S. These are different document types for the same applicant group and cannot both be stated as the requirement without clarification."
+  },
+  {
+   "id": "c69",
+   "group": "post:cgsanfrancisco#3",
+   "topic": null,
+   "field": "documents",
+   "a": {
+    "id": "consular-national-service-cgsanfrancisco",
+    "value": "One original Algerian birth certificate (12S are not accepted)"
+   },
+   "b": {
+    "id": "cni-cgsanfrancisco-identity-cards",
+    "value": "Original 12-S birth certificate"
+   },
+   "values_differ": true,
+   "classification": "real_conflict",
+   "explanation": "For the same consulate, the military service exemption page rejects 12S birth certificates while the identity card page requires an original 12-S birth certificate. Both cannot be right for the same applicant population."
+  }
+ ],
+ "stale": [
+  {
+   "id": "business-anae-creation-agence",
+   "url": "https://anae.dz/post/1",
+   "title": "Création de l'agence nationale de l'auto-entrepreneur - ANAE",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "social-cgparis-national-pension-system",
+   "url": "https://cgparis.mfa.gov.dz/activity/release-national-pension-system",
+   "title": "Release of the National Pension System platform for Algerians abroad - Consulate General in Paris",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "education-mesrs-boursiers-etranger",
+   "url": "https://www.mesrs.dz/fr/suivi-des-boursiers-et-insertion/",
+   "title": "Suivi des boursiers et insertion - MESRS",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "cgny-mobile-station-chicago-2023",
+   "url": "https://cgnewyork.mfa.gov.dz/en/announcements/mobile-station-to-chicago-2023",
+   "title": "Mobile Station to Chicago 2023 - Consulate General of Algeria in New York",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "cgny-criminal-record",
+   "url": "https://algeria-cgny.org/criminal-record/",
+   "title": "Criminal Record - Consulate General of Algeria in New York",
+   "newestYear": 2010,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2010 (more than 2 years ago)."
+  },
+  {
+   "id": "cgny-nationality-certificate",
+   "url": "https://algeria-cgny.org/nationality_certificate/",
+   "title": "Nationality Certificate - Consulate General of Algeria in New York",
+   "newestYear": 2005,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2005 (more than 2 years ago)."
+  },
+  {
+   "id": "cglondon.mfa.gov.dz-emergency-passport",
+   "url": "https://cglondon.mfa.gov.dz/consular-services/emergency-passport",
+   "title": "Emergency Passport - Consulate General of Algeria in London",
+   "newestYear": 2016,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2016 (more than 2 years ago)."
+  },
+  {
+   "id": "embwashington.mfa.gov.dz-consular-registration-1",
+   "url": "https://embwashington.mfa.gov.dz/consular-services/consular-registration-1",
+   "title": "Consular registration (first registration, renewal, transfer, deletion) - Embassy of Algeria in Washington",
+   "newestYear": 2002,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2002 (more than 2 years ago)."
+  },
+  {
+   "id": "energy.gov.dz-loi-02-01-electricite-gaz",
+   "url": "https://www.energy.gov.dz/Media/galerie/loi_nd_02-01_du_05_fevrier_2002_relative_a_l%27electricite_et_a_la_distribution_du_gaz_par_canalisations_5b6700d95f092.pdf",
+   "title": "Loi n° 02-01 du 5 février 2002 relative à l'électricité et à la distribution du gaz par canalisations",
+   "newestYear": 2002,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2002 (more than 2 years ago)."
+  },
+  {
+   "id": "energy.gov.dz-electricity",
+   "url": "https://www.energy.gov.dz/en/1404/electricity",
+   "title": "Electricity",
+   "newestYear": 2002,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2002 (more than 2 years ago)."
+  },
+  {
+   "id": "mtatf.gov.dz-home-procedures",
+   "url": "https://mtatf.gov.dz/",
+   "title": "Ministry of Tourism and Handicrafts - homepage (investment procedure, tourist guide, crafts)",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-carte-nationale-identite",
+   "url": "https://wilayaoran.dz/la-carte-nationale-didentite-2/",
+   "title": "La carte nationale d'identité – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-permis-de-conduire",
+   "url": "https://wilayaoran.dz/permis-de-conduire/",
+   "title": "Permis de conduire – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2004,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2004 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-immatriculation-de-vehicules",
+   "url": "https://wilayaoran.dz/immatriculation-de-vehicules/",
+   "title": "Immatriculation de véhicules – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-sortie-des-mineurs-a-letranger",
+   "url": "https://wilayaoran.dz/sortie-des-mineurs-a-letranger/",
+   "title": "Sortie des mineurs à l'étranger – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2015,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2015 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-inhumation-des-defunts-algeriens",
+   "url": "https://wilayaoran.dz/inhumation-des-defunts-algeriens/",
+   "title": "Inhumation des défunts algériens – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-mise-en-service-etat-civil-a-distance",
+   "url": "https://wilayaoran.dz/mise-en-service-de-l-obtention-des-documents-d-etat-civil-a-distance-via-le-net/",
+   "title": "Mise en service de l'obtention des documents d'état civil à distance via le net – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "wilayaoran.dz-certificat-capacite-permis-en-ligne",
+   "url": "https://wilayaoran.dz/nouveau-la-demande-du-certificat-de-capacite-du-permis-de-conduire-est-desormais-en-ligne/",
+   "title": "Nouveau ! La demande du certificat de capacité du permis de conduire est désormais en ligne – Site Officiel de la wilaya d'Oran",
+   "newestYear": 2019,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2019 (more than 2 years ago)."
+  },
+  {
+   "id": "mesrs.dz-plateforme-equivalence-fr",
+   "url": "https://www.mesrs.dz/index.php/fr/espace-etudiant/plateforme-equivalence/",
+   "title": "Plateforme Équivalence – Ministère de l'Enseignement supérieur et de la Recherche scientifique",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "mesrs.dz-plateforme-equivalence-ar",
+   "url": "https://www.mesrs.dz/etudiant-ar/plateforme-equivalence-ar/",
+   "title": "منصة المعادلة – وزارة التعليم العالي والبحث العلمي",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "mesrs.dz-equivalence-des-diplomes-pieces",
+   "url": "https://www.mesrs.dz/index.php/espace-etudiant/equivalence-des-diplomes/",
+   "title": "Équivalence des diplômes – Ministère de l'Enseignement supérieur et de la Recherche scientifique",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "mesrs.dz-formation-superieure-etablissements-prives",
+   "url": "https://www.mesrs.dz/index.php/espace-etudiant/formation-superieure-dans-des-etablissements-prives/",
+   "title": "Formation supérieure dans des établissements privés – MESRS",
+   "newestYear": 2008,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2008 (more than 2 years ago)."
+  },
+  {
+   "id": "mesrs.dz-textes-formation-superieure-chapitre3",
+   "url": "https://www.mesrs.dz/index.php/chapitre3/",
+   "title": "Chapitre III – La Formation Supérieure (textes juridiques) – MESRS",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "pasteur.dz-vaccination",
+   "url": "https://www.pasteur.dz/fr/sante-publique/vaccination",
+   "title": "Vaccination et conseils aux voyageurs - Institut Pasteur d'Algérie",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "pasteur.dz-centre-de-vaccination-2023-liste",
+   "url": "https://www.pasteur.dz/images/2023/pdf/Centre-de-Vaccination2023.pdf",
+   "title": "Centre de Vaccination – liste des vaccins (Institut Pasteur d'Algérie, PDF 2023)",
+   "newestYear": 2023,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2023 (more than 2 years ago)."
+  },
+  {
+   "id": "anpp.dz-commercialisation-illicite",
+   "url": "https://anpp.dz/fr/comm-illicite-pp/",
+   "title": "Commercialisation Illicite des Produits Pharmaceutiques – ANPP",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  },
+  {
+   "id": "anpp.dz-direction-enregistrement",
+   "url": "https://anpp.dz/fr/a-propos-direction-enregistrement/",
+   "title": "À Propos – Direction d'Enregistrement – ANPP",
+   "newestYear": 2021,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2021 (more than 2 years ago)."
+  },
+  {
+   "id": "anpp.dz-visa-de-publicite",
+   "url": "https://anpp.dz/fr/visa-de-publicite/",
+   "title": "Visa de publicité – ANPP",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  },
+  {
+   "id": "anpp.dz-presentation",
+   "url": "https://anpp.dz/fr/presentation-de-lanpp/",
+   "title": "Présentation de l'ANPP – ANPP",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "craag.dz-reseau-sismologique",
+   "url": "https://www.craag.dz/index.php/reseau-sismologique/",
+   "title": "Réseau sismologique – CRAAG",
+   "newestYear": 2006,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2006 (more than 2 years ago)."
+  },
+  {
+   "id": "craag.dz-presentation",
+   "url": "https://www.craag.dz/index.php/presentation-craag/",
+   "title": "Présentation CRAAG – CRAAG",
+   "newestYear": 2006,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2006 (more than 2 years ago)."
+  },
+  {
+   "id": "cour-constitutionnelle.dz-exception-inconstitutionnalite-en-questions",
+   "url": "https://cour-constitutionnelle.dz/2022/01/08/lexception-dinconstitutionnalite-en-questions/?print=pdf",
+   "title": "L'exception d'inconstitutionnalité en questions – Cour constitutionnelle",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "cour-constitutionnelle.dz-textes-applicables",
+   "url": "https://cour-constitutionnelle.dz/2022/01/08/textes-applicables/?print=pdf",
+   "title": "Textes applicables – Cour constitutionnelle",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "cour-constitutionnelle.dz-accueil",
+   "url": "https://cour-constitutionnelle.dz/",
+   "title": "Cour constitutionnelle – Algérie (accueil)",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "mdn.dz-gendarmerie-historique",
+   "url": "https://www.mdn.dz/site_cgn/sommaire/presentation/histoire/historique_fr.php",
+   "title": "Histoire de la Gendarmerie Nationale",
+   "newestYear": 2009,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2009 (more than 2 years ago)."
+  },
+  {
+   "id": "elhanaa.cnas.dz-verification-affiliation",
+   "url": "https://elhanaa.cnas.dz/affiliation.xhtml",
+   "title": "Vérification d'une attestation d'affiliation - Espace El-Hanaa CNAS",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "teledeclaration.cnas.dz-depliant-affiliation-volontaire",
+   "url": "https://teledeclaration.cnas.dz/pdf/DEPLIANT_AE.pdf",
+   "title": "Dépliant - Affiliation volontaire des Algériens à l'étranger (CNAS)",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "teledeclaration.cnas.dz-decret-22-351",
+   "url": "https://teledeclaration.cnas.dz/pdf/decret-communaute-retraite.pdf",
+   "title": "Décret exécutif n° 22-351 du 18 octobre 2022 – affiliation volontaire de la communauté nationale à l'étranger",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "cnas.dz-at-mp-03-certificat-medical",
+   "url": "https://cnas.dz/wp-content/uploads/2018/02/AT-MP-03.pdf",
+   "title": "Certificat médical initial ou de prolongation (AT-MP 03) - CNAS",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "cnas.dz-attending-physician-agreement",
+   "url": "https://cnas.dz/en/attending-physician-agreement/",
+   "title": "Attending Physician Agreement (médecin traitant) - CNAS",
+   "newestYear": 2009,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2009 (more than 2 years ago)."
+  },
+  {
+   "id": "teledeclaration.cnas.dz-verification-attestation-mise-a-jour",
+   "url": "https://teledeclaration.cnas.dz/checkMAJ.jsp",
+   "title": "Vérification d'une attestation de mise à jour - CNAS",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "startup.dz-pour-les-incubateurs",
+   "url": "https://www.startup.dz/pour-les-incubateurs/",
+   "title": "Pour les incubateurs – Label incubateur et avantages",
+   "newestYear": 2021,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2021 (more than 2 years ago)."
+  },
+  {
+   "id": "startup.dz-pour-les-investisseurs",
+   "url": "https://www.startup.dz/pour-les-investisseurs/",
+   "title": "Pour les investisseurs – financement participatif, Bourse d'Alger",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "startup.dz-algeria-venture",
+   "url": "https://startup.dz/algeria-venture",
+   "title": "Algeria Venture (A-venture) – réseau d'accélérateurs",
+   "newestYear": 2021,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2021 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-procedure-vol",
+   "url": "https://www.arpce.dz/fr/service/steal",
+   "title": "ARPCE – Procédure en cas de vol (carte SIM)",
+   "newestYear": 2009,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2009 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-conseils-usagers",
+   "url": "https://www.arpce.dz/fr/service/advice",
+   "title": "ARPCE – Conseils aux usagers",
+   "newestYear": 2015,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2015 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-infos-utiles-services-valeur-ajoutee",
+   "url": "https://www.arpce.dz/fr/service/infos",
+   "title": "ARPCE – Infos utiles (activer/désactiver les services à valeur ajoutée)",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-contact",
+   "url": "https://www.arpce.dz/fr/contact",
+   "title": "ARPCE – Contactez-nous",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  },
+  {
+   "id": "creg.gov.dz-taqdim-taan",
+   "url": "https://creg.gov.dz/%d8%a7%d9%84%d9%85%d8%b3%d8%aa%d9%87%d9%84%d9%83%d9%88%d9%86/%d8%a7%d9%84%d8%b7%d8%b9%d9%86/",
+   "title": "CREG – تقديم طعن (Recours des consommateurs)",
+   "newestYear": 2002,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2002 (more than 2 years ago)."
+  },
+  {
+   "id": "creg.gov.dz-demander-une-information-faq",
+   "url": "https://creg.gov.dz/fr/consommateurs/demander-une-information/",
+   "title": "CREG – Demander une information (FAQ consommateurs)",
+   "newestYear": 2013,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2013 (more than 2 years ago)."
+  },
+  {
+   "id": "creg.gov.dz-state-support",
+   "url": "https://creg.gov.dz/en/consumers/state-support/",
+   "title": "CREG – State Support (Soutien de l'État)",
+   "newestYear": 2017,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2017 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-portabilite-numeros-mobiles",
+   "url": "https://www.arpce.dz/fr/topic/pnm",
+   "title": "ARPCE – Portabilité des Numéros Mobiles",
+   "newestYear": 2022,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2022 (more than 2 years ago)."
+  },
+  {
+   "id": "creg.gov.dz-making-an-appeal",
+   "url": "https://creg.gov.dz/en/making-an-appeal/",
+   "title": "CREG – Making an Appeal",
+   "newestYear": 2002,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2002 (more than 2 years ago)."
+  },
+  {
+   "id": "cosob.dz-investir-en-bourse",
+   "url": "https://cosob.dz/wp-content/uploads/2024/05/Investir-en-bourse-mis-a-jour.pdf",
+   "title": "COSOB – Investir en bourse",
+   "newestYear": 1993,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 1993 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-service-universel",
+   "url": "https://www.arpce.dz/fr/topic/su",
+   "title": "ARPCE – Service Universel des Communications Électroniques",
+   "newestYear": 2020,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2020 (more than 2 years ago)."
+  },
+  {
+   "id": "arpce.dz-service-universel-poste",
+   "url": "https://www.arpce.dz/fr/topic/sup",
+   "title": "ARPCE – Service Universel de la Poste",
+   "newestYear": 2021,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2021 (more than 2 years ago)."
+  },
+  {
+   "id": "sntf.dz-trains-de-banlieues",
+   "url": "https://www.sntf.dz/index.php/component/spsimpleportfolio/item/1-trains-de-banlieues?Itemid=0",
+   "title": "SNTF – Trains de banlieues",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  },
+  {
+   "id": "sntf.dz-trains-de-grandes-lignes",
+   "url": "https://www.sntf.dz/index.php/component/spsimpleportfolio/item/3-trains-de-grandes-lignes?Itemid=0",
+   "title": "SNTF – Trains de grandes lignes",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  },
+  {
+   "id": "sntf.dz-trains-regionaux",
+   "url": "https://www.sntf.dz/index.php/component/spsimpleportfolio/item/2-trains-regionaux?Itemid=0",
+   "title": "SNTF – Trains régionaux",
+   "newestYear": 2018,
+   "lastChanged": null,
+   "reason": "Newest year mentioned is 2018 (more than 2 years ago)."
+  }
+ ],
+ "errors": []
+}
