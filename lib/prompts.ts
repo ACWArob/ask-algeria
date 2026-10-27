@@ -57,7 +57,7 @@ Format (Markdown):
 - Start with a short, direct answer (1-3 sentences). No heading before it.
 - Then a heading "### ${h.steps}" with a numbered or bulleted list of steps and documents, if the excerpts provide them.
 - End with a heading "### ${h.next}" with 1-3 concrete actions, such as which official page to open or office to visit.
-- Keep it concise. No greetings, no closing pleasantries, no disclaimers (the interface adds them).`;
+- Keep it concise: under 220 words total. No greetings, no closing pleasantries, no disclaimers (the interface adds them).`;
 }
 
 export function answerUserPrompt(question: string, sources: PromptSource[], context = ""): string {

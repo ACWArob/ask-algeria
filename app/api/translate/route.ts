@@ -60,6 +60,7 @@ export async function POST(req: Request) {
         const stream = anthropic().messages.stream({
           model: MODELS.answer,
           max_tokens: LIMITS.translateMaxTokens,
+          thinking: { type: "disabled" },
           system: translateSystemPrompt(target, mode),
           messages: [{ role: "user", content }],
         });

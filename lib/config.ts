@@ -1,10 +1,10 @@
 /** Central configuration: model names and limits live here only. */
 export const MODELS = {
   /** Writes answers and translations. */
-  answer: "claude-sonnet-5-5",
+  answer: process.env.ANSWER_MODEL || "claude-haiku-5-5",
   /** Language detection + multilingual query expansion. */
   expand: "claude-haiku-5-5",
-} as const;
+};
 
 export const LIMITS = {
   questionMaxChars: 1000,
@@ -12,8 +12,8 @@ export const LIMITS = {
   uploadMaxBytes: 5 * 1024 * 1024,
   rateLimitPerMinute: 20,
   topChunks: 8,
-  answerMaxTokens: 1600,
-  translateMaxTokens: 4000,
+  answerMaxTokens: 1200,
+  translateMaxTokens: 1800,
 } as const;
 
 export const COOKIE = {

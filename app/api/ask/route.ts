@@ -110,15 +110,21 @@ export async function POST(req: Request) {
         const stream = anthropic().messages.stream({
           model: MODELS.answer,
           max_tokens: LIMITS.answerMaxTokens,
+          thinking: { type: "disabled" },
           system: answerSystemPrompt(answerLang, fallbackSites),
           messages: [{ role: "user", content: answerUserPrompt(question, promptSources, context) }],
         });
         req.signal.addEventListener("abort", () => stream.abort());
+        const seen: Record<string, number> = {};
         for await (const ev of stream) {
+          const k = ev.type + ("delta" in ev && ev.delta && "type" in ev.delta ? ":" + ev.delta.type : "");
+          seen[k] = (seen[k] ?? 0) + 1;
           if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
             controller.enqueue(enc.encode(ev.delta.text));
           }
         }
+        const fin = await stream.finalMessage();
+        if (fin.stop_reason !== "end_turn") console.warn("[ask] stopped:", fin.stop_reason, JSON.stringify(seen));
       } catch (err) {
         console.error("[ask] generation failed:", err instanceof Error ? err.message : err);
         controller.enqueue(enc.encode("\n\n\u0000ERROR"));
