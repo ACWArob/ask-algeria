@@ -4,6 +4,8 @@ export const MODELS = {
   answer: process.env.ANSWER_MODEL || "claude-haiku-5-5",
   /** Language detection + multilingual query expansion. */
   expand: "claude-haiku-5-5",
+  /** Used if the answer model errors twice in a row. */
+  fallback: process.env.FALLBACK_MODEL || "claude-sonnet-5-5",
 };
 
 export const LIMITS = {
@@ -12,7 +14,7 @@ export const LIMITS = {
   uploadMaxBytes: 5 * 1024 * 1024,
   rateLimitPerMinute: 20,
   topChunks: 8,
-  answerMaxTokens: 1200,
+  answerMaxTokens: 800,
   translateMaxTokens: 1800,
 } as const;
 

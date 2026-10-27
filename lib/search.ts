@@ -45,7 +45,7 @@ export interface Hit extends Chunk {
 }
 
 /** Runs each query, merges by best score, caps chunks per document so one page can't crowd out others. */
-export function searchChunks(queries: string[], limit: number): Hit[] {
+export function searchChunks(queries: string[], limit: number, boostDomains: string[] = []): Hit[] {
   const ms = getIndex();
   const best = new Map<string, Hit>();
   for (const q of queries) {
@@ -68,6 +68,10 @@ export function searchChunks(queries: string[], limit: number): Hit[] {
         prev.score += r.score * 0.25; // matched by several query variants: small bonus
       }
     }
+  }
+  if (boostDomains.length) {
+    const boost = new Set(boostDomains.map((d) => d.replace(/^www\./, "")));
+    for (const h of best.values()) if (boost.has(h.domain.replace(/^www\./, ""))) h.score *= 3;
   }
   const perDoc = new Map<string, number>();
   const out: Hit[] = [];

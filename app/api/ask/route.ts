@@ -14,6 +14,7 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
+import { detectPost } from "@/lib/posts";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,6 +45,8 @@ export async function POST(req: Request) {
   // Optional previous question in the same conversation, so short follow-ups ("and for minors?") can be searched.
   const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
 
+  const started = Date.now();
+  const post = detectPost(`${context} ${question}`);
   const mock = isMock();
   const expansion = mock
     ? {
@@ -54,7 +57,8 @@ export async function POST(req: Request) {
     : await expandQuery(question, context);
   const answerLang = chooseAnswerLang(selected, expansion.lang, question);
 
-  const hits = searchChunks(expansion.queries, LIMITS.topChunks);
+  const queries = post ? [...expansion.queries, ...expansion.queries.slice(0, 3).map((q) => `${q} ${post.place}`)] : expansion.queries;
+  const hits = searchChunks(queries, LIMITS.topChunks, post?.domains ?? []);
 
   // Group chunks by page so each page gets one citation number.
   const byDoc = new Map<string, PromptSource>();
@@ -121,30 +125,66 @@ export async function POST(req: Request) {
     .map((s) => `- ${s.name_fr} (${s.name_en}): ${s.url} [${s.category}]`)
     .join("\n");
 
+  const system = answerSystemPrompt(answerLang, fallbackSites, post);
+  const REPLY_IN: Record<Locale, string> = {
+    en: "Reply only in English.",
+    fr: "Réponds uniquement en français.",
+    ar: "أجب باللغة العربية الفصحى فقط، حتى لو كانت الصفحات الرسمية بالفرنسية أو الإنجليزية.",
+    dz: "جاوب غير بالدارجة الجزائرية بالحروف العربية، حتى لو كانت الصفحات بالفرنسية ولا بالإنجليزية.",
+  };
+  const userPrompt = `${answerUserPrompt(question, promptSources, context, notes)}\n\n${REPLY_IN[answerLang]}`;
+  // Netlify cuts synchronous functions at ~10 s. Stop generating before that and close cleanly.
+  const DEADLINE_MS = 9000;
+  const SHORTENED: Record<Locale, string> = {
+    en: "\n\n_(Answer shortened to keep it fast. Ask a follow-up for more detail.)_",
+    fr: "\n\n_(Réponse raccourcie pour rester rapide. Posez une question de suivi pour plus de détails.)_",
+    ar: "\n\n_(تم اختصار الإجابة للسرعة. اطرح سؤالًا آخر لمزيد من التفاصيل.)_",
+    dz: "\n\n_(قصّرنا الجواب باش يكون سريع. سقسي سؤال آخر باش تعرف كثر.)_",
+  };
+
   const out = new ReadableStream<Uint8Array>({
     async start(controller) {
       controller.enqueue(enc.encode(JSON.stringify(meta) + "\n"));
+      let wrote = 0;
+      const models = [MODELS.answer, MODELS.answer, MODELS.fallback];
       try {
-        const stream = anthropic().messages.stream({
-          model: MODELS.answer,
-          max_tokens: LIMITS.answerMaxTokens,
-          thinking: { type: "disabled" },
-          system: answerSystemPrompt(answerLang, fallbackSites),
-          messages: [{ role: "user", content: answerUserPrompt(question, promptSources, context, notes) }],
-        });
-        req.signal.addEventListener("abort", () => stream.abort());
-        const seen: Record<string, number> = {};
-        for await (const ev of stream) {
-          const k = ev.type + ("delta" in ev && ev.delta && "type" in ev.delta ? ":" + ev.delta.type : "");
-          seen[k] = (seen[k] ?? 0) + 1;
-          if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
-            controller.enqueue(enc.encode(ev.delta.text));
+        for (let attempt = 0; attempt < models.length; attempt++) {
+          const remaining = DEADLINE_MS - (Date.now() - started);
+          if (remaining < 2500) break;
+          const stream = anthropic().messages.stream(
+            {
+              model: models[attempt],
+              max_tokens: LIMITS.answerMaxTokens,
+              thinking: { type: "disabled" },
+              system,
+              messages: [{ role: "user", content: userPrompt }],
+            },
+            { maxRetries: 0, timeout: remaining },
+          );
+          req.signal.addEventListener("abort", () => stream.abort());
+          const timer = setTimeout(() => stream.abort(), remaining);
+          try {
+            for await (const ev of stream) {
+              if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
+                controller.enqueue(enc.encode(ev.delta.text));
+                wrote += ev.delta.text.length;
+              }
+            }
+            clearTimeout(timer);
+            return; // finished normally
+          } catch (err) {
+            clearTimeout(timer);
+            const timedOut = Date.now() - started >= DEADLINE_MS - 50;
+            console.error(`[ask] attempt ${attempt + 1} (${models[attempt]}) failed after ${Date.now() - started}ms:`, err instanceof Error ? err.message : err);
+            if (wrote > 0) {
+              // Something already reached the user: never restart, just close politely.
+              controller.enqueue(enc.encode(SHORTENED[answerLang]));
+              return;
+            }
+            if (timedOut) break;
+            await new Promise((r) => setTimeout(r, 250));
           }
         }
-        const fin = await stream.finalMessage();
-        if (fin.stop_reason !== "end_turn") console.warn("[ask] stopped:", fin.stop_reason, JSON.stringify(seen));
-      } catch (err) {
-        console.error("[ask] generation failed:", err instanceof Error ? err.message : err);
         controller.enqueue(enc.encode("\n\n\u0000ERROR"));
       } finally {
         controller.close();

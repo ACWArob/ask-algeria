@@ -17,7 +17,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 6
  },
  {
   "name_en": "Prime Minister's Office",
@@ -37,7 +37,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 2
  },
  {
   "name_en": "National People's Assembly",
@@ -77,7 +77,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Ministry of the Interior and Local Authorities",
@@ -97,7 +97,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia citations; linked from wilayaoran.dz",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Ministry of Finance",
@@ -158,7 +158,7 @@
   "fetch_status": "ok",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK (English version)",
   "notes": "",
-  "pages": 11
+  "pages": 12
  },
  {
   "name_en": "Ministry of Mujahideen and Rights Holders",
@@ -198,7 +198,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Ministry of Culture and Arts",
@@ -318,7 +318,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Ministry of Public Works and Transport",
@@ -419,7 +419,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Dzair Digital Services – National Digital Services Portal",
@@ -479,7 +479,7 @@
   "fetch_status": "robots",
   "evidence": "Cited by Consulate General London (cglondon.mfa.gov.dz/consular-services/12-s) and Embassy Abu Dhabi",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Directorate General of Taxes",
@@ -499,7 +499,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK; DGI official reference domain per DGI notice",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Jibayatic – Online Tax Declaration & Payment",
@@ -640,7 +640,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); many pages indexed (fr/ar/en)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Sidjilcom – CNRC Online Trade Register",
@@ -660,7 +660,7 @@
   "fetch_status": "robots",
   "evidence": "Ministry of Commerce has a 'Portail du CNRC' page; Sidjilcom widely cited (zoomalgerie, upgrowth)",
   "notes": "Domain from secondary sources; confirm; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Algerian Investment Promotion Agency (AAPI)",
@@ -681,7 +681,7 @@
   "fetch_status": "robots",
   "evidence": "Embassy of Algeria Nairobi page cites www.aapi.dz",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Investor Digital Platform",
@@ -761,7 +761,7 @@
   "fetch_status": "dead",
   "evidence": "Many tender PDFs indexed at safqatic.dz/docs/offres",
   "notes": "Fetch returned 'Request Rejected' WAF page",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "CNAS – National Social Insurance Fund (employees)",
@@ -961,7 +961,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "AADL – National Housing Improvement & Development Agency",
@@ -1020,7 +1020,7 @@
   "fetch_status": "ok",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "ONEC – National Office of Exams and Competitions",
@@ -1040,7 +1040,7 @@
   "fetch_status": "robots",
   "evidence": "Linked from education.gov.dz (onec.dz/archives.html)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Baccalaureate Portal (ONEC)",
@@ -1463,7 +1463,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK",
   "notes": "",
-  "pages": 7
+  "pages": 8
  },
  {
   "name_en": "Ministry of Justice",
@@ -1642,7 +1642,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK; linked from wilayaoran.dz",
   "notes": "",
-  "pages": 6
+  "pages": 7
  },
  {
   "name_en": "ARPCE – Post & Telecom Regulator",
@@ -1683,7 +1683,7 @@
   "fetch_status": "robots",
   "evidence": "Many pages indexed (fr and ar)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "COSOB – Stock Exchange Regulator",
@@ -1724,7 +1724,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK",
   "notes": "",
-  "pages": 8
+  "pages": 9
  },
  {
   "name_en": "Wilaya of Oran",
@@ -1990,7 +1990,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK; Wikipedia official site",
   "notes": "Homepage shows last update March 2021",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "CENEAP – National Studies Centre for Population and Development",
@@ -2130,7 +2130,7 @@
   "fetch_status": "ok",
   "evidence": "Listed as supervised entity / linked body on the official Ministry of Knowledge Economy site (mkesm.gov.dz homepage, fetched 2026-10-27); site states it is a government initiative overseen by the ministry and implemented by Algeria Venture",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Constitutional Court",
@@ -2210,7 +2210,7 @@
   "fetch_status": "ok",
   "evidence": "Site states ALGEX is an EPA created by executive decree 04-174 of 12 June 2004.",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "IANOR - Algerian Standards Institute",
@@ -2231,7 +2231,7 @@
   "fetch_status": "ok",
   "evidence": "Site identifies IANOR as the national standardisation body under the Ministry of Industry.",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "SGBV - Algiers Stock Exchange",
@@ -2273,7 +2273,7 @@
   "fetch_status": "ok",
   "evidence": "Site self-identifies as Banque Nationale d'Algérie; BNA is a state-owned public bank.",
   "notes": "Use only for public product/procedure info",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Mobilis (Algérie Télécom Mobile)",
@@ -2340,7 +2340,7 @@
   "fetch_status": "ok",
   "evidence": "Site describes itself as the official website of the Algerian news agency and relays Presidency statements.",
   "notes": "News, not a procedures source - use only to date/confirm official announcements",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Wilaya of Mostaganem",
@@ -2380,7 +2380,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Embassy of Algeria in Rome",
@@ -2401,7 +2401,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Embassy of Algeria in Berlin",
@@ -2537,7 +2537,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Embassy of Algeria in Santiago (Chile)",
@@ -2556,7 +2556,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Embassy of Algeria in Doha",
@@ -2595,7 +2595,7 @@
   "fetch_status": "ok",
   "evidence": "Site self-identifies as Ambassade d'Algérie en France and links to Presidency and MFA.",
   "notes": "Not on mfa.gov.dz; moderate evidence (self-identification)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "CRAFE - University Orientation & Careers Guide (MESRS)",
@@ -2796,7 +2796,7 @@
   "fetch_status": "ok",
   "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27); page attributes it to CERIST under MESRS",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "ASJP - Algerian Scientific Journal Platform",
@@ -2838,7 +2838,7 @@
   "fetch_status": "ok",
   "evidence": "Linked from the official MESRS homepage (https://www.mesrs.dz/, fetched 2026-10-27); operated by CERIST",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "PNST - National Thesis Registration Portal",
@@ -2922,7 +2922,7 @@
   "fetch_status": "ok",
   "evidence": "Linked from the official MESRS homepage (https://www.mesrs.dz/, fetched 2026-10-27); site states it is run by MESRS",
   "notes": "In maintenance mode on 2026-10-27",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "E-TASJIL - ANPP Product Registration Platform",
@@ -3021,7 +3021,7 @@
   "fetch_status": "ok",
   "evidence": "Linked from official cosob.dz homepage (fetched 2026-10-27); page identifies COSOB",
   "notes": "",
-  "pages": 0
+  "pages": 4
  },
  {
   "name_en": "Civil Status Online - Birth/Marriage/Death certificates (Interior)",
@@ -3061,7 +3061,7 @@
   "fetch_status": "robots",
   "evidence": "Linked as Ministry of Interior e-service from official wilaya portals wilaya-djelfa.dz and wilaya-adrar.dz (fetched 2026-10-27)",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "Remote Window (Guichet à distance) - Interior",
@@ -3141,7 +3141,7 @@
   "fetch_status": "ok",
   "evidence": "Site presents itself as Wilaya de Bouira with wali communications",
   "notes": "Moderate evidence: self-presentation only",
-  "pages": 0
+  "pages": 41
  },
  {
   "name_en": "Embassy of Algeria in Beijing",
@@ -3162,7 +3162,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
   "notes": "",
-  "pages": 0
+  "pages": 23
  },
  {
   "name_en": "Embassy of Algeria in Cairo",
@@ -3181,7 +3181,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz; footer credits MFA and National Community Abroad",
   "notes": "City inferred from subdomain; page excerpt did not name mission",
-  "pages": 0
+  "pages": 14
  },
  {
   "name_en": "Embassy of Algeria in Riyadh",
@@ -3219,7 +3219,7 @@
   "fetch_status": "ok",
   "evidence": "Subdomain of mfa.gov.dz; MFA news content",
   "notes": "City inferred from subdomain",
-  "pages": 0
+  "pages": 20
  },
  {
   "name_en": "Sonatrach (national oil & gas company)",
@@ -3352,7 +3352,7 @@
   "fetch_status": "ok",
   "evidence": "Pages fetched from this official site for the corpus",
   "notes": "auto-added from corpus",
-  "pages": 17
+  "pages": 18
  },
  {
   "name_en": "Consulate General in Brussels",

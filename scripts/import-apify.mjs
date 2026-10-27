@@ -109,7 +109,7 @@ for (const ds of ids) {
   for (const it of items) {
     stats.total++;
     const raw = it.loadedUrl || it.url;
-    const text = (it.text || "").replace(/\n{3,}/g, "\n\n").trim();
+    const text = (it.text || "").replace(/^.*The Wayback Machine - https?:\/\/web\.archive\.org\S*\s*$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
     let url = raw;
     let archived_url;
     let fetched = new Date().toISOString().slice(0, 10);

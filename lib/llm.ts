@@ -28,7 +28,7 @@ export async function expandQuery(question: string, context = ""): Promise<Expan
       thinking: { type: "disabled" },
       system: expandSystemPrompt(),
       messages: [{ role: "user", content: context ? `Previous question in this conversation (context only): ${context}\n\nQuestion: ${question}` : question }],
-    }, { timeout: 3000, maxRetries: 0 });
+    }, { timeout: 2200, maxRetries: 0 });
     const text = res.content.map((b) => (b.type === "text" ? b.text : "")).join("");
     const json = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1)) as {
       lang?: unknown;

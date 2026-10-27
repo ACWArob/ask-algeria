@@ -85,45 +85,63 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
       ]);
       requestAnimationFrame(() => lastTurnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
 
-      try {
-        const res = await fetch("/api/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: text, lang: locale, context: prev }),
-          signal: ac.signal,
-        });
-        if (res.status === 401) {
-          window.location.href = "/login";
-          return;
-        }
-        if (!res.ok) {
-          patch(id, { status: "error", error: res.status === 429 ? t.rateLimited : res.status === 413 ? fmt(t.tooLong, { max: MAX }) : t.error });
-          return;
-        }
-        let gotMeta = false;
-        const full = await readStream(
-          res,
-          (all) => {
-            const nl = all.indexOf("\n");
-            if (nl === -1) return;
-            let meta: AskMeta | null | undefined;
-            if (!gotMeta) {
-              try {
-                meta = JSON.parse(all.slice(0, nl)) as AskMeta;
-              } catch {
-                meta = null;
+      // One silent automatic retry when the answer fails before any text arrives (e.g. a brief upstream hiccup).
+      for (let attempt = 0; attempt < 2; attempt++) {
+        let answered = "";
+        let failed = false;
+        try {
+          const res = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: text, lang: locale, context: prev }),
+            signal: ac.signal,
+          });
+          if (res.status === 401) {
+            window.location.href = "/login";
+            return;
+          }
+          if (!res.ok) {
+            if (res.status >= 500 && attempt === 0) continue;
+            patch(id, { status: "error", error: res.status === 429 ? t.rateLimited : res.status === 413 ? fmt(t.tooLong, { max: MAX }) : t.error });
+            return;
+          }
+          let gotMeta = false;
+          const full = await readStream(
+            res,
+            (all) => {
+              const nl = all.indexOf("\n");
+              if (nl === -1) return;
+              let meta: AskMeta | null | undefined;
+              if (!gotMeta) {
+                try {
+                  meta = JSON.parse(all.slice(0, nl)) as AskMeta;
+                } catch {
+                  meta = null;
+                }
+                gotMeta = true;
               }
-              gotMeta = true;
-            }
-            patch(id, { ...(meta !== undefined ? { meta } : {}), status: "streaming", answer: all.slice(nl + 1).replace(ERROR_MARK, "") });
-          },
-          ac.signal,
-        );
-        if (ac.signal.aborted) return;
-        patch(id, full.includes(ERROR_MARK) ? { status: "error", error: t.error } : { status: "done" });
-      } catch (e) {
-        if ((e as Error).name === "AbortError") return;
+              answered = all.slice(nl + 1).replace(ERROR_MARK, "");
+              patch(id, { ...(meta !== undefined ? { meta } : {}), status: "streaming", answer: answered });
+            },
+            ac.signal,
+          );
+          if (ac.signal.aborted) return;
+          failed = full.includes(ERROR_MARK);
+        } catch (e) {
+          if ((e as Error).name === "AbortError") return;
+          failed = true;
+        }
+        if (!failed) {
+          patch(id, { status: "done" });
+          return;
+        }
+        if (attempt === 0 && !answered.trim()) {
+          patch(id, { status: "loading", answer: "" });
+          await new Promise((r) => setTimeout(r, 600));
+          continue;
+        }
         patch(id, { status: "error", error: t.error });
+        return;
       }
     },
     [locale, t],
