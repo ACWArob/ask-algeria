@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 /*
-  Palette: lime-washed walls and painted doors of the Casbah of Algiers, with
-  Saharan ochre for the one thing we want you to notice — citations.
+  Palette: Algerian national colours used as a civic palette, not as state insignia.
+  Green carries the brand and actions; red is a thin accent only (focus ring, rules, warnings).
 */
 :root {
-  --paper: 244 246 251;      /* #F4F6FB lime-wash, cool */
-  --surface: 255 255 255;
-  --ink: 20 33 61;           /* #14213D indigo ink */
-  --muted: 84 95 120;        /* #545F78 */
-  --line: 217 222 234;       /* #D9DEEA */
-  --door: 31 79 163;         /* #1F4FA3 painted-door blue */
-  --door-ink: 255 255 255;
-  --ochre: 168 104 18;       /* #A86812 text-safe ochre */
-  --ochre-soft: 250 236 205; /* #FAECCD */
-  --alert: 166 52 40;
+  --paper: 255 255 255;
+  --surface: 245 248 246;     /* #F5F8F6 */
+  --ink: 23 36 29;            /* #17241D */
+  --muted: 82 99 89;          /* #526359 */
+  --line: 220 228 223;        /* #DCE4DF */
+  --brand: 0 98 51;           /* #006233 */
+  --brand-ink: 255 255 255;
+  --brand-soft: 229 241 234;  /* #E5F1EA */
+  --accent: 210 16 52;        /* #D21034 */
+  --alert: 179 14 45;
 
-  /* Latin faces first; Arabic faces as fallback so mixed-script text (e.g. Arabic source titles) still renders well. */
+  /* Latin faces first; Arabic faces as fallback so mixed-script text still renders well. */
   --font-display: var(--font-latin-display), var(--font-arabic-display), system-ui, sans-serif;
   --font-body: var(--font-latin-body), var(--font-arabic-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
@@ -26,16 +26,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: 13 20 36;       /* #0D1424 night over the bay */
-    --surface: 22 32 54;     /* #162036 */
-    --ink: 232 236 245;
-    --muted: 160 171 194;
-    --line: 45 58 88;
-    --door: 141 178 255;     /* #8DB2FF */
-    --door-ink: 13 20 36;
-    --ochre: 242 196 109;    /* #F2C46D */
-    --ochre-soft: 66 52 28;
-    --alert: 255 150 135;
+    --paper: 14 22 18;        /* #0E1612 */
+    --surface: 23 34 28;      /* #17221C */
+    --ink: 232 239 235;
+    --muted: 156 174 164;
+    --line: 43 59 50;
+    --brand: 74 196 128;      /* #4AC480 lifted green for contrast */
+    --brand-ink: 10 26 17;
+    --brand-soft: 25 52 37;
+    --accent: 255 92 112;     /* #FF5C70 */
+    --alert: 255 120 135;
     color-scheme: dark;
   }
 }
@@ -63,13 +63,13 @@ html[dir="rtl"] body {
 }
 
 :focus-visible {
-  outline: 3px solid rgb(var(--door));
+  outline: 2px solid rgb(var(--accent));
   outline-offset: 2px;
   border-radius: 6px;
 }
 
 ::selection {
-  background: rgb(var(--ochre-soft));
+  background: rgb(var(--brand-soft));
   color: rgb(var(--ink));
 }
 
@@ -97,18 +97,18 @@ html[dir="rtl"] body {
     @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-primary {
-    @apply btn bg-door text-door-ink hover:bg-door/90;
+    @apply btn bg-brand text-brand-ink hover:bg-brand/90;
   }
   .btn-quiet {
-    @apply btn border border-line bg-surface text-ink hover:border-door/60;
+    @apply btn border border-line bg-surface text-ink hover:border-brand/60;
   }
 
   .field {
-    @apply w-full rounded-2xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/80 focus:border-door focus:outline-none focus-visible:outline-none focus:ring-4 focus:ring-door/20;
+    @apply w-full rounded-2xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/80 focus:border-brand focus:outline-none focus-visible:outline-none focus:ring-4 focus:ring-brand/20;
   }
 
   .link {
-    @apply text-door underline decoration-door/40 underline-offset-[3px] hover:decoration-door;
+    @apply text-brand underline decoration-brand/40 underline-offset-[3px] hover:decoration-brand;
   }
 }
 
@@ -130,11 +130,11 @@ html[dir="rtl"] body {
 .answer li + li { margin-top: 0.35em; }
 .answer li::marker { color: rgb(var(--muted)); }
 .answer strong { font-weight: 700; }
-.answer a:not(.cite) { color: rgb(var(--door)); text-decoration: underline; text-underline-offset: 3px; }
+.answer a:not(.cite) { color: rgb(var(--brand)); text-decoration: underline; text-underline-offset: 3px; }
 .answer table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
 .answer th, .answer td { border: 1px solid rgb(var(--line)); padding: 0.4em 0.6em; text-align: start; }
 
-/* Citation chip: the one ochre thing on the page */
+/* Citation chip */
 .cite {
   display: inline-flex;
   align-items: center;
@@ -144,8 +144,8 @@ html[dir="rtl"] body {
   padding: 0 0.3em;
   margin-inline: 0.12em;
   border-radius: 0.4em;
-  background: rgb(var(--ochre-soft));
-  color: rgb(var(--ochre));
+  background: rgb(var(--brand-soft));
+  color: rgb(var(--brand));
   font-family: var(--font-body);
   font-size: 0.75em;
   font-weight: 700;
@@ -154,7 +154,7 @@ html[dir="rtl"] body {
   text-decoration: none;
   font-variant-numeric: tabular-nums;
 }
-.cite:hover { background: rgb(var(--ochre)); color: rgb(var(--surface)); }
+.cite:hover { background: rgb(var(--brand)); color: rgb(var(--surface)); }
 
 .caret::after {
   content: "";
@@ -163,14 +163,9 @@ html[dir="rtl"] body {
   height: 1.1em;
   margin-inline-start: 2px;
   vertical-align: -0.15em;
-  background: rgb(var(--door));
+  background: rgb(var(--brand));
   animation: blink 1s steps(2, start) infinite;
 }
 @keyframes blink { to { visibility: hidden; } }
 
-/* The single orchestrated moment: the dossier slides open when an answer arrives */
-@keyframes dossier-open {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: none; }
-}
-.dossier-enter { animation: dossier-open 380ms cubic-bezier(.2,.7,.2,1) both; }
+

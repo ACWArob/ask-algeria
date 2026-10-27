@@ -6,7 +6,7 @@ import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { searchChunks } from "@/lib/search";
 import { SOURCES } from "@/lib/sources";
 import { answerSystemPrompt, answerUserPrompt, type PromptSource } from "@/lib/prompts";
-import { chooseAnswerLang, detectLanguage } from "@/lib/detect";
+import { chooseAnswerLang, detectLanguage, glossaryQueries } from "@/lib/detect";
 import { anthropic, expandQuery } from "@/lib/llm";
 import { MODELS } from "@/lib/config";
 import { mockAnswer, streamText } from "@/lib/mock";
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
   }
 
-  let body: { question?: unknown; lang?: unknown };
+  let body: { question?: unknown; lang?: unknown; context?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -38,9 +38,17 @@ export async function POST(req: Request) {
 
   // Defence in depth: the browser already redacts, but never trust the client.
   const { text: question, removed } = redact(rawQ);
+  // Optional previous question in the same conversation, so short follow-ups ("and for minors?") can be searched.
+  const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
 
   const mock = isMock();
-  const expansion = mock ? { lang: detectLanguage(question), queries: [question], topic: "" } : await expandQuery(question);
+  const expansion = mock
+    ? {
+        lang: detectLanguage(question),
+        queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)],
+        topic: "",
+      }
+    : await expandQuery(question, context);
   const answerLang = chooseAnswerLang(selected, expansion.lang, question);
 
   const hits = searchChunks(expansion.queries, LIMITS.topChunks);
@@ -103,7 +111,7 @@ export async function POST(req: Request) {
           model: MODELS.answer,
           max_tokens: LIMITS.answerMaxTokens,
           system: answerSystemPrompt(answerLang, fallbackSites),
-          messages: [{ role: "user", content: answerUserPrompt(question, promptSources) }],
+          messages: [{ role: "user", content: answerUserPrompt(question, promptSources, context) }],
         });
         req.signal.addEventListener("abort", () => stream.abort());
         for await (const ev of stream) {

@@ -6,6 +6,7 @@ const nextConfig = {
     // Make sure the corpus/index ship with the serverless function on Netlify.
     outputFileTracingIncludes: {
       "/api/ask": ["./data/**/*.json"],
+      "/services/passport": ["./data/**/*.json"],
     },
   },
   async headers() {

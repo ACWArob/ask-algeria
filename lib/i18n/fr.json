@@ -1,8 +1,26 @@
 {
-  "brand": { "name": "Demandez à l'Algérie", "tagline": "Des réponses claires sur les services publics algériens, tirées des pages officielles." },
-  "strip": { "independent": "Indépendant · ce n'est pas un site gouvernemental" },
-  "nav": { "ask": "Poser une question", "translate": "Comprendre un document", "directory": "Sites officiels", "about": "À propos", "logout": "Se déconnecter", "menu": "Menu" },
-  "lang": { "label": "Langue", "en": "English", "fr": "Français", "ar": "العربية", "dz": "الدارجة" },
+  "brand": {
+    "name": "Demandez à l'Algérie",
+    "tagline": "Des réponses claires sur les services publics algériens, tirées des pages officielles."
+  },
+  "strip": {
+    "independent": "Indépendant · ce n'est pas un site gouvernemental"
+  },
+  "nav": {
+    "ask": "Poser une question",
+    "translate": "Comprendre un document",
+    "directory": "Sites officiels",
+    "about": "À propos",
+    "logout": "Se déconnecter",
+    "menu": "Menu"
+  },
+  "lang": {
+    "label": "Langue",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية",
+    "dz": "الدارجة"
+  },
   "footer": {
     "independent": "Projet indépendant · sans lien avec le Gouvernement algérien",
     "confirm": "Vérifiez toujours sur la page officielle avant d'agir."
@@ -18,7 +36,7 @@
   },
   "ask": {
     "heading": "Quelle démarche voulez-vous faire ?",
-    "sub": "Posez votre question sur un document, une procédure ou un service. Les réponses proviennent uniquement de pages officielles du gouvernement algérien, avec des liens pour vérifier.",
+    "sub": "Posez votre question sur un service public algérien. Les réponses viennent uniquement de pages officielles, avec leurs sources.",
     "label": "Votre question",
     "placeholder": "Par exemple : comment renouveler mon passeport ?",
     "submit": "Demander",
@@ -47,7 +65,12 @@
     "rateLimited": "Vous posez beaucoup de questions d'un coup. Patientez une minute puis réessayez.",
     "again": "Poser une autre question",
     "privacyHint": "N'indiquez pas de numéro d'identité, de téléphone ou de carte. Nous les retirons automatiquement.",
-    "chars": "{n} / {max}"
+    "chars": "{n} / {max}",
+    "greeting": "Bonjour, l'Algérie.",
+    "followUp": "Posez une autre question…",
+    "newChat": "Nouvelle conversation",
+    "you": "Vous",
+    "assistant": "Demandez à l'Algérie"
   },
   "translate": {
     "heading": "Comprendre un document officiel",
@@ -80,7 +103,9 @@
     "searchPlaceholder": "Nom ou domaine, par ex. CNAS",
     "pages": "{n} pages indexées",
     "empty": "Aucun site ne correspond à « {q} ».",
-    "count": "{n} sites"
+    "count": "{n} sites",
+    "unverified": "Non vérifié",
+    "unverifiedHint": "Nous n'avons pas pu ouvrir ce site automatiquement. Comment nous savons qu'il est officiel :"
   },
   "categories": {
     "federal-core": "Gouvernement et ministères",
@@ -134,5 +159,23 @@
         ]
       }
     ]
+  },
+  "services": {
+    "heading": "Services les plus demandés",
+    "sub": "Partez d'une démarche courante, ou ouvrez directement le portail officiel.",
+    "askAbout": "Poser la question",
+    "portal": "Portail officiel",
+    "opensNew": "ouvre le site officiel dans un nouvel onglet",
+    "guide": "Lire la synthèse"
+  },
+  "guide": {
+    "back": "Tous les services",
+    "abroadNote": "Ces sources sont surtout des pages consulaires destinées aux Algériens établis à l'étranger (ambassade et consulats à Washington, Londres, Milan et San Francisco). Les règles, pièces et tarifs peuvent différer dans votre consulat ou en Algérie.",
+    "feesTitle": "Tarifs indiqués par chaque consulat",
+    "office": "Où",
+    "sourcesTitle": "Sources",
+    "portalsTitle": "Portails officiels",
+    "askFollowUp": "Poser une question à ce sujet",
+    "fetched": "Synthèse de pages officielles consultées le {date}."
   }
 }

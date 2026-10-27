@@ -27,6 +27,8 @@ export default function DirectoryPage() {
           url: s.url,
           category: s.category,
           pages: s.pages,
+          // fetch_status itself is never shown; unverified entries only expose the evidence note.
+          evidence: s.reachable ? undefined : s.evidence,
         })),
     }))
     .filter((g) => g.entries.length > 0);

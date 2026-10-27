@@ -21,6 +21,8 @@ export interface Source {
   priority: number;
   reachable: boolean;
   pages?: number;
+  /** How we know the site is official (shown only for unverified entries). */
+  evidence?: string;
 }
 
 /** Sent to the browser as the first NDJSON line of /api/ask. */

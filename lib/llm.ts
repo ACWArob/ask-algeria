@@ -2,7 +2,7 @@ import "server-only";
 import Anthropic from "@anthropic-ai/sdk";
 import { MODELS } from "@/lib/config";
 import { expandSystemPrompt } from "@/lib/prompts";
-import { detectLanguage } from "@/lib/detect";
+import { detectLanguage, glossaryQueries } from "@/lib/detect";
 import { isLocale, type Locale } from "@/lib/i18n";
 
 let client: Anthropic | null = null;
@@ -19,14 +19,14 @@ export interface Expansion {
 }
 
 /** Haiku: detect language + produce FR/AR/EN search queries. Falls back to heuristics on any failure. */
-export async function expandQuery(question: string): Promise<Expansion> {
-  const fallback: Expansion = { lang: detectLanguage(question), queries: [question], topic: "" };
+export async function expandQuery(question: string, context = ""): Promise<Expansion> {
+  const fallback: Expansion = { lang: detectLanguage(question), queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)], topic: "" };
   try {
     const res = await anthropic().messages.create({
       model: MODELS.expand,
       max_tokens: 400,
       system: expandSystemPrompt(),
-      messages: [{ role: "user", content: question }],
+      messages: [{ role: "user", content: context ? `Previous question in this conversation (context only): ${context}\n\nQuestion: ${question}` : question }],
     });
     const text = res.content.map((b) => (b.type === "text" ? b.text : "")).join("");
     const json = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1)) as {

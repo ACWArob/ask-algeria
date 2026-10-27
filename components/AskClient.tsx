@@ -1,287 +1,344 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { fmt, LANGUAGE_NAMES, type Dict, type Locale } from "@/lib/i18n";
 import { redact } from "@/lib/redact";
 import type { AskMeta } from "@/lib/types";
+import { SendIcon } from "./Icon";
 import { Markdown } from "./Markdown";
 import { ERROR_MARK, readStream } from "./stream";
 
 const MAX = 1000;
 
-type Status = "idle" | "loading" | "streaming" | "done" | "error";
+type Status = "loading" | "streaming" | "done" | "error";
 
-export function AskClient({ dict, locale }: { dict: Dict; locale: Locale }) {
+interface Turn {
+  id: number;
+  question: string;
+  meta: AskMeta | null;
+  answer: string;
+  status: Status;
+  error: string | null;
+  feedback: "up" | "down" | null;
+}
+
+export interface AskHandle {
+  ask: (question: string) => void;
+}
+
+export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onActiveChange?: (active: boolean) => void }>(function AskClient(
+  { dict, locale, onActiveChange },
+  ref,
+) {
   const t = dict.ask;
   const [q, setQ] = useState("");
-  const [asked, setAsked] = useState("");
-  const [status, setStatus] = useState<Status>("idle");
-  const [meta, setMeta] = useState<AskMeta | null>(null);
-  const [answer, setAnswer] = useState("");
+  const [turns, setTurns] = useState<Turn[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<"up" | "down" | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const resultRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const lastTurnRef = useRef<HTMLLIElement>(null);
+  const nextId = useRef(1);
+  const turnsRef = useRef<Turn[]>([]);
+  turnsRef.current = turns;
 
   useEffect(() => () => abortRef.current?.abort(), []);
+  useEffect(() => onActiveChange?.(turns.length > 0), [turns.length, onActiveChange]);
 
-  async function ask(raw: string) {
-    const trimmed = raw.trim();
-    setError(null);
-    if (!trimmed) {
-      setError(t.empty);
-      inputRef.current?.focus();
-      return;
-    }
-    if (trimmed.length > MAX) {
-      setError(fmt(t.tooLong, { max: MAX }));
-      return;
-    }
-    const { text, removed } = redact(trimmed);
-    setNotice(removed > 0 ? fmt(t.redacted, { n: removed }) : null);
-    if (removed > 0) setQ(text);
+  // Auto-grow the textarea
+  useEffect(() => {
+    const el = inputRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, 220)}px`;
+  }, [q]);
 
-    abortRef.current?.abort();
-    const ac = new AbortController();
-    abortRef.current = ac;
-    setAsked(text);
-    setStatus("loading");
-    setMeta(null);
-    setAnswer("");
-    setFeedback(null);
+  const patch = (id: number, p: Partial<Turn>) => setTurns((ts) => ts.map((x) => (x.id === id ? { ...x, ...p } : x)));
 
-    try {
-      const res = await fetch("/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: text, lang: locale }),
-        signal: ac.signal,
-      });
-      if (res.status === 401) {
-        window.location.href = "/login";
+  const ask = useCallback(
+    async (raw: string) => {
+      const trimmed = raw.trim();
+      setFormError(null);
+      if (!trimmed) {
+        setFormError(t.empty);
+        inputRef.current?.focus();
         return;
       }
-      if (!res.ok) {
-        setError(res.status === 429 ? t.rateLimited : res.status === 413 ? fmt(t.tooLong, { max: MAX }) : t.error);
-        setStatus("error");
+      if (trimmed.length > MAX) {
+        setFormError(fmt(t.tooLong, { max: MAX }));
         return;
       }
-      let gotMeta = false;
-      const full = await readStream(
-        res,
-        (all) => {
-          const nl = all.indexOf("\n");
-          if (nl === -1) return;
-          if (!gotMeta) {
-            try {
-              setMeta(JSON.parse(all.slice(0, nl)) as AskMeta);
-            } catch {
-              /* ignore malformed meta */
+      const { text, removed } = redact(trimmed);
+      setNotice(removed > 0 ? fmt(t.redacted, { n: removed }) : null);
+      setQ("");
+
+      const prev = turnsRef.current.at(-1)?.question ?? "";
+      abortRef.current?.abort();
+      const ac = new AbortController();
+      abortRef.current = ac;
+      const id = nextId.current++;
+      setTurns((ts) => [
+        ...ts.map((x) => (x.status === "loading" || x.status === "streaming" ? { ...x, status: "done" as const } : x)),
+        { id, question: text, meta: null, answer: "", status: "loading", error: null, feedback: null },
+      ]);
+      requestAnimationFrame(() => lastTurnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+
+      try {
+        const res = await fetch("/api/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: text, lang: locale, context: prev }),
+          signal: ac.signal,
+        });
+        if (res.status === 401) {
+          window.location.href = "/login";
+          return;
+        }
+        if (!res.ok) {
+          patch(id, { status: "error", error: res.status === 429 ? t.rateLimited : res.status === 413 ? fmt(t.tooLong, { max: MAX }) : t.error });
+          return;
+        }
+        let gotMeta = false;
+        const full = await readStream(
+          res,
+          (all) => {
+            const nl = all.indexOf("\n");
+            if (nl === -1) return;
+            let meta: AskMeta | null | undefined;
+            if (!gotMeta) {
+              try {
+                meta = JSON.parse(all.slice(0, nl)) as AskMeta;
+              } catch {
+                meta = null;
+              }
+              gotMeta = true;
             }
-            gotMeta = true;
-            setStatus("streaming");
-            requestAnimationFrame(() => resultRef.current?.focus({ preventScroll: false }));
-          }
-          setAnswer(all.slice(nl + 1).replace(ERROR_MARK, ""));
-        },
-        ac.signal,
-      );
-      if (full.includes(ERROR_MARK)) {
-        setError(t.error);
-        setStatus("error");
-      } else {
-        setStatus("done");
+            patch(id, { ...(meta !== undefined ? { meta } : {}), status: "streaming", answer: all.slice(nl + 1).replace(ERROR_MARK, "") });
+          },
+          ac.signal,
+        );
+        if (ac.signal.aborted) return;
+        patch(id, full.includes(ERROR_MARK) ? { status: "error", error: t.error } : { status: "done" });
+      } catch (e) {
+        if ((e as Error).name === "AbortError") return;
+        patch(id, { status: "error", error: t.error });
       }
-    } catch (e) {
-      if ((e as Error).name === "AbortError") return;
-      setError(t.error);
-      setStatus("error");
-    }
-  }
+    },
+    [locale, t],
+  );
 
-  function sendFeedback(r: "up" | "down") {
-    setFeedback(r);
-    console.info("[feedback]", r, { lang: meta?.answerLang, sources: meta?.sources.length });
+  useImperativeHandle(ref, () => ({
+    ask: (question: string) => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      void ask(question);
+    },
+  }));
+
+  function sendFeedback(turn: Turn, r: "up" | "down") {
+    patch(turn.id, { feedback: r });
+    console.info("[feedback]", r, { lang: turn.meta?.answerLang, sources: turn.meta?.sources.length });
     void fetch("/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rating: r, lang: meta?.answerLang, sources: meta?.sources.length ?? 0 }),
+      body: JSON.stringify({ rating: r, lang: turn.meta?.answerLang, sources: turn.meta?.sources.length ?? 0 }),
     }).catch(() => {});
   }
 
   function reset() {
     abortRef.current?.abort();
-    setStatus("idle");
-    setAnswer("");
-    setMeta(null);
-    setAsked("");
+    setTurns([]);
     setQ("");
     setNotice(null);
-    setError(null);
+    setFormError(null);
     requestAnimationFrame(() => inputRef.current?.focus());
   }
 
-  const busy = status === "loading" || status === "streaming";
-  const showResult = status !== "idle" && (asked || answer);
-  const answerLang = meta?.answerLang;
-  const answerDir = answerLang === "ar" || answerLang === "dz" ? "rtl" : "ltr";
-  const switched = answerLang && answerLang !== locale;
+  const busy = turns.some((x) => x.status === "loading" || x.status === "streaming");
+  const started = turns.length > 0;
+
+  const form = (
+    <form
+      ref={formRef}
+      onSubmit={(e) => {
+        e.preventDefault();
+        void ask(q);
+      }}
+      className="w-full"
+    >
+      <label htmlFor="question" className="sr-only">{t.label}</label>
+      <div className="flex items-end gap-2 rounded-[1.75rem] border border-line bg-paper p-2 ps-5 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_8px_24px_-12px_rgb(0_0_0/0.18)] transition-colors focus-within:border-brand">
+        <textarea
+          id="question"
+          ref={inputRef}
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
+              e.preventDefault();
+              void ask(q);
+            }
+          }}
+          rows={1}
+          maxLength={MAX + 200}
+          dir="auto"
+          placeholder={started ? t.followUp : t.placeholder}
+          aria-describedby="q-hint q-count"
+          className="block max-h-[220px] min-h-[44px] w-full resize-none bg-transparent py-2.5 text-[1.0625rem] leading-relaxed text-ink placeholder:text-muted focus:outline-none focus-visible:outline-none"
+        />
+        <button
+          type="submit"
+          disabled={busy || !q.trim()}
+          aria-label={busy ? t.asking : t.submit}
+          title={busy ? t.asking : t.submit}
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand text-brand-ink transition-opacity hover:bg-brand/90 disabled:opacity-35"
+        >
+          {busy ? <span className="h-4 w-4 animate-spin rounded-full border-2 border-brand-ink/40 border-t-brand-ink" aria-hidden="true" /> : <SendIcon />}
+        </button>
+      </div>
+      <div className="mt-2 flex items-start justify-between gap-3 px-2">
+        <p id="q-hint" className="text-[0.8125rem] text-muted">{t.privacyHint}</p>
+        <span id="q-count" className={`shrink-0 text-xs tabular-nums ${q.length > MAX ? "font-bold text-alert" : "text-muted"}`} aria-live="polite">
+          {q.length > MAX * 0.8 ? fmt(t.chars, { n: q.length, max: MAX }) : ""}
+        </span>
+      </div>
+      {notice && <p role="status" className="mt-2 rounded-xl bg-brand-soft px-3 py-2 text-sm font-semibold text-brand">{notice}</p>}
+      {formError && <p role="alert" className="mt-2 px-2 text-sm font-semibold text-alert">{formError}</p>}
+    </form>
+  );
+
+  if (!started) {
+    return (
+      <div className="flex flex-col items-center">
+        {form}
+        <ul className="mt-6 flex flex-wrap justify-center gap-2" aria-label={t.examples}>
+          {t.exampleList.slice(0, 4).map((ex) => (
+            <li key={ex}>
+              <button
+                type="button"
+                onClick={() => void ask(ex)}
+                className="min-h-[40px] rounded-full border border-line px-4 py-1.5 text-[0.9375rem] text-ink transition-colors hover:border-brand hover:bg-brand-soft"
+              >
+                {ex}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          void ask(q);
-        }}
-        className="relative max-w-3xl"
-      >
-        <label htmlFor="question" className="sr-only">{t.label}</label>
-        <div className="rounded-[1.75rem] border-2 border-ink/80 bg-surface p-2 shadow-[6px_6px_0_rgb(var(--door))] focus-within:border-door rtl:shadow-[-6px_6px_0_rgb(var(--door))]">
-          <textarea
-            id="question"
-            ref={inputRef}
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
-                e.preventDefault();
-                void ask(q);
-              }
-            }}
-            rows={3}
-            maxLength={MAX + 200}
-            dir="auto"
-            placeholder={t.placeholder}
-            aria-describedby="q-hint q-count"
-            className="block w-full resize-none bg-transparent px-3 pt-2 text-lg leading-relaxed text-ink placeholder:text-muted/80 focus:outline-none focus-visible:outline-none sm:text-xl"
+      <ol className="space-y-10" aria-label={t.label}>
+        {turns.map((turn, i) => (
+          <TurnView
+            key={turn.id}
+            ref={i === turns.length - 1 ? lastTurnRef : undefined}
+            turn={turn}
+            dict={dict}
+            locale={locale}
+            onFeedback={(r) => sendFeedback(turn, r)}
           />
-          <div className="flex items-center justify-between gap-3 px-2 pb-1 pt-2">
-            <span id="q-count" className={`text-xs tabular-nums ${q.length > MAX ? "font-bold text-alert" : "text-muted"}`} aria-live="polite">
-              {q.length > MAX * 0.8 ? fmt(t.chars, { n: q.length, max: MAX }) : ""}
-            </span>
-            <button type="submit" className="btn-primary" disabled={busy}>
-              {busy ? t.asking : t.submit}
-            </button>
-          </div>
+        ))}
+      </ol>
+      <div className="sticky bottom-0 z-10 -mx-4 mt-10 bg-gradient-to-t from-paper via-paper to-paper/0 px-4 pb-4 pt-6">
+        {form}
+        <div className="mt-1 flex justify-center">
+          <button type="button" onClick={reset} className="link text-sm">{t.newChat}</button>
         </div>
-        <p id="q-hint" className="mt-3 text-sm text-muted">{t.privacyHint}</p>
-        {notice && (
-          <p role="status" className="mt-2 rounded-xl bg-ochre-soft px-3 py-2 text-sm font-semibold text-ochre">{notice}</p>
-        )}
-        {error && !showResult && (
-          <p role="alert" className="mt-2 text-sm font-semibold text-alert">{error}</p>
-        )}
-      </form>
-
-      {!showResult && (
-        <section aria-labelledby="examples" className="mt-12 max-w-3xl">
-          <h2 id="examples" className="text-sm font-semibold text-muted">{t.examples}</h2>
-          <ul className="mt-3 flex flex-wrap gap-2">
-            {t.exampleList.map((ex) => (
-              <li key={ex}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setQ(ex);
-                    void ask(ex);
-                  }}
-                  className="min-h-[44px] rounded-2xl border border-line bg-surface px-4 py-2 text-start text-[0.9375rem] leading-snug transition-colors hover:border-door hover:text-door"
-                >
-                  {ex}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {showResult && (
-        <section
-          ref={resultRef}
-          tabIndex={-1}
-          aria-live="polite"
-          aria-busy={busy}
-          aria-labelledby="asked"
-          className="dossier-enter mt-10 focus:outline-none"
-        >
-          <h2 id="asked" dir="auto" className="display text-2xl font-semibold text-ink sm:text-[1.75rem]">{asked}</h2>
-          {switched && answerLang && (
-            <p className="mt-2 text-sm text-muted">{fmt(t.answeredIn, { lang: LANGUAGE_NAMES[locale][answerLang] })}</p>
-          )}
-
-          <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,44rem)_18rem] lg:gap-12">
-            <article
-              lang={answerLang === "dz" ? "arq" : answerLang}
-              dir={answerLang ? answerDir : undefined}
-              className="max-w-prose"
-            >
-              {status === "loading" && (
-                <div className="space-y-3" aria-hidden="true">
-                  <div className="h-4 w-11/12 animate-pulse rounded bg-line" />
-                  <div className="h-4 w-9/12 animate-pulse rounded bg-line" />
-                  <div className="h-4 w-10/12 animate-pulse rounded bg-line" />
-                </div>
-              )}
-              {status === "loading" && <p className="sr-only">{t.asking}</p>}
-              {answer && (
-                <div className={status === "streaming" ? "caret" : ""}>
-                  <Markdown text={answer} cites={meta?.sources} />
-                </div>
-              )}
-              {error && <p role="alert" className="mt-4 font-semibold text-alert">{error}</p>}
-              {status === "done" && (
-                <p className="mt-8 border-s-4 border-ochre ps-3 font-semibold">{dict.footer.confirm}</p>
-              )}
-            </article>
-
-            {meta && meta.sources.length > 0 && (
-              <aside aria-labelledby="sources-h" className="lg:pt-1">
-                <h3 id="sources-h" className="display text-lg font-semibold">{t.sources}</h3>
-                <ol className="mt-3 space-y-3">
-                  {meta.sources.map((s) => (
-                    <li key={s.n} className="flex gap-3">
-                      <span className="cite !m-0 shrink-0 !text-[0.8rem]" aria-hidden="true">{s.n}</span>
-                      <div className="min-w-0">
-                        <a href={s.url} target="_blank" rel="noopener noreferrer" dir="auto" className="link block break-words font-semibold leading-snug">
-                          {s.title}
-                        </a>
-                        <span className="text-sm text-muted" dir="ltr">{s.domain}</span>
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </aside>
-            )}
-          </div>
-
-          {(status === "done" || status === "error") && (
-            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4 border-t border-line pt-6">
-              {status === "done" && (
-                <div className="flex items-center gap-2" role="group" aria-label={t.helpful}>
-                  <span className="text-sm text-muted">{feedback ? t.thanks : t.helpful}</span>
-                  {!feedback && (
-                    <>
-                      <button type="button" onClick={() => sendFeedback("up")} className="btn-quiet !min-h-[40px] !px-4 text-sm">
-                        <ThumbIcon /> {t.yes}
-                      </button>
-                      <button type="button" onClick={() => sendFeedback("down")} className="btn-quiet !min-h-[40px] !px-4 text-sm">
-                        <ThumbIcon down /> {t.no}
-                      </button>
-                    </>
-                  )}
-                </div>
-              )}
-              <button type="button" onClick={reset} className="link ms-auto text-sm font-semibold">{t.again}</button>
-            </div>
-          )}
-        </section>
-      )}
+      </div>
     </div>
   );
-}
+});
+
+const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down") => void }>(function TurnView(
+  { turn, dict, locale, onFeedback },
+  ref,
+) {
+  const t = dict.ask;
+  const { meta, status } = turn;
+  const answerLang = meta?.answerLang;
+  const answerDir = answerLang === "ar" || answerLang === "dz" ? "rtl" : "ltr";
+  const busy = status === "loading" || status === "streaming";
+
+  return (
+    <li ref={ref} className="scroll-mt-24">
+      <div className="flex justify-end">
+        <p dir="auto" className="max-w-[85%] whitespace-pre-wrap rounded-3xl rounded-ee-md bg-surface px-4 py-2.5 text-ink">
+          <span className="sr-only">{t.you}: </span>
+          {turn.question}
+        </p>
+      </div>
+
+      <article aria-live="polite" aria-busy={busy} className="mt-5 border-s-2 border-accent/70 ps-4 sm:ps-5">
+        <span className="sr-only">{t.assistant}:</span>
+        {meta && answerLang && answerLang !== locale && (
+          <p className="mb-2 text-[0.8125rem] text-muted">{fmt(t.answeredIn, { lang: LANGUAGE_NAMES[locale][answerLang] })}</p>
+        )}
+        {status === "loading" && (
+          <div className="flex items-center gap-2 text-muted">
+            <span className="flex gap-1" aria-hidden="true">
+              <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-brand [animation-delay:-0.3s]" />
+              <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-brand [animation-delay:-0.15s]" />
+              <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-brand" />
+            </span>
+            <span className="text-sm">{t.asking}</span>
+          </div>
+        )}
+        {turn.answer && (
+          <div lang={answerLang === "dz" ? "arq" : answerLang} dir={answerLang ? answerDir : undefined} className={status === "streaming" ? "caret" : ""}>
+            <Markdown text={turn.answer} cites={meta?.sources} />
+          </div>
+        )}
+        {turn.error && <p role="alert" className="mt-3 font-semibold text-alert">{turn.error}</p>}
+
+        {meta && meta.sources.length > 0 && !busy && (
+          <section className="mt-6" aria-label={t.sources}>
+            <h3 className="text-sm font-semibold text-muted">{t.sources}</h3>
+            <ol className="mt-2 grid gap-2 sm:grid-cols-2">
+              {meta.sources.map((s) => (
+                <li key={s.n}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-full gap-2.5 rounded-2xl border border-line px-3 py-2.5 transition-colors hover:border-brand"
+                  >
+                    <span className="cite !m-0 shrink-0" aria-hidden="true">{s.n}</span>
+                    <span className="min-w-0">
+                      <span dir="auto" className="line-clamp-2 block text-sm font-semibold leading-snug text-ink">{s.title}</span>
+                      <span className="block truncate text-xs text-muted" dir="ltr">{s.domain}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {status === "done" && (
+          <>
+            <p className="mt-5 text-sm font-semibold text-ink">{dict.footer.confirm}</p>
+            <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t.helpful}>
+              <span className="me-1 text-xs text-muted">{turn.feedback ? t.thanks : t.helpful}</span>
+              {!turn.feedback && (
+                <>
+                  <button type="button" onClick={() => onFeedback("up")} aria-label={t.yes} title={t.yes} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
+                    <ThumbIcon />
+                  </button>
+                  <button type="button" onClick={() => onFeedback("down")} aria-label={t.no} title={t.no} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
+                    <ThumbIcon down />
+                  </button>
+                </>
+              )}
+            </div>
+          </>
+        )}
+      </article>
+    </li>
+  );
+});
 
 function ThumbIcon({ down = false }: { down?: boolean }) {
   return (

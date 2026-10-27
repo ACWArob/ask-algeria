@@ -24,6 +24,7 @@ function clean(list: unknown): Source[] {
         description: String(s.description ?? ""),
         priority: Number(s.priority ?? 3) || 3,
         reachable: s.reachable !== false,
+        evidence: typeof s.evidence === "string" && s.evidence ? s.evidence : undefined,
         pages: typeof s.pages === "number" ? s.pages : typeof s.page_count === "number" ? (s.page_count as number) : undefined,
       } satisfies Source;
     });

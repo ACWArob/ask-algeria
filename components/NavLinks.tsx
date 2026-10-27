@@ -13,8 +13,8 @@ export function NavLinks({ dict }: { dict: Dict }) {
     { href: "/about", label: dict.nav.about },
   ];
   return (
-    <nav aria-label={dict.nav.menu} className="-mx-1 w-full overflow-x-auto md:order-none md:mx-0 md:w-auto">
-      <ul className="flex gap-1 whitespace-nowrap text-[0.9375rem]">
+    <nav aria-label={dict.nav.menu} className="-mx-1 overflow-x-auto lg:mx-0">
+      <ul className="flex gap-1 whitespace-nowrap text-[0.9375rem] lg:text-[0.875rem]">
         {items.map((it) => {
           const active = it.href === "/" ? path === "/" : path.startsWith(it.href);
           return (
@@ -22,8 +22,8 @@ export function NavLinks({ dict }: { dict: Dict }) {
               <Link
                 href={it.href}
                 aria-current={active ? "page" : undefined}
-                className={`inline-flex min-h-[40px] items-center rounded-full px-3 font-semibold transition-colors ${
-                  active ? "bg-door/10 text-door" : "text-muted hover:text-ink"
+                className={`inline-flex min-h-[40px] items-center rounded-full px-2.5 font-semibold transition-colors ${
+                  active ? "bg-brand-soft text-brand" : "text-muted hover:text-ink"
                 }`}
               >
                 {it.label}

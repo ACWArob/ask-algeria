@@ -22,7 +22,7 @@ export default function AboutPage() {
           <ol className="mt-5 space-y-5">
             {how.body.map((p, i) => (
               <li key={i} className="flex gap-4">
-                <span aria-hidden="true" className="display flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-door text-lg font-bold text-door-ink">
+                <span aria-hidden="true" className="display flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand text-lg font-bold text-brand-ink">
                   {i + 1}
                 </span>
                 <p className="pt-1">{p}</p>
@@ -31,9 +31,9 @@ export default function AboutPage() {
           </ol>
         </section>
 
-        <section aria-labelledby="notgov" className="rounded-arch border-2 border-ink bg-surface px-7 pb-8 pt-20 sm:px-10">
+        <section aria-labelledby="notgov" className="rounded-3xl border border-line border-t-4 border-t-accent bg-surface px-6 py-7 sm:px-8">
           <h2 id="notgov" className="display text-2xl font-semibold">{notGov.title}</h2>
-          <ul className="mt-5 list-disc space-y-3 ps-5 marker:text-door">
+          <ul className="mt-5 list-disc space-y-3 ps-5 marker:text-brand">
             {notGov.body.map((p, i) => (
               <li key={i} className={i === 0 ? "font-semibold" : ""}>{p}</li>
             ))}
@@ -42,7 +42,7 @@ export default function AboutPage() {
 
         <section aria-labelledby="privacy">
           <h2 id="privacy" className="display text-2xl font-semibold">{privacy.title}</h2>
-          <ul className="mt-5 list-disc space-y-3 ps-5 marker:text-door">
+          <ul className="mt-5 list-disc space-y-3 ps-5 marker:text-brand">
             {privacy.body.map((p, i) => <li key={i}>{p}</li>)}
           </ul>
         </section>

@@ -60,11 +60,12 @@ Format (Markdown):
 - Keep it concise. No greetings, no closing pleasantries, no disclaimers (the interface adds them).`;
 }
 
-export function answerUserPrompt(question: string, sources: PromptSource[]): string {
+export function answerUserPrompt(question: string, sources: PromptSource[], context = ""): string {
   const blocks = sources
     .map((s) => `<source n="${s.n}" title="${escapeAttr(s.title)}" url="${escapeAttr(s.url)}">\n${s.excerpts.join("\n…\n")}\n</source>`)
     .join("\n\n");
-  return `<official_excerpts>\n${blocks || "(no matching official excerpts were found)"}\n</official_excerpts>\n\n<question>\n${question}\n</question>`;
+  const prev = context ? `<previous_question>\n${context}\n</previous_question>\n\n` : "";
+  return `<official_excerpts>\n${blocks || "(no matching official excerpts were found)"}\n</official_excerpts>\n\n${prev}<question>\n${question}\n</question>`;
 }
 
 function escapeAttr(s: string): string {

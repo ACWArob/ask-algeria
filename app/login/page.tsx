@@ -21,7 +21,7 @@ export default function LoginPage({ searchParams }: { searchParams: { error?: st
       <Header dict={dict} locale={locale} authed={false} />
       <main id="main" className="mx-auto flex max-w-5xl justify-center px-4 pt-12 sm:pt-20">
         <div className="w-full max-w-sm">
-          <div className="rounded-arch border border-line bg-surface px-6 pb-8 pt-16 text-center shadow-[0_1px_0_rgb(var(--line))]">
+          <div className="rounded-3xl border border-line border-t-4 border-t-brand bg-surface px-6 py-10 text-center">
             <h1 className="display text-3xl font-bold">{dict.login.title}</h1>
             <p className="mt-3 text-muted">{dict.login.intro}</p>
             <form action="/api/login" method="post" className="mt-8 space-y-4 text-start">

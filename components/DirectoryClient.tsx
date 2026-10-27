@@ -10,6 +10,8 @@ export interface DirEntry {
   url: string;
   category: string;
   pages?: number;
+  /** Present only when the site could not be verified by fetching it. */
+  evidence?: string;
 }
 
 export interface DirGroup {
@@ -62,6 +64,17 @@ export function DirectoryClient({ dict, groups }: { dict: Dict; groups: DirGroup
                     <span dir="ltr">{e.domain}</span>
                     {typeof e.pages === "number" && <span>{fmt(t.pages, { n: e.pages })}</span>}
                   </div>
+                  {e.evidence && (
+                    <details className="group mt-1 text-xs text-muted sm:col-span-2">
+                      <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full border border-line px-2 py-0.5 hover:text-ink [&::-webkit-details-marker]:hidden">
+                        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-muted" />
+                        {t.unverified}
+                      </summary>
+                      <p className="mt-1.5 max-w-prose">
+                        {t.unverifiedHint} <span dir="ltr" className="[unicode-bidi:isolate]">{e.evidence}</span>
+                      </p>
+                    </details>
+                  )}
                 </li>
               ))}
             </ul>

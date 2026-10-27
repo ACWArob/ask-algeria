@@ -29,7 +29,7 @@ export function LanguageSwitcher({ current, label }: { current: Locale; label: s
           title={FULL[l]}
           lang={l === "dz" ? "arq" : l}
           className={`min-h-[36px] rounded-full px-2.5 font-semibold transition-colors sm:px-3 ${
-            l === current ? "bg-door text-door-ink" : "text-muted hover:text-ink"
+            l === current ? "bg-brand text-brand-ink" : "text-muted hover:text-ink"
           }`}
         >
           <span aria-hidden="true">{SHORT[l]}</span>

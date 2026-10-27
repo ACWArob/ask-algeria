@@ -31,3 +31,32 @@ export function chooseAnswerLang(selected: Locale, detected: Locale | null, ques
   if ((selected === "ar" || selected === "dz") && (detected === "ar" || detected === "dz")) return selected;
   return detected;
 }
+
+/**
+ * Offline query expansion used in MOCK_LLM mode and when the Haiku call fails.
+ * Maps common Darija / Arabic / French / Arabizi words to the official terms used on
+ * FR/EN/AR pages so lexical search still finds the right records.
+ */
+const GLOSSARY: [RegExp, string][] = [
+  [/باسبور|جواز|passe?port|passpor/i, "passport passeport biometric جواز السفر"],
+  [/12\s?s|12\s?خ|s12|ميلاد|naissance|birth/i, "12S birth certificate extrait de naissance شهادة الميلاد"],
+  [/كازي|السوابق|casier|criminal|judiciaire/i, "criminal record casier judiciaire bulletin صحيفة السوابق العدلية"],
+  [/جنسي|nationalit/i, "nationality certificate certificat de nationalité شهادة الجنسية"],
+  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|\bcni\b/i, "national identity card CNIBE carte d'identité بطاقة التعريف"],
+  [/صغار|قاصر|قُصّر|القصر|mineur|minor|enfant|child/i, "minors children parental authorization"],
+  [/تجديد|نجدد|renouvel|renew/i, "renewal renouvellement"],
+  [/كناس|cnas|ضمان|شفاء|chifa/i, "CNAS social security assurance sociale"],
+  [/ضراي?ب|ضرائب|impôt|impot|tax|جبايت|jibayat/i, "tax impôts Jibayatic"],
+  [/باك|بكالوريا|\bbac\b|bem|بيام|baccalaur/i, "baccalaureate bac preinscription orientation"],
+  [/عدل|aadl|سكن|logement|housing/i, "AADL housing logement"],
+  [/ذهبية|edahabia|ذهبيه|بوسطة|poste/i, "Edahabia Algérie Poste carte"],
+  [/أوطو|auto.?entrepreneur|مقاول|anae/i, "auto-entrepreneur ANAE"],
+  [/قنصل|consul|تسجيل قنصلي|immatricul/i, "consular registration immatriculation"],
+  [/خدمة وطنية|service national|military/i, "national military service"],
+  [/فيزا|visa|تأشيرة/i, "entry visa"],
+];
+
+export function glossaryQueries(text: string): string[] {
+  const hits = GLOSSARY.filter(([re]) => re.test(text)).map(([, q]) => q);
+  return hits.length ? [hits.join(" ")] : [];
+}

@@ -123,7 +123,7 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
               accept={ACCEPT.join(",")}
               onChange={(e) => pickFile(e.target.files?.[0] ?? null)}
               aria-describedby="file-hint"
-              className="w-full text-sm file:me-3 file:min-h-[40px] file:cursor-pointer file:rounded-full file:border-0 file:bg-door file:px-4 file:font-semibold file:text-door-ink"
+              className="w-full text-sm file:me-3 file:min-h-[40px] file:cursor-pointer file:rounded-full file:border-0 file:bg-brand file:px-4 file:font-semibold file:text-brand-ink"
             />
             <p id="file-hint" className="text-sm text-muted">{t.uploadHint}</p>
             {file && (
@@ -154,8 +154,8 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
             <legend className="mb-1.5 font-semibold">{t.mode}</legend>
             <div className="space-y-2">
               {(["summary", "full"] as const).map((m) => (
-                <label key={m} className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 has-[:checked]:border-door has-[:checked]:bg-door/5">
-                  <input type="radio" name="mode" value={m} checked={mode === m} onChange={() => setMode(m)} className="mt-1.5 accent-[rgb(var(--door))]" />
+                <label key={m} className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 has-[:checked]:border-brand has-[:checked]:bg-brand/5">
+                  <input type="radio" name="mode" value={m} checked={mode === m} onChange={() => setMode(m)} className="mt-1.5 accent-[rgb(var(--brand))]" />
                   <span>{m === "full" ? t.modeFull : t.modeSummary}</span>
                 </label>
               ))}
@@ -167,7 +167,7 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
           <LockIcon />
           {t.privacy}
         </p>
-        {notice && <p role="status" className="rounded-xl bg-ochre-soft px-3 py-2 text-sm font-semibold text-ochre">{notice}</p>}
+        {notice && <p role="status" className="rounded-xl bg-brand-soft px-3 py-2 text-sm font-semibold text-brand">{notice}</p>}
         {error && <p role="alert" className="text-sm font-semibold text-alert">{error}</p>}
         <button type="submit" className="btn-primary w-full sm:w-auto" disabled={busy}>
           {busy ? t.working : t.submit}
@@ -184,7 +184,7 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
               <Markdown text={result} />
             </div>
           )}
-          {status === "done" && <p className="mt-6 border-s-4 border-ochre ps-3 text-sm font-semibold">{t.disclaimer}</p>}
+          {status === "done" && <p className="mt-6 border-s-4 border-brand ps-3 text-sm font-semibold">{t.disclaimer}</p>}
         </div>
       </section>
     </div>

@@ -46,3 +46,12 @@ describe("redact", () => {
     expect(r.removed).toBe(0);
   });
 });
+
+import { glossaryQueries } from "@/lib/detect";
+describe("glossaryQueries", () => {
+  it("maps Darija/Arabic words to official terms", () => {
+    expect(glossaryQueries("كيفاش نجدد الباسبور؟")[0]).toMatch(/passport/);
+    expect(glossaryQueries("wach ndir l casier")[0]).toMatch(/criminal record/);
+    expect(glossaryQueries("hello")).toEqual([]);
+  });
+});

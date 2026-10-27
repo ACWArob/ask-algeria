@@ -1,8 +1,26 @@
 {
-  "brand": { "name": "Ask Algeria", "tagline": "Plain answers about Algerian public services, from official pages." },
-  "strip": { "independent": "Independent · not a government website" },
-  "nav": { "ask": "Ask", "translate": "Understand a document", "directory": "Official sites", "about": "About", "logout": "Sign out", "menu": "Menu" },
-  "lang": { "label": "Language", "en": "English", "fr": "Français", "ar": "العربية", "dz": "الدارجة" },
+  "brand": {
+    "name": "Ask Algeria",
+    "tagline": "Plain answers about Algerian public services, from official pages."
+  },
+  "strip": {
+    "independent": "Independent · not a government website"
+  },
+  "nav": {
+    "ask": "Ask",
+    "translate": "Understand a document",
+    "directory": "Official sites",
+    "about": "About",
+    "logout": "Sign out",
+    "menu": "Menu"
+  },
+  "lang": {
+    "label": "Language",
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية",
+    "dz": "الدارجة"
+  },
   "footer": {
     "independent": "Independent project · not affiliated with the Government of Algeria",
     "confirm": "Always confirm on the official page before you act."
@@ -18,7 +36,7 @@
   },
   "ask": {
     "heading": "What do you need to sort out?",
-    "sub": "Ask about a document, a procedure or an office. Answers come only from official Algerian government pages, with links so you can check.",
+    "sub": "Ask about any Algerian public service. Answers come only from official pages, with sources.",
     "label": "Your question",
     "placeholder": "For example: how do I renew my passport?",
     "submit": "Ask",
@@ -47,7 +65,12 @@
     "rateLimited": "You're asking very quickly. Wait a minute, then try again.",
     "again": "Ask another question",
     "privacyHint": "Don't include ID, phone or card numbers. We remove them automatically.",
-    "chars": "{n} / {max}"
+    "chars": "{n} / {max}",
+    "greeting": "Salam, Algeria.",
+    "followUp": "Ask a follow-up…",
+    "newChat": "New conversation",
+    "you": "You",
+    "assistant": "Ask Algeria"
   },
   "translate": {
     "heading": "Understand an official document",
@@ -80,7 +103,9 @@
     "searchPlaceholder": "Name or domain, e.g. CNAS",
     "pages": "{n} pages indexed",
     "empty": "No site matches “{q}”.",
-    "count": "{n} sites"
+    "count": "{n} sites",
+    "unverified": "Not verified",
+    "unverifiedHint": "We couldn't open this site automatically. How we know it's official:"
   },
   "categories": {
     "federal-core": "Government & ministries",
@@ -134,5 +159,23 @@
         ]
       }
     ]
+  },
+  "services": {
+    "heading": "Popular services",
+    "sub": "Start from a common procedure, or open the official portal directly.",
+    "askAbout": "Ask about this",
+    "portal": "Official portal",
+    "opensNew": "opens the official site in a new tab",
+    "guide": "Read the summary"
+  },
+  "guide": {
+    "back": "All services",
+    "abroadNote": "These sources are mainly consular pages for Algerians living abroad (embassies and consulates in Washington, London, Milan and San Francisco). Rules, documents and fees can differ at your consulate or in Algeria.",
+    "feesTitle": "Fees as stated by each consulate",
+    "office": "Where",
+    "sourcesTitle": "Sources",
+    "portalsTitle": "Official portals",
+    "askFollowUp": "Ask a question about this",
+    "fetched": "Summarised from official pages fetched on {date}."
   }
 }
