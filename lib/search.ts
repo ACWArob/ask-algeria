@@ -45,7 +45,18 @@ export interface Hit extends Chunk {
 }
 
 /** Runs each query, merges by best score, caps chunks per document so one page can't crowd out others. */
-export function searchChunks(queries: string[], limit: number, boostDomains: string[] = []): Hit[] {
+export interface SearchOptions {
+  /** Domains of the office that serves the person: boosted, but capped so other relevant pages still fit. */
+  boostDomains?: string[];
+  /** Corpus topic slugs that match the question (e.g. "passport"): boosted. */
+  topics?: string[];
+}
+
+/** Pages that are never useful for procedures (speeches, history, biographies). */
+const JUNK = /history of algeria|histoire de l'alg|biograph|speech|discours|allocution|condolence|congratulat|félicit|visite (de travail|officielle)|working visit/i;
+
+export function searchChunks(queries: string[], limit: number, opts: SearchOptions | string[] = {}): Hit[] {
+  const { boostDomains = [], topics = [] } = Array.isArray(opts) ? { boostDomains: opts } : opts;
   const ms = getIndex();
   const best = new Map<string, Hit>();
   for (const q of queries) {
@@ -69,16 +80,27 @@ export function searchChunks(queries: string[], limit: number, boostDomains: str
       }
     }
   }
-  if (boostDomains.length) {
-    const boost = new Set(boostDomains.map((d) => d.replace(/^www\./, "")));
-    for (const h of best.values()) if (boost.has(h.domain.replace(/^www\./, ""))) h.score *= 3;
+  const boost = new Set(boostDomains.map((d) => d.replace(/^www\./, "")));
+  const topicSet = new Set(topics);
+  for (const h of best.values()) {
+    if (boost.has(h.domain.replace(/^www\./, ""))) h.score *= 3;
+    if (topicSet.size && topicSet.has(h.topic)) h.score *= 1.6;
+    if (JUNK.test(h.title)) h.score *= 0.2;
   }
+  const ranked = [...best.values()].sort((a, b) => b.score - a.score);
+  const top = ranked[0]?.score ?? 0;
   const perDoc = new Map<string, number>();
   const out: Hit[] = [];
-  for (const h of [...best.values()].sort((a, b) => b.score - a.score)) {
+  let boosted = 0;
+  const maxBoosted = Math.max(1, Math.ceil(limit * 0.625)); // e.g. 5 of 8
+  for (const h of ranked) {
+    if (h.score < top * 0.3) break; // too weak compared with the best match: noise
     const n = perDoc.get(h.docId) ?? 0;
-    if (n >= 3) continue;
+    if (n >= 2) continue;
+    const isBoosted = boost.has(h.domain.replace(/^www\./, ""));
+    if (isBoosted && boosted >= maxBoosted) continue;
     perDoc.set(h.docId, n + 1);
+    if (isBoosted) boosted++;
     out.push(h);
     if (out.length >= limit) break;
   }

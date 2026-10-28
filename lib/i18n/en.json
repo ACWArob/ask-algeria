@@ -73,6 +73,7 @@
     "assistant": "Ask Algeria",
     "checked": "Checked {date}",
     "archived": "Archived copy, {date}",
+    "archivedNote": "Some details come from archived copies of official pages (dates shown on each source). They may have changed since.",
     "disagree": "Some official pages disagree on details of this answer. Confirm with the office."
   },
   "translate": {

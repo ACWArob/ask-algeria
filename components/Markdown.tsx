@@ -14,6 +14,8 @@ const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
 
 /** Turns [1], [1][2], [1, 2] and [١] into markdown links "#cite-n" that the renderer swaps for chips. */
 export function linkCitations(md: string): string {
+  // Drop bracketed tags that are not citations or links, e.g. "[social-protection]" or "[none provided]".
+  md = md.replace(/\[(?![0-9٠-٩]{1,2}(?:\s*[,،]\s*[0-9٠-٩]{1,2})*\])[^\]\n]{1,40}\](?![(:])/g, "");
   return md.replace(/\[([0-9٠-٩]{1,2}(?:\s*[,،]\s*[0-9٠-٩]{1,2})*)\](?!\()/g, (_m, inner: string) =>
     inner
       .split(/\s*[,،]\s*/)

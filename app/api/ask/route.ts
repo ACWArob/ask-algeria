@@ -6,7 +6,7 @@ import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { searchChunks } from "@/lib/search";
 import { SOURCES } from "@/lib/sources";
 import { answerSystemPrompt, answerUserPrompt, type PromptSource } from "@/lib/prompts";
-import { chooseAnswerLang, detectLanguage, glossaryQueries } from "@/lib/detect";
+import { chooseAnswerLang, detectLanguage, glossaryQueries, questionTopics } from "@/lib/detect";
 import { anthropic, expandQuery } from "@/lib/llm";
 import { MODELS } from "@/lib/config";
 import { mockAnswer, streamText } from "@/lib/mock";
@@ -14,7 +14,7 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
-import { detectPost } from "@/lib/posts";
+import { detectPost, detectMultiPostCountry } from "@/lib/posts";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,7 +46,9 @@ export async function POST(req: Request) {
   const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
 
   const started = Date.now();
-  const post = detectPost(`${context} ${question}`);
+  const post = detectPost(question) ?? detectPost(context);
+  const multiPostCountry = post ? null : detectMultiPostCountry(`${context} ${question}`);
+  const topics = questionTopics(`${context} ${question}`);
   const mock = isMock();
   const expansion = mock
     ? {
@@ -57,8 +59,9 @@ export async function POST(req: Request) {
     : await expandQuery(question, context);
   const answerLang = chooseAnswerLang(selected, expansion.lang, question);
 
-  const queries = post ? [...expansion.queries, ...expansion.queries.slice(0, 3).map((q) => `${q} ${post.place}`)] : expansion.queries;
-  const hits = searchChunks(queries, LIMITS.topChunks, post?.domains ?? []);
+  const base = [...new Set([...expansion.queries, ...glossaryQueries(`${context} ${question}`)])];
+  const queries = post && !post.inAlgeria ? [...base, ...base.slice(0, 3).map((q) => `${q} ${post.place}`)] : base;
+  const hits = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics });
 
   // Group chunks by page so each page gets one citation number.
   const byDoc = new Map<string, PromptSource>();
@@ -119,18 +122,32 @@ export async function POST(req: Request) {
     return new Response(out, { headers });
   }
 
-  const fallbackSites = [...SOURCES]
-    .sort((a, b) => a.priority - b.priority)
-    .slice(0, 25)
-    .map((s) => `- ${s.name_fr} (${s.name_en}): ${s.url} [${s.category}]`)
+  const MUST = ["mjustice.dz", "marw.dz", "aadl.dz", "interieur.gov.dz", "mfdgi.gov.dz", "cnas.dz", "casnos.com.dz", "anem.dz", "onec.dz", "poste.dz", "dzds.dz", "mfa.gov.dz"];
+  const fallbackList = [
+    ...SOURCES.filter((s) => MUST.includes(s.domain.replace(/^www\./, ""))),
+    ...[...SOURCES].sort((a, b) => a.priority - b.priority),
+  ];
+  const fallbackSites = [...new Map(fallbackList.map((s) => [s.domain, s])).values()]
+    .slice(0, 30)
+    .map((s) => `- ${s.name_fr} (${s.name_en}): ${s.url}`)
     .join("\n");
 
-  const system = answerSystemPrompt(answerLang, fallbackSites, post);
+  // Clarifying questions only where they change the answer (decided here, not left to the model).
+  const LOCATION_TOPICS = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "consular_visa"];
+  const words = question.trim().split(/\s+/).length;
+  const mentionsChild = /child|son|daughter|kid|minor|enfant|fils|fille|mineur|ولد|بنت|طفل|ابني|ابنتي|صغير|قاصر|wlid|bent/i.test(`${context} ${question}`);
+  const hasAge = /\b\d{1,2}\b|[٠-٩]{1,2}|ans|years?|عام|سنة|سنين|عمر/i.test(`${context} ${question}`);
+  const allowClarify =
+    words <= 2 ||
+    Boolean(multiPostCountry) ||
+    (!post && topics.some((t) => LOCATION_TOPICS.includes(t))) ||
+    (mentionsChild && !hasAge && topics.some((t) => ["passport", "cni"].includes(t)));
+  const system = answerSystemPrompt(answerLang, fallbackSites, { post, multiPostCountry, allowClarify });
   const REPLY_IN: Record<Locale, string> = {
-    en: "Reply only in English.",
-    fr: "Réponds uniquement en français.",
-    ar: "أجب باللغة العربية الفصحى فقط، حتى لو كانت الصفحات الرسمية بالفرنسية أو الإنجليزية.",
-    dz: "جاوب غير بالدارجة الجزائرية بالحروف العربية، حتى لو كانت الصفحات بالفرنسية ولا بالإنجليزية.",
+    en: "Reply only in English. If something isn't covered, say it about the office (\"X's page doesn't list…\"), never \"the pages I have/provided\".",
+    fr: "Réponds uniquement en français. Si un point manque, dis-le à propos de l'organisme (« la page du consulat ne précise pas… »), jamais « les pages consultées » ni « les extraits ».",
+    ar: "أجب باللغة العربية الفصحى فقط. إذا نقصت معلومة فانسبها إلى الجهة («صفحة القنصلية لا تذكر…»)، ولا تقل أبدًا «المصادر المتوفرة لدي» أو «الصفحات المتاحة لي».",
+    dz: "جاوب غير بالدارجة الجزائرية بالحروف العربية. إذا كاش حاجة ناقصة قولها على الإدارة («صفحة القنصلية ما تذكرش…»)، وما تقولش أبدًا «الصفحات اللي عندي» ولا «المصادر اللي عندي».",
   };
   const userPrompt = `${answerUserPrompt(question, promptSources, context, notes)}\n\n${REPLY_IN[answerLang]}`;
   // Netlify cuts synchronous functions at ~10 s. Stop generating before that and close cleanly.
@@ -170,6 +187,8 @@ export async function POST(req: Request) {
               }
             }
             clearTimeout(timer);
+            const fin = await stream.finalMessage().catch(() => null);
+            if (fin?.stop_reason === "max_tokens") controller.enqueue(enc.encode(SHORTENED[answerLang]));
             return; // finished normally
           } catch (err) {
             clearTimeout(timer);

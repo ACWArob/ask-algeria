@@ -60,3 +60,32 @@ export function glossaryQueries(text: string): string[] {
   const hits = GLOSSARY.filter(([re]) => re.test(text)).map(([, q]) => q);
   return hits.length ? [hits.join(" ")] : [];
 }
+
+/** Corpus topic slugs that the question is about (used to boost matching pages). */
+const TOPIC_RULES: [RegExp, string[]][] = [
+  [/باسبور|جواز|passe?port|passpor|laissez/i, ["passport"]],
+  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|\bcni/i, ["cni"]],
+  [/12\s?s|12\s?خ|s12|ميلاد|naissance|birth/i, ["birth_certificate", "civil_status"]],
+  [/زواج|mariage|marriage|طلاق|divorce|وفاة|décès|deces|death|livret|دفتر العائلة|état civil|etat civil|حالة مدنية/i, ["civil_status"]],
+  [/كازي|السوابق|casier|criminal|judiciaire/i, ["criminal_record", "justice"]],
+  [/جنسي|nationalit/i, ["nationality"]],
+  [/تسجيل قنصلي|immatricul|consular (card|registration)|carte consulaire/i, ["consular_registration"]],
+  [/توكيل|وكالة|procuration|power of attorney|légalis|legalis/i, ["legalization"]],
+  [/خدمة وطنية|service national|military|sarvis|سرفيس/i, ["national_service"]],
+  [/فيزا|visa|تأشيرة/i, ["consular_visa"]],
+  [/permis|رخصة|driving|carte grise|كارط غريز|immatriculation (de|du) v|véhicule|vehicle|car\b|طوموبيل/i, ["driving_vehicle"]],
+  [/ضراي?ب|ضرائب|impôt|impot|tax|جبايت|jibayat|nif\b/i, ["tax"]],
+  [/كناس|cnas|casnos|كازنوس|ضمان|شفاء|chifa|retraite|retire|pension|تقاعد|allocation|منحة عائلية/i, ["social_security"]],
+  [/chômage|chomage|unemploy|بطالة|anem|minha|منحة البطالة|emploi|job|خدمة/i, ["employment"]],
+  [/عدل|aadl|سكن|logement|housing|lpp|lpl/i, ["housing"]],
+  [/باك|بكالوريا|\bbac\b|bem|بيام|baccalaur|universit|جامع|étudiant|student|progr[eè]s|bourse|scholar|منحة دراسية/i, ["education"]],
+  [/startup|label|auto.?entrepreneur|مقاول|anae|registre de commerce|سجل تجاري|entreprise|business|nesda|angem/i, ["business"]],
+  [/sonelgaz|سونلغاز|électricit|electricit|كهرباء|gaz|غاز|eau\b|water|ماء|facture|bill|فاتورة|poste|بوسطة|edahabia|ذهبية|ccp|baridi|internet|idoom|sim|arpce/i, ["utilities", "telecom", "post", "banking"]],
+  [/santé|sante|health|صحة|vaccin|لقاح|médicament|medicine|دواء/i, ["health"]],
+  [/hajj|حج|omra|عمرة/i, ["hajj", "general"]],
+];
+export function questionTopics(text: string): string[] {
+  const out = new Set<string>();
+  for (const [re, topics] of TOPIC_RULES) if (re.test(text)) topics.forEach((t) => out.add(t));
+  return [...out];
+}

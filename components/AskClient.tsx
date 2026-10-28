@@ -278,6 +278,14 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
 ) {
   const t = dict.ask;
   const { meta, status } = turn;
+  // Once the answer is complete, list only the sources it actually cites (fall back to all if it cites none).
+  const cited = new Set(
+    [...turn.answer.matchAll(/\[([0-9٠-٩]{1,2}(?:\s*[,،]\s*[0-9٠-٩]{1,2})*)\]/g)].flatMap((m) =>
+      m[1].split(/\s*[,،]\s*/).map((d) => Number(d.replace(/[٠-٩]/g, (c) => String("٠١٢٣٤٥٦٧٨٩".indexOf(c))))),
+    ),
+  );
+  const allSources = meta?.sources ?? [];
+  const shownSources = status === "done" && cited.size ? allSources.filter((s) => cited.has(s.n)) : allSources;
   const answerLang = meta?.answerLang;
   const answerDir = answerLang === "ar" || answerLang === "dz" ? "rtl" : "ltr";
   const busy = status === "loading" || status === "streaming";
@@ -313,11 +321,11 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
         )}
         {turn.error && <p role="alert" className="mt-3 font-semibold text-alert">{turn.error}</p>}
 
-        {meta && meta.sources.length > 0 && !busy && (
+        {meta && shownSources.length > 0 && !busy && (
           <section className="mt-6" aria-label={t.sources}>
             <h3 className="text-sm font-semibold text-muted">{t.sources}</h3>
             <ol className="mt-2 grid gap-2 sm:grid-cols-2">
-              {meta.sources.map((s) => (
+              {shownSources.map((s) => (
                 <li key={s.n}>
                   <a
                     href={s.url}
@@ -344,6 +352,9 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
           <>
             {(meta?.notes ?? 0) > 0 && (
               <p className="mt-5 rounded-xl border border-line border-s-4 border-s-accent px-3 py-2 text-sm">{t.disagree}</p>
+            )}
+            {shownSources.some((s) => s.archived) && (
+              <p className="mt-3 text-xs text-muted">{t.archivedNote}</p>
             )}
             <p className="mt-5 text-sm font-semibold text-ink">{dict.footer.confirm}</p>
             <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t.helpful}>

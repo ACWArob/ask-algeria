@@ -97,7 +97,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia citations; linked from wilayaoran.dz",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 1
+  "pages": 48
  },
  {
   "name_en": "Ministry of Finance",
@@ -117,7 +117,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); DGI notice cited by algerie360",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 2
  },
  {
   "name_en": "Ministry of National Defence",
@@ -178,7 +178,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 15
  },
  {
   "name_en": "Ministry of Religious Affairs and Wakfs",
@@ -278,7 +278,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 2
  },
  {
   "name_en": "Ministry of Agriculture and Rural Development",
@@ -499,7 +499,7 @@
   "fetch_status": "ok",
   "evidence": "Fetched OK; DGI official reference domain per DGI notice",
   "notes": "",
-  "pages": 1
+  "pages": 23
  },
  {
   "name_en": "Jibayatic – Online Tax Declaration & Payment",
@@ -660,7 +660,7 @@
   "fetch_status": "robots",
   "evidence": "Ministry of Commerce has a 'Portail du CNRC' page; Sidjilcom widely cited (zoomalgerie, upgrowth)",
   "notes": "Domain from secondary sources; confirm; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 1
+  "pages": 11
  },
  {
   "name_en": "Algerian Investment Promotion Agency (AAPI)",
@@ -821,7 +821,7 @@
   "fetch_status": "robots",
   "evidence": "Guide (demarchesdz) labels casnos.com.dz official; damancom.casnos.dz linked from it",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 3
  },
  {
   "name_en": "Damancom – CASNOS Online Services",
@@ -861,7 +861,7 @@
   "fetch_status": "robots",
   "evidence": "Guide (demarchesdz) cites www.cnr.dz and dz.cnr.dz",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 5
  },
  {
   "name_en": "ANEM – National Employment Agency",
@@ -941,7 +941,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 2
  },
  {
   "name_en": "Ministry of Housing, Urban Planning and the City",
@@ -1060,7 +1060,7 @@
   "fetch_status": "not_tested",
   "evidence": "Linked from education.gov.dz",
   "notes": "",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "BEM Portal (ONEC)",
@@ -1140,7 +1140,7 @@
   "fetch_status": "robots",
   "evidence": "Linked from education.gov.dz",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 7
  },
  {
   "name_en": "Ministry of Higher Education and Scientific Research",
@@ -1322,7 +1322,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official website",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "ANPP – National Agency for Pharmaceutical Products",
@@ -1403,7 +1403,7 @@
   "fetch_status": "robots",
   "evidence": "Wikipedia references sonelgaz.dz; guide cites sonelgaz.dz/fr/category/espace-clients",
   "notes": "State-owned company; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 3
  },
  {
   "name_en": "Algérie Poste",
@@ -1483,7 +1483,7 @@
   "fetch_status": "robots",
   "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official site (with /ar/ and /fr/)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 0
+  "pages": 16
  },
  {
   "name_en": "Ministry of Justice e-Services Portal",
@@ -1683,7 +1683,7 @@
   "fetch_status": "robots",
   "evidence": "Many pages indexed (fr and ar)",
   "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
-  "pages": 1
+  "pages": 6
  },
  {
   "name_en": "COSOB – Stock Exchange Regulator",
@@ -1927,7 +1927,7 @@
   "fetch_status": "not_tested",
   "evidence": "Form PDF indexed at cpontoise.mfa.gov.dz/media/...",
   "notes": "",
-  "pages": 1
+  "pages": 21
  },
  {
   "name_en": "Embassy in Washington",
@@ -2051,7 +2051,7 @@
   "fetch_status": "ok",
   "evidence": "Listed as supervised entity / linked body on the official Ministry of Knowledge Economy site (mkesm.gov.dz homepage, fetched 2026-10-27); page states it is under supervision of the Minister of Knowledge Economy",
   "notes": "Root https://www.angem.dz/ returned robots block, /en/ fetched OK. AR/FR assumed, not verified",
-  "pages": 0
+  "pages": 7
  },
  {
   "name_en": "ANAE - National Agency for the Self-Employed (Auto-entrepreneur)",
@@ -2170,7 +2170,7 @@
   "fetch_status": "robots",
   "evidence": "Search engine indexes official ANIE communiqué PDFs hosted at ina-elections.dz/wp-content/uploads (2021-2025); ANIE activity covered by state radio (news.radioalgerie.dz).",
   "notes": "WebFetch robots-blocked (flaky); existence supported by indexed PDFs on the domain. Languages not verified",
-  "pages": 0
+  "pages": 7
  },
  {
   "name_en": "INAPI - National Institute of Industrial Property",
@@ -2191,7 +2191,7 @@
   "fetch_status": "ok",
   "evidence": "Site self-identifies as INAPI with offices in Algiers, Sétif, Boumerdès, Oran; INAPI is the national IP office referenced by WIPO (wipo.int making_a_mark_dz guide) and INPI France fact sheet.",
   "notes": "",
-  "pages": 0
+  "pages": 11
  },
  {
   "name_en": "ALGEX - National Agency for Foreign Trade Promotion",
@@ -2756,7 +2756,7 @@
   "fetch_status": "ok",
   "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
   "notes": "Redirects to apps.dual-mesrs.dz/catalog (JS app, no readable text)",
-  "pages": 0
+  "pages": 1
  },
  {
   "name_en": "MESRS Alumni & Graduates Platform",
@@ -3432,7 +3432,7 @@
   "fetch_status": "ok",
   "evidence": "Pages fetched from this official site for the corpus",
   "notes": "auto-added from corpus",
-  "pages": 1
+  "pages": 9
  },
  {
   "name_en": "Embassy of Algeria in Oslo",
@@ -3481,5 +3481,45 @@
   "evidence": "Pages fetched from this official site for the corpus",
   "notes": "auto-added from corpus",
   "pages": 9
+ },
+ {
+  "name_en": "ADE – Algérienne des Eaux (national water utility)",
+  "name_fr": "Algérienne des Eaux (ADE)",
+  "name_ar": "الجزائرية للمياه",
+  "domain": "ade.dz",
+  "url": "https://www.ade.dz/",
+  "category": "utilities",
+  "languages": [
+   "fr",
+   "ar"
+  ],
+  "languages_verified": true,
+  "description": "Public water utility: missions, customer agency network, e-payment, complaints",
+  "priority": 2,
+  "reachable": false,
+  "fetch_status": "archived",
+  "evidence": "Wayback Machine snapshots (2023-06-06) of ade.dz/missions and ade.dz/reseau-agences-clientele-de-lade; the page says it is the public water service operator under the Ministry of Hydraulics",
+  "notes": "Live site not reachable from outside Algeria; content taken from archived copies only",
+  "pages": 2
+ },
+ {
+  "name_en": "CNRC info portal (business creation guide)",
+  "name_fr": "CNRC – portail d'information (création d'entreprise)",
+  "name_ar": "المركز الوطني للسجل التجاري – بوابة المعلومات",
+  "domain": "cnrcinfo.cnrc.dz",
+  "url": "https://cnrcinfo.cnrc.dz/",
+  "category": "tax-business",
+  "languages": [
+   "fr",
+   "ar"
+  ],
+  "languages_verified": true,
+  "description": "Guide to legal forms (EURL, SARL, SPA, SNC…), NIF, social-security registration and incentives for company creation",
+  "priority": 1,
+  "reachable": false,
+  "fetch_status": "archived",
+  "evidence": "Subdomain of cnrc.dz (already listed); Wayback snapshots 2023-01-31 to 2023-12-10",
+  "notes": "Archived copies only; content dates from 2023 – check against current law",
+  "pages": 11
  }
 ]

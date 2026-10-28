@@ -12,9 +12,9 @@ export const LIMITS = {
   questionMaxChars: 1000,
   translateMaxChars: 20000,
   uploadMaxBytes: 5 * 1024 * 1024,
-  rateLimitPerMinute: 20,
+  rateLimitPerMinute: Number(process.env.RATE_LIMIT_PER_MIN) || 20,
   topChunks: 8,
-  answerMaxTokens: 800,
+  answerMaxTokens: 1400,
   translateMaxTokens: 1800,
 } as const;
 
