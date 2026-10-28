@@ -14,7 +14,9 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
-import { detectPost, detectMultiPostCountry } from "@/lib/posts";
+import { detectPost, detectMultiPostCountry, postFromGeo, readGeo } from "@/lib/posts";
+import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
+import { hostOf, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,9 +48,24 @@ export async function POST(req: Request) {
   const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
 
   const started = Date.now();
-  const post = detectPost(question) ?? detectPost(context);
+  const statedPost = detectPost(question) ?? detectPost(context);
+  // Fall back to the approximate location of the connection (e.g. Netlify geo), but say so in the answer.
+  const geoPost = statedPost ? null : postFromGeo(readGeo(req.headers));
+  const post = statedPost ?? geoPost;
   const multiPostCountry = post ? null : detectMultiPostCountry(`${context} ${question}`);
   const topics = questionTopics(`${context} ${question}`);
+
+  const quickLang = chooseAnswerLang(selected, detectLanguage(question), question);
+  // Location-dependent procedure but we don't know where they are: ask first (no mixed answer from random consulates).
+  const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
+  if (!post && topics.some((t) => LOCATION_FIRST.includes(t)) && !OTHER_PLACE.test(question)) {
+    const c: Clarify | null = multiPostCountry ? askCity(multiPostCountry, quickLang) : askCountry(quickLang);
+    if (c) {
+      const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], chips: c.chips, redactedServer: removed };
+      return new Response(`${JSON.stringify(meta)}\n${c.text}`, { headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
+    }
+  }
+
   const mock = isMock();
   const expansion = mock
     ? {
@@ -73,19 +90,40 @@ export async function POST(req: Request) {
     }
     s.excerpts.push(h.text);
   }
-  const promptSources = [...byDoc.values()];
+  let promptSources = [...byDoc.values()];
+
+  // "Where is / phone of / hours of the consulate": add the matching mission record(s) as citable sources, first.
+  const missionHits =
+    isMissionContactQuestion(question) && !post?.inAlgeria
+      ? matchMissions(question, post?.domains ?? [], 2, context).filter((m) => m.source_url || m.website)
+      : [];
+  if (missionHits.length) {
+    const missionSources: PromptSource[] = missionHits.map((m) => {
+      const url = m.source_url || m.website;
+      return { n: 0, docId: `mission:${m.id}`, title: `${m.name_en}: contact details`, url, domain: hostOf(url), excerpts: [missionExcerpt(m)], checked: m.checked || null };
+    });
+    promptSources = [...missionSources, ...promptSources.filter((p) => !missionSources.some((ms) => ms.url === p.url))]
+      .slice(0, LIMITS.topChunks + missionSources.length)
+      .map((p, i) => ({ ...p, n: i + 1 }));
+  }
 
   // Freshness + cross-source accuracy notes from the weekly refresh job (optional files).
   const { state, report } = freshness();
   const corpus = corpusById();
   for (const s of promptSources) {
+    if (s.docId?.startsWith("mission:")) continue; // checked date comes from missions.json
     const rec = corpus.get(s.docId ?? "");
     s.checked = checkedDate(rec?.fetched, state[s.url]);
     if (rec?.extraction === "archived") s.archived = rec.fetched || "unknown date";
   }
   const notes = verificationNotes(
     report,
-    new Map(promptSources.map((s) => [s.docId ?? "", s.n])),
+    // When we know their office, only flag disagreements between that office's own pages.
+    new Map(
+      promptSources
+        .filter((s) => !post || post.inAlgeria || post.domains.some((d) => s.domain.replace(/^www\./, "") === d))
+        .map((s) => [s.docId ?? "", s.n]),
+    ),
     (id) => corpus.get(id)?.domain,
   );
 
@@ -138,11 +176,11 @@ export async function POST(req: Request) {
   const mentionsChild = /child|son|daughter|kid|minor|enfant|fils|fille|mineur|ولد|بنت|طفل|ابني|ابنتي|صغير|قاصر|wlid|bent/i.test(`${context} ${question}`);
   const hasAge = /\b\d{1,2}\b|[٠-٩]{1,2}|ans|years?|عام|سنة|سنين|عمر/i.test(`${context} ${question}`);
   const allowClarify =
-    words <= 2 ||
+    (words <= 2 && !context) ||
     Boolean(multiPostCountry) ||
     (!post && topics.some((t) => LOCATION_TOPICS.includes(t))) ||
     (mentionsChild && !hasAge && topics.some((t) => ["passport", "cni"].includes(t)));
-  const system = answerSystemPrompt(answerLang, fallbackSites, { post, multiPostCountry, allowClarify });
+  const system = answerSystemPrompt(answerLang, fallbackSites, { post, multiPostCountry, allowClarify, fromGeo: Boolean(geoPost) });
   const REPLY_IN: Record<Locale, string> = {
     en: "Reply only in English. If something isn't covered, say it about the office (\"X's page doesn't list…\"), never \"the pages I have/provided\".",
     fr: "Réponds uniquement en français. Si un point manque, dis-le à propos de l'organisme (« la page du consulat ne précise pas… »), jamais « les pages consultées » ni « les extraits ».",

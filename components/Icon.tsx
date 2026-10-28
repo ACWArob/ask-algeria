@@ -9,6 +9,7 @@ const PATHS: Record<string, React.ReactNode> = {
   receipt: (<><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" /><path d="M9 8h6M9 11h6M9 14h3" /></>),
   shield: (<><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" /><path d="M12 9v6M9 12h6" /></>),
   cap: (<><path d="M2.5 9.5L12 5l9.5 4.5L12 14z" /><path d="M6.5 11.5V16c1.5 1.3 3.4 2 5.5 2s4-.7 5.5-2v-4.5M21.5 9.5V15" /></>),
+  embassy: (<><path d="M3 20h18M5 20V10M19 20V10M9 20v-6h6v6M3 10l9-6 9 6z" /><path d="M9.5 10h5" /></>),
   house: (<><path d="M4 11l8-7 8 7" /><path d="M6 10v10h12V10M10 20v-5h4v5" /></>),
 };
 

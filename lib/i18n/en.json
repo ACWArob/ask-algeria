@@ -12,7 +12,8 @@
     "directory": "Official sites",
     "about": "About",
     "logout": "Sign out",
-    "menu": "Menu"
+    "menu": "Menu",
+    "embassies": "Embassies & consulates"
   },
   "lang": {
     "label": "Language",
@@ -183,5 +184,41 @@
     "portalsTitle": "Official portals",
     "askFollowUp": "Ask a question about this",
     "fetched": "Summarised from official pages fetched on {date}."
+  },
+  "embassies": {
+    "heading": "Embassies & consulates",
+    "sub": "Find the Algerian embassy or consulate that serves you. Details come from official mission pages; always confirm before you travel.",
+    "search": "Search by country or city",
+    "searchPlaceholder": "e.g. France, Lyon, مصر",
+    "type": "Type",
+    "allTypes": "All types",
+    "types": {
+      "Embassy": "Embassy",
+      "Consulate General": "Consulate general",
+      "Consulate": "Consulate",
+      "Permanent Mission": "Permanent mission"
+    },
+    "count": "Missions: {n} · Countries: {c}",
+    "empty": "No mission matches “{q}”.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Hours",
+    "jurisdiction": "Covers",
+    "appointment": "Book an appointment",
+    "website": "Official website",
+    "source": "Source · checked {date}",
+    "unverified": "Contact details not yet verified. Check the Ministry of Foreign Affairs site.",
+    "mfa": "Ministry of Foreign Affairs",
+    "faxNote": "The page doesn't label the numbers: the second one may be a fax.",
+    "note": "Note",
+    "usTitle": "Which consulate covers me? (United States)",
+    "usLabel": "Your state",
+    "usChoose": "Choose your state",
+    "usResult": "{state} is served by the {post}.",
+    "show": "Show it",
+    "homeName": "Embassies & consulates",
+    "homeLine": "Addresses, phones and hours of Algeria's missions abroad.",
+    "homeCta": "Find yours"
   }
 }

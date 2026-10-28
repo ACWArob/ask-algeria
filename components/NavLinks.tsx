@@ -9,6 +9,7 @@ export function NavLinks({ dict }: { dict: Dict }) {
   const items = [
     { href: "/", label: dict.nav.ask },
     { href: "/translate", label: dict.nav.translate },
+    { href: "/embassies", label: dict.nav.embassies },
     { href: "/directory", label: dict.nav.directory },
     { href: "/about", label: dict.nav.about },
   ];

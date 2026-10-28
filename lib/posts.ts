@@ -112,7 +112,7 @@ const PLACES: [string[], string, Office][] = [
   [["montreal", "montréal", "مونتريال", "quebec", "québec"], "Montreal", mfa("cgmontreal", "Consulate General of Algeria in Montreal")],
   [["ottawa", "أوتاوا"], "Ottawa", mfa("embottawa", "Embassy of Algeria in Ottawa")],
   // UK & Europe & others
-  [["london", "لندن", "united kingdom", "england", "scotland", "wales", "ireland", "dublin", "manchester", "birmingham", "uk"], "United Kingdom", mfa("cglondon", "Consulate General of Algeria in London")],
+  [["london", "لندن", "united kingdom", "england", "scotland", "wales", "ireland", "dublin", "manchester", "birmingham", "uk", "بريطانيا", "المملكة المتحدة", "royaume-uni", "royaume uni"], "United Kingdom", mfa("cglondon", "Consulate General of Algeria in London")],
   [["milan", "milano", "ميلانو", "italy", "italie", "إيطاليا", "rome", "roma", "turin", "torino"], "Italy", mfa("cgmilan", "Consulate General of Algeria in Milan")],
   [["istanbul", "إسطنبول", "اسطنبول", "turkey", "turquie", "تركيا"], "Turkey", mfa("cgistanbul", "Consulate General of Algeria in Istanbul")],
   [["geneva", "genève", "geneve", "جنيف", "switzerland", "suisse", "سويسرا"], "Switzerland", mfa("cggeneva", "Consulate General of Algeria in Geneva")],
@@ -137,13 +137,13 @@ const PLACES: [string[], string, Office][] = [
   [["djelfa", "الجلفة"], "Djelfa", ALGERIA("Djelfa")],
   [["bouira", "البويرة"], "Bouira", ALGERIA("Bouira")],
   [["ouargla", "ورقلة"], "Ouargla", ALGERIA("Ouargla")],
-  [["in algeria", "en algérie", "en algerie", "فالدزاير", "في الجزائر", "fi dzayer", "f dzayer", "fl bled", "في البلاد"], "Algeria", ALGERIA("your wilaya")],
+  [["in algeria", "en algérie", "en algerie", "فالدزاير", "في الجزائر", "fi dzayer", "f dzayer", "fl bled", "في البلاد", "الدزاير", "فالدزاير", "راني في الدزاير", "أقيم في الجزائر", "j'habite en algérie"], "Algeria", ALGERIA("your wilaya")],
 ];
 
 // Countries with several Algerian posts: ask for the city instead of guessing.
 const MULTI_POST: [string[], string][] = [
   [["france", "فرنسا", "fransa"], "France"],
-  [["usa", "united states", "america", "أمريكا", "امريكا", "الولايات المتحدة", "mirikan", "lmirikan"], "the United States"],
+  [["usa", "united states", "états-unis", "etats-unis", "america", "أمريكا", "امريكا", "الولايات المتحدة", "mirikan", "lmirikan"], "the United States"],
   [["canada", "كندا"], "Canada"],
 ];
 
@@ -187,4 +187,55 @@ export function detectPost(text: string): PostHint | null {
 export function detectMultiPostCountry(text: string): string | null {
   for (const [names, country] of MULTI_POST) for (const n of names) if (has(text, n)) return country;
   return null;
+}
+
+/** US states (display name) with the domains of the office that serves each, for the /embassies helper. */
+export function usStateOffices(): { state: string; domains: string[]; post: string }[] {
+  const names: Record<string, string> = { "washington state": "Washington (state)", "washington dc": "Washington, D.C." };
+  const skip = new Set(["washington d.c.", "district of columbia"]);
+  return Object.entries(US_STATES)
+    .filter(([k]) => !skip.has(k))
+    .map(([k, o]) => ({ state: names[k] ?? titleCase(k), domains: o.domains, post: o.post }))
+    .sort((a, b) => a.state.localeCompare(b.state));
+}
+
+/** Approximate location from the hosting platform (Netlify's x-nf-geo header). */
+export interface GeoHint {
+  country?: string; // ISO code, e.g. "US", "DZ", "FR"
+  countryName?: string;
+  region?: string; // e.g. "CO"
+  regionName?: string; // e.g. "Colorado"
+  city?: string;
+}
+
+export function readGeo(headers: Headers): GeoHint | null {
+  const raw = headers.get("x-nf-geo");
+  if (raw) {
+    try {
+      const j = JSON.parse(Buffer.from(raw, "base64").toString("utf8")) as {
+        city?: string;
+        country?: { code?: string; name?: string };
+        subdivision?: { code?: string; name?: string };
+      };
+      return { country: j.country?.code, countryName: j.country?.name, region: j.subdivision?.code, regionName: j.subdivision?.name, city: j.city };
+    } catch {
+      /* fall through */
+    }
+  }
+  const c = headers.get("x-country") ?? headers.get("x-vercel-ip-country") ?? headers.get("cf-ipcountry");
+  return c ? { country: c.toUpperCase() } : null;
+}
+
+/** Turns an approximate connection location into the office that serves it (null if unknown). */
+export function postFromGeo(g: GeoHint | null): PostHint | null {
+  if (!g?.country) return null;
+  const cc = g.country.toUpperCase();
+  if (cc === "DZ") return { place: g.city ? `${g.city}, Algeria` : "Algeria", ...ALGERIA(g.city || "your wilaya") };
+  if (cc === "US" && g.region && STATE_ABBR[g.region.toUpperCase()]) {
+    const s = STATE_ABBR[g.region.toUpperCase()];
+    const state = titleCase(s.replace(" state", ""));
+    return { place: g.city ? `${g.city}, ${state}` : state, ...US_STATES[s] };
+  }
+  // Other countries: reuse the city/country name tables.
+  return detectPost(`${g.city ?? ""} ${g.countryName ?? ""}`.trim());
 }

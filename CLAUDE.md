@@ -1,0 +1,50 @@
+# CLAUDE.md — Ask Algeria (software)
+
+Independent Q&A site for Algerian government services (en / fr / ar Fusha / dz Darija). Answers only from official pages, with citations. Password-protected demo on Netlify.
+Stack: Next.js 14 App Router + TypeScript + Tailwind, Anthropic SDK, MiniSearch, Netlify (@netlify/plugin-nextjs). Default branch: `main`.
+
+## Commands
+```bash
+npm i
+npm run dev                         # local; MOCK mode answers without Claude calls
+npm test                            # vitest, all
+npx vitest run tests/x.test.ts      # one file ← prefer this
+npm run lint && npm run typecheck
+npm run build                       # prebuild rebuilds data/index.json
+npm run refresh                     # check-updates → crossref → index (weekly GitHub Action does this)
+node scripts/import-apify.mjs <dataset.json>   # add crawled pages to the corpus
+```
+
+## Layout
+- `app/(site)/` — pages (home, ask, translate, services/passport, embassies, sources, about); `app/api/` — ask, translate, login, logout, feedback
+- `lib/` — `posts.ts` (where the person lives → which consulate/APC), `clarify.ts` (ask-first chips), `prompts.ts`, `search.ts` + `search-core.mjs`, `missions.ts`, `detect.ts` (language/topic), `i18n/*.json` (4 languages, keep keys in sync)
+- `data/` — `corpus.json` (pages), `sources.json` (sites), `missions.json` (embassies/consulates), `index.json` (generated)
+- `scripts/` — crawl, import, refresh, crossref; `tests/` — vitest
+
+## Conventions
+- Match surrounding style; no new dependencies without asking.
+- Every user-facing string goes in all 4 `lib/i18n/*.json`. Darija is Algerian, never Moroccan.
+- Official sources only. Archived copies keep the original URL plus `archived_url` and `extraction: "archived"`.
+- Location matching uses Unicode lookarounds, not `\b` (breaks on Arabic).
+- `/api/ask` must finish inside Netlify's 10 s: thinking disabled, 9 s deadline, fallback model, buffered retry. Don't add slow steps to that path.
+
+## Testing
+- Behavior change ships with a test change. Bugs: failing test first.
+- Answer quality: rerun the QA set (76 questions, all 4 languages) against the deploy after prompt/search changes.
+
+## Done means
+lint + typecheck + affected tests pass, build passes, and you've said how you verified.
+
+## Git (only when I ask)
+Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit secrets (ANTHROPIC_API_KEY, SITE_PASSWORD, Apify token).
+
+## Lessons
+<!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — tester headers pasted as one string landed in a single cell — check pasted ranges cell by cell after writing to a Sheet.
+- 2026-10-27 — mixed London/NY/DC answer when location was unknown — location-dependent topics ask "where do you live?" first (chips), no LLM call.
+- 2026-10-27 — "I think you mean Denver" hedging — state the detected office as fact; banned hedge phrases per language.
+- 2026-10-27 — Arabic place names never matched — `\b` is ASCII-only; use `(?<![\p{L}\p{N}])…(?![\p{L}\p{N}])` with `iu`.
+- 2026-10-27 — NY/SF consulates missing from answers — boost the person's own office domains in search; check main diaspora posts first.
+- 2026-10-26 — "Something went wrong" on Netlify — extended thinking + long answers blew the 10 s limit; keep thinking off, cap tokens.
+- 2026-10-26 — streams dropped in Chrome at ~4.5 s — don't tie the stream to `req.signal`; client retries once buffered.
+- 2026-10-26 — said an `sk-ant-usr` key wouldn't work; it did — test before claiming a credential is invalid.

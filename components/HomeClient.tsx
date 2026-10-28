@@ -73,6 +73,22 @@ export function HomeClient({ dict, locale, services }: { dict: Dict; locale: Loc
               </div>
             </li>
           ))}
+          <li className="flex gap-4 border-b border-line py-5">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft text-brand">
+              <Icon name="embassy" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-semibold leading-snug">
+                <Link href="/embassies" className="hover:text-brand hover:underline hover:underline-offset-4">{dict.embassies.homeName}</Link>
+              </h3>
+              <p className="mt-0.5 text-[0.9375rem] text-muted">{dict.embassies.homeLine}</p>
+              <div className="mt-3 text-sm">
+                <Link href="/embassies" className="inline-flex min-h-[36px] items-center rounded-full bg-brand px-3.5 font-semibold text-brand-ink hover:bg-brand/90">
+                  {dict.embassies.homeCta}
+                </Link>
+              </div>
+            </div>
+          </li>
         </ul>
       </section>
     </>

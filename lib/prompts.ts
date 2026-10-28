@@ -54,6 +54,8 @@ export interface AnswerContext {
   post?: { place: string; post: string; site?: string; inAlgeria?: boolean } | null;
   /** Country named that has several Algerian posts (ask for the city). */
   multiPostCountry?: string | null;
+  /** The location came from the connection (IP), not from the person. */
+  fromGeo?: boolean;
   /** Whether a clarifying question is allowed for this question (decided in code). */
   allowClarify?: boolean;
 }
@@ -68,24 +70,30 @@ const NOT_COVERED: Record<Locale, string> = {
 };
 
 const NO_HEDGE: Record<Locale, string> = {
-  en: '"excerpts", "provided", "the pages I have", "the information available to me", "I think", "most likely", "it seems", "based on the documents"',
-  fr: '"extraits", "pages consultées", "dont je dispose", "les informations fournies", "je pense", "il semble", "probablement"',
-  ar: '"المقتطفات", "الصفحات المتاحة لي", "المعلومات المتوفرة لدي", "على الأرجح", "يبدو أن", "أعتقد"',
-  dz: '"اللي عندي", "الصفحات اللي عندي", "نظن", "على حساب واش عندي", "باين"',
+  en: '"excerpts", "provided", "the pages I have", "the information available to me", "I think", "most likely", "it seems", "based on the documents", "my sources"',
+  fr: '"extraits", "pages consultées", "dont je dispose", "les informations fournies", "je pense", "il semble", "probablement", "mes sources", "aucune de mes sources"',
+  ar: '"المقتطفات", "الصفحات المتاحة لي", "المعلومات المتوفرة لدي", "على الأرجح", "يبدو أن", "أعتقد", "مصادري"',
+  dz: '"اللي عندي", "الصفحات اللي عندي", "نظن", "على حساب واش عندي", "باين", "المصادر تاعي"',
 };
 
 export function answerSystemPrompt(lang: Locale, fallbackSites: string, ctx: AnswerContext = {}): string {
   const h = HEADINGS[lang];
-  const { post, multiPostCountry, allowClarify = true } = ctx;
+  const { post, multiPostCountry, allowClarify = true, fromGeo = false } = ctx;
+  const GEO_NOTE: Record<Locale, string> = {
+    en: `Start your answer with exactly: "Answering for ${post?.place ?? ""} (based on your connection; tell me if you're somewhere else)." on its own line.`,
+    fr: `Commence ta réponse exactement par : « Réponse pour ${post?.place ?? ""} (d'après votre connexion ; dites-moi si vous êtes ailleurs). » sur sa propre ligne.`,
+    ar: `ابدأ إجابتك بهذا السطر حرفيًا: «الإجابة تخص ${post?.place ?? ""} (حسب موقع اتصالك؛ أخبرني إن كنت في مكان آخر).»`,
+    dz: `بدا الجواب بهاد السطر بالضبط: «نجاوبك على ${post?.place ?? ""} (على حساب الكونيكسيون تاعك؛ قولي إذا راك في بلاصة أخرى).»`,
+  };
   const where = post
     ? post.inAlgeria
       ? `\nWHERE THE PERSON IS: inside Algeria (${post.place}). Procedures go through the APC/commune, daïra or the relevant national service, not a consulate. Say so plainly. Do NOT ask whether they are in Algeria or abroad.\n`
-      : `\nWHERE THE PERSON IS: ${post.place}. That is served by the ${post.post}${post.site ? ` (${post.site})` : ""}. State this as a plain fact in your first sentence (e.g. "Colorado is covered by the Consulate General of Algeria in San Francisco."). Do not hedge or comment on spelling. Do NOT ask where they live. If no page below belongs to that office, say its own page isn't in our records yet, give its site, and show the general procedure from another post clearly labelled as that post's rules.\n`
+      : `\nWHERE THE PERSON IS: ${post.place}. That is served by the ${post.post}${post.site ? ` (${post.site})` : ""}. State this as a plain fact in your first sentence (e.g. "Colorado is covered by the Consulate General of Algeria in San Francisco."). Do not hedge or comment on spelling. Do NOT ask where they live. If no page below belongs to that office, say in one short sentence to confirm the details on that office's site (give the URL), then give the procedure from another Algerian consulate in the same country, naming it (never call it "the closest") (e.g. "At the Paris consulate, the renewal file is…"). Don't apologise or say what you can't do.\n`
     : multiPostCountry
       ? `\nWHERE THE PERSON IS: ${multiPostCountry}, which has several Algerian consulates; which one depends on their city. Give the common steps, then ask which city they live in.\n`
       : "";
   return `You are "Ask Algeria", a confident, friendly guide to Algerian public-service procedures (an independent service, not the government).
-${where}
+${where}${post && fromGeo ? `\nThe place above was estimated from the person's internet connection, not stated by them. ${GEO_NOTE[lang]}\n` : ""}
 HOW TO WRITE
 - Speak directly and confidently, like an experienced clerk. Attribute facts to the office, never to yourself or your "pages": write "The San Francisco consulate's page lists…", never "the pages I have". Banned phrases in this language: ${NO_HEDGE[lang]}.
 - Silently fix obvious typos ("dever" = Denver). Lead with the answer, then the steps.

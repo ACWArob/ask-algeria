@@ -74,7 +74,8 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
       setNotice(removed > 0 ? fmt(t.redacted, { n: removed }) : null);
       setQ("");
 
-      const prev = turnsRef.current.at(-1)?.question ?? "";
+      // Last few questions, so "Colorado" after "how do I renew my passport?" + "USA" still means passport renewal.
+      const prev = turnsRef.current.slice(-3).map((x) => x.question).join(" | ");
       abortRef.current?.abort();
       const ac = new AbortController();
       abortRef.current = ac;
@@ -259,6 +260,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
             dict={dict}
             locale={locale}
             onFeedback={(r) => sendFeedback(turn, r)}
+            onChip={i === turns.length - 1 ? (c) => void ask(c) : undefined}
           />
         ))}
       </ol>
@@ -272,8 +274,11 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
   );
 });
 
-const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down") => void }>(function TurnView(
-  { turn, dict, locale, onFeedback },
+const TurnView = forwardRef<
+  HTMLLIElement,
+  { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down") => void; onChip?: (chip: string) => void }
+>(function TurnView(
+  { turn, dict, locale, onFeedback, onChip },
   ref,
 ) {
   const t = dict.ask;
@@ -321,6 +326,23 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
         )}
         {turn.error && <p role="alert" className="mt-3 font-semibold text-alert">{turn.error}</p>}
 
+        {status === "done" && meta?.chips && meta.chips.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2" role="group">
+            {meta.chips.map((c) => (
+              <button
+                key={c}
+                type="button"
+                disabled={!onChip}
+                onClick={() => onChip?.(c)}
+                dir="auto"
+                className="rounded-full border border-brand/40 bg-surface px-4 py-2 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand hover:text-white disabled:opacity-50"
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
+
         {meta && shownSources.length > 0 && !busy && (
           <section className="mt-6" aria-label={t.sources}>
             <h3 className="text-sm font-semibold text-muted">{t.sources}</h3>
@@ -348,7 +370,7 @@ const TurnView = forwardRef<HTMLLIElement, { turn: Turn; dict: Dict; locale: Loc
           </section>
         )}
 
-        {status === "done" && (
+        {status === "done" && !(meta?.chips && meta.chips.length) && (
           <>
             {(meta?.notes ?? 0) > 0 && (
               <p className="mt-5 rounded-xl border border-line border-s-4 border-s-accent px-3 py-2 text-sm">{t.disagree}</p>

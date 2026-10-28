@@ -47,7 +47,8 @@ export function Footer({ dict, authed = true }: { dict: Dict; authed?: boolean }
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p className="font-semibold text-ink">{dict.footer.independent}</p>
         {authed && (
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Link href="/embassies" className="link">{dict.nav.embassies}</Link>
             <Link href="/about" className="link">{dict.nav.about}</Link>
             <form action="/api/logout" method="post">
               <button type="submit" className="link">{dict.nav.logout}</button>

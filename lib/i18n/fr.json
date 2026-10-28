@@ -12,7 +12,8 @@
     "directory": "Sites officiels",
     "about": "À propos",
     "logout": "Se déconnecter",
-    "menu": "Menu"
+    "menu": "Menu",
+    "embassies": "Ambassades et consulats"
   },
   "lang": {
     "label": "Langue",
@@ -183,5 +184,41 @@
     "portalsTitle": "Portails officiels",
     "askFollowUp": "Poser une question à ce sujet",
     "fetched": "Synthèse de pages officielles consultées le {date}."
+  },
+  "embassies": {
+    "heading": "Ambassades et consulats",
+    "sub": "Trouvez l'ambassade ou le consulat d'Algérie dont vous dépendez. Les informations proviennent des pages officielles des postes ; vérifiez toujours avant de vous déplacer.",
+    "search": "Rechercher par pays ou ville",
+    "searchPlaceholder": "ex. Canada, Lyon, مصر",
+    "type": "Type",
+    "allTypes": "Tous les types",
+    "types": {
+      "Embassy": "Ambassade",
+      "Consulate General": "Consulat général",
+      "Consulate": "Consulat",
+      "Permanent Mission": "Mission permanente"
+    },
+    "count": "Postes : {n} · Pays : {c}",
+    "empty": "Aucun poste ne correspond à « {q} ».",
+    "address": "Adresse",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "hours": "Horaires",
+    "jurisdiction": "Circonscription",
+    "appointment": "Prendre rendez-vous",
+    "website": "Site officiel",
+    "source": "Source · vérifié le {date}",
+    "unverified": "Coordonnées pas encore vérifiées. Consultez le site du ministère des Affaires étrangères.",
+    "mfa": "Ministère des Affaires étrangères",
+    "faxNote": "Les numéros ne sont pas étiquetés sur la page : le second est peut-être un fax.",
+    "note": "Remarque",
+    "usTitle": "Quel consulat me couvre ? (États-Unis)",
+    "usLabel": "Votre État",
+    "usChoose": "Choisissez votre État",
+    "usResult": "{state} relève du poste suivant : {post}.",
+    "show": "Afficher",
+    "homeName": "Ambassades et consulats",
+    "homeLine": "Adresses, téléphones et horaires des postes algériens à l'étranger.",
+    "homeCta": "Trouver le vôtre"
   }
 }
