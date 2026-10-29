@@ -25,6 +25,12 @@ const mfa = (sub: string, name: string): Office => ({
   domains: [`${sub}.mfa.gov.dz`],
 });
 
+/** French consular posts: real sites are consulat-<city>-algerie.fr (listed on amb-algerie.fr). */
+const fr = (slug: string, name: string): Office => ({
+  post: name,
+  site: `https://www.consulat-${slug}-algerie.fr`,
+  domains: [`consulat-${slug}-algerie.fr`, "amb-algerie.fr"],
+});
 const NY: Office = { post: "Consulate General of Algeria in New York", site: "https://algeria-cgny.org", domains: ["algeria-cgny.org", "cgnewyork.mfa.gov.dz"] };
 const SF: Office = mfa("cgsanfrancisco", "Consulate General of Algeria in San Francisco");
 const DC: Office = mfa("embwashington", "Embassy of Algeria in Washington, D.C.");
@@ -55,6 +61,27 @@ const STATE_ABBR: Record<string, string> = {
   ND: "north dakota", SD: "south dakota", NE: "nebraska", OK: "oklahoma", TX: "texas", KS: "kansas",
   WY: "wyoming", MT: "montana", ID: "idaho", NM: "new mexico", DE: "delaware", MD: "maryland",
   NC: "north carolina", SC: "south carolina", VA: "virginia", WV: "west virginia", DC: "washington dc",
+};
+
+/** US state names in Arabic and French → the English key of US_STATES. */
+const STATE_ALIASES: Record<string, string> = {
+  "ألاباما": "alabama", "اركنساس": "arkansas", "أركنساس": "arkansas", "كونيتيكت": "connecticut", "فلوريدا": "florida",
+  "جورجيا": "georgia", "إلينوي": "illinois", "الينوي": "illinois", "إنديانا": "indiana", "انديانا": "indiana", "أيوا": "iowa",
+  "كنتاكي": "kentucky", "لويزيانا": "louisiana", "مين": "maine", "ماساتشوستس": "massachusetts", "ميشيغان": "michigan",
+  "ميشيغن": "michigan", "مينيسوتا": "minnesota", "ميسيسيبي": "mississippi", "ميزوري": "missouri", "نيوهامبشير": "new hampshire",
+  "نيوجيرسي": "new jersey", "نيو جيرسي": "new jersey", "نيوجرسي": "new jersey", "أوهايو": "ohio", "اوهايو": "ohio",
+  "بنسلفانيا": "pennsylvania", "رود آيلاند": "rhode island", "تينيسي": "tennessee", "فيرمونت": "vermont", "ويسكونسن": "wisconsin",
+  "كاليفورنيا": "california", "أريزونا": "arizona", "اريزونا": "arizona", "نيفادا": "nevada", "أوريغون": "oregon",
+  "اوريغون": "oregon", "يوتا": "utah", "كولورادو": "colorado", "هاواي": "hawaii", "ألاسكا": "alaska", "الاسكا": "alaska",
+  "داكوتا الشمالية": "north dakota", "داكوتا الجنوبية": "south dakota", "نبراسكا": "nebraska", "أوكلاهوما": "oklahoma",
+  "اوكلاهوما": "oklahoma", "تكساس": "texas", "كانساس": "kansas", "وايومنغ": "wyoming", "مونتانا": "montana", "أيداهو": "idaho",
+  "نيو مكسيكو": "new mexico", "نيومكسيكو": "new mexico", "ديلاوير": "delaware", "ماريلاند": "maryland", "ميريلاند": "maryland",
+  "كارولاينا الشمالية": "north carolina", "كارولينا الشمالية": "north carolina", "كارولاينا الجنوبية": "south carolina",
+  "كارولينا الجنوبية": "south carolina", "فيرجينيا": "virginia", "فرجينيا": "virginia", "فيرجينيا الغربية": "west virginia",
+  "floride": "florida", "géorgie": "georgia", "georgie": "georgia", "californie": "california", "louisiane": "louisiana",
+  "pennsylvanie": "pennsylvania", "virginie": "virginia", "virginie-occidentale": "west virginia", "caroline du nord": "north carolina",
+  "caroline du sud": "south carolina", "nouveau-mexique": "new mexico", "nouveau mexique": "new mexico", "dakota du nord": "north dakota",
+  "dakota du sud": "south dakota", "nouvelle-angleterre": "massachusetts", "état de washington": "washington state",
 };
 
 /**
@@ -91,28 +118,33 @@ const PLACES: [string[], string, Office][] = [
   [["charlotte", "raleigh"], "North Carolina", DC],
   [["washington dc", "washington d.c.", "واشنطن"], "Washington, D.C.", DC],
   // France
-  [["paris", "باريس", "barís"], "Paris", mfa("cgparis", "Consulate General of Algeria in Paris")],
-  [["nanterre"], "Nanterre", mfa("cgnanterre", "Consulate General of Algeria in Nanterre")],
-  [["pontoise", "cergy"], "Pontoise", mfa("cpontoise", "Consulate of Algeria in Pontoise")],
-  [["créteil", "creteil"], "Créteil", mfa("cgcreteil", "Consulate General of Algeria in Créteil")],
-  [["bobigny", "saint-denis", "seine-saint-denis"], "Bobigny", mfa("cgbobigny", "Consulate General of Algeria in Bobigny")],
-  [["lyon", "ليون"], "Lyon", mfa("cglyon", "Consulate General of Algeria in Lyon")],
-  [["marseille", "مرسيليا"], "Marseille", mfa("cgmarseille", "Consulate General of Algeria in Marseille")],
-  [["lille", "ليل"], "Lille", mfa("cglille", "Consulate General of Algeria in Lille")],
-  [["strasbourg"], "Strasbourg", mfa("cgstrasbourg", "Consulate General of Algeria in Strasbourg")],
-  [["toulouse", "تولوز"], "Toulouse", mfa("cgtoulouse", "Consulate General of Algeria in Toulouse")],
-  [["bordeaux"], "Bordeaux", mfa("cgbordeaux", "Consulate General of Algeria in Bordeaux")],
-  [["montpellier"], "Montpellier", mfa("cgmontpellier", "Consulate General of Algeria in Montpellier")],
-  [["grenoble"], "Grenoble", mfa("cggrenoble", "Consulate General of Algeria in Grenoble")],
-  [["metz"], "Metz", mfa("cgmetz", "Consulate General of Algeria in Metz")],
-  [["besançon", "besancon"], "Besançon", mfa("cgbesancon", "Consulate General of Algeria in Besançon")],
-  [["nice"], "Nice", mfa("cgnice", "Consulate General of Algeria in Nice")],
-  [["nantes"], "Nantes", mfa("cnantes", "Consulate of Algeria in Nantes")],
+  [["paris", "باريس", "barís"], "Paris", fr("paris", "Consulate General of Algeria in Paris")],
+  [["nanterre"], "Nanterre", fr("nanterre", "Consulate of Algeria in Nanterre")],
+  [["pontoise", "cergy"], "Pontoise", fr("pontoise", "Consulate of Algeria in Pontoise")],
+  [["créteil", "creteil"], "Créteil", fr("creteil", "Consulate of Algeria in Créteil")],
+  [["bobigny", "saint-denis", "seine-saint-denis"], "Bobigny", fr("bobigny", "Consulate of Algeria in Bobigny")],
+  [["lyon", "ليون"], "Lyon", fr("lyon", "Consulate General of Algeria in Lyon")],
+  [["marseille", "مرسيليا"], "Marseille", fr("marseille", "Consulate General of Algeria in Marseille")],
+  [["lille", "ليل"], "Lille", fr("lille", "Consulate General of Algeria in Lille")],
+  [["strasbourg"], "Strasbourg", fr("strasbourg", "Consulate General of Algeria in Strasbourg")],
+  [["toulouse", "تولوز"], "Toulouse", fr("toulouse", "Consulate of Algeria in Toulouse")],
+  [["bordeaux"], "Bordeaux", fr("bordeaux", "Consulate of Algeria in Bordeaux")],
+  [["montpellier"], "Montpellier", fr("montpellier", "Consulate of Algeria in Montpellier")],
+  [["grenoble"], "Grenoble", fr("grenoble", "Consulate of Algeria in Grenoble")],
+  [["metz"], "Metz", fr("metz", "Consulate of Algeria in Metz")],
+  [["besançon", "besancon"], "Besançon", fr("besancon", "Consulate of Algeria in Besançon")],
+  [["nice"], "Nice", fr("nice", "Consulate of Algeria in Nice")],
+  [["saint-étienne", "saint-etienne", "st-etienne", "st etienne"], "Saint-Étienne", fr("saint-etienne", "Consulate of Algeria in Saint-Étienne")],
+  [["nantes"], "Nantes", fr("nantes", "Consulate of Algeria in Nantes")],
   // Canada
-  [["montreal", "montréal", "مونتريال", "quebec", "québec"], "Montreal", mfa("cgmontreal", "Consulate General of Algeria in Montreal")],
-  [["ottawa", "أوتاوا"], "Ottawa", mfa("embottawa", "Embassy of Algeria in Ottawa")],
+  [["montreal", "montréal", "مونتريال", "quebec", "québec"], "Montreal", { post: "Consulate General of Algeria in Montreal", site: "http://consulatalgeriemontreal.com", domains: ["consulatalgeriemontreal.com"] }],
+  [["sherbrooke", "laval", "longueuil", "trois-rivières", "trois-rivieres", "halifax", "nova scotia", "nouvelle-écosse", "new brunswick", "nouveau-brunswick", "moncton", "newfoundland", "terre-neuve", "prince edward island", "île-du-prince-édouard"], "Eastern Canada", { post: "Consulate General of Algeria in Montreal", site: "http://consulatalgeriemontreal.com", domains: ["consulatalgeriemontreal.com"] }],
+  // Ottawa's consular section covers Ontario, the West, the territories and Gatineau (embassyalgeria.ca/consulat).
+  [["toronto", "تورونتو", "تورنتو", "ontario", "أونتاريو", "اونتاريو", "mississauga", "hamilton", "brampton", "kitchener", "waterloo", "gatineau", "outaouais", "vancouver", "فانكوفر", "british columbia", "colombie-britannique", "calgary", "كالغاري", "edmonton", "إدمونتون", "alberta", "ألبرتا", "winnipeg", "manitoba", "saskatchewan", "regina", "saskatoon", "yukon", "victoria bc"], "Ontario / Western Canada", { post: "Embassy of Algeria in Ottawa (consular section)", site: "https://www.embassyalgeria.ca", domains: ["embassyalgeria.ca"] }],
+  [["ottawa", "أوتاوا"], "Ottawa", { post: "Embassy of Algeria in Ottawa (consular section)", site: "https://www.embassyalgeria.ca", domains: ["embassyalgeria.ca"] }],
   // UK & Europe & others
-  [["london", "لندن", "united kingdom", "england", "scotland", "wales", "ireland", "dublin", "manchester", "birmingham", "uk", "بريطانيا", "المملكة المتحدة", "royaume-uni", "royaume uni"], "United Kingdom", mfa("cglondon", "Consulate General of Algeria in London")],
+  [["london", "لندن", "united kingdom", "england", "scotland", "wales", "manchester", "birmingham", "uk", "بريطانيا", "المملكة المتحدة", "royaume-uni", "royaume uni"], "United Kingdom", { post: "Consulate General of Algeria in London", site: "https://algerian-consulate.org.uk", domains: ["algerian-consulate.org.uk", "cglondon.mfa.gov.dz"] }],
+  [["dublin", "ireland", "irlande", "أيرلندا", "ايرلندا"], "Ireland", mfa("embdublin", "Embassy of Algeria in Dublin")],
   [["milan", "milano", "ميلانو", "italy", "italie", "إيطاليا", "rome", "roma", "turin", "torino"], "Italy", mfa("cgmilan", "Consulate General of Algeria in Milan")],
   [["istanbul", "إسطنبول", "اسطنبول", "turkey", "turquie", "تركيا"], "Turkey", mfa("cgistanbul", "Consulate General of Algeria in Istanbul")],
   [["geneva", "genève", "geneve", "جنيف", "switzerland", "suisse", "سويسرا"], "Switzerland", mfa("cggeneva", "Consulate General of Algeria in Geneva")],
@@ -165,7 +197,7 @@ export function detectPost(text: string): PostHint | null {
     (a, b) => b[0].length - a[0].length,
   );
   for (const [name, place, office] of entries) {
-    if (name === "nice" && !/(?:^|\s)(in|à|a|de|from)\s+nice(?![\p{L}])/iu.test(t)) continue;
+    if (name === "nice" && !/(?:^|\s)(in|à|de|from|depuis|near|près de|pres de|f|fi)\s+nice(?![\p{L}])/iu.test(t) && !/(?:^|\s)a\s+Nice(?![\p{L}])/u.test(t)) continue;
     if (has(t, name)) return { place, ...office };
   }
   // 2. "LA" written in capitals means Los Angeles in practice.
@@ -174,8 +206,23 @@ export function detectPost(text: string): PostHint | null {
   for (const s of Object.keys(US_STATES).sort((a, b) => b.length - a.length)) {
     if (has(t, s)) return { place: titleCase(s.replace(" state", "")), ...US_STATES[s] };
   }
+  for (const a of Object.keys(STATE_ALIASES).sort((x, y) => y.length - x.length)) {
+    if (a === "مين" && !/(?:في|ف|ب)\s*مين(?![\p{L}])/u.test(t)) continue; // "Maine" vs "who"
+    if (has(t, a) || has(t, `ال${a}`)) {
+      const s = STATE_ALIASES[a];
+      return { place: titleCase(s.replace(" state", "")), ...US_STATES[s] };
+    }
+  }
   // 4. Two-letter state codes, only in capitals and in a location-like position.
-  const m = t.match(/\b(?:in|from|live in|living in|based in|near)\s+([A-Z]{2})\b/) ?? t.match(/,\s*([A-Z]{2})\b/);
+  const m =
+    t.match(/\b(?:in|from|live in|living in|based in|near)\s+([A-Z]{2})\b/) ??
+    t.match(/,\s*([A-Z]{2})\b/) ??
+    // "I'm in rockville MD", "living in austin tx": city then a state code at the end.
+    t.match(/\b(?:in|from|near)\s+[A-Za-z .'-]{2,30}?\s([A-Za-z]{2})\s*[.!?]?\s*$/);
+  // Lowercase codes only when they can't be an ordinary word ("ok", "in", "me", "hi", "or", "la" stay out).
+  const SAFE_LOWER = new Set(["tx", "ca", "ny", "nj", "fl", "il", "md", "va", "nc", "sc", "az", "nv", "mi", "wi", "mn", "tn", "ky", "ut", "nm", "ks", "ia", "ct", "ri", "nh", "vt", "wv", "dc"]);
+  if (m && m[1] !== m[1].toUpperCase() && !SAFE_LOWER.has(m[1])) m[1] = "";
+  if (m) m[1] = m[1].toUpperCase();
   if (m && STATE_ABBR[m[1]]) {
     const s = STATE_ABBR[m[1]];
     return { place: titleCase(s.replace(" state", "")), ...US_STATES[s] };

@@ -16,7 +16,8 @@ import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
 import { detectPost, detectMultiPostCountry, postFromGeo, readGeo } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
-import { hostOf, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
+import { makeScrubber } from "@/lib/scrub";
+import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -58,7 +59,12 @@ export async function POST(req: Request) {
   const quickLang = chooseAnswerLang(selected, detectLanguage(question), question);
   // Location-dependent procedure but we don't know where they are: ask first (no mixed answer from random consulates).
   const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
-  if (!post && topics.some((t) => LOCATION_FIRST.includes(t)) && !OTHER_PLACE.test(question)) {
+  // Ask at most once per question type: if an earlier turn was already location-dependent, we already asked;
+  // when the person carries on without answering, answer in general terms instead of asking again.
+  const countryNow = detectMultiPostCountry(question);
+  const alreadyAsked = Boolean(context) && questionTopics(context).some((t) => LOCATION_FIRST.includes(t));
+  const shouldAsk = countryNow ? !detectMultiPostCountry(context) : !alreadyAsked;
+  if (!post && shouldAsk && topics.some((t) => LOCATION_FIRST.includes(t)) && !OTHER_PLACE.test(question)) {
     const c: Clarify | null = multiPostCountry ? askCity(multiPostCountry, quickLang) : askCountry(quickLang);
     if (c) {
       const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], chips: c.chips, redactedServer: removed };
@@ -78,7 +84,12 @@ export async function POST(req: Request) {
 
   const base = [...new Set([...expansion.queries, ...glossaryQueries(`${context} ${question}`)])];
   const queries = post && !post.inAlgeria ? [...base, ...base.slice(0, 3).map((q) => `${q} ${post.place}`)] : base;
-  const hits = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics });
+  const excludeDomains = post
+    ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria))
+    : multiPostCountry
+      ? foreignMissionHostsForCountry(multiPostCountry)
+      : [];
+  const hits = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics, excludeDomains });
 
   // Group chunks by page so each page gets one citation number.
   const byDoc = new Map<string, PromptSource>();
@@ -217,19 +228,25 @@ export async function POST(req: Request) {
             { maxRetries: 0, timeout: remaining },
           );
           const timer = setTimeout(() => stream.abort(), remaining);
+          const scrub = makeScrubber(answerLang);
+          const send = (t: string) => {
+            if (t) controller.enqueue(enc.encode(t));
+          };
           try {
             for await (const ev of stream) {
               if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
-                controller.enqueue(enc.encode(ev.delta.text));
+                send(scrub.push(ev.delta.text));
                 wrote += ev.delta.text.length;
               }
             }
             clearTimeout(timer);
+            send(scrub.flush());
             const fin = await stream.finalMessage().catch(() => null);
             if (fin?.stop_reason === "max_tokens") controller.enqueue(enc.encode(SHORTENED[answerLang]));
             return; // finished normally
           } catch (err) {
             clearTimeout(timer);
+            send(scrub.flush());
             const timedOut = Date.now() - started >= DEADLINE_MS - 50;
             console.error(`[ask] attempt ${attempt + 1} (${models[attempt]}) failed after ${Date.now() - started}ms:`, err instanceof Error ? err.message : err);
             if (wrote > 0) {

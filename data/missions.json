@@ -972,9 +972,9 @@
       "consulaire@embassyalgeria.ca"
     ],
     "hours": "",
-    "jurisdiction": "",
+    "jurisdiction": "Consular section covers Ontario, Alberta, British Columbia, Saskatchewan, Manitoba, Yukon, the Northern Territories, and Gatineau and its region",
     "appointment_url": "",
-    "source_url": "https://www.embassyalgeria.ca/",
+    "source_url": "https://www.embassyalgeria.ca/consulat",
     "checked": "2026-10-28",
     "status": "verified"
   },
@@ -992,9 +992,9 @@
     "phones": [],
     "emails": [],
     "hours": "",
-    "jurisdiction": "",
+    "jurisdiction": "Quebec (except the Outaouais region) and the provinces of Eastern Canada",
     "appointment_url": "",
-    "source_url": "https://www.embassyalgeria.ca/",
+    "source_url": "https://www.embassyalgeria.ca/visas",
     "checked": "2026-10-28",
     "status": "website-only",
     "note": "Website link taken from the Embassy in Ottawa site; consulate site itself could not be fetched (robots)."

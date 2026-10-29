@@ -17,7 +17,7 @@ import path from "node:path";
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const token = process.env.APIFY_TOKEN;
 const ids = process.argv.slice(2);
-if (!token || ids.length === 0) {
+if ((!token && !ids.every((i) => i.endsWith(".json"))) || ids.length === 0) {
   console.error("Usage: APIFY_TOKEN=... node scripts/import-apify.mjs <datasetId> [...]");
   process.exit(1);
 }
@@ -89,6 +89,8 @@ const looksUseful = (text) => {
 };
 
 async function fetchAll(datasetId) {
+  // A local .json file (already-filtered items) can be passed instead of a dataset id.
+  if (datasetId.endsWith(".json") && fs.existsSync(datasetId)) return JSON.parse(fs.readFileSync(datasetId, "utf8"));
   const out = [];
   for (let offset = 0; ; offset += 1000) {
     const r = await fetch(

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isMissionContactQuestion, matchMissions, MISSIONS, missionExcerpt, missionName, parsePhone } from "@/lib/missions";
+import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions, MISSIONS, missionExcerpt, missionName, parsePhone } from "@/lib/missions";
 import { usStateOffices } from "@/lib/posts";
 
 describe("missions.json", () => {
@@ -70,5 +70,29 @@ describe("review fixes: mission matching", () => {
   it("public notes reach the model", () => {
     const ad = matchMissions("embassy in Abu Dhabi hours", [], 1)[0];
     if (ad.note && /closed|appointment/i.test(ad.note)) expect(missionExcerpt(ad)).toContain(ad.note);
+  });
+});
+
+describe("other countries' consulates never answer for the person", () => {
+  it("a Lyon user excludes US/Canada/UK missions but keeps French ones", () => {
+    const ex = foreignMissionHosts(["consulat-lyon-algerie.fr", "amb-algerie.fr"]);
+    expect(ex).toContain("algeria-cgny.org");
+    expect(ex).toContain("cgsanfrancisco.mfa.gov.dz");
+    expect(ex).toContain("embassyalgeria.ca");
+    expect(ex).not.toContain("consulat-paris-algerie.fr");
+    expect(ex).not.toContain("amb-algerie.fr");
+  });
+  it("a Colorado user keeps NY and DC pages (same country)", () => {
+    const ex = foreignMissionHosts(["cgsanfrancisco.mfa.gov.dz"]);
+    expect(ex).not.toContain("algeria-cgny.org");
+    expect(ex).not.toContain("embwashington.mfa.gov.dz");
+    expect(ex).toContain("consulat-paris-algerie.fr");
+  });
+  it("someone in Algeria gets no consulate pages", () => {
+    expect(foreignMissionHosts(["interieur.gov.dz"], true)).toContain("algeria-cgny.org");
+  });
+  it("country without a city", () => {
+    expect(foreignMissionHostsForCountry("France")).toContain("algeria-cgny.org");
+    expect(foreignMissionHostsForCountry("France")).not.toContain("consulat-nice-algerie.fr");
   });
 });

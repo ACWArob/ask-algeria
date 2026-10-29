@@ -214,3 +214,25 @@ export function missionExcerpt(m: Mission): string {
   if (m.checked) lines.push(`(Details checked ${m.checked}.)`);
   return lines.join("\n");
 }
+
+/**
+ * Consulate/embassy sites that must not answer for this person: missions in other countries than theirs
+ * (a US fee or postal rule is wrong in France), or every mission when they live in Algeria.
+ * The Ministry's own pages (mfa.gov.dz root) stay allowed.
+ */
+export function foreignMissionHosts(postDomains: string[], inAlgeria = false): string[] {
+  const want = new Set(postDomains.map((d) => d.replace(/^www\./, "").toLowerCase()));
+  const mine = MISSIONS.find((m) => missionHosts(m).some((h) => want.has(h)) || want.has(`${m.id}.mfa.gov.dz`));
+  if (!mine && !inAlgeria) return [];
+  const keep = new Set(inAlgeria ? [] : MISSIONS.filter((m) => m.country === mine!.country).flatMap(missionHosts));
+  for (const d of want) keep.add(d);
+  return [...new Set(MISSIONS.flatMap(missionHosts))].filter((h) => !keep.has(h) && h !== "mfa.gov.dz");
+}
+
+/** Same as foreignMissionHosts, for a country named without a city ("France", "the United States"). */
+export function foreignMissionHostsForCountry(country: string): string[] {
+  const c = country.replace(/^the /, "");
+  const keep = new Set(MISSIONS.filter((m) => m.country === c).flatMap(missionHosts));
+  if (!keep.size) return [];
+  return [...new Set(MISSIONS.flatMap(missionHosts))].filter((h) => !keep.has(h) && h !== "mfa.gov.dz");
+}

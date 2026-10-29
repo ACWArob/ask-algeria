@@ -50,18 +50,22 @@ export interface SearchOptions {
   boostDomains?: string[];
   /** Corpus topic slugs that match the question (e.g. "passport"): boosted. */
   topics?: string[];
+  /** Domains never to use (e.g. consulates in other countries than the person's). */
+  excludeDomains?: string[];
 }
 
 /** Pages that are never useful for procedures (speeches, history, biographies). */
 const JUNK = /history of algeria|histoire de l'alg|biograph|speech|discours|allocution|condolence|congratulat|félicit|visite (de travail|officielle)|working visit/i;
 
 export function searchChunks(queries: string[], limit: number, opts: SearchOptions | string[] = {}): Hit[] {
-  const { boostDomains = [], topics = [] } = Array.isArray(opts) ? { boostDomains: opts } : opts;
+  const { boostDomains = [], topics = [], excludeDomains = [] } = Array.isArray(opts) ? { boostDomains: opts } : opts;
+  const excluded = new Set(excludeDomains.map((d) => d.replace(/^www\./, "").toLowerCase()));
   const ms = getIndex();
   const best = new Map<string, Hit>();
   for (const q of queries) {
     if (!q.trim()) continue;
     for (const r of ms.search(q)) {
+      if (excluded.size && excluded.has(String(r.domain).replace(/^www\./, "").toLowerCase())) continue;
       const prev = best.get(r.id as string);
       if (!prev || prev.score < r.score) {
         best.set(r.id as string, {
