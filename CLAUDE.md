@@ -1,7 +1,7 @@
 # CLAUDE.md — Ask Algeria (software)
 
-Independent Q&A site for Algerian government services (en / fr / ar Fusha / dz Darija). Answers only from official pages, with citations. Password-protected demo on Netlify.
-Stack: Next.js 14 App Router + TypeScript + Tailwind, Anthropic SDK, MiniSearch, Netlify (@netlify/plugin-nextjs). Default branch: `main`.
+Independent Q&A site for Algerian government services (en / fr / ar Fusha / dz Darija). Answers only from official pages, with citations. Password-protected demo on Vercel (was Netlify).
+Stack: Next.js 14 App Router + TypeScript + Tailwind, Anthropic SDK, MiniSearch, Vercel (Netlify config kept as fallback). Default branch: `main`.
 
 ## Commands
 ```bash
@@ -26,7 +26,7 @@ node scripts/import-apify.mjs <dataset.json>   # add crawled pages to the corpus
 - Every user-facing string goes in all 4 `lib/i18n/*.json`. Darija is Algerian, never Moroccan.
 - Official sources only. Archived copies keep the original URL plus `archived_url` and `extraction: "archived"`.
 - Location matching uses Unicode lookarounds, not `\b` (breaks on Arabic).
-- `/api/ask` must finish inside Netlify's 10 s: thinking disabled, 9 s deadline, fallback model, buffered retry. Don't add slow steps to that path.
+- `/api/ask` deadline: 25 s on Vercel (`VERCEL` env), 9 s on Netlify (10 s cap); override with ANSWER_DEADLINE_MS. Thinking stays disabled; keep answers fast anyway.
 
 ## Testing
 - Behavior change ships with a test change. Bugs: failing test first.
@@ -40,6 +40,9 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — moved Netlify → Vercel — geo comes from x-vercel-ip-country/-region/-city; data/*.json must stay in outputFileTracingIncludes.
+- 2026-10-28 — "register at the consulate" / "apostille" weren't detected as topics in any language, so the bot never asked where you live — test every LOCATION_FIRST topic in en/fr/ar/dz.
+- 2026-10-28 — short Arabic follow-ups ("باريس") got English/French answers copied from French sources — check the script of the first ~120 chars and retry once with a language instruction.
 - 2026-10-28 — follow-up answers contradicted earlier ones (photo count, phone, office) — send the start of the previous answer with each question and tell the model to stay consistent.
 - 2026-10-28 — "in Toronto… go to Montreal?" picked Montreal (longest name won) — pick the place the person lives in ("live in/moved to/ساكن في"), else the first mentioned.
 - 2026-10-28 — France/UK/Canada offices pointed at invented `cg<city>.mfa.gov.dz` domains, so boosting did nothing and the bot invented URLs — take every office domain from data/missions.json, never guess a pattern.

@@ -21,11 +21,31 @@ import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, isMissionCo
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Vercel allows long functions; the answer deadline below decides how long we actually wait.
+export const maxDuration = 60;
 
 /**
  * Response: text/plain stream. The first line is a JSON object (AskMeta) followed by "\n";
  * everything after is the Markdown answer as it is generated.
  */
+class WrongLanguage extends Error {}
+
+/** True when the start of an answer is in the wrong script for the reply language. */
+function wrongScript(text: string, lang: Locale): boolean {
+  const arabic = (text.match(/[\u0600-\u06FF]/g) ?? []).length;
+  const latin = (text.match(/[A-Za-zÀ-ÿ]/g) ?? []).length;
+  if (arabic + latin < 40) return false;
+  const share = arabic / (arabic + latin);
+  return lang === "ar" || lang === "dz" ? share < 0.4 : share > 0.6;
+}
+
+const LANG_RETRY: Record<Locale, string> = {
+  en: "IMPORTANT: write the whole answer in English.",
+  fr: "IMPORTANT : rédigez toute la réponse en français.",
+  ar: "مهم جدًا: اكتب الإجابة كاملة باللغة العربية الفصحى، حتى لو كانت المصادر بالفرنسية أو الإنجليزية.",
+  dz: "مهم بزاف: اكتب الجواب كامل بالدارجة الجزائرية بالحروف العربية، حتى لو المصادر بالفرنسية ولا بالإنجليزية.",
+};
+
 export async function POST(req: Request) {
   const rl = rateLimit(`ask:${clientIp(req.headers)}`, LIMITS.rateLimitPerMinute);
   if (!rl.ok) {
@@ -67,7 +87,9 @@ export async function POST(req: Request) {
   const countryNow = detectMultiPostCountry(question);
   const alreadyAsked = Boolean(context) && questionTopics(context).some((t) => LOCATION_FIRST.includes(t));
   const shouldAsk = countryNow ? !detectMultiPostCountry(context) : !alreadyAsked;
-  if (!post && shouldAsk && topics.some((t) => LOCATION_FIRST.includes(t)) && !OTHER_PLACE.test(question)) {
+  // "Where is the consulate / what's its phone?" with no place named anywhere: ask instead of guessing an office.
+  const contactNoPlace = isMissionContactQuestion(question) && matchMissions(question, [], 1, context).length === 0;
+  if (!post && shouldAsk && (contactNoPlace || topics.some((t) => LOCATION_FIRST.includes(t))) && !OTHER_PLACE.test(question)) {
     const c: Clarify | null = multiPostCountry ? askCity(multiPostCountry, quickLang) : askCountry(quickLang);
     if (c) {
       const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], chips: c.chips, redactedServer: removed };
@@ -203,7 +225,8 @@ export async function POST(req: Request) {
   };
   const userPrompt = `${answerUserPrompt(question, promptSources, context, notes, prevAnswer)}\n\n${REPLY_IN[answerLang]}`;
   // Netlify cuts synchronous functions at ~10 s. Stop generating before that and close cleanly.
-  const DEADLINE_MS = 9000;
+  // Netlify cuts functions at 10 s; Vercel allows minutes, so answers there can take longer instead of being shortened.
+  const DEADLINE_MS = Number(process.env.ANSWER_DEADLINE_MS) || (process.env.VERCEL ? 25000 : 9000);
   const SHORTENED: Record<Locale, string> = {
     en: "\n\n_(Answer shortened to keep it fast. Ask a follow-up for more detail.)_",
     fr: "\n\n_(Réponse raccourcie pour rester rapide. Posez une question de suivi pour plus de détails.)_",
@@ -216,6 +239,7 @@ export async function POST(req: Request) {
       controller.enqueue(enc.encode(JSON.stringify(meta) + "\n"));
       let wrote = 0;
       const models = [MODELS.answer, MODELS.answer, MODELS.fallback];
+      let langRetry = false;
       try {
         for (let attempt = 0; attempt < models.length; attempt++) {
           const remaining = DEADLINE_MS - (Date.now() - started);
@@ -226,14 +250,32 @@ export async function POST(req: Request) {
               max_tokens: LIMITS.answerMaxTokens,
               thinking: { type: "disabled" },
               system,
-              messages: [{ role: "user", content: userPrompt }],
+              messages: [{ role: "user", content: langRetry ? `${userPrompt}\n\n${LANG_RETRY[answerLang]}` : userPrompt }],
             },
             { maxRetries: 0, timeout: remaining },
           );
           const timer = setTimeout(() => stream.abort(), remaining);
           const scrub = makeScrubber(answerLang);
+          // Hold the first ~120 characters to check the script: a short Arabic follow-up sometimes gets an
+          // English/French answer (copied from the sources). Wrong script → drop this attempt and retry once.
+          let held = "";
+          let checked = false;
           const send = (t: string) => {
-            if (t) controller.enqueue(enc.encode(t));
+            if (!t) return;
+            if (!checked) {
+              held += t;
+              if (held.length < 120) return;
+              checked = true;
+              if (!langRetry && wrongScript(held, answerLang) && DEADLINE_MS - (Date.now() - started) > 5000) {
+                throw new WrongLanguage();
+              }
+              t = held;
+            }
+            controller.enqueue(enc.encode(t));
+          };
+          const flushHeld = () => {
+            if (!checked && held) controller.enqueue(enc.encode(held));
+            checked = true;
           };
           try {
             for await (const ev of stream) {
@@ -244,12 +286,25 @@ export async function POST(req: Request) {
             }
             clearTimeout(timer);
             send(scrub.flush());
+            flushHeld();
             const fin = await stream.finalMessage().catch(() => null);
             if (fin?.stop_reason === "max_tokens") controller.enqueue(enc.encode(SHORTENED[answerLang]));
             return; // finished normally
           } catch (err) {
             clearTimeout(timer);
-            send(scrub.flush());
+            if (err instanceof WrongLanguage) {
+              stream.abort();
+              langRetry = true;
+              wrote = 0;
+              console.warn(`[ask] wrong-language start for ${answerLang}; retrying`);
+              continue;
+            }
+            try {
+              send(scrub.flush());
+            } catch {
+              /* a late language check can't retry any more */
+            }
+            flushHeld();
             const timedOut = Date.now() - started >= DEADLINE_MS - 50;
             console.error(`[ask] attempt ${attempt + 1} (${models[attempt]}) failed after ${Date.now() - started}ms:`, err instanceof Error ? err.message : err);
             if (wrote > 0) {

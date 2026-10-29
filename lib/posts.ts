@@ -258,7 +258,7 @@ export function usStateOffices(): { state: string; domains: string[]; post: stri
     .sort((a, b) => a.state.localeCompare(b.state));
 }
 
-/** Approximate location from the hosting platform (Netlify's x-nf-geo header). */
+/** Approximate location from the hosting platform (Netlify x-nf-geo, or Vercel x-vercel-ip-* headers). */
 export interface GeoHint {
   country?: string; // ISO code, e.g. "US", "DZ", "FR"
   countryName?: string;
@@ -281,7 +281,19 @@ export function readGeo(headers: Headers): GeoHint | null {
       /* fall through */
     }
   }
-  const c = headers.get("x-country") ?? headers.get("x-vercel-ip-country") ?? headers.get("cf-ipcountry");
+  // Vercel: x-vercel-ip-country (ISO), x-vercel-ip-country-region (ISO 3166-2 code, e.g. "CO"), x-vercel-ip-city (URL-encoded).
+  const vc = headers.get("x-vercel-ip-country");
+  if (vc) {
+    const city = headers.get("x-vercel-ip-city");
+    let cityName: string | undefined;
+    try {
+      cityName = city ? decodeURIComponent(city) : undefined;
+    } catch {
+      cityName = city ?? undefined;
+    }
+    return { country: vc.toUpperCase(), region: headers.get("x-vercel-ip-country-region") ?? undefined, city: cityName };
+  }
+  const c = headers.get("x-country") ?? headers.get("cf-ipcountry");
   return c ? { country: c.toUpperCase() } : null;
 }
 

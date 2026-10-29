@@ -88,3 +88,23 @@ describe("first place mentioned wins", () => {
     expect(detectPost("je vais à Paris mais j'habite à Lyon")?.place).toBe("Lyon");
   });
 });
+
+import { questionTopics } from "@/lib/detect";
+describe("topics that must trigger 'where do you live?'", () => {
+  it("consular registration in 4 languages, apostille", () => {
+    for (const q of ["how do I register at the algerian consulate", "كيف أسجل نفسي في القنصلية", "kifach nsajel rouhi f consulat", "comment m'inscrire au consulat"])
+      expect(questionTopics(q), q).toContain("consular_registration");
+    expect(questionTopics("how do I get an American document apostilled for use in algeria")).toContain("legalization");
+    expect(questionTopics("كيف أصادق على وثيقة تركية")).toContain("legalization");
+  });
+});
+
+import { postFromGeo, readGeo } from "@/lib/posts";
+describe("Vercel geo headers", () => {
+  it("Colorado connection → San Francisco; Algiers → APC", () => {
+    const h = new Headers({ "x-vercel-ip-country": "US", "x-vercel-ip-country-region": "CO", "x-vercel-ip-city": "Boulder" });
+    expect(postFromGeo(readGeo(h))?.post).toMatch(/San Francisco/);
+    const dz = new Headers({ "x-vercel-ip-country": "DZ", "x-vercel-ip-city": "Alger" });
+    expect(postFromGeo(readGeo(dz))?.inAlgeria).toBe(true);
+  });
+});
