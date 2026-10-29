@@ -75,7 +75,10 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
       setQ("");
 
       // Last few questions, so "Colorado" after "how do I renew my passport?" + "USA" still means passport renewal.
-      const prev = turnsRef.current.slice(-3).map((x) => x.question).join(" | ");
+      // Keep the opening question (it names the topic) plus the last two, so turn 5 still knows it's about a passport.
+      const qs = turnsRef.current.map((x) => x.question);
+      const prev = (qs.length > 3 ? [qs[0], ...qs.slice(-2)] : qs).join(" | ");
+      const prevAnswer = (turnsRef.current.at(-1)?.answer ?? "").slice(0, 700);
       abortRef.current?.abort();
       const ac = new AbortController();
       abortRef.current = ac;
@@ -94,7 +97,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
           const res = await fetch("/api/ask", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: text, lang: locale, context: prev, ...(attempt > 0 ? { buffer: true } : {}) }),
+            body: JSON.stringify({ question: text, lang: locale, context: prev, prevAnswer, ...(attempt > 0 ? { buffer: true } : {}) }),
             signal: ac.signal,
           });
           if (res.status === 401) {

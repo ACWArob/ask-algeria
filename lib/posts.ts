@@ -190,16 +190,28 @@ export interface MultiPostHint {
   country: string;
 }
 
+/** Words right before a place that say the person lives there ("moved to Lille", "j'habite à Lyon", "ساكن في"). */
+const RESIDES =
+  /(?:live in|living in|lives in|moved (?:from [\p{L} .'-]{2,20} )?to|déménagée? (?:de [\p{L} .'-]{2,20} )?(?:à|a)|now in|based in|reside in|habite (?:à|a|en)|j'habite|vis (?:à|a|en)|installée? (?:à|a|en)|déménagée? (?:à|a|en)|ساكن في|ساكنة في|نسكن في|أسكن في|اسكن في|أقيم في|اقيم في|نعيش في|أعيش في|انتقلت إلى|n3ich f|nskon f|saken f)\s*$/iu;
+
 export function detectPost(text: string): PostHint | null {
   const t = text.replace(/[’']/g, "'");
   // 1. Named cities/countries (longest names first so "new york city" beats "york").
   const entries = PLACES.flatMap(([names, place, office]) => names.map((n) => [n, place, office] as const)).sort(
     (a, b) => b[0].length - a[0].length,
   );
+  // Several places named ("in Toronto, do I go to Montreal?"): the one mentioned first is where they are.
+  const found: { at: number; len: number; hint: PostHint }[] = [];
   for (const [name, place, office] of entries) {
     if (name === "nice" && !/(?:^|\s)(in|à|de|from|depuis|near|près de|pres de|f|fi)\s+nice(?![\p{L}])/iu.test(t) && !/(?:^|\s)a\s+Nice(?![\p{L}])/u.test(t)) continue;
-    if (has(t, name)) return { place, ...office };
+    if (has(t, name)) {
+      const at = t.toLowerCase().search(new RegExp(`(?<![\\p{L}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "iu"));
+      const before = at > 0 ? t.slice(Math.max(0, at - 28), at) : "";
+      const lives = RESIDES.test(before);
+      found.push({ at: lives ? -1 : at < 0 ? 1e9 : at, len: name.length, hint: { place, ...office } });
+    }
   }
+  if (found.length) return found.sort((a, b) => a.at - b.at || b.len - a.len)[0].hint;
   // 2. "LA" written in capitals means Los Angeles in practice.
   if (/(?<![\p{L}])LA(?![\p{L}])/u.test(t)) return { place: "Los Angeles, California", ...SF };
   // 3. US state names.

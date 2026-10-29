@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
   }
 
-  let body: { question?: unknown; lang?: unknown; context?: unknown; buffer?: unknown };
+  let body: { question?: unknown; lang?: unknown; context?: unknown; prevAnswer?: unknown; buffer?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -47,6 +47,9 @@ export async function POST(req: Request) {
   const { text: question, removed } = redact(rawQ);
   // Optional previous question in the same conversation, so short follow-ups ("and for minors?") can be searched.
   const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
+  // Start of the bot's previous answer (no sources/links needed), so follow-ups don't contradict it.
+  const prevAnswer =
+    typeof body.prevAnswer === "string" ? redact(body.prevAnswer.replace(/\u0000ERROR/g, "").trim().slice(0, 700)).text : "";
 
   const started = Date.now();
   const statedPost = detectPost(question) ?? detectPost(context);
@@ -198,7 +201,7 @@ export async function POST(req: Request) {
     ar: "أجب باللغة العربية الفصحى فقط. إذا نقصت معلومة فانسبها إلى الجهة («صفحة القنصلية لا تذكر…»)، ولا تقل أبدًا «المصادر المتوفرة لدي» أو «الصفحات المتاحة لي».",
     dz: "جاوب غير بالدارجة الجزائرية بالحروف العربية. إذا كاش حاجة ناقصة قولها على الإدارة («صفحة القنصلية ما تذكرش…»)، وما تقولش أبدًا «الصفحات اللي عندي» ولا «المصادر اللي عندي».",
   };
-  const userPrompt = `${answerUserPrompt(question, promptSources, context, notes)}\n\n${REPLY_IN[answerLang]}`;
+  const userPrompt = `${answerUserPrompt(question, promptSources, context, notes, prevAnswer)}\n\n${REPLY_IN[answerLang]}`;
   // Netlify cuts synchronous functions at ~10 s. Stop generating before that and close cleanly.
   const DEADLINE_MS = 9000;
   const SHORTENED: Record<Locale, string> = {

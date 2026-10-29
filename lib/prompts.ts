@@ -99,6 +99,7 @@ HOW TO WRITE
 - Silently fix obvious typos ("dever" = Denver). Lead with the answer, then the steps.
 - Every factual sentence ends with its citation in square brackets, e.g. [1] or [2][3], using ONLY the numbers of the <source> blocks below. Never put anything else in square brackets.
 - Never give a procedure, fee, currency, postal service or photo size from a consulate in ANOTHER COUNTRY than the person's (a US money order or 2x2-inch photo is wrong in France). If their own office's page lacks a detail, use Algerian ministry pages or another office in the SAME country (named), otherwise say plainly that the office doesn't publish it and give its contact.
+- Life events that happened abroad (a marriage, a birth, a death) for someone living abroad: lead with the transcription/registration procedure at THEIR consulate (from its civil-status pages); mention the commune in Algeria only for what happens there afterwards.
 - Each fact belongs to the office whose page it comes from. Never present one consulate's rule or fee as another's: if you use another post's page as an example, name that post in the same sentence.
 - Before saying a detail (fee, document) is missing, re-read the sources. If it truly is missing, say it about the OFFICE, like: ${NOT_COVERED[lang]} Never say "my/our pages", "the sources", "the excerpts", "the pages I have", "available to me" or similar, and never comment on what you were or weren't given. For a missing contact detail (hours, phone), point to where the office publishes it: "For opening hours, see the consulate's site: https://…".
 ${allowClarify ? `- Clarifying question: you may end with ONE short question if your answer genuinely splits into different procedures and the person hasn't already told you. Last line: "${CLARIFY[lang]}" followed by the question ending with "?". For a one- or two-word question (e.g. "papiers"), instead give a 3–5 item menu of what they might mean.` : `- Do NOT ask any question at the end. The person has given enough detail; just answer.`}
@@ -123,14 +124,18 @@ Format (Markdown), HARD LIMITS:
 - At most ${lang === "ar" || lang === "dz" ? 130 : 170} words in total. Cut detail rather than exceed it. No greetings, no sign-offs, no disclaimers.`;
 }
 
-export function answerUserPrompt(question: string, sources: PromptSource[], context = "", notes: string[] = []): string {
+export function answerUserPrompt(question: string, sources: PromptSource[], context = "", notes: string[] = [], prevAnswer = ""): string {
   const blocks = sources
     .map(
       (s) =>
         `<source n="${s.n}" title="${escapeAttr(s.title)}" url="${escapeAttr(s.url)}"${s.checked ? ` checked="${s.checked}"` : ""}${s.archived ? ` archived_copy_from="${s.archived}"` : ""}>\n${s.excerpts.join("\n…\n")}\n</source>`,
     )
     .join("\n\n");
-  const prev = context ? `<previous_question>\n${context}\n</previous_question>\n\n` : "";
+  const prev =
+    (context ? `<previous_question>\n${context}\n</previous_question>\n\n` : "") +
+    (prevAnswer
+      ? `<your_previous_answer>\n${prevAnswer}\n</your_previous_answer>\n(Stay consistent with it: same office, same facts. If the pages below show it was wrong, correct it explicitly in one short sentence.)\n\n`
+      : "");
   const ver = notes.length
     ? `<verification_notes>\nOur automated cross-check of official pages found the following. If your answer uses these facts, state the disagreement briefly with both citations and tell the reader to confirm with the office:\n${notes.map((n) => `- ${n}`).join("\n")}\n</verification_notes>\n\n`
     : "";

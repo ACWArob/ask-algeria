@@ -14,6 +14,9 @@ describe("scrubHedges", () => {
     ["mais les extraits dont je dispose ne contiennent pas ses horaires", /extraits|dont je dispose/],
     ["الصفحات الرسمية اللي عندي ما فيهاش معلومات على منحة البطالة", /اللي عندي/],
     ["المعلومات المتوفرة لدي لا تذكر الرسوم", /المتوفرة لدي/],
+    ["Les sources fournies ne mentionnent aucun visa spécial.", /fournies/],
+    ["The Montreal office's pages I can see here cover visas.", /I can see/],
+    ["الصفحات الرسمية المتاحة لا تذكر شرط الترجمة", /المتاحة/],
   ];
   for (const [input, banned] of cases) {
     it(`removes ${banned} from "${input.slice(0, 40)}…"`, () => {
@@ -26,6 +29,11 @@ describe("scrubHedges", () => {
     const t = "Bring your old passport, provided it is not damaged [1]. Le consulat est ouvert du mardi au samedi [2].";
     expect(scrubHedges(t)).toBe(t);
     expect(scrubHedges("Pièces à fournir : passeport ; photo.")).toBe("Pièces à fournir : passeport ; photo.");
+  });
+  it("drops non-numeric bracket tags but keeps citations and links", () => {
+    expect(scrubHedges("Michigan falls under New York [system guidance], see [1] and [the site](https://x.dz).")).toBe(
+      "Michigan falls under New York, see [1] and [the site](https://x.dz).",
+    );
   });
   it("Darija: Moroccan ديال/دابا become Algerian تاع/ضرك, only in dz", () => {
     expect(scrubHedges("الباسبور ديالك لازم يكون صالح، دابا روح للقنصلية", "dz")).toBe("الباسبور تاعك لازم يكون صالح، ضرك روح للقنصلية");
@@ -70,5 +78,13 @@ describe("state code after a city", () => {
     expect(detectPost("I'm in rockville MD")?.post).toMatch(/Washington/);
     expect(detectPost("living in austin tx")?.post).toMatch(/San Francisco/);
     expect(detectPost("I am in good shape ok")).toBeNull();
+  });
+});
+
+describe("first place mentioned wins", () => {
+  it("in Toronto ... go to Montreal → Ottawa", () => {
+    expect(detectPost("do algerians in toronto need to go to montreal for a new ID card")?.post).toMatch(/Ottawa/);
+    expect(detectPost("I moved from Paris to Lille")?.place).toBe("Lille");
+    expect(detectPost("je vais à Paris mais j'habite à Lyon")?.place).toBe("Lyon");
   });
 });

@@ -13,16 +13,23 @@ const RULES: [RegExp, string][] = [
   [/\b(?:official )?(?:page|pages|sources)? ?provided here\b/gi, "official page"],
   [/\b(?:the )?excerpts\b/gi, "the official pages"],
   [/\bin our consular map\b/gi, ""],
+  // Non-numeric bracket tags like "[system guidance]" (citations are numbers only; keep [text](url) links).
+  [/ ?\[(?![0-9٠-٩]{1,2}\])(?![^\]\n]*\]\()[^\]\n]{1,40}\]/g, ""],
+  [/\b(?:the )?(?:pages|sources) I can see(?: here)?\b/gi, "the official pages"],
+  [/\bthe sources only\b/gi, "the official pages only"],
   // French
   [/\b(?:les )?(?:pages|sources|extraits)(?: officielles)? (?:consultées |)dont je dispose\b/gi, "les pages officielles"],
   [/\b(?:les )?(?:pages|sources)(?: officielles)? consultées\b/gi, "les pages officielles"],
   [/\bles extraits(?: dont je dispose)?\b/gi, "les pages officielles"],
   [/\s*dont je dispose\b/gi, ""],
+  [/\b(?:les )?(?:sources|pages)(?: officielles)? fournies\b/gi, "les pages officielles"],
   // Arabic / Darija
   [/\s*(?:اللي|الي) عندي/g, ""],
   [/\s*المتاحة لي/g, " الرسمية"],
   [/\s*المتوفرة لدي/g, " الرسمية"],
   [/المقتطفات/g, "الصفحات الرسمية"],
+  [/الصفحات الرسمية المتاحة/g, "الصفحات الرسمية"],
+  [/الصفحات المتاحة/g, "الصفحات الرسمية"],
 ];
 
 /** Moroccan forms the model sometimes slips into Darija answers → the Algerian equivalent. */

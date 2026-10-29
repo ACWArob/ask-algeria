@@ -40,6 +40,8 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — follow-up answers contradicted earlier ones (photo count, phone, office) — send the start of the previous answer with each question and tell the model to stay consistent.
+- 2026-10-28 — "in Toronto… go to Montreal?" picked Montreal (longest name won) — pick the place the person lives in ("live in/moved to/ساكن في"), else the first mentioned.
 - 2026-10-28 — France/UK/Canada offices pointed at invented `cg<city>.mfa.gov.dz` domains, so boosting did nothing and the bot invented URLs — take every office domain from data/missions.json, never guess a pattern.
 - 2026-10-28 — Lyon users got US rules (USPS, 2x2 photos) — exclude other countries' mission domains from search once the country is known.
 - 2026-10-28 — "where do you live?" repeated 3× when the user didn't answer — ask once per conversation, then answer generally.
