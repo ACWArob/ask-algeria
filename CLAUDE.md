@@ -41,6 +41,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — Lyon passport answer cited Médéa wilaya pages — someone living abroad gets no wilaya-portal sources (category "wilayas" in sources.json).
 - 2026-10-28 — guide pages were prebuilt (generateStaticParams) and would ignore the language cookie — pages that read cookies must be `dynamic = "force-dynamic"`.
 - 2026-10-28 — follow-up detection matched "son" inside "person" — keyword regexes use Unicode word lookarounds, always.
 - 2026-10-28 — user said "France" but got an answer for the connection's city (Ohio) — a named country disables geo; ask which city.

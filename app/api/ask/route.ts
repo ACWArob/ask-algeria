@@ -17,6 +17,7 @@ import { corpusById } from "@/lib/corpus";
 import { detectPost, detectMultiPostCountry, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
+import sourcesJson from "@/data/sources.json";
 import { followUps } from "@/lib/followups";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
@@ -30,6 +31,11 @@ export const maxDuration = 60;
  * everything after is the Markdown answer as it is generated.
  */
 class WrongLanguage extends Error {}
+
+/** Wilaya (province) portals: local procedures inside Algeria. */
+const WILAYA_PORTALS = (sourcesJson as { domain: string; category?: string }[])
+  .filter((x) => x.category === "wilayas")
+  .map((x) => x.domain.replace(/^www\./, "").toLowerCase());
 
 /** True when the start of an answer is in the wrong script for the reply language. */
 function wrongScript(text: string, lang: Locale): boolean {
@@ -118,11 +124,12 @@ export async function POST(req: Request) {
 
   const base = [...new Set([...expansion.queries, ...glossaryQueries(`${context} ${question}`)])];
   const queries = post && !post.inAlgeria ? [...base, ...base.slice(0, 3).map((q) => `${q} ${post.place}`)] : base;
-  const excludeDomains = post
-    ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria))
-    : multiPostCountry
-      ? foreignMissionHostsForCountry(multiPostCountry)
-      : [];
+  const abroad = post ? !post.inAlgeria : Boolean(multiPostCountry);
+  const excludeDomains = [
+    ...(post ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria)) : multiPostCountry ? foreignMissionHostsForCountry(multiPostCountry) : []),
+    // Someone living abroad goes through a consulate: a wilaya's local procedure would mislead them.
+    ...(abroad ? WILAYA_PORTALS : []),
+  ];
   const hits = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics, excludeDomains });
 
   // Group chunks by page so each page gets one citation number.
