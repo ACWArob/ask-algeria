@@ -34,9 +34,10 @@ const fr = (slug: string, name: string): Office => ({
 const NY: Office = { post: "Consulate General of Algeria in New York", site: "https://algeria-cgny.org", domains: ["algeria-cgny.org", "cgnewyork.mfa.gov.dz"] };
 const SF: Office = mfa("cgsanfrancisco", "Consulate General of Algeria in San Francisco");
 const DC: Office = mfa("embwashington", "Embassy of Algeria in Washington, D.C.");
-const ALGERIA = (city: string): Office => ({
+const ALGERIA = (city: string, portal?: string): Office => ({
   post: `local administration in Algeria (APC/commune or daïra of ${city})`,
-  domains: ["wilayaoran.dz", "interieur.gov.dz", "wilaya-djelfa.dz", "wilaya-bouira.dz"],
+  // The wilaya's own portal first, then national Interior pages and the best-covered wilaya portals as examples.
+  domains: [...(portal ? [portal] : []), "interieur.gov.dz", "wilayaoran.dz", "wilaya-bouira.dz", "wilaya-djelfa.dz"],
   inAlgeria: true,
 });
 
@@ -156,20 +157,82 @@ const PLACES: [string[], string, Office][] = [
   [["abu dhabi", "dubai", "uae", "emirates", "أبوظبي", "دبي", "الإمارات"], "United Arab Emirates", mfa("embabudhabi", "Embassy of Algeria in Abu Dhabi")],
   [["doha", "qatar", "قطر", "الدوحة"], "Qatar", mfa("embdoha", "Embassy of Algeria in Doha")],
   // Inside Algeria
-  [["algiers", "alger", "الجزائر العاصمة", "العاصمة", "دزاير العاصمة"], "Algiers", ALGERIA("Algiers")],
-  [["oran", "wahran", "وهران"], "Oran", ALGERIA("Oran")],
-  [["constantine", "قسنطينة"], "Constantine", ALGERIA("Constantine")],
+  // All 69 wilayas (58 + 11 created by the Nov 2025 territorial law); portal domain where an official one is known.
+  [["adrar", "أدرار"], "Adrar", ALGERIA("Adrar", "wilaya-adrar.dz")],
+  [["chlef", "الشلف"], "Chlef", ALGERIA("Chlef", "wilaya-chlef.dz")],
+  [["laghouat", "الأغواط"], "Laghouat", ALGERIA("Laghouat")],
+  [["oum el bouaghi", "oum-el-bouaghi", "أم البواقي"], "Oum El Bouaghi", ALGERIA("Oum El Bouaghi")],
+  [["batna", "باتنة"], "Batna", ALGERIA("Batna", "wilaya-batna.gov.dz")],
+  [["bejaia", "béjaïa", "بجاية"], "Béjaïa", ALGERIA("Béjaïa", "wilaya-bejaia.dz")],
+  [["biskra", "بسكرة"], "Biskra", ALGERIA("Biskra", "wilayabiskra.dz")],
+  [["bechar", "béchar", "بشار"], "Béchar", ALGERIA("Béchar", "wilaya-bechar.gov.dz")],
+  [["blida", "البليدة"], "Blida", ALGERIA("Blida", "wilayadeblida.dz")],
+  [["bouira", "البويرة"], "Bouira", ALGERIA("Bouira", "wilaya-bouira.dz")],
+  [["tamanrasset", "تمنراست"], "Tamanrasset", ALGERIA("Tamanrasset")],
+  [["tebessa", "tébessa", "تبسة"], "Tébessa", ALGERIA("Tébessa")],
+  [["tlemcen", "تلمسان"], "Tlemcen", ALGERIA("Tlemcen", "wilaya-tlemcen.dz")],
+  [["tiaret", "تيارت"], "Tiaret", ALGERIA("Tiaret", "wilaya-tiaret.dz")],
+  [["tizi ouzou", "tizi-ouzou", "تيزي وزو"], "Tizi Ouzou", ALGERIA("Tizi Ouzou", "wilaya-tiziouzou.dz")],
+  [["alger"], "Alger", ALGERIA("Alger")],
+  [["djelfa", "الجلفة"], "Djelfa", ALGERIA("Djelfa", "wilaya-djelfa.dz")],
+  [["jijel", "جيجل"], "Jijel", ALGERIA("Jijel")],
+  [["setif", "sétif", "سطيف"], "Sétif", ALGERIA("Sétif", "wilayasetif.dz")],
+  [["saida", "saïda", "سعيدة"], "Saïda", ALGERIA("Saïda", "wilaya-saida.dz")],
+  [["skikda", "سكيكدة"], "Skikda", ALGERIA("Skikda")],
+  [["sidi bel abbes", "sidi bel abbès", "sidi-bel-abbes", "سيدي بلعباس"], "Sidi Bel Abbès", ALGERIA("Sidi Bel Abbès", "wilaya-sidibelabbes.dz")],
   [["annaba", "عنابة"], "Annaba", ALGERIA("Annaba")],
-  [["blida", "البليدة"], "Blida", ALGERIA("Blida")],
-  [["setif", "sétif", "سطيف"], "Sétif", ALGERIA("Sétif")],
-  [["tizi ouzou", "تيزي وزو"], "Tizi Ouzou", ALGERIA("Tizi Ouzou")],
-  [["bejaia", "béjaïa", "bgayet", "بجاية"], "Béjaïa", ALGERIA("Béjaïa")],
-  [["tlemcen", "تلمسان"], "Tlemcen", ALGERIA("Tlemcen")],
-  [["batna", "باتنة"], "Batna", ALGERIA("Batna")],
-  [["djelfa", "الجلفة"], "Djelfa", ALGERIA("Djelfa")],
-  [["bouira", "البويرة"], "Bouira", ALGERIA("Bouira")],
+  [["guelma", "قالمة"], "Guelma", ALGERIA("Guelma")],
+  [["constantine", "قسنطينة"], "Constantine", ALGERIA("Constantine", "wilayaconstantine.dz")],
+  [["medea", "médéa", "المدية"], "Médéa", ALGERIA("Médéa", "wilayamedea.dz")],
+  [["mostaganem", "مستغانم"], "Mostaganem", ALGERIA("Mostaganem", "wilaya-mostaganem.dz")],
+  [["m'sila", "msila", "المسيلة"], "M'Sila", ALGERIA("M'Sila", "wilaya-msila.dz")],
+  [["mascara", "معسكر"], "Mascara", ALGERIA("Mascara", "wilayamascara.dz")],
   [["ouargla", "ورقلة"], "Ouargla", ALGERIA("Ouargla")],
-  [["in algeria", "en algérie", "en algerie", "فالدزاير", "في الجزائر", "fi dzayer", "f dzayer", "fl bled", "في البلاد", "الدزاير", "فالدزاير", "راني في الدزاير", "أقيم في الجزائر", "j'habite en algérie"], "Algeria", ALGERIA("your wilaya")],
+  [["oran", "وهران"], "Oran", ALGERIA("Oran", "wilayaoran.dz")],
+  [["el bayadh", "el-bayadh", "البيض"], "El Bayadh", ALGERIA("El Bayadh", "wilaya-elbayadh.gov.dz")],
+  [["illizi", "إليزي"], "Illizi", ALGERIA("Illizi")],
+  [["bordj bou arreridj", "bordj bou arréridj", "bordj-bou-arreridj", "برج بوعريريج"], "Bordj Bou Arréridj", ALGERIA("Bordj Bou Arréridj")],
+  [["boumerdes", "boumerdès", "بومرداس"], "Boumerdès", ALGERIA("Boumerdès", "wilaya-boumerdes.dz")],
+  [["el tarf", "el-tarf", "الطارف"], "El Tarf", ALGERIA("El Tarf")],
+  [["tindouf", "تندوف"], "Tindouf", ALGERIA("Tindouf")],
+  [["tissemsilt", "تيسمسيلت"], "Tissemsilt", ALGERIA("Tissemsilt", "wilaya-tissemsilt.dz")],
+  [["el oued", "el-oued", "الوادي"], "El Oued", ALGERIA("El Oued", "wilaya-eloued.dz")],
+  [["khenchela", "خنشلة"], "Khenchela", ALGERIA("Khenchela")],
+  [["souk ahras", "souk-ahras", "سوق أهراس"], "Souk Ahras", ALGERIA("Souk Ahras")],
+  [["tipaza", "تيبازة"], "Tipaza", ALGERIA("Tipaza", "wilaya-tipaza.dz")],
+  [["mila", "ميلة"], "Mila", ALGERIA("Mila")],
+  [["ain defla", "ain-defla", "aïn defla", "عين الدفلى"], "Aïn Defla", ALGERIA("Aïn Defla", "wilaya-aindefla.dz")],
+  [["naama", "naâma", "النعامة"], "Naâma", ALGERIA("Naâma", "wilaya-naama.dz")],
+  [["ain temouchent", "ain-temouchent", "aïn témouchent", "عين تموشنت"], "Aïn Témouchent", ALGERIA("Aïn Témouchent", "wilaya-aintemouchent.dz")],
+  [["ghardaia", "ghardaïa", "غرداية"], "Ghardaïa", ALGERIA("Ghardaïa")],
+  [["relizane", "غليزان"], "Relizane", ALGERIA("Relizane", "wilaya-relizane.dz")],
+  [["timimoun", "تيميمون"], "Timimoun", ALGERIA("Timimoun")],
+  [["bordj badji mokhtar", "bordj-badji-mokhtar", "برج باجي مختار"], "Bordj Badji Mokhtar", ALGERIA("Bordj Badji Mokhtar")],
+  [["ouled djellal", "ouled-djellal", "أولاد جلال"], "Ouled Djellal", ALGERIA("Ouled Djellal", "wilaya-ouleddjellal.dz")],
+  [["beni abbes", "beni-abbes", "béni abbès", "بني عباس"], "Béni Abbès", ALGERIA("Béni Abbès")],
+  [["in salah", "in-salah", "عين صالح"], "In Salah", ALGERIA("In Salah")],
+  [["in guezzam", "in-guezzam", "عين قزام"], "In Guezzam", ALGERIA("In Guezzam")],
+  [["touggourt", "تقرت"], "Touggourt", ALGERIA("Touggourt")],
+  [["djanet", "جانت"], "Djanet", ALGERIA("Djanet")],
+  [["el m'ghair", "el mghair", "el-m'ghair", "المغير"], "El M'Ghair", ALGERIA("El M'Ghair")],
+  [["el meniaa", "el-meniaa", "المنيعة"], "El Meniaa", ALGERIA("El Meniaa")],
+  [["aflou", "أفلو"], "Aflou", ALGERIA("Aflou")],
+  [["barika", "بريكة"], "Barika", ALGERIA("Barika")],
+  [["el kantara", "el-kantara", "القنطرة"], "El Kantara", ALGERIA("El Kantara")],
+  [["bir el ater", "bir-el-ater", "بئر العاتر"], "Bir El Ater", ALGERIA("Bir El Ater")],
+  [["el aricha", "el-aricha", "العريشة"], "El Aricha", ALGERIA("El Aricha")],
+  [["ksar chellala", "ksar-chellala", "قصر الشلالة"], "Ksar Chellala", ALGERIA("Ksar Chellala")],
+  [["ain oussera", "ain-oussera", "aïn oussera", "عين وسارة"], "Aïn Oussera", ALGERIA("Aïn Oussera")],
+  [["messaad", "مسعد"], "Messaad", ALGERIA("Messaad")],
+  [["ksar el boukhari", "ksar-el-boukhari", "قصر البخاري"], "Ksar El Boukhari", ALGERIA("Ksar El Boukhari")],
+  [["bou saada", "bou saâda", "bou-saada", "بوسعادة"], "Bou Saâda", ALGERIA("Bou Saâda")],
+  [["el abiodh sidi cheikh", "el-abiodh-sidi-cheikh", "الأبيض سيدي الشيخ"], "El Abiodh Sidi Cheikh", ALGERIA("El Abiodh Sidi Cheikh")],
+  [["algiers", "الجزائر العاصمة", "العاصمة", "دزاير العاصمة", "dzayer el 3assima"], "Alger", ALGERIA("Alger")],
+  [["wahran", "وهران"], "Oran", ALGERIA("Oran", "wilayaoran.dz")],
+  [["bgayet", "vgayet"], "Béjaïa", ALGERIA("Béjaïa", "wilaya-bejaia.dz")],
+  [["tizi", "تيزي"], "Tizi Ouzou", ALGERIA("Tizi Ouzou", "wilaya-tiziouzou.dz")],
+  // Living in Algeria (generic). Plain "in Algeria"/"في الجزائر" is NOT here: "register my marriage in Algeria" is said from abroad.
+  [["i live in algeria", "living in algeria", "i'm in algeria", "im in algeria", "i am in algeria", "based in algeria", "j'habite en algérie", "j'habite en algerie", "je vis en algérie", "je vis en algerie", "je suis en algérie", "je suis en algerie", "أقيم في الجزائر", "أسكن في الجزائر", "اسكن في الجزائر", "ساكن في الجزائر", "نسكن في الجزائر", "أعيش في الجزائر", "اعيش في الجزائر", "راني في الدزاير", "راني فالدزاير", "rani f dzayer", "rani fi dzayer", "rani fl bled", "ana f dzayer", "nskon f dzayer"], "Algeria", ALGERIA("your wilaya")],
 ];
 
 // Countries with several Algerian posts: ask for the city instead of guessing.
@@ -190,6 +253,9 @@ export interface MultiPostHint {
   country: string;
 }
 
+/** Place names that are also everyday words: only count after "in / à / في …". */
+const LOCATIVE_ONLY = new Set(["mascara", "saida", "saïda", "سعيدة", "معسكر", "البيض", "الوادي", "المدية", "ميلة", "mila", "adrar", "naama", "naâma", "النعامة", "barika", "aflou", "messaad"]);
+
 /** Words right before a place that say the person lives there ("moved to Lille", "j'habite à Lyon", "ساكن في"). */
 const RESIDES =
   /(?:live in|living in|lives in|moved (?:from [\p{L} .'-]{2,20} )?to|déménagée? (?:de [\p{L} .'-]{2,20} )?(?:à|a)|now in|based in|reside in|habite (?:à|a|en)|j'habite|vis (?:à|a|en)|installée? (?:à|a|en)|déménagée? (?:à|a|en)|ساكن في|ساكنة في|نسكن في|أسكن في|اسكن في|أقيم في|اقيم في|نعيش في|أعيش في|انتقلت إلى|n3ich f|nskon f|saken f)\s*$/iu;
@@ -203,6 +269,7 @@ export function detectPost(text: string): PostHint | null {
   // Several places named ("in Toronto, do I go to Montreal?"): the one mentioned first is where they are.
   const found: { at: number; len: number; hint: PostHint }[] = [];
   for (const [name, place, office] of entries) {
+    if (LOCATIVE_ONLY.has(name) && !new RegExp(`(?:^|\\s)(?:in|à|a|de|from|near|f|fi|في|ف|ب)\\s*${name}(?![\\p{L}])`, "iu").test(t)) continue;
     if (name === "nice" && !/(?:^|\s)(in|à|de|from|depuis|near|près de|pres de|f|fi)\s+nice(?![\p{L}])/iu.test(t) && !/(?:^|\s)a\s+Nice(?![\p{L}])/u.test(t)) continue;
     if (has(t, name)) {
       const at = t.toLowerCase().search(new RegExp(`(?<![\\p{L}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "iu"));

@@ -3923,5 +3923,423 @@
     "fetch_status": "ok",
     "evidence": "Listed on the official page https://algerian-consulate.org.uk/",
     "notes": ""
+  },
+  {
+    "name_en": "Wilaya of Chlef",
+    "name_fr": "Wilaya de Chlef",
+    "name_ar": "ولاية الشلف",
+    "domain": "wilaya-chlef.dz",
+    "url": "https://wilaya-chlef.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Chlef: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited as wilaya site in ar/fr Wikipedia Chlef articles; resolves on Algerian IP; Wayback crawl 2026-06 (https://ar.wikipedia.org/wiki/ولاية_الشلف)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Biskra",
+    "name_fr": "Wilaya de Biskra",
+    "name_ar": "ولاية بسكرة",
+    "domain": "wilayabiskra.dz",
+    "url": "https://wilayabiskra.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Biskra: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Fetched: title \"الموقع الرسمي لولاية بسكرة\"; Wikidata P856 (https://wilayabiskra.dz/)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Béchar",
+    "name_fr": "Wilaya de Béchar",
+    "name_ar": "ولاية بشار",
+    "domain": "wilaya-bechar.gov.dz",
+    "url": "http://www.wilaya-bechar.gov.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Béchar: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in en/fr/ar Wikipedia (old pages); domain still resolves (197.112.101.198); unreachable, content unverified (https://ar.wikipedia.org/wiki/ولاية_بشار)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Tlemcen",
+    "name_fr": "Wilaya de Tlemcen",
+    "name_ar": "ولاية تلمسان",
+    "domain": "wilaya-tlemcen.dz",
+    "url": "https://wilaya-tlemcen.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Tlemcen: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia Tlemcen articles; shares IP 197.140.7.31 with wilaya-adrar.dz; serves 403 to us; Wayback 2026-10 (https://fr.wikipedia.org/wiki/Wilaya_de_Tlemcen)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Tiaret",
+    "name_fr": "Wilaya de Tiaret",
+    "name_ar": "ولاية تيارت",
+    "domain": "wilaya-tiaret.dz",
+    "url": "https://www.wilaya-tiaret.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Tiaret: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Wikidata P856 + English/fr/ar Wikipedia links; resolves on Algerian IP; unreachable (https://en.wikipedia.org/wiki/Tiaret_Province)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Tizi Ouzou",
+    "name_fr": "Wilaya de Tizi Ouzou",
+    "name_ar": "ولاية تيزي وزو",
+    "domain": "wilaya-tiziouzou.dz",
+    "url": "https://wilaya-tiziouzou.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Tizi Ouzou: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia (incl. /liste-des-walis page); live but WAF \"Request Rejected\" to us (https://fr.wikipedia.org/wiki/Wilaya_de_Tizi_Ouzou). en-Wikipedia lists tiziouzou-dz.com, treated as unofficial",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Saïda",
+    "name_fr": "Wilaya de Saïda",
+    "name_ar": "ولاية سعيدة",
+    "domain": "wilaya-saida.dz",
+    "url": "http://www.wilaya-saida.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Saïda: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia Saïda articles; resolves on Algerian IP (197.112.55.3); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Saïda)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Sidi Bel Abbès",
+    "name_fr": "Wilaya de Sidi Bel Abbès",
+    "name_ar": "ولاية سيدي بلعباس",
+    "domain": "wilaya-sidibelabbes.dz",
+    "url": "http://www.wilaya-sidibelabbes.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Sidi Bel Abbès: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr Wikipedia Sidi Bel Abbès article; resolves on Algerian IP; unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Sidi_Bel_Abbès)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Constantine",
+    "name_fr": "Wilaya de Constantine",
+    "name_ar": "ولاية قسنطينة",
+    "domain": "wilayaconstantine.dz",
+    "url": "http://www.wilayaconstantine.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Constantine: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Fetched: title \"Site officiel de la Wilaya de Constantine\"; tiny legacy page, no dates (https://wilayaconstantine.dz/)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Médéa",
+    "name_fr": "Wilaya de Médéa",
+    "name_ar": "ولاية المدية",
+    "domain": "wilayamedea.dz",
+    "url": "https://www.wilayamedea.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Médéa: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Fetched via www: title \"الموقع الرسمي لولاية المدية\", news dated 2026-10 (https://www.wilayamedea.dz/); apex does not resolve",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of M'Sila",
+    "name_fr": "Wilaya de M'Sila",
+    "name_ar": "ولاية المسيلة",
+    "domain": "wilaya-msila.dz",
+    "url": "http://www.wilaya-msila.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of M'Sila: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in ar/fr Wikipedia M'Sila articles; resolves on Algerian gov IP; unreachable (https://ar.wikipedia.org/wiki/ولاية_المسيلة)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Mascara",
+    "name_fr": "Wilaya de Mascara",
+    "name_ar": "ولاية معسكر",
+    "domain": "wilayamascara.dz",
+    "url": "https://wilayamascara.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Mascara: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Fetched: title \"Accueil - Wilaya Mascara ولاية معسكر\", links to prestations.interieur.gov.dz (https://wilayamascara.dz/index.php/en/)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of El Bayadh",
+    "name_fr": "Wilaya de El Bayadh",
+    "name_ar": "ولاية البيض",
+    "domain": "wilaya-elbayadh.gov.dz",
+    "url": "http://www.wilaya-elbayadh.gov.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of El Bayadh: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Wikidata P856 + English Wikipedia infobox website; cited ar/fr; resolves; unreachable (https://en.wikipedia.org/wiki/El_Bayadh_Province)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Boumerdès",
+    "name_fr": "Wilaya de Boumerdès",
+    "name_ar": "ولاية بومرداس",
+    "domain": "wilaya-boumerdes.dz",
+    "url": "http://www.wilaya-boumerdes.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Boumerdès: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia Boumerdès articles; resolves on Algerian IP (197.112.120.11); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Boumerdès)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Tissemsilt",
+    "name_fr": "Wilaya de Tissemsilt",
+    "name_ar": "ولاية تيسمسيلت",
+    "domain": "wilaya-tissemsilt.dz",
+    "url": "http://www.wilaya-tissemsilt.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Tissemsilt: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia (incl. site_ar/site_fr subpages); resolves (197.112.0.106); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Tissemsilt)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of El Oued",
+    "name_fr": "Wilaya de El Oued",
+    "name_ar": "ولاية الوادي",
+    "domain": "wilaya-eloued.dz",
+    "url": "https://www.wilaya-eloued.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of El Oued: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Wikidata P856 https://www.wilaya-eloued.dz/ + ar Wikipedia link; resolves (185.207.250.96); unreachable (https://www.wikidata.org/wiki/Special:Search?search=DZ-39)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Tipaza",
+    "name_fr": "Wilaya de Tipaza",
+    "name_ar": "ولاية تيبازة",
+    "domain": "wilaya-tipaza.dz",
+    "url": "http://www.wilaya-tipaza.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Tipaza: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia (deep link /index.php/fr/secteurs-fr/forets-fr); resolves; unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Tipaza)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Aïn Defla",
+    "name_fr": "Wilaya de Aïn Defla",
+    "name_ar": "ولاية عين الدفلى",
+    "domain": "wilaya-aindefla.dz",
+    "url": "http://www.wilaya-aindefla.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Aïn Defla: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in ar Wikipedia Aïn Defla article; resolves (197.112.0.106); unreachable (https://ar.wikipedia.org/wiki/ولاية_عين_الدفلى)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Naâma",
+    "name_fr": "Wilaya de Naâma",
+    "name_ar": "ولاية النعامة",
+    "domain": "wilaya-naama.dz",
+    "url": "http://www.wilaya-naama.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Naâma: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Cited in fr/ar Wikipedia Naâma articles; resolves (197.112.101.144); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Naâma)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Aïn Témouchent",
+    "name_fr": "Wilaya de Aïn Témouchent",
+    "name_ar": "ولاية عين تموشنت",
+    "domain": "wilaya-aintemouchent.dz",
+    "url": "http://www.wilaya-aintemouchent.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Aïn Témouchent: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Wikidata P856 + English/ar Wikipedia links; resolves on Algerian IP; unreachable (https://en.wikipedia.org/wiki/Aïn_Témouchent_Province)",
+    "notes": "confidence high"
+  },
+  {
+    "name_en": "Wilaya of Relizane",
+    "name_fr": "Wilaya de Relizane",
+    "name_ar": "ولاية غليزان",
+    "domain": "wilaya-relizane.dz",
+    "url": "http://www.wilaya-relizane.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Relizane: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Wikidata P856; only www resolves (193.194.90.18, CNAME wb5.eldjazair.dz); last Wayback crawl 2016, possibly stale (https://www.wikidata.org/wiki/Special:Search?search=DZ-48)",
+    "notes": "confidence medium"
+  },
+  {
+    "name_en": "Wilaya of Ouled Djellal",
+    "name_fr": "Wilaya de Ouled Djellal",
+    "name_ar": "ولاية أولاد جلال",
+    "domain": "wilaya-ouleddjellal.dz",
+    "url": "https://wilaya-ouleddjellal.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Official portal of the wilaya of Ouled Djellal: wali announcements, local procedures, housing and civil-status notices",
+    "priority": 2,
+    "reachable": false,
+    "fetch_status": "unknown",
+    "evidence": "Fetched: wilaya portal \"ولاية أولاد جلال\", links to interieur.gov.dz and marches-publics.gov.dz (https://wilaya-ouleddjellal.dz/)",
+    "notes": "confidence high"
   }
 ]

@@ -108,3 +108,22 @@ describe("Vercel geo headers", () => {
     expect(postFromGeo(readGeo(dz))?.inAlgeria).toBe(true);
   });
 });
+
+describe("wilayas and 'in Algeria'", () => {
+  it("every wilaya maps to its portal; plain 'in Algeria' is not a residence", () => {
+    expect(detectPost("I live in Tlemcen")?.domains).toContain("wilaya-tlemcen.dz");
+    expect(detectPost("ساكن في سطيف")?.inAlgeria).toBe(true);
+    expect(detectPost("j'habite à Bou Saâda")?.inAlgeria).toBe(true);
+    expect(detectPost("عقد زواجي في بلجيكا كيف أسجله في الجزائر")?.inAlgeria).not.toBe(true);
+    expect(detectPost("how do I get a document apostilled for use in algeria")).toBeNull();
+    expect(detectPost("الجزائر")).toBeNull();
+    expect(detectPost("أسكن في الجزائر")?.inAlgeria).toBe(true);
+    expect(detectPost("rani f dzayer")?.inAlgeria).toBe(true);
+  });
+  it("wilaya names that are everyday words need 'in/à/في'", () => {
+    expect(detectPost("my mascara ran out")).toBeNull();
+    expect(detectPost("j'habite à Mascara")?.place).toBe("Mascara");
+    expect(detectPost("أنا سعيدة جدا")).toBeNull();
+    expect(detectPost("ساكن في البيض")?.place).toBe("El Bayadh");
+  });
+});
