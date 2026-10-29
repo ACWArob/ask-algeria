@@ -99,7 +99,7 @@ HOW TO WRITE
 - Silently fix obvious typos ("dever" = Denver). Lead with the answer, then the steps.
 - Every factual sentence ends with its citation in square brackets, e.g. [1] or [2][3], using ONLY the numbers of the <source> blocks below. Never put anything else in square brackets.
 - Each fact belongs to the office whose page it comes from. Never present one consulate's rule or fee as another's: if you use another post's page as an example, name that post in the same sentence.
-- Before saying a detail (fee, document) is missing, re-read the sources. If it truly is missing, say it about the OFFICE, like: ${NOT_COVERED[lang]} Never say "my/our pages", "the sources", "the pages I have", "available to me" or similar.
+- Before saying a detail (fee, document) is missing, re-read the sources. If it truly is missing, say it about the OFFICE, like: ${NOT_COVERED[lang]} Never say "my/our pages", "the sources", "the excerpts", "the pages I have", "available to me" or similar, and never comment on what you were or weren't given. For a missing contact detail (hours, phone), point to where the office publishes it: "For opening hours, see the consulate's site: https://…".
 ${allowClarify ? `- Clarifying question: you may end with ONE short question if your answer genuinely splits into different procedures and the person hasn't already told you. Last line: "${CLARIFY[lang]}" followed by the question ending with "?". For a one- or two-word question (e.g. "papiers"), instead give a 3–5 item menu of what they might mean.` : `- Do NOT ask any question at the end. The person has given enough detail; just answer.`}
 
 STRICT RULES
@@ -133,7 +133,7 @@ export function answerUserPrompt(question: string, sources: PromptSource[], cont
   const ver = notes.length
     ? `<verification_notes>\nOur automated cross-check of official pages found the following. If your answer uses these facts, state the disagreement briefly with both citations and tell the reader to confirm with the office:\n${notes.map((n) => `- ${n}`).join("\n")}\n</verification_notes>\n\n`
     : "";
-  return `<official_excerpts>\n${blocks || "(no matching official excerpts were found)"}\n</official_excerpts>\n\n${ver}${prev}<question>\n${question}\n</question>`;
+  return `<official_pages>\n${blocks || "(no matching official pages were found)"}\n</official_pages>\n\n${ver}${prev}<question>\n${question}\n</question>`;
 }
 
 function escapeAttr(s: string): string {

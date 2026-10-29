@@ -40,6 +40,8 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — answer said "the excerpts don't list" — the `<official_excerpts>` tag primed the word; name prompt tags in words the model may repeat to users.
+- 2026-10-28 — mfa.gov.dz mission sites time out from outside Algeria — use Wayback `web/2026id_/<url>` via Apify; fill empty fields only, source = archive URL.
 - 2026-10-28 — tester headers pasted as one string landed in a single cell — check pasted ranges cell by cell after writing to a Sheet.
 - 2026-10-27 — mixed London/NY/DC answer when location was unknown — location-dependent topics ask "where do you live?" first (chips), no LLM call.
 - 2026-10-27 — "I think you mean Denver" hedging — state the detected office as fact; banned hedge phrases per language.
