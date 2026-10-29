@@ -12,7 +12,8 @@ npx vitest run tests/x.test.ts      # one file ← prefer this
 npm run lint && npm run typecheck
 npm run build                       # prebuild rebuilds data/index.json
 npm run refresh                     # check-updates → crossref → index (weekly GitHub Action does this)
-node scripts/import-apify.mjs <dataset.json>   # add crawled pages to the corpus
+node scripts/import-apify.mjs <dataset.json>   # add crawled pages to the corpus (Apify dataset id or local .json)
+node scripts/crawl-local.mjs --dry-run          # crawler for running from INSIDE Algeria (no deps); see docs/algeria-developer-guide.md
 ```
 
 ## Layout
