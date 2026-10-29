@@ -3,7 +3,12 @@
     "id": "passport",
     "icon": "passport",
     "page": "/services/passport",
-    "name": { "en": "Passport", "fr": "Passeport", "ar": "جواز السفر", "dz": "الباسبور" },
+    "name": {
+      "en": "Passport",
+      "fr": "Passeport",
+      "ar": "جواز السفر",
+      "dz": "الباسبور"
+    },
     "line": {
       "en": "Biometric passport: first issue, renewal, minors, lost passport.",
       "fr": "Passeport biométrique : première demande, renouvellement, mineurs, perte.",
@@ -16,13 +21,22 @@
       "ar": "كيف أطلب أو أجدّد جواز السفر البيومتري، وما الوثائق المطلوبة؟",
       "dz": "كيفاش نطلب ولا نجدد الباسبور البيومتري، وواش من وراق لازمين؟"
     },
-    "portals": [{ "url": "https://passeport.interieur.gov.dz" }]
+    "portals": [
+      {
+        "url": "https://passeport.interieur.gov.dz"
+      }
+    ]
   },
   {
     "id": "cni",
     "icon": "idcard",
     "page": "/services/passport#cni",
-    "name": { "en": "Biometric ID card (CNI)", "fr": "Carte d'identité biométrique (CNIBE)", "ar": "بطاقة التعريف البيومترية", "dz": "لاكارط ديدونتيتي البيومترية" },
+    "name": {
+      "en": "Biometric ID card (CNI)",
+      "fr": "Carte d'identité biométrique (CNIBE)",
+      "ar": "بطاقة التعريف البيومترية",
+      "dz": "لاكارط ديدونتيتي البيومترية"
+    },
     "line": {
       "en": "Apply online once you hold a biometric passport.",
       "fr": "Demande en ligne une fois le passeport biométrique obtenu.",
@@ -35,12 +49,21 @@
       "ar": "كيف أطلب بطاقة التعريف الوطنية البيومترية؟",
       "dz": "كيفاش نطلب لاكارط ديدونتيتي البيومترية؟"
     },
-    "portals": [{ "url": "https://passeport.interieur.gov.dz" }]
+    "portals": [
+      {
+        "url": "https://passeport.interieur.gov.dz"
+      }
+    ]
   },
   {
     "id": "birth-12s",
     "icon": "certificate",
-    "name": { "en": "12S birth certificate", "fr": "Extrait de naissance 12S", "ar": "شهادة الميلاد 12خ", "dz": "شهادة الميلاد 12S" },
+    "name": {
+      "en": "12S birth certificate",
+      "fr": "Extrait de naissance 12S",
+      "ar": "شهادة الميلاد 12خ",
+      "dz": "شهادة الميلاد 12S"
+    },
     "line": {
       "en": "Special birth extract needed for the biometric passport.",
       "fr": "Extrait spécial exigé pour le passeport biométrique.",
@@ -53,12 +76,22 @@
       "ar": "كيف أحصل على شهادة الميلاد 12خ؟",
       "dz": "كيفاش نخرج شهادة الميلاد 12S؟"
     },
-    "portals": [{ "url": "http://demande12s.interieur.gov.dz" }]
+    "portals": [
+      {
+        "url": "http://demande12s.interieur.gov.dz"
+      }
+    ],
+    "page": "/services/birth-12s"
   },
   {
     "id": "civil-status",
     "icon": "family",
-    "name": { "en": "Civil status documents", "fr": "Documents d'état civil", "ar": "وثائق الحالة المدنية", "dz": "وراق الحالة المدنية" },
+    "name": {
+      "en": "Civil status documents",
+      "fr": "Documents d'état civil",
+      "ar": "وثائق الحالة المدنية",
+      "dz": "وراق الحالة المدنية"
+    },
     "line": {
       "en": "Birth, marriage and death records, online via dzds.",
       "fr": "Actes de naissance, mariage et décès, en ligne via dzds.",
@@ -71,12 +104,22 @@
       "ar": "كيف أحصل على نسخة من عقد الميلاد أو الزواج أو الوفاة؟",
       "dz": "كيفاش نخرج نسخة من شهادة الميلاد ولا الزواج ولا الوفاة؟"
     },
-    "portals": [{ "url": "https://dzds.dz/fr-fr" }]
+    "portals": [
+      {
+        "url": "https://dzds.dz/fr-fr"
+      }
+    ],
+    "page": "/services/civil-status"
   },
   {
     "id": "criminal-record",
     "icon": "scale",
-    "name": { "en": "Criminal record extract", "fr": "Casier judiciaire", "ar": "صحيفة السوابق العدلية", "dz": "الكازيي جوديسيير" },
+    "name": {
+      "en": "Criminal record extract",
+      "fr": "Casier judiciaire",
+      "ar": "صحيفة السوابق العدلية",
+      "dz": "الكازيي جوديسيير"
+    },
     "line": {
       "en": "Bulletin n°3, at a consulate or online.",
       "fr": "Bulletin n°3, au consulat ou en ligne.",
@@ -89,12 +132,22 @@
       "ar": "كيف أطلب مستخرج صحيفة السوابق العدلية (البطاقة رقم 3)؟",
       "dz": "كيفاش نطلب الكازيي جوديسيير (البيلتان رقم 3)؟"
     },
-    "portals": [{ "url": "https://dzds.dz/fr-fr" }]
+    "portals": [
+      {
+        "url": "https://dzds.dz/fr-fr"
+      }
+    ],
+    "page": "/services/criminal-record"
   },
   {
     "id": "nationality",
     "icon": "seal",
-    "name": { "en": "Nationality certificate", "fr": "Certificat de nationalité", "ar": "شهادة الجنسية", "dz": "شهادة الجنسية" },
+    "name": {
+      "en": "Nationality certificate",
+      "fr": "Certificat de nationalité",
+      "ar": "شهادة الجنسية",
+      "dz": "شهادة الجنسية"
+    },
     "line": {
       "en": "Electronically signed; Algerians abroad can get it too.",
       "fr": "Signé électroniquement ; accessible aussi depuis l'étranger.",
@@ -107,12 +160,78 @@
       "ar": "كيف أحصل على شهادة الجنسية الجزائرية؟",
       "dz": "كيفاش نخرج شهادة الجنسية الجزائرية؟"
     },
-    "portals": [{ "url": "https://dzds.dz/fr-fr" }]
+    "portals": [
+      {
+        "url": "https://dzds.dz/fr-fr"
+      }
+    ],
+    "page": "/services/nationality"
+  },
+  {
+    "id": "consular-registration",
+    "icon": "embassy",
+    "page": "/services/consular-registration",
+    "name": {
+      "en": "Consular registration",
+      "fr": "Immatriculation consulaire",
+      "ar": "التسجيل القنصلي",
+      "dz": "التسجيل في القنصلية"
+    },
+    "line": {
+      "en": "Registering with your consulate, the consular card, change of address.",
+      "fr": "S'inscrire au consulat, carte consulaire, changement d'adresse.",
+      "ar": "التسجيل لدى القنصلية، البطاقة القنصلية، تغيير العنوان.",
+      "dz": "التسجيل في القنصلية، الكارطة القنصلية، تبديل العنوان."
+    },
+    "question": {
+      "en": "How do I register with my Algerian consulate?",
+      "fr": "Comment m'inscrire au consulat d'Algérie ?",
+      "ar": "كيف أسجل نفسي في القنصلية الجزائرية؟",
+      "dz": "كيفاش نتسجل في القنصلية الجزائرية؟"
+    },
+    "portals": [
+      {
+        "url": "https://www.mfa.gov.dz"
+      }
+    ]
+  },
+  {
+    "id": "national-service",
+    "icon": "shield",
+    "page": "/services/national-service",
+    "name": {
+      "en": "National service",
+      "fr": "Service national",
+      "ar": "الخدمة الوطنية",
+      "dz": "الخدمة الوطنية"
+    },
+    "line": {
+      "en": "Census, deferment and exemption for Algerians abroad.",
+      "fr": "Recensement, sursis et dispense pour les Algériens à l'étranger.",
+      "ar": "الإحصاء والتأجيل والإعفاء للجزائريين بالخارج.",
+      "dz": "الإحصاء، السورسي والإعفاء للدزيريين لي برّا."
+    },
+    "question": {
+      "en": "How does national service work for Algerians living abroad?",
+      "fr": "Comment fonctionne le service national pour les Algériens à l'étranger ?",
+      "ar": "كيف تتم الخدمة الوطنية للجزائريين المقيمين بالخارج؟",
+      "dz": "كيفاش تمشي الخدمة الوطنية للي ساكنين برّا؟"
+    },
+    "portals": [
+      {
+        "url": "https://www.mdn.dz"
+      }
+    ]
   },
   {
     "id": "tax",
     "icon": "receipt",
-    "name": { "en": "Tax e-payment (Jibayatic)", "fr": "Télépaiement des impôts (Jibayatic)", "ar": "الدفع الإلكتروني للضرائب (جبايتك)", "dz": "خلاص الضرايب من الأنترنت (جبايتك)" },
+    "name": {
+      "en": "Tax e-payment (Jibayatic)",
+      "fr": "Télépaiement des impôts (Jibayatic)",
+      "ar": "الدفع الإلكتروني للضرائب (جبايتك)",
+      "dz": "خلاص الضرايب من الأنترنت (جبايتك)"
+    },
     "line": {
       "en": "File and pay tax returns online.",
       "fr": "Déclarer et payer ses impôts en ligne.",
@@ -125,12 +244,21 @@
       "ar": "كيف أصرّح بضرائبي وأدفعها عبر منصة جبايتك؟",
       "dz": "كيفاش نصرّح ونخلّص الضرايب في جبايتك؟"
     },
-    "portals": [{ "url": "https://jibayatic.mf.gov.dz/" }]
+    "portals": [
+      {
+        "url": "https://jibayatic.mf.gov.dz/"
+      }
+    ]
   },
   {
     "id": "cnas",
     "icon": "shield",
-    "name": { "en": "Social insurance (CNAS)", "fr": "Assurance sociale (CNAS)", "ar": "الضمان الاجتماعي (CNAS)", "dz": "الكناس (CNAS)" },
+    "name": {
+      "en": "Social insurance (CNAS)",
+      "fr": "Assurance sociale (CNAS)",
+      "ar": "الضمان الاجتماعي (CNAS)",
+      "dz": "الكناس (CNAS)"
+    },
     "line": {
       "en": "Affiliation, Chifa card and online services.",
       "fr": "Affiliation, carte Chifa et services en ligne.",
@@ -143,12 +271,22 @@
       "ar": "كيف أنتسب إلى CNAS وأستعمل خدماتها الإلكترونية؟",
       "dz": "كيفاش نتسجّل في الكناس ونستعمل الخدمات تاعها في الأنترنت؟"
     },
-    "portals": [{ "url": "https://elhanaa.cnas.dz/" }]
+    "portals": [
+      {
+        "url": "https://elhanaa.cnas.dz/"
+      }
+    ],
+    "page": "/services/cnas"
   },
   {
     "id": "exams",
     "icon": "cap",
-    "name": { "en": "Bac & BEM results", "fr": "Résultats du Bac et du BEM", "ar": "نتائج البكالوريا وشهادة التعليم المتوسط", "dz": "نتائج الباك والبيام" },
+    "name": {
+      "en": "Bac & BEM results",
+      "fr": "Résultats du Bac et du BEM",
+      "ar": "نتائج البكالوريا وشهادة التعليم المتوسط",
+      "dz": "نتائج الباك والبيام"
+    },
     "line": {
       "en": "Official results sites of ONEC.",
       "fr": "Sites officiels des résultats de l'ONEC.",
@@ -162,14 +300,35 @@
       "dz": "وين وكيفاش نشوف نتائج الباك ولا البيام؟"
     },
     "portals": [
-      { "url": "https://bac.onec.dz", "label": { "en": "Bac", "fr": "Bac", "ar": "البكالوريا", "dz": "الباك" } },
-      { "url": "https://bem.onec.dz", "label": { "en": "BEM", "fr": "BEM", "ar": "شهادة التعليم المتوسط", "dz": "البيام" } }
+      {
+        "url": "https://bac.onec.dz",
+        "label": {
+          "en": "Bac",
+          "fr": "Bac",
+          "ar": "البكالوريا",
+          "dz": "الباك"
+        }
+      },
+      {
+        "url": "https://bem.onec.dz",
+        "label": {
+          "en": "BEM",
+          "fr": "BEM",
+          "ar": "شهادة التعليم المتوسط",
+          "dz": "البيام"
+        }
+      }
     ]
   },
   {
     "id": "aadl",
     "icon": "house",
-    "name": { "en": "AADL housing", "fr": "Logement AADL", "ar": "سكنات عدل", "dz": "سكنات عدل" },
+    "name": {
+      "en": "AADL housing",
+      "fr": "Logement AADL",
+      "ar": "سكنات عدل",
+      "dz": "سكنات عدل"
+    },
     "line": {
       "en": "Rent-to-own housing applications and follow-up.",
       "fr": "Location-vente : inscription et suivi du dossier.",
@@ -182,6 +341,11 @@
       "ar": "كيف أسجّل في سكنات عدل وأتابع ملفي؟",
       "dz": "كيفاش نتسجّل في عدل ونتبّع الدوسي تاعي؟"
     },
-    "portals": [{ "url": "https://www.aadl.dz/" }]
+    "portals": [
+      {
+        "url": "https://www.aadl.dz/"
+      }
+    ],
+    "page": "/services/aadl"
   }
 ]

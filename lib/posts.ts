@@ -151,7 +151,7 @@ const PLACES: [string[], string, Office][] = [
   [["geneva", "genève", "geneve", "جنيف", "switzerland", "suisse", "سويسرا"], "Switzerland", mfa("cggeneva", "Consulate General of Algeria in Geneva")],
   [["berlin", "برلين", "germany", "allemagne", "deutschland", "ألمانيا", "frankfurt", "munich"], "Germany", mfa("embberlin", "Embassy of Algeria in Berlin")],
   [["brussels", "bruxelles", "بروكسل", "belgium", "belgique", "بلجيكا"], "Belgium", mfa("cgbrussels", "Consulate General of Algeria in Brussels")],
-  [["madrid", "مدريد", "spain", "espagne", "إسبانيا"], "Spain", mfa("embmadrid", "Embassy of Algeria in Madrid")],
+  [["madrid", "مدريد", "spain", "espagne", "españa", "إسبانيا", "اسبانيا", "سبانيا", "sbanya", "spania"], "Spain", mfa("embmadrid", "Embassy of Algeria in Madrid")],
   [["riyadh", "riyad", "الرياض", "saudi", "السعودية"], "Saudi Arabia", mfa("embriyadh", "Embassy of Algeria in Riyadh")],
   [["jeddah", "djeddah", "جدة"], "Jeddah", mfa("cgjeddah", "Consulate General of Algeria in Jeddah")],
   [["abu dhabi", "dubai", "uae", "emirates", "أبوظبي", "دبي", "الإمارات"], "United Arab Emirates", mfa("embabudhabi", "Embassy of Algeria in Abu Dhabi")],
@@ -237,7 +237,7 @@ const PLACES: [string[], string, Office][] = [
 
 // Countries with several Algerian posts: ask for the city instead of guessing.
 const MULTI_POST: [string[], string][] = [
-  [["france", "فرنسا", "fransa"], "France"],
+  [["france", "فرنسا", "فرانسا", "fransa", "franca"], "France"],
   [["usa", "united states", "états-unis", "etats-unis", "america", "أمريكا", "امريكا", "الولايات المتحدة", "mirikan", "lmirikan"], "the United States"],
   [["canada", "كندا"], "Canada"],
 ];

@@ -127,3 +127,16 @@ describe("wilayas and 'in Algeria'", () => {
     expect(detectPost("ساكن في البيض")?.place).toBe("El Bayadh");
   });
 });
+
+import { askCountry } from "@/lib/clarify";
+import { detectMultiPostCountry } from "@/lib/posts";
+describe("every 'where do you live?' button is understood", () => {
+  it("each chip maps to a place, a country to ask about, or 'another country'", () => {
+    for (const lang of ["en", "fr", "ar", "dz"] as const) {
+      const c = askCountry(lang);
+      for (const chip of c!.chips.slice(0, -1)) {
+        expect(Boolean(detectPost(chip) || detectMultiPostCountry(chip)), `${lang}: ${chip}`).toBe(true);
+      }
+    }
+  });
+});

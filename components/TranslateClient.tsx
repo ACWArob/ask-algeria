@@ -22,11 +22,17 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const cameraRef = useRef<HTMLInputElement>(null);
+  const pickId = useRef(0);
   const abortRef = useRef<AbortController | null>(null);
 
-  function pickFile(f: File | null) {
+  async function pickFile(f0: File | null) {
     setError(null);
-    if (!f) return setFile(null);
+    const pick = ++pickId.current;
+    if (!f0) return setFile(null);
+    // Phone photos are often 4–10 MB: shrink to a sharp 2000 px JPEG so they fit the upload limit.
+    const f = f0.type.startsWith("image/") && f0.size > 1_500_000 ? await shrinkImage(f0) : f0;
+    if (pick !== pickId.current) return; // a newer file was chosen while this one was shrinking
     if (!ACCEPT.includes(f.type)) {
       setError(t.badType);
       if (fileRef.current) fileRef.current.value = "";
@@ -121,10 +127,25 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
               id="doc-file"
               type="file"
               accept={ACCEPT.join(",")}
-              onChange={(e) => pickFile(e.target.files?.[0] ?? null)}
+              onChange={(e) => void pickFile(e.target.files?.[0] ?? null)}
               aria-describedby="file-hint"
               className="w-full text-sm file:me-3 file:min-h-[40px] file:cursor-pointer file:rounded-full file:border-0 file:bg-brand file:px-4 file:font-semibold file:text-brand-ink"
             />
+            <input
+              ref={cameraRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              onChange={(e) => void pickFile(e.target.files?.[0] ?? null)}
+            />
+            <button
+              type="button"
+              onClick={() => cameraRef.current?.click()}
+              className="min-h-[40px] rounded-full border border-brand/50 bg-paper px-4 font-semibold text-brand hover:bg-brand-soft"
+            >
+              {t.takePhoto}
+            </button>
             <p id="file-hint" className="text-sm text-muted">{t.uploadHint}</p>
             {file && (
               <button
@@ -198,4 +219,45 @@ function LockIcon() {
       <path d="M7 9V6.5a3 3 0 0 1 6 0V9" />
     </svg>
   );
+}
+
+/** Downscale a photo in the browser (longest side 2000 px, JPEG 0.85). Falls back to the original on failure. */
+async function shrinkImage(f: File): Promise<File> {
+  try {
+    let src: ImageBitmap | HTMLImageElement;
+    let w: number;
+    let h: number;
+    let release = () => {};
+    if (typeof createImageBitmap === "function") {
+      const bmp = await createImageBitmap(f);
+      src = bmp;
+      w = bmp.width;
+      h = bmp.height;
+      release = () => bmp.close();
+    } else {
+      // Older iOS: decode through an <img>.
+      const url = URL.createObjectURL(f);
+      const img = new Image();
+      await new Promise<void>((ok, bad) => {
+        img.onload = () => ok();
+        img.onerror = () => bad(new Error("decode"));
+        img.src = url;
+      });
+      src = img;
+      w = img.naturalWidth;
+      h = img.naturalHeight;
+      release = () => URL.revokeObjectURL(url);
+    }
+    const scale = Math.min(1, 2000 / Math.max(w, h));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(w * scale);
+    canvas.height = Math.round(h * scale);
+    canvas.getContext("2d")?.drawImage(src, 0, 0, canvas.width, canvas.height);
+    release();
+    const blob = await new Promise<Blob | null>((r) => canvas.toBlob(r, "image/jpeg", 0.85));
+    canvas.width = canvas.height = 0;
+    return blob ? new File([blob], f.name.replace(/\.\w+$/, "") + ".jpg", { type: "image/jpeg" }) : f;
+  } catch {
+    return f;
+  }
 }

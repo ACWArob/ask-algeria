@@ -159,13 +159,23 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
     },
   }));
 
-  function sendFeedback(turn: Turn, r: "up" | "down") {
+  function sendFeedback(turn: Turn, r: "up" | "down", reason?: string, comment?: string) {
     patch(turn.id, { feedback: r });
-    console.info("[feedback]", r, { lang: turn.meta?.answerLang, sources: turn.meta?.sources.length });
+    const idx = turnsRef.current.findIndex((x) => x.id === turn.id);
+    const context = turnsRef.current.slice(Math.max(0, idx - 3), idx).map((x) => x.question).join(" | ");
     void fetch("/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rating: r, lang: turn.meta?.answerLang, sources: turn.meta?.sources.length ?? 0 }),
+      body: JSON.stringify({
+        rating: r,
+        reason,
+        comment,
+        question: turn.question,
+        context,
+        answer: turn.answer.slice(0, 400),
+        lang: turn.meta?.answerLang,
+        sources: turn.meta?.sources.length ?? 0,
+      }),
     }).catch(() => {});
   }
 
@@ -262,7 +272,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
             turn={turn}
             dict={dict}
             locale={locale}
-            onFeedback={(r) => sendFeedback(turn, r)}
+            onFeedback={(r, reason, comment) => sendFeedback(turn, r, reason, comment)}
             onChip={i === turns.length - 1 ? (c) => void ask(c) : undefined}
           />
         ))}
@@ -279,7 +289,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
 
 const TurnView = forwardRef<
   HTMLLIElement,
-  { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down") => void; onChip?: (chip: string) => void }
+  { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down", reason?: string, comment?: string) => void; onChip?: (chip: string) => void }
 >(function TurnView(
   { turn, dict, locale, onFeedback, onChip },
   ref,
@@ -297,6 +307,12 @@ const TurnView = forwardRef<
   const answerLang = meta?.answerLang;
   const answerDir = answerLang === "ar" || answerLang === "dz" ? "rtl" : "ltr";
   const busy = status === "loading" || status === "streaming";
+  const [askWhy, setAskWhy] = useState(false);
+  const [reason, setReason] = useState<string | null>(null);
+  const [comment, setComment] = useState("");
+  const [showList, setShowList] = useState(false);
+  const steps = status === "done" ? checklistItems(turn.answer) : [];
+  const reasons = t.reasons as Record<string, string>;
 
   return (
     <li ref={ref} className="scroll-mt-24">
@@ -346,6 +362,37 @@ const TurnView = forwardRef<
           </div>
         )}
 
+        {status === "done" && !(meta?.chips && meta.chips.length) && steps.length >= 2 && (
+          <div className="mt-4">
+            {!showList ? (
+              <button type="button" onClick={() => setShowList(true)} className="link text-sm font-semibold">
+                {t.checklist}
+              </button>
+            ) : (
+              <Checklist items={steps} title={`${t.checklistTitle}: ${turn.question}`} dict={dict} dir={answerDir} onHide={() => setShowList(false)} />
+            )}
+          </div>
+        )}
+
+        {status === "done" && onChip && !(meta?.chips && meta.chips.length) && (meta?.followups?.length ?? 0) > 0 && (
+          <div className="mt-5">
+            <p className="text-xs font-semibold text-muted">{t.alsoAsk}</p>
+            <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label={t.alsoAsk}>
+              {meta!.followups!.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => onChip(f)}
+                  dir="auto"
+                  className="rounded-full border border-line bg-paper px-3.5 py-1.5 text-sm text-ink transition-colors hover:border-brand hover:bg-brand-soft"
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {meta && shownSources.length > 0 && !busy && (
           <section className="mt-6" aria-label={t.sources}>
             <h3 className="text-sm font-semibold text-muted">{t.sources}</h3>
@@ -384,17 +431,56 @@ const TurnView = forwardRef<
             <p className="mt-5 text-sm font-semibold text-ink">{dict.footer.confirm}</p>
             <div className="mt-3 flex items-center gap-1.5" role="group" aria-label={t.helpful}>
               <span className="me-1 text-xs text-muted">{turn.feedback ? t.thanks : t.helpful}</span>
-              {!turn.feedback && (
+              {!turn.feedback && !askWhy && (
                 <>
                   <button type="button" onClick={() => onFeedback("up")} aria-label={t.yes} title={t.yes} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
                     <ThumbIcon />
                   </button>
-                  <button type="button" onClick={() => onFeedback("down")} aria-label={t.no} title={t.no} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
+                  <button type="button" onClick={() => setAskWhy(true)} aria-label={t.no} title={t.no} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
                     <ThumbIcon down />
                   </button>
                 </>
               )}
             </div>
+            {askWhy && !turn.feedback && (
+              <div className="mt-2 rounded-2xl border border-line p-3">
+                <p className="text-sm font-semibold">{t.whyWrong}</p>
+                <div className="mt-2 flex flex-wrap gap-2" role="radiogroup" aria-label={t.whyWrong}>
+                  {Object.entries(reasons).map(([k, label]) => (
+                    <button
+                      key={k}
+                      type="button"
+                      role="radio"
+                      aria-checked={reason === k}
+                      onClick={() => setReason(k)}
+                      className={`rounded-full border px-3 py-1.5 text-sm ${reason === k ? "border-brand bg-brand text-white" : "border-line bg-paper hover:border-brand"}`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  maxLength={500}
+                  rows={2}
+                  dir="auto"
+                  placeholder={t.commentPlaceholder}
+                  className="field mt-2 w-full text-sm"
+                />
+                <div className="mt-2 flex items-center justify-between gap-3">
+                  <p className="text-xs text-muted">{t.feedbackNote}</p>
+                  <button
+                    type="button"
+                    disabled={!reason}
+                    onClick={() => onFeedback("down", reason ?? "other", comment.trim() || undefined)}
+                    className="shrink-0 rounded-full bg-brand px-4 py-1.5 text-sm font-semibold text-brand-ink disabled:opacity-40"
+                  >
+                    {t.send}
+                  </button>
+                </div>
+              </div>
+            )}
           </>
         )}
       </article>
@@ -407,5 +493,67 @@ function ThumbIcon({ down = false }: { down?: boolean }) {
     <svg viewBox="0 0 20 20" className={`h-4 w-4 ${down ? "rotate-180" : ""}`} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
       <path d="M6 9v8H3V9h3Zm0 0 3.5-6c1.2 0 2 .9 1.8 2.1L10.8 8H15a2 2 0 0 1 2 2.3l-1 5A2 2 0 0 1 14 17H6" />
     </svg>
+  );
+}
+
+/** Bullet / numbered lines from the answer's steps, without citations or markdown. */
+function checklistItems(answer: string): string[] {
+  return answer
+    .split("\n")
+    .map((l) => l.match(/^\s*(?:[-*•]|[0-9٠-٩]+[.)])\s+(.+)$/)?.[1] ?? "")
+    .map((l) => l.replace(/\[[0-9٠-٩,، ]+\]/g, "").replace(/\*\*|__|`/g, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[ \t]+([.,،])(?=\s|$)/g, "$1").trim())
+    .filter((l) => l.length > 3)
+    .slice(0, 15);
+}
+
+function Checklist({ items, title, dict, dir, onHide }: { items: string[]; title: string; dict: Dict; dir: "rtl" | "ltr"; onHide: () => void }) {
+  const t = dict.ask;
+  const [done, setDone] = useState<boolean[]>(() => items.map(() => false));
+  const [copied, setCopied] = useState(false);
+  const text = `${title}\n\n${items.map((it, i) => `${done[i] ? "☑" : "☐"} ${it}`).join("\n")}`;
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* clipboard blocked */
+    }
+  }
+  function print() {
+    const w = window.open("", "_blank");
+    if (!w) return;
+    const esc = (x: string) => x.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
+    w.document.write(`<html dir="${dir}"><title>${esc(title)}</title><body style="font-family:system-ui;padding:24px"><h2>${esc(title)}</h2><ul style="list-style:none;padding:0">${items.map((it) => `<li style="margin:8px 0">☐ ${esc(it)}</li>`).join("")}</ul></body></html>`);
+    w.document.close();
+    w.print();
+  }
+  return (
+    <section dir={dir} className="rounded-2xl border border-line bg-surface p-4" aria-label={t.checklistTitle}>
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="text-sm font-semibold">{t.checklistTitle}</h3>
+        <button type="button" onClick={onHide} className="link text-xs">{t.hide}</button>
+      </div>
+      <ul className="mt-2 space-y-1.5">
+        {items.map((it, i) => (
+          <li key={i}>
+            <label className="flex cursor-pointer items-start gap-2.5 text-[0.9375rem]">
+              <input
+                type="checkbox"
+                checked={done[i]}
+                onChange={() => setDone((d) => d.map((v, j) => (j === i ? !v : v)))}
+                className="mt-1 h-4 w-4 shrink-0 accent-brand"
+              />
+              <span className={done[i] ? "text-muted line-through" : ""}>{it}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-3 flex flex-wrap gap-2 text-sm">
+        <button type="button" onClick={copy} className="rounded-full border border-line bg-paper px-3 py-1 hover:border-brand">{copied ? t.copied : t.copy}</button>
+        <a href={`https://wa.me/?text=${encodeURIComponent(text)}`} target="_blank" rel="noopener noreferrer" className="rounded-full border border-line bg-paper px-3 py-1 hover:border-brand">{t.shareWhatsApp}</a>
+        <button type="button" onClick={print} className="rounded-full border border-line bg-paper px-3 py-1 hover:border-brand">{t.print}</button>
+      </div>
+    </section>
   );
 }

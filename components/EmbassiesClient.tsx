@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { formatDate } from "@/lib/dates";
 import { fmt, type Dict, type Locale } from "@/lib/i18n";
 import { ExternalIcon } from "./Icon";
+import { detectMultiPostCountry, detectPost } from "@/lib/posts";
 
 export interface MissionView {
   id: string;
@@ -55,18 +56,18 @@ export function EmbassiesClient({
   dict,
   locale,
   groups,
-  usStates,
+  offices,
 }: {
   dict: Dict;
   locale: Locale;
   groups: CountryGroup[];
-  usStates: { state: string; missionId: string; post: string }[];
+  offices: Record<string, { id: string; post: string }>;
 }) {
   const t = dict.embassies;
   const types = t.types as Record<string, string>;
   const [q, setQ] = useState("");
   const [type, setType] = useState("all");
-  const [state, setState] = useState("");
+  const [where, setWhere] = useState("");
   const [highlight, setHighlight] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
@@ -80,7 +81,20 @@ export function EmbassiesClient({
   }, [q, type, groups]);
   const total = filtered.reduce((a, g) => a + g.missions.length, 0);
 
-  const chosen = usStates.find((s) => s.state === state);
+  // Any city, state or country, in any language (same rules as the chat).
+  const found = useMemo(() => {
+    const text = where.trim();
+    if (text.length < 2) return null;
+    const hit = detectPost(text);
+    if (hit?.inAlgeria) return { kind: "algeria" as const };
+    if (hit) {
+      const office = hit.domains.map((d) => offices[d.replace(/^www\./, "")]).find(Boolean);
+      return office ? { kind: "office" as const, place: text, ...office } : { kind: "unknown" as const };
+    }
+    const country = detectMultiPostCountry(text);
+    if (country) return { kind: "city" as const };
+    return { kind: "unknown" as const };
+  }, [where, offices]);
 
   function showMission(id: string) {
     setQ("");
@@ -96,36 +110,37 @@ export function EmbassiesClient({
 
   return (
     <div>
-      <section aria-labelledby="us-helper" className="rounded-3xl border border-line bg-surface p-5 sm:p-6">
-        <h2 id="us-helper" className="display text-lg font-semibold">{t.usTitle}</h2>
+      <section aria-labelledby="find-office" className="rounded-3xl border border-line bg-surface p-5 sm:p-6">
+        <h2 id="find-office" className="display text-lg font-semibold">{t.usTitle}</h2>
         <div className="mt-3 flex flex-wrap items-end gap-3">
-          <div className="w-full sm:w-72">
-            <label htmlFor="us-state" className="mb-1.5 block text-sm font-semibold">{t.usLabel}</label>
-            <select
-              id="us-state"
-              value={state}
-              onChange={(e) => {
-                setState(e.target.value);
-                const s = usStates.find((x) => x.state === e.target.value);
-                if (s?.missionId) showMission(s.missionId);
+          <div className="w-full sm:w-80">
+            <label htmlFor="where" className="mb-1.5 block text-sm font-semibold">{t.usLabel}</label>
+            <input
+              id="where"
+              type="text"
+              value={where}
+              onChange={(e) => setWhere(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && found?.kind === "office") showMission(found.id);
               }}
+              placeholder={t.usChoose}
               className="field bg-paper"
-              dir="ltr"
-            >
-              <option value="">{t.usChoose}</option>
-              {usStates.map((s) => (
-                <option key={s.state} value={s.state}>{s.state}</option>
-              ))}
-            </select>
+              autoComplete="off"
+            />
           </div>
-          {chosen && (
+          {found && (
             <p className="flex-1 pb-2.5 text-[0.9375rem]" role="status">
-              {fmt(t.usResult, { state: chosen.state, post: chosen.post })}{" "}
-              {chosen.missionId && (
-                <button type="button" className="link font-semibold" onClick={() => showMission(chosen.missionId)}>
-                  {t.show}
-                </button>
+              {found.kind === "office" && (
+                <>
+                  {fmt(t.usResult, { state: found.place, post: found.post })}{" "}
+                  <button type="button" className="link font-semibold" onClick={() => showMission(found.id)}>
+                    {t.show}
+                  </button>
+                </>
               )}
+              {found.kind === "algeria" && t.findAlgeria}
+              {found.kind === "city" && t.findCity}
+              {found.kind === "unknown" && t.findUnknown}
             </p>
           )}
         </div>

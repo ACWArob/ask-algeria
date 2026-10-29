@@ -75,7 +75,27 @@
     "checked": "Checked {date}",
     "archived": "Archived copy, {date}",
     "archivedNote": "Some details come from archived copies of official pages (dates shown on each source). They may have changed since.",
-    "disagree": "Some official pages disagree on details of this answer. Confirm with the office."
+    "disagree": "Some official pages disagree on details of this answer. Confirm with the office.",
+    "alsoAsk": "You can also ask",
+    "whyWrong": "What was wrong?",
+    "reasons": {
+      "wrong_info": "Wrong information",
+      "wrong_office": "Wrong office or country",
+      "not_answered": "Didn't answer my question",
+      "wrong_language": "Wrong language",
+      "other": "Something else"
+    },
+    "commentPlaceholder": "Optional: tell us what the right answer is",
+    "send": "Send",
+    "feedbackNote": "Your question is saved with your feedback (personal details removed) to improve answers.",
+    "checklist": "Make a checklist",
+    "checklistTitle": "Checklist",
+    "copy": "Copy",
+    "copied": "Copied",
+    "share": "Share",
+    "shareWhatsApp": "WhatsApp",
+    "print": "Print",
+    "hide": "Hide"
   },
   "translate": {
     "heading": "Understand an official document",
@@ -99,7 +119,8 @@
     "needInput": "Paste some text or choose a file first.",
     "result": "Result",
     "error": "We couldn't process that document. Try again, or try a clearer scan.",
-    "disclaimer": "Machine translation can contain mistakes. For anything official, rely on the original document."
+    "disclaimer": "Machine translation can contain mistakes. For anything official, rely on the original document.",
+    "takePhoto": "📷 Take a photo"
   },
   "directory": {
     "heading": "Official sites",
@@ -177,7 +198,7 @@
   },
   "guide": {
     "back": "All services",
-    "abroadNote": "These sources are mainly consular pages for Algerians living abroad (embassies and consulates in Washington, London, Milan and San Francisco). Rules, documents and fees can differ at your consulate or in Algeria.",
+    "abroadNote": "Many of these sources are consular pages for Algerians living abroad (consulates in France, Canada, the UK, the US and elsewhere). Rules, documents and fees can differ at your consulate or in Algeria.",
     "feesTitle": "Fees as stated by each consulate",
     "office": "Where",
     "sourcesTitle": "Sources",
@@ -212,13 +233,16 @@
     "mfa": "Ministry of Foreign Affairs",
     "faxNote": "The page doesn't label the numbers: the second one may be a fax.",
     "note": "Note",
-    "usTitle": "Which consulate covers me? (United States)",
-    "usLabel": "Your state",
-    "usChoose": "Choose your state",
+    "usTitle": "Which consulate covers me?",
+    "usLabel": "Where do you live?",
+    "usChoose": "City, state or country, e.g. Lyon, Toronto, Texas",
     "usResult": "{state} is served by the {post}.",
     "show": "Show it",
     "homeName": "Embassies & consulates",
     "homeLine": "Addresses, phones and hours of Algeria's missions abroad.",
-    "homeCta": "Find yours"
+    "homeCta": "Find yours",
+    "findAlgeria": "In Algeria, these procedures are done at your commune (APC) or daïra, not at a consulate. Ask in the chat for the steps.",
+    "findCity": "This country has several Algerian consulates. Type your city.",
+    "findUnknown": "Not recognised. Search the list below by country."
   }
 }

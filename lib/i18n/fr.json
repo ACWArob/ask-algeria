@@ -75,7 +75,27 @@
     "checked": "Vérifié le {date}",
     "archived": "Copie archivée, {date}",
     "archivedNote": "Certains détails viennent de copies archivées de pages officielles (dates indiquées sur chaque source). Ils ont pu changer depuis.",
-    "disagree": "Certaines pages officielles divergent sur des détails de cette réponse. Confirmez auprès du service."
+    "disagree": "Certaines pages officielles divergent sur des détails de cette réponse. Confirmez auprès du service.",
+    "alsoAsk": "Vous pouvez aussi demander",
+    "whyWrong": "Qu'est-ce qui n'allait pas ?",
+    "reasons": {
+      "wrong_info": "Information fausse",
+      "wrong_office": "Mauvais bureau ou pays",
+      "not_answered": "N'a pas répondu à ma question",
+      "wrong_language": "Mauvaise langue",
+      "other": "Autre chose"
+    },
+    "commentPlaceholder": "Facultatif : dites-nous quelle est la bonne réponse",
+    "send": "Envoyer",
+    "feedbackNote": "Votre question est enregistrée avec votre avis (données personnelles retirées) pour améliorer les réponses.",
+    "checklist": "Faire une checklist",
+    "checklistTitle": "Checklist",
+    "copy": "Copier",
+    "copied": "Copié",
+    "share": "Partager",
+    "shareWhatsApp": "WhatsApp",
+    "print": "Imprimer",
+    "hide": "Masquer"
   },
   "translate": {
     "heading": "Comprendre un document officiel",
@@ -99,7 +119,8 @@
     "needInput": "Collez un texte ou choisissez d'abord un fichier.",
     "result": "Résultat",
     "error": "Impossible de traiter ce document. Réessayez, ou utilisez un scan plus net.",
-    "disclaimer": "La traduction automatique peut comporter des erreurs. Pour toute démarche officielle, fiez-vous au document original."
+    "disclaimer": "La traduction automatique peut comporter des erreurs. Pour toute démarche officielle, fiez-vous au document original.",
+    "takePhoto": "📷 Prendre une photo"
   },
   "directory": {
     "heading": "Sites officiels",
@@ -177,7 +198,7 @@
   },
   "guide": {
     "back": "Tous les services",
-    "abroadNote": "Ces sources sont surtout des pages consulaires destinées aux Algériens établis à l'étranger (ambassade et consulats à Washington, Londres, Milan et San Francisco). Les règles, pièces et tarifs peuvent différer dans votre consulat ou en Algérie.",
+    "abroadNote": "Une partie de ces sources sont des pages consulaires pour les Algériens établis à l'étranger (consulats en France, au Canada, au Royaume-Uni, aux États-Unis et ailleurs). Les règles, documents et frais peuvent différer selon votre consulat ou en Algérie.",
     "feesTitle": "Tarifs indiqués par chaque consulat",
     "office": "Où",
     "sourcesTitle": "Sources",
@@ -212,13 +233,16 @@
     "mfa": "Ministère des Affaires étrangères",
     "faxNote": "Les numéros ne sont pas étiquetés sur la page : le second est peut-être un fax.",
     "note": "Remarque",
-    "usTitle": "Quel consulat me couvre ? (États-Unis)",
-    "usLabel": "Votre État",
-    "usChoose": "Choisissez votre État",
+    "usTitle": "Quel consulat me couvre ?",
+    "usLabel": "Où habitez-vous ?",
+    "usChoose": "Ville, État ou pays, ex. Lyon, Toronto, Texas",
     "usResult": "{state} relève du poste suivant : {post}.",
     "show": "Afficher",
     "homeName": "Ambassades et consulats",
     "homeLine": "Adresses, téléphones et horaires des postes algériens à l'étranger.",
-    "homeCta": "Trouver le vôtre"
+    "homeCta": "Trouver le vôtre",
+    "findAlgeria": "En Algérie, ces démarches se font à votre commune (APC) ou daïra, pas dans un consulat. Demandez les étapes dans le chat.",
+    "findCity": "Ce pays compte plusieurs consulats algériens. Indiquez votre ville.",
+    "findUnknown": "Lieu non reconnu. Cherchez votre pays dans la liste ci-dessous."
   }
 }

@@ -32,6 +32,8 @@ export interface AskMeta {
   detectedLang: Locale | null;
   /** One-tap answers to a clarifying question asked before answering. */
   chips?: string[];
+  /** One-tap next questions for this topic, shown under a finished answer. */
+  followups?: string[];
   sources: { n: number; title: string; url: string; domain: string; checked?: string | null; archived?: string }[];
   /** Number of cross-source verification notes given to the model (conflicts / possibly outdated). */
   notes?: number;

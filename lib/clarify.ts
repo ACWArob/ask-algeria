@@ -13,19 +13,19 @@ export interface Clarify {
 const COUNTRY: Record<Locale, Clarify> = {
   en: {
     text: "This depends on where you live: abroad it's handled by your Algerian consulate, in Algeria by your commune (APC) or daïra, and documents and fees differ by office.\n\n**Where do you live?**",
-    chips: ["I live in Algeria", "USA", "France", "Canada", "United Kingdom", "Another country"],
+    chips: ["I live in Algeria", "France", "Canada", "Spain", "Belgium", "United Kingdom", "USA", "Another country"],
   },
   fr: {
     text: "Cela dépend de votre lieu de résidence : à l'étranger, c'est votre consulat algérien ; en Algérie, votre commune (APC) ou daïra, et les pièces et frais varient selon le bureau.\n\n**Où habitez-vous ?**",
-    chips: ["J'habite en Algérie", "France", "États-Unis", "Canada", "Royaume-Uni", "Autre pays"],
+    chips: ["J'habite en Algérie", "France", "Canada", "Espagne", "Belgique", "Royaume-Uni", "États-Unis", "Autre pays"],
   },
   ar: {
     text: "يعتمد ذلك على مكان إقامتك: في الخارج تتولاه القنصلية الجزائرية التابع لها، وفي الجزائر البلدية أو الدائرة، وتختلف الوثائق والرسوم حسب الجهة.\n\n**أين تقيم؟**",
-    chips: ["أقيم في الجزائر", "الولايات المتحدة", "فرنسا", "كندا", "المملكة المتحدة", "بلد آخر"],
+    chips: ["أقيم في الجزائر", "فرنسا", "كندا", "إسبانيا", "بلجيكا", "المملكة المتحدة", "الولايات المتحدة", "بلد آخر"],
   },
   dz: {
     text: "هادي تتبدّل على حساب وين ساكن: برا تديرها في القنصلية تاعك، وفي الدزاير في البلدية ولا الدائرة، والوراق والثمن يتبدّلو من بلاصة لبلاصة.\n\n**وين راك ساكن؟**",
-    chips: ["راني في الدزاير", "أمريكا", "فرنسا", "كندا", "بريطانيا", "بلاد أخرى"],
+    chips: ["راني في الدزاير", "فرانسا", "كندا", "سبانيا", "بلجيكا", "بريطانيا", "أمريكا", "بلاد أخرى"],
   },
 };
 

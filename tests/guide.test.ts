@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import corpus from "@/data/corpus.json";
 import services from "@/data/services.json";
 import { PASSPORT_GUIDE } from "@/lib/guides/passport";
+import { GUIDES } from "@/lib/guides";
 import { LOCALES } from "@/lib/i18n";
 
 const ids = new Set((corpus as { id: string }[]).map((r) => r.id));
@@ -32,6 +33,30 @@ describe("services.json", () => {
         expect(s.question[l], `${s.id} question ${l}`).toBeTruthy();
       }
       for (const p of s.portals) expect(p.url).toMatch(/^https?:\/\//);
+    }
+  });
+});
+
+describe("all service guides", () => {
+  for (const [slug, g] of Object.entries(GUIDES)) {
+    it(`${slug}: cites only real corpus records, in all four languages`, () => {
+      const all = [...g.sections.flatMap((s) => s.points.flatMap((p) => p.cites)), ...g.fees.flatMap((f) => f.cites)];
+      expect(all.length, slug).toBeGreaterThan(0);
+      for (const id of all) expect(ids.has(id), `${slug}: ${id}`).toBe(true);
+      for (const l of LOCALES) {
+        expect(g.title[l] && g.lead[l], `${slug} ${l}`).toBeTruthy();
+        for (const s of g.sections) for (const p of s.points) expect(p.text[l], `${slug} ${s.id} ${l}`).toBeTruthy();
+      }
+    });
+  }
+  it("Darija is Algerian, not Moroccan", () => {
+    for (const [slug, g] of Object.entries(GUIDES))
+      for (const s of g.sections) for (const p of s.points) expect(p.text.dz, slug).not.toMatch(/(?<![\p{L}])(ديال|دابا|بغيت)(?![\p{L}])/u);
+  });
+  it("every service card that links a guide points at a real guide", () => {
+    for (const s of services as { page?: string }[]) {
+      const slug = s.page?.match(/^\/services\/([\w-]+)/)?.[1];
+      if (slug) expect(GUIDES[slug], s.page).toBeTruthy();
     }
   });
 });

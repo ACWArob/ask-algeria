@@ -8,6 +8,7 @@ const nextConfig = {
       // Server code reads these at runtime (corpus, index, page-state, accuracy report).
       "/api/ask": ["./data/*.json"],
       "/services/passport": ["./data/*.json"],
+      "/services/[slug]": ["./data/*.json"],
       "/directory": ["./data/*.json"],
     },
   },

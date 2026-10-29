@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { EmbassiesClient, type CountryGroup, type MissionView } from "@/components/EmbassiesClient";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
-import { FAX_NOTE, MISSION_TYPES, PUBLIC_NOTE, safeUrl, MISSIONS, foldText, matchMissions, missionCountry, missionName, parsePhone } from "@/lib/missions";
-import { usStateOffices } from "@/lib/posts";
+import { FAX_NOTE, MISSION_TYPES, PUBLIC_NOTE, safeUrl, MISSIONS, foldText, missionCountry, missionHosts, missionName, parsePhone } from "@/lib/missions";
 
 export function generateMetadata(): Metadata {
   return { title: getDict(getLocale()).embassies.heading };
@@ -58,17 +57,18 @@ export default function EmbassiesPage() {
     }))
     .sort((a, b) => a.country.localeCompare(b.country, sortTag));
 
-  const usStates = usStateOffices().map((s) => {
-    const m = matchMissions("", s.domains, 1)[0];
-    return { state: s.state, missionId: m?.id ?? "", post: m ? missionName(m, locale) : s.post };
-  });
+  // Office lookup for the "which consulate covers me?" box: website host (or <id>.mfa.gov.dz) → mission.
+  const offices: Record<string, { id: string; post: string }> = {};
+  for (const m of MISSIONS) {
+    for (const h of [...missionHosts(m), `${m.id}.mfa.gov.dz`]) offices[h] ??= { id: m.id, post: missionName(m, locale) };
+  }
 
   return (
     <div className="pt-10 sm:pt-14">
       <h1 className="display text-4xl font-bold sm:text-5xl">{dict.embassies.heading}</h1>
       <p className="mt-4 max-w-prose text-lg text-muted">{dict.embassies.sub}</p>
       <div className="mt-10">
-        <EmbassiesClient dict={dict} locale={locale} groups={groups} usStates={usStates} />
+        <EmbassiesClient dict={dict} locale={locale} groups={groups} offices={offices} />
       </div>
     </div>
   );

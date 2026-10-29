@@ -40,6 +40,9 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-28 — guide pages were prebuilt (generateStaticParams) and would ignore the language cookie — pages that read cookies must be `dynamic = "force-dynamic"`.
+- 2026-10-28 — follow-up detection matched "son" inside "person" — keyword regexes use Unicode word lookarounds, always.
+- 2026-10-28 — user said "France" but got an answer for the connection's city (Ohio) — a named country disables geo; ask which city.
 - 2026-10-28 — "hours of the consulate in Beijing" answered for the user's connection city (Ohio) — a mission named in a contact question beats geo; only for contact questions, or "France" would skip the city question.
 - 2026-10-28 — "register my marriage in Algeria" (said from abroad) was read as living in Algeria — plain "in Algeria/في الجزائر" is not a residence; only "I live in / ساكن في / j'habite en" counts.
 - 2026-10-28 — moved Netlify → Vercel — geo comes from x-vercel-ip-country/-region/-city; data/*.json must stay in outputFileTracingIncludes.

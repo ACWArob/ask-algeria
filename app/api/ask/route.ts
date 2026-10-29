@@ -17,6 +17,7 @@ import { corpusById } from "@/lib/corpus";
 import { detectPost, detectMultiPostCountry, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
+import { followUps } from "@/lib/followups";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
 export const runtime = "nodejs";
@@ -80,7 +81,9 @@ export async function POST(req: Request) {
     : null;
   const statedPost = detectPost(question) ?? missionPost ?? detectPost(context);
   // Fall back to the approximate location of the connection (e.g. Netlify geo), but say so in the answer.
-  const geoPost = statedPost ? null : postFromGeo(readGeo(req.headers));
+  // Never when they named a country ("France"): then we ask which city instead of using where the connection is.
+  const namedCountry = detectMultiPostCountry(`${context} ${question}`);
+  const geoPost = statedPost || namedCountry ? null : postFromGeo(readGeo(req.headers));
   const post = statedPost ?? geoPost;
   const multiPostCountry = post ? null : detectMultiPostCountry(`${context} ${question}`);
   const topics = questionTopics(`${context} ${question}`);
@@ -176,6 +179,7 @@ export async function POST(req: Request) {
     sources: promptSources.map(({ n, title, url, domain, checked, archived }) => ({ n, title, url, domain, checked, archived })),
     notes: notes.length,
     redactedServer: removed,
+    followups: followUps(topics, `${context} ${question}`, answerLang),
   };
 
   const enc = new TextEncoder();
