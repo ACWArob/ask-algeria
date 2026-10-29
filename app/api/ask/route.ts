@@ -14,10 +14,10 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
-import { detectPost, detectMultiPostCountry, postFromGeo, readGeo } from "@/lib/posts";
+import { detectPost, detectMultiPostCountry, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
-import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
+import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -72,7 +72,13 @@ export async function POST(req: Request) {
     typeof body.prevAnswer === "string" ? redact(body.prevAnswer.replace(/\u0000ERROR/g, "").trim().slice(0, 700)).text : "";
 
   const started = Date.now();
-  const statedPost = detectPost(question) ?? detectPost(context);
+  // A mission named in the question ("the consulate in Beijing") is the office they mean, even if that city
+  // isn't in the place tables; it also beats the connection's location.
+  const namedMission = !detectPost(question) && isMissionContactQuestion(question) ? matchMissions(question, [], 1)[0] : undefined;
+  const missionPost: PostHint | null = namedMission
+    ? { place: namedMission.city, post: namedMission.name_en, site: namedMission.website || undefined, domains: missionHosts(namedMission) }
+    : null;
+  const statedPost = detectPost(question) ?? missionPost ?? detectPost(context);
   // Fall back to the approximate location of the connection (e.g. Netlify geo), but say so in the answer.
   const geoPost = statedPost ? null : postFromGeo(readGeo(req.headers));
   const post = statedPost ?? geoPost;
