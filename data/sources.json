@@ -184,8 +184,8 @@
     "name_en": "Ministry of Religious Affairs and Wakfs",
     "name_fr": "Ministère des Affaires Religieuses et des Wakfs",
     "name_ar": "وزارة الشؤون الدينية والأوقاف",
-    "domain": "marw.dz",
-    "url": "https://www.marw.dz/",
+    "domain": "marw.gov.dz",
+    "url": "https://marw.gov.dz/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -197,7 +197,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://marw.gov.dz/ (was https://www.marw.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -224,8 +224,8 @@
     "name_en": "Ministry of Post and Telecommunications",
     "name_fr": "Ministère de la Poste et des Télécommunications",
     "name_ar": "وزارة البريد والمواصلات السلكية واللاسلكية",
-    "domain": "mpt.dz",
-    "url": "https://www.mpt.dz/",
+    "domain": "mpt.gov.dz",
+    "url": "https://www.mpt.gov.dz/fr/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -237,15 +237,15 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "MFA list uses mpt.dz; mpt.gov.dz also responded robots (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mpt.gov.dz/fr/ (was https://www.mpt.dz/). MFA list uses mpt.dz; mpt.gov.dz also responded robots (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
     "name_en": "Ministry of Youth and Sports",
     "name_fr": "Ministère de la Jeunesse et des Sports",
     "name_ar": "وزارة الشباب والرياضة",
-    "domain": "mjs.gov.dz",
-    "url": "https://www.mjs.gov.dz/",
+    "domain": "msport.gov.dz",
+    "url": "https://msport.gov.dz/fr/accueil/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -257,15 +257,15 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://msport.gov.dz/fr/accueil/ (was https://www.mjs.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
     "name_en": "Ministry of Industry",
     "name_fr": "Ministère de l'Industrie",
     "name_ar": "وزارة الصناعة",
-    "domain": "mdipi.gov.dz",
-    "url": "https://www.mdipi.gov.dz/",
+    "domain": "industrie.gov.dz",
+    "url": "https://www.industrie.gov.dz/fr/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -277,15 +277,15 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.industrie.gov.dz/fr/ (was https://www.mdipi.gov.dz/). Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
     "name_en": "Ministry of Agriculture and Rural Development",
     "name_fr": "Ministère de l'Agriculture et du Développement Rural",
     "name_ar": "وزارة الفلاحة والتنمية الريفية",
-    "domain": "minagri.dz",
-    "url": "https://www.minagri.dz/",
+    "domain": "madr.gov.dz",
+    "url": "https://madr.gov.dz/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -297,7 +297,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://madr.gov.dz/ (was https://www.minagri.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -324,8 +324,8 @@
     "name_en": "Ministry of Public Works and Transport",
     "name_fr": "Ministère des Travaux Publics et des Transports",
     "name_ar": "وزارة الأشغال العمومية",
-    "domain": "mtp.gov.dz",
-    "url": "https://www.mtp.gov.dz/",
+    "domain": "mt.gov.dz",
+    "url": "https://www.mt.gov.dz/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -337,7 +337,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mt.gov.dz/ (was https://www.mtp.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -405,8 +405,8 @@
     "name_en": "Ministry of Environment",
     "name_fr": "Ministère de l'Environnement",
     "name_ar": "وزارة البيئة",
-    "domain": "meer.gov.dz",
-    "url": "https://www.meer.gov.dz/",
+    "domain": "me.gov.dz",
+    "url": "https://www.me.gov.dz/fr/e-services/",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -418,7 +418,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.me.gov.dz/fr/e-services/ (was https://www.meer.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -807,8 +807,8 @@
     "name_en": "CASNOS – Social Security for Self-Employed",
     "name_fr": "Caisse Nationale de Sécurité Sociale des Non-Salariés",
     "name_ar": "الصندوق الوطني للضمان الاجتماعي لغير الأجراء",
-    "domain": "casnos.com.dz",
-    "url": "https://casnos.com.dz/",
+    "domain": "casnos.dz",
+    "url": "https://www.casnos.dz/",
     "category": "social-protection",
     "languages": [
       "ar",
@@ -820,7 +820,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Guide (demarchesdz) labels casnos.com.dz official; damancom.casnos.dz linked from it",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.casnos.dz/ (was https://casnos.com.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 3
   },
   {
@@ -1086,8 +1086,8 @@
     "name_en": "Parents' Space (Awlya)",
     "name_fr": "Espace Parents",
     "name_ar": "فضاء أولياء التلاميذ",
-    "domain": "awlya.education.gov.dz",
-    "url": "https://awlya.education.gov.dz/",
+    "domain": "awlyaa.education.dz",
+    "url": "https://awlyaa.education.dz/",
     "category": "jobs-education",
     "languages": [
       "ar",
@@ -1099,15 +1099,15 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360 hyperlink (text says awlya.education.dz - inconsistent)",
-    "notes": "Verify exact host",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://awlyaa.education.dz/ (was https://awlya.education.gov.dz/). Verify exact host",
     "pages": 0
   },
   {
     "name_en": "Tawdif – Education Sector Recruitment",
     "name_fr": "Tawdif – Recrutement secteur de l'éducation",
     "name_ar": "منصة التوظيف",
-    "domain": "tawdif.education.gov.dz",
-    "url": "https://tawdif.education.gov.dz/",
+    "domain": "tawdif.education.dz",
+    "url": "https://tawdif.education.dz/",
     "category": "jobs-education",
     "languages": [
       "ar",
@@ -1119,7 +1119,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "MEA Tech Watch report on 2025 recruitment platform",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://tawdif.education.dz/ (was https://tawdif.education.gov.dz/).",
     "pages": 0
   },
   {
@@ -1248,8 +1248,8 @@
     "name_en": "Ministry of Vocational Training and Education",
     "name_fr": "Ministère de la Formation et de l'Enseignement Professionnels",
     "name_ar": "وزارة التكوين والتعليم المهنيين",
-    "domain": "mfep.gov.dz",
-    "url": "https://www.mfep.gov.dz/",
+    "domain": "mvet.gov.dz",
+    "url": "https://mvet.gov.dz/",
     "category": "jobs-education",
     "languages": [
       "ar",
@@ -1261,7 +1261,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://mvet.gov.dz/ (was https://www.mfep.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1590,8 +1590,8 @@
     "name_en": "Civil Protection",
     "name_fr": "Direction Générale de la Protection Civile",
     "name_ar": "المديرية العامة للحماية المدنية",
-    "domain": "protectioncivile.dz",
-    "url": "https://www.protectioncivile.dz/",
+    "domain": "dgpc.dz",
+    "url": "https://dgpc.dz/",
     "category": "police-safety",
     "languages": [
       "ar",
@@ -1603,7 +1603,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Wikipedia official website; wilayaoran.dz also links dgpc.dz",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://dgpc.dz/ (was https://www.protectioncivile.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -2207,9 +2207,9 @@
     "description": "Export procedures, trade fairs, export support",
     "priority": 2,
     "reachable": true,
-    "fetch_status": "ok",
+    "fetch_status": "dead",
     "evidence": "Site states ALGEX is an EPA created by executive decree 04-174 of 12 June 2004.",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.commerce.gov.dz/fr/agence-nationale-de-la-promotion-du-commerce-exterieur-algex (commerce.gov.dz, already listed) (was https://www.algex.dz/). Not crawled.",
     "pages": 1
   },
   {
@@ -2653,9 +2653,9 @@
     "description": "Official Q&A for new bachelors and students",
     "priority": 2,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Languages not verified",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mesrs.dz/fr/plateformes-mesrs/ (mesrs.dz, already listed) (was https://ask.mesrs.dz/). Not crawled. Languages not verified",
     "pages": 0
   },
   {
@@ -3297,9 +3297,9 @@
     "description": "Trade register procedures, fees, legal publications (BOAL)",
     "priority": 1,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Parent domain of sidjilcom.cnrc.dz (already in verified list); Ministry of Trade has a dedicated 'Portail du CNRC' page (commerce.gov.dz/fr/portail-du-cnrc) in search index",
-    "notes": "Main domain not read directly (robots)",
+    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://sidjilcom.cnrc.dz/ (already listed) (was https://www.cnrc.dz/). Not crawled. Main domain not read directly (robots)",
     "pages": 0
   },
   {

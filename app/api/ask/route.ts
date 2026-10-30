@@ -213,7 +213,7 @@ export async function POST(req: Request) {
     return new Response(out, { headers });
   }
 
-  const MUST = ["mjustice.dz", "marw.dz", "aadl.dz", "interieur.gov.dz", "mfdgi.gov.dz", "cnas.dz", "casnos.com.dz", "anem.dz", "onec.dz", "poste.dz", "dzds.dz", "mfa.gov.dz"];
+  const MUST = ["mjustice.dz", "marw.gov.dz", "aadl.dz", "interieur.gov.dz", "mfdgi.gov.dz", "cnas.dz", "casnos.dz", "anem.dz", "onec.dz", "poste.dz", "dzds.dz", "mfa.gov.dz"];
   const fallbackList = [
     ...SOURCES.filter((s) => MUST.includes(s.domain.replace(/^www\./, ""))),
     ...[...SOURCES].sort((a, b) => a.priority - b.priority),

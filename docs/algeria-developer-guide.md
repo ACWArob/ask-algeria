@@ -114,7 +114,7 @@ Some services are portals behind a login, so the crawler can't see them. **Don't
   - [ ] jibayatic.mf.gov.dz, nifenligne.mf.gov.dz (tax)
   - [ ] sidjilcom.cnrc.dz (commercial register)
   - [ ] progres.mesrs.dz, bac.mesrs.dz, bac.onec.dz, bem.onec.dz (education and exams)
-  - [ ] tawdif.education.gov.dz, awlya.education.gov.dz (education services)
+  - [ ] tawdif.education.dz, awlyaa.education.dz (education services)
 - [ ] Name files like `passeport.interieur.gov.dz - documents a fournir.pdf`
 - [ ] Put them all in one Google Drive folder and share it with Adam
 - [ ] ⚠️ Never save a page that shows **your own** name, ID number or account details

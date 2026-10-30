@@ -46,7 +46,7 @@ export const GUIDE = {
     { url: "https://teledeclaration.cnas.dz/el_djalya.xhtml", label: { en: "CNAS voluntary affiliation for Algerians abroad", fr: "CNAS : affiliation volontaire des Algériens de l'étranger", ar: "كناص: الانتساب الإرادي للجزائريين بالخارج", dz: "كناص: الانتساب الاختياري للجزائريين في الغربة" } as L },
     { url: "https://elhanaa.cnas.dz/", label: { en: "CNAS El-Hanaa insured-person space", fr: "Espace assuré El-Hanaa (CNAS)", ar: "فضاء المؤمَّن له «الهناء» (كناص)", dz: "فضاء الهناء تاع المؤمَّنين (كناص)" } as L },
     { url: "https://www.cnas.dz/", label: { en: "CNAS (employees)", fr: "CNAS (salariés)", ar: "كناص (الأجراء)", dz: "كناص (الأجراء)" } as L },
-    { url: "https://casnos.com.dz/", label: { en: "CASNOS (self-employed)", fr: "CASNOS (non-salariés)", ar: "كاسنوس (غير الأجراء)", dz: "كاسنوس (غير الأجراء)" } as L },
+    { url: "https://www.casnos.dz/", label: { en: "CASNOS (self-employed)", fr: "CASNOS (non-salariés)", ar: "كاسنوس (غير الأجراء)", dz: "كاسنوس (غير الأجراء)" } as L },
     { url: "https://damancom.casnos.dz/", label: { en: "Damancom (CASNOS online services)", fr: "Damancom (services en ligne CASNOS)", ar: "ضمانكم (خدمات كاسنوس عن بعد)", dz: "ضمانكم (خدمات كاسنوس من الأنترنت)" } as L },
   ],
   sections: [

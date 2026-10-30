@@ -41,6 +41,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-30 — 15 of our site links were wrong (old/renamed ministry domains) — the tester in Algeria is the check; take her corrected links, keep archived pages under their original URL.
 - 2026-10-28 — Lyon passport answer cited Médéa wilaya pages — someone living abroad gets no wilaya-portal sources (category "wilayas" in sources.json).
 - 2026-10-28 — guide pages were prebuilt (generateStaticParams) and would ignore the language cookie — pages that read cookies must be `dynamic = "force-dynamic"`.
 - 2026-10-28 — follow-up detection matched "son" inside "person" — keyword regexes use Unicode word lookarounds, always.
