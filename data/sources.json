@@ -164,8 +164,8 @@
     "name_en": "Ministry of Mujahideen and Rights Holders",
     "name_fr": "Ministère des Moudjahidine et des Ayants Droit",
     "name_ar": "وزارة المجاهدين وذوي الحقوق",
-    "domain": "m-moudjahidine.dz",
-    "url": "https://www.m-moudjahidine.dz/",
+    "domain": "mmad.gov.dz",
+    "url": "https://mmad.gov.dz/",
     "category": "social-protection",
     "languages": [
       "ar",
@@ -177,7 +177,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): correct site is https://mmad.gov.dz/ (was https://www.m-moudjahidine.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 15
   },
   {
@@ -355,17 +355,17 @@
     "description": "Water policy, water supply programmes",
     "priority": 3,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): link points to https://www.ade.dz/ (already listed); not crawled. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
     "name_en": "Ministry of Tourism and Handicrafts",
     "name_fr": "Ministère du Tourisme et de l'Artisanat",
     "name_ar": "وزارة السياحة والصناعة التقليدية",
-    "domain": "mtatf.gov.dz",
-    "url": "https://www.mtatf.gov.dz/",
+    "domain": "mta.gov.dz",
+    "url": "https://www.mta.gov.dz/?lang=fr",
     "category": "federal-core",
     "languages": [
       "ar",
@@ -378,7 +378,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): correct site is https://www.mta.gov.dz/?lang=fr (was https://www.mtatf.gov.dz/).",
     "pages": 1
   },
   {
@@ -1743,7 +1743,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK, title 'Site Officiel de la wilaya d'Oran'",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 18
   },
   {
@@ -1763,7 +1763,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK, title 'الموقع الرسمي لولاية باتنة'",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -1783,7 +1783,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "English Wikipedia infobox",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1803,7 +1803,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "English Wikipedia infobox (older: wbejaia.gov.dz)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1823,7 +1823,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "English Wikipedia 'Official website'; Algerie360 notes site not updated for months",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -2358,7 +2358,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site self-describes as 'Le Portail Web de la Wilaya' and reports official Wali activities.",
-    "notes": "Moderate evidence: self-description only; no .gov.dz cross-link found",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. Moderate evidence: self-description only; no .gov.dz cross-link found",
     "pages": 0
   },
   {
@@ -2673,9 +2673,9 @@
     "description": "Student startup creation procedures ('diplôme-startup'), incubators",
     "priority": 3,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): correct site is https://startup.dz/ (already listed); not crawled.",
     "pages": 0
   },
   {
@@ -2693,9 +2693,9 @@
     "description": "Clearance certificate requests for students/staff",
     "priority": 3,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): the clearance-certificate service is at https://services.mesrs.dz/plateforme/ (services.mesrs.dz, already listed); not crawled.",
     "pages": 0
   },
   {
@@ -2713,17 +2713,17 @@
     "description": "Visiting professors, co-supervised theses, staff/student mobility",
     "priority": 3,
     "reachable": false,
-    "fetch_status": "robots",
+    "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): correct page is https://www.mesrs.dz/fr/mobilite-entrante-formation-des-etudiants-internationaux/ (mesrs.dz, already listed); not crawled.",
     "pages": 0
   },
   {
     "name_en": "ONOU University Residences Platform",
     "name_fr": "ONOU - Plateforme résidences universitaires",
     "name_ar": "منصة الإقامات الجامعية",
-    "domain": "onou.mesrs.dz",
-    "url": "https://onou.mesrs.dz/",
+    "domain": "webonou.mesrs.dz",
+    "url": "https://webonou.mesrs.dz/",
     "category": "jobs-education",
     "languages": [
       "ar",
@@ -2735,7 +2735,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): correct site is https://webonou.mesrs.dz/ (was https://onou.mesrs.dz/).",
     "pages": 0
   },
   {
@@ -3101,7 +3101,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site self-describes as 'البوابة الرسمية لولاية الجلفة' and links to Presidency, PM, Interior, SGG and Interior e-services",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 2
   },
   {
@@ -3120,7 +3120,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site carries wali's messages/events and links to Interior Ministry e-services (etatcivil/prestations.interieur.gov.dz)",
-    "notes": "Moderate evidence: self-presentation only",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Moderate evidence: self-presentation only",
     "pages": 0
   },
   {
@@ -3140,7 +3140,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site presents itself as Wilaya de Bouira with wali communications",
-    "notes": "Moderate evidence: self-presentation only",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. Moderate evidence: self-presentation only",
     "pages": 41
   },
   {
@@ -3941,7 +3941,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited as wilaya site in ar/fr Wikipedia Chlef articles; resolves on Algerian IP; Wayback crawl 2026-06 (https://ar.wikipedia.org/wiki/ولاية_الشلف)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Biskra",
@@ -3960,7 +3960,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Fetched: title \"الموقع الرسمي لولاية بسكرة\"; Wikidata P856 (https://wilayabiskra.dz/)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of Béchar",
@@ -3979,7 +3979,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in en/fr/ar Wikipedia (old pages); domain still resolves (197.112.101.198); unreachable, content unverified (https://ar.wikipedia.org/wiki/ولاية_بشار)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Tlemcen",
@@ -3998,7 +3998,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia Tlemcen articles; shares IP 197.140.7.31 with wilaya-adrar.dz; serves 403 to us; Wayback 2026-10 (https://fr.wikipedia.org/wiki/Wilaya_de_Tlemcen)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Tiaret",
@@ -4017,14 +4017,14 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Wikidata P856 + English/fr/ar Wikipedia links; resolves on Algerian IP; unreachable (https://en.wikipedia.org/wiki/Tiaret_Province)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of Tizi Ouzou",
     "name_fr": "Wilaya de Tizi Ouzou",
     "name_ar": "ولاية تيزي وزو",
-    "domain": "wilaya-tiziouzou.dz",
-    "url": "https://wilaya-tiziouzou.dz/",
+    "domain": "dcwtiziouzou.dz",
+    "url": "https://www.dcwtiziouzou.dz/fr/",
     "category": "wilayas",
     "languages": [
       "ar",
@@ -4036,7 +4036,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia (incl. /liste-des-walis page); live but WAF \"Request Rejected\" to us (https://fr.wikipedia.org/wiki/Wilaya_de_Tizi_Ouzou). en-Wikipedia lists tiziouzou-dz.com, treated as unofficial",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://www.dcwtiziouzou.dz/fr/ (was https://wilaya-tiziouzou.dz/). confidence medium"
   },
   {
     "name_en": "Wilaya of Saïda",
@@ -4055,7 +4055,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia Saïda articles; resolves on Algerian IP (197.112.55.3); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Saïda)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Sidi Bel Abbès",
@@ -4074,7 +4074,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr Wikipedia Sidi Bel Abbès article; resolves on Algerian IP; unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Sidi_Bel_Abbès)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Constantine",
@@ -4093,7 +4093,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Fetched: title \"Site officiel de la Wilaya de Constantine\"; tiny legacy page, no dates (https://wilayaconstantine.dz/)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of Médéa",
@@ -4112,14 +4112,14 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Fetched via www: title \"الموقع الرسمي لولاية المدية\", news dated 2026-10 (https://www.wilayamedea.dz/); apex does not resolve",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of M'Sila",
     "name_fr": "Wilaya de M'Sila",
     "name_ar": "ولاية المسيلة",
-    "domain": "wilaya-msila.dz",
-    "url": "http://www.wilaya-msila.dz/",
+    "domain": "msilawilaya.dz",
+    "url": "https://www.msilawilaya.dz/",
     "category": "wilayas",
     "languages": [
       "ar",
@@ -4131,7 +4131,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in ar/fr Wikipedia M'Sila articles; resolves on Algerian gov IP; unreachable (https://ar.wikipedia.org/wiki/ولاية_المسيلة)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://www.msilawilaya.dz/ (was http://www.wilaya-msila.dz/). confidence medium"
   },
   {
     "name_en": "Wilaya of Mascara",
@@ -4150,7 +4150,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Fetched: title \"Accueil - Wilaya Mascara ولاية معسكر\", links to prestations.interieur.gov.dz (https://wilayamascara.dz/index.php/en/)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of El Bayadh",
@@ -4169,7 +4169,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Wikidata P856 + English Wikipedia infobox website; cited ar/fr; resolves; unreachable (https://en.wikipedia.org/wiki/El_Bayadh_Province)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of Boumerdès",
@@ -4188,7 +4188,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia Boumerdès articles; resolves on Algerian IP (197.112.120.11); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Boumerdès)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Tissemsilt",
@@ -4207,7 +4207,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia (incl. site_ar/site_fr subpages); resolves (197.112.0.106); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Tissemsilt)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of El Oued",
@@ -4224,9 +4224,9 @@
     "description": "Official portal of the wilaya of El Oued: wali announcements, local procedures, housing and civil-status notices",
     "priority": 2,
     "reachable": false,
-    "fetch_status": "unknown",
+    "fetch_status": "dead",
     "evidence": "Wikidata P856 https://www.wilaya-eloued.dz/ + ar Wikipedia link; resolves (185.207.250.96); unreachable (https://www.wikidata.org/wiki/Special:Search?search=DZ-39)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): no official wilaya website found; not crawled. confidence high"
   },
   {
     "name_en": "Wilaya of Tipaza",
@@ -4243,9 +4243,9 @@
     "description": "Official portal of the wilaya of Tipaza: wali announcements, local procedures, housing and civil-status notices",
     "priority": 2,
     "reachable": false,
-    "fetch_status": "unknown",
+    "fetch_status": "dead",
     "evidence": "Cited in fr/ar Wikipedia (deep link /index.php/fr/secteurs-fr/forets-fr); resolves; unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Tipaza)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): no official wilaya website found; not crawled. confidence medium"
   },
   {
     "name_en": "Wilaya of Aïn Defla",
@@ -4262,9 +4262,9 @@
     "description": "Official portal of the wilaya of Aïn Defla: wali announcements, local procedures, housing and civil-status notices",
     "priority": 2,
     "reachable": false,
-    "fetch_status": "unknown",
+    "fetch_status": "dead",
     "evidence": "Cited in ar Wikipedia Aïn Defla article; resolves (197.112.0.106); unreachable (https://ar.wikipedia.org/wiki/ولاية_عين_الدفلى)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): no official wilaya website found; not crawled. confidence medium"
   },
   {
     "name_en": "Wilaya of Naâma",
@@ -4283,7 +4283,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Cited in fr/ar Wikipedia Naâma articles; resolves (197.112.101.144); unreachable (https://fr.wikipedia.org/wiki/Wilaya_de_Naâma)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence medium"
   },
   {
     "name_en": "Wilaya of Aïn Témouchent",
@@ -4302,7 +4302,7 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Wikidata P856 + English/ar Wikipedia links; resolves on Algerian IP; unreachable (https://en.wikipedia.org/wiki/Aïn_Témouchent_Province)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
   },
   {
     "name_en": "Wilaya of Relizane",
@@ -4319,9 +4319,9 @@
     "description": "Official portal of the wilaya of Relizane: wali announcements, local procedures, housing and civil-status notices",
     "priority": 2,
     "reachable": false,
-    "fetch_status": "unknown",
+    "fetch_status": "dead",
     "evidence": "Wikidata P856; only www resolves (193.194.90.18, CNAME wb5.eldjazair.dz); last Wayback crawl 2016, possibly stale (https://www.wikidata.org/wiki/Special:Search?search=DZ-48)",
-    "notes": "confidence medium"
+    "notes": "Tester in Algeria (2026-10-30): no official wilaya website found; not crawled. confidence medium"
   },
   {
     "name_en": "Wilaya of Ouled Djellal",
@@ -4340,6 +4340,166 @@
     "reachable": false,
     "fetch_status": "unknown",
     "evidence": "Fetched: wilaya portal \"ولاية أولاد جلال\", links to interieur.gov.dz and marches-publics.gov.dz (https://wilaya-ouleddjellal.dz/)",
-    "notes": "confidence high"
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. confidence high"
+  },
+  {
+    "name_en": "Wilaya of Laghouat",
+    "name_fr": "Wilaya de Laghouat",
+    "name_ar": "ولاية الأغواط",
+    "domain": "wilaya-laghouat.dz",
+    "url": "https://wilaya-laghouat.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Tébessa",
+    "name_fr": "Wilaya de Tébessa",
+    "name_ar": "ولاية تبسة",
+    "domain": "wilaya-tebessa.dz",
+    "url": "http://wilaya-tebessa.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Algiers",
+    "name_fr": "Wilaya d'Alger",
+    "name_ar": "ولاية الجزائر",
+    "domain": "wilaya-alger.dz",
+    "url": "https://wilaya-alger.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Illizi",
+    "name_fr": "Wilaya d'Illizi",
+    "name_ar": "ولاية إليزي",
+    "domain": "illizi-wilaya.dz",
+    "url": "https://illizi-wilaya.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Tindouf",
+    "name_fr": "Wilaya de Tindouf",
+    "name_ar": "ولاية تندوف",
+    "domain": "wilaya-tindouf.dz",
+    "url": "https://www.wilaya-tindouf.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Khenchela",
+    "name_fr": "Wilaya de Khenchela",
+    "name_ar": "ولاية خنشلة",
+    "domain": "wilaya-khenchela.dz",
+    "url": "https://wilaya-khenchela.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of Béni Abbès",
+    "name_fr": "Wilaya de Béni Abbès",
+    "name_ar": "ولاية بني عباس",
+    "domain": "wilaya-beniabbes.dz",
+    "url": "https://www.wilaya-beniabbes.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
+  },
+  {
+    "name_en": "Wilaya of El Meniaa",
+    "name_fr": "Wilaya d'El Meniaa",
+    "name_ar": "ولاية المنيعة",
+    "domain": "wilaya-meniaa.dz",
+    "url": "https://wilaya-meniaa.dz/",
+    "category": "wilayas",
+    "languages": [
+      "ar",
+      "fr"
+    ],
+    "languages_verified": false,
+    "description": "Wilaya portal: local administrative procedures and announcements",
+    "priority": 3,
+    "reachable": false,
+    "fetch_status": "not_tested",
+    "evidence": "Listed by our tester in Algeria (2026-10-30) as the official wilaya site, working from inside Algeria",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria",
+    "pages": 0
   }
 ]

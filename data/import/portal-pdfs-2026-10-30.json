@@ -1,0 +1,112 @@
+[
+ {
+  "id": "pdf-demande12s-interieur-gov-dz",
+  "title": "طلب شهادة الميلاد الأصلية 12خ",
+  "url": "https://demande12s.interieur.gov.dz/Ar/default.aspx",
+  "domain": "demande12s.interieur.gov.dz",
+  "lang": "ar",
+  "topic": "birth_certificate",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "طلب شهادة الميلاد الأصلية 12خ. القوائم: الصفحة الرئيسية، تسجيل، أطلب 12خ، متابعة طلبك، مساعدة.\nالدخول: البريد الإلكتروني، رمز الدخول. قم بتسجيل نفسك هنا. كلمة السر مفقودة.\nشهادة الميلاد 12 الخاصة هي وثيقة رسمية: تحتوي على معلومات الحالة المدنية التي تسمح بتشكيل رقم التعريف الوطني لكل الجزائريين، هذا الرقم فريد بالنسبة لكل جزائري.\nشهادة الميلاد 12 الخاصة هي وثيقة أصلية: صادرة عن بلدية الميلاد للمعني استنادا إلى سجل الحالة المدنية. يتم طباعتها من خلال برنامج آلي بعد المرور عبر مراحل للتدقيق والمصادقة.\nشهادة الميلاد 12 الخاصة هي وثيقة آمنة: تطبع على ورقة مؤمنة باستخدام أساليب متطورة لمنع أي محاولة للتزوير. فيها رقم التعريف الوطني الذي يسمح بالكشف عن أي محاولة استنساخ.\nوزارة الداخلية والجماعات المحلية، قصر الحكومة، 01 شارع الدكتور سعدان، الجزائر العاصمة. الهاتف: +213 21 73 23 40. البريد الإلكتروني: Contact12S@interieur.gov.dz"
+ },
+ {
+  "id": "pdf-etatcivil-interieur-gov-dz-actenaissance",
+  "title": "Demande Acte de naissance – النسخة الرقمية لشهادة الميلاد",
+  "url": "https://etatcivil.interieur.gov.dz/ActeNaissance/",
+  "domain": "etatcivil.interieur.gov.dz",
+  "lang": "ar",
+  "topic": "birth_certificate",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "Acte de naissance – النسخة الرقمية لشهادة الميلاد. وزارة الداخلية والجماعات المحلية والتهيئة العمرانية.\nتسجيل الطلب – تحديد هوية الطالب. المعلومات المطلوبة في الاستمارة:\n- رقم بطاقة التعريف أو جواز السفر أو رخصة السياقة البيومترية (CNI / Passeport / Permis de conduire biométrique) *\n- الرقم التعريفي الوطني (Numéro d'Identification National, NIN) *\n- البريد الإلكتروني وتأكيد البريد الإلكتروني *\n- الهاتف النقال (Téléphone mobile)\n- علاقة الارتباط بصاحب العقد *\n- معلومات صاحب الشهادة\nثم: تأكيد.\nVoir aussi : Demande acte de mariage et Demande acte de décès (طلب عقد الزواج وعقد الوفاة على نفس المنصة).\nقصر الحكومة، 01 شارع الدكتور سعدان، الجزائر العاصمة."
+ },
+ {
+  "id": "pdf-tabioucom-mf-gov-dz-acheter",
+  "title": "منصة الدفع الإلكتروني لحقوق الطوابع الجبائية (Tabioucom)",
+  "url": "https://tabioucom.mf.gov.dz/acheter",
+  "domain": "tabioucom.mf.gov.dz",
+  "lang": "ar",
+  "topic": "tax",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "مرحبا بكم في منصة الدفع الإلكتروني لحقوق الطوابع الجبائية (06 Droits de timbres fiscaux). توفر لكم هذه المنصة إمكانية الدفع الإلكتروني لحقوق الطوابع الجبائية على مدار 24 ساعة / 24 ساعة و7 أيام / 7 أيام بسرعة وأمان، دون الحاجة إلى التنقل.\nالمراحل: استمارة، الاستمارة المسبقة الملء، الدفع، طباعة الإيصال.\nالرجاء إدخال معلوماتك الشخصية: رقم التعريف الوطني، اللقب، الاسم، تاريخ الميلاد (في حالة مفترض سنة: 01/01)، عنوان الإقامة، بلدية الإقامة، ولاية الإقامة.\nفي حالة القاصر، يجب على ولي الأمر التوجه لمصلحة الحالة المدنية للحصول على رقم التعريف الوطني الخاص بالقاصر.\nوزارة المالية – المديرية العامة للضرائب، عمارة أحمد فرانسيس، حي مالكي، بن عكنون، الجزائر العاصمة. الهاتف: 021 59 51 51 / 021 59 52 52. البريد الإلكتروني: tabioucom@mf.gov.dz"
+ },
+ {
+  "id": "pdf-progres-mesrs-dz-webetu-login",
+  "title": "Portail Etudiant – PROGRES (MESRS)",
+  "url": "https://progres.mesrs.dz/webetu/login.xhtml",
+  "domain": "progres.mesrs.dz",
+  "lang": "fr",
+  "topic": "education",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "ETU Progiciel de Gestion Intégré – Portail Etudiant. Ministère de l'Enseignement Supérieur et de la Recherche Scientifique.\nNom d'utilisateur = année du bac + matricule du bac (exemple : 202631056999).\nMot de passe : celui du relevé de notes (du bac).\nLes comptes d'accès sont activés selon la date du RDV indiquée sur la fiche d'affectation.\nMot de passe oublié ? : lien sur la page de connexion."
+ },
+ {
+  "id": "pdf-teledeclaration-cnas-dz",
+  "title": "Télédéclaration C.N.A.S – Espace Employeur",
+  "url": "https://teledeclaration.cnas.dz/",
+  "domain": "teledeclaration.cnas.dz",
+  "lang": "fr",
+  "topic": "social_security",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "Le portail de la télédéclaration de la CNAS – Espace Employeur (connexion avec nom d'utilisateur et mot de passe). Déclarations en ligne : DAC, DAS.\nServices en ligne sur la page d'accueil :\n- Vérification des attestations\n- Nouvelle demande d'affiliation volontaire pour la communauté nationale à l'étranger\n- Nouvelle demande d'inscription employeur\nVous n'êtes pas encore inscrits à notre portail : contactez votre agence CNAS pour obtenir vos codes d'authentification, et bénéficiez des services en ligne disponibles (annuaire téléphonique des agences : http://www.cnas.dz/fr/annuaire-telephonique/)."
+ },
+ {
+  "id": "pdf-elhanaa-cnas-dz",
+  "title": "ELHANAA – CNAS (espace assuré)",
+  "url": "https://elhanaa.cnas.dz/",
+  "domain": "elhanaa.cnas.dz",
+  "lang": "fr",
+  "topic": "social_security",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "Espace EL-HANAA de la CNAS. Connexion avec le N° de sécurité sociale et un mot de passe. S'inscrire / Mot de passe oublié.\nServices publics sur la page :\n- Attestation de non affiliation (nouveau)\n- Vérifier une attestation de non affiliation (nouveau)\n- Vérifier une attestation d'affiliation\n- Vérifier une attestation des salaires déclarés par l'employeur (nouveau)\n- Vérifier une attestation de mise à jour\n- Télécharger EL HANAA mobile (application Android sur Google Play, +100k téléchargements)\nNos services (après connexion) : historique des remboursements (consultez vos remboursements en un clic), notifications (des alertes vous sont envoyées), informations (consultez vos informations et celles de vos ayants droit).\nContact : Route des Deux Bassins, Ben Aknoun. celluleecoutecommunication@cnas.dz. Site officiel : www.cnas.dz"
+ },
+ {
+  "id": "pdf-apcs-mfa-gov-dz",
+  "title": "Dz Travellers – Platform for Algerian travelers abroad (MFA)",
+  "url": "https://apcs.mfa.gov.dz/",
+  "domain": "apcs.mfa.gov.dz",
+  "lang": "en",
+  "topic": "general",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "Platform for Algerian travelers abroad – Ministry of Foreign Affairs (available in English, Arabic and French). The Ministry of Foreign Affairs gives you access to Dz Travellers. This online service allows the ministry to provide you with information, advice and guidance in the event of an emergency or crisis in your destination country. If you are faced with this type of situation abroad, please register on Dz Travellers by completing the required information.\nThe form asks for: personal information (first name*, last name*, sex*, birth date*, birth place, phone number*, email address, preferred contact method*); passport information (passport number*, issuing authority, passport photo); trip details (residency*, destination country*, destination city, trip purpose*, arrival date, return date, address in destination country*); additional people (family members or companions travelling with you). Fields marked * are required.\nYou declare the information is accurate. Personal data is used only for the purpose for which it was requested and is not transferred to third parties. Submit with Validate (with a reCAPTCHA check)."
+ },
+ {
+  "id": "pdf-bac-onec-dz-results-2026",
+  "title": "نتائج امتحان شهادة البكالوريا دورة 2026",
+  "url": "https://bac.onec.dz/",
+  "domain": "bac.onec.dz",
+  "lang": "ar",
+  "topic": "education",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "وزارة التربية الوطنية – الديوان الوطني للامتحانات والمسابقات. نتائج امتحان شهادة البكالوريا دورة 2026.\nفي اليوم الأول من إعلان النتائج بإمكانك الاطلاع على نتائج مختصرة، وابتداء من يوم 13-07-2026 للراسبين: بإمكانك سحب كشف النقاط. الموقع سيغلق في حدود 12-08-2026.\nللناجحين: كشوف النقاط تسلم لهم عبر مؤسساتهم إن كانوا متمدرسين، وعبر مديريات التربية إن كانوا أحرارا.\nالمعلومات المطلوبة لاستظهار النتيجة: اللقب بالعربية (حسب الاستدعاء، انتبه للهمزة والفراغات)، الاسم بالعربية (حسب الاستدعاء)، رقم التسجيل (حسب الاستدعاء)، الرقم السري (حسب استمارة التسجيل)، رقم المصادقة الثنائية (خاص بالذين فعلوا هذه الخدمة)، وسؤال تحقق بسيط."
+ },
+ {
+  "id": "pdf-bem-onec-dz-results-2026",
+  "title": "نتائج امتحان شهادة التعليم المتوسط دورة 2026",
+  "url": "https://bem.onec.dz/",
+  "domain": "bem.onec.dz",
+  "lang": "ar",
+  "topic": "education",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "وزارة التربية الوطنية – الديوان الوطني للامتحانات والمسابقات. نتائج امتحان شهادة التعليم المتوسط دورة 2026.\nفي اليوم الأول من إعلان النتائج بإمكانك الاطلاع على نتائج مختصرة، وابتداء من يوم 15-06-2026 بإمكانك سحب كشف النقاط. الموقع سيغلق في حدود 13-07-2026.\nلظروف أمنية لديك فقط 500 محاولة، بعدها لا يمكنك المتابعة إلا بعد مضي 3 ثوان.\nالمعلومات المطلوبة لاستظهار النتيجة: اللقب بالعربية (حسب الاستدعاء، انتبه للهمزة والفراغات)، الاسم بالعربية (حسب الاستدعاء)، رقم التسجيل (حسب الاستدعاء)، الرقم السري (حسب استمارة التسجيل)، رقم المصادقة الثنائية (خاص بالذين فعلوا هذه الخدمة)، وسؤال تحقق بسيط."
+ },
+ {
+  "id": "pdf-minha-anem-dz-pre-inscription",
+  "title": "منحة البطالة – التسجيل المسبق (Allocation chômage)",
+  "url": "https://minha.anem.dz/pre_inscription",
+  "domain": "minha.anem.dz",
+  "lang": "ar",
+  "topic": "employment",
+  "fetched": "2026-10-30",
+  "extraction": "saved-pdf",
+  "text": "منحة البطالة (Allocation chômage) – الوكالة الوطنية للتشغيل. التسجيل المسبق على المنصة يطلب: رقم بطاقة طالب العمل، ورقم التعريف الوطني / رقم بطاقة التعريف، ثم إرسال. تواصل معنا: anem@anem.dz"
+ }
+]
