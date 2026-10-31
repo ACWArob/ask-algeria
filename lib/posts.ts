@@ -260,6 +260,18 @@ const LOCATIVE_ONLY = new Set(["mascara", "saida", "saïda", "سعيدة", "مع
 const RESIDES =
   /(?:live in|living in|lives in|moved (?:from [\p{L} .'-]{2,20} )?to|déménagée? (?:de [\p{L} .'-]{2,20} )?(?:à|a)|now in|based in|reside in|habite (?:à|a|en)|j'habite|vis (?:à|a|en)|installée? (?:à|a|en)|déménagée? (?:à|a|en)|ساكن في|ساكنة في|نسكن في|أسكن في|اسكن في|أقيم في|اقيم في|نعيش في|أعيش في|انتقلت إلى|n3ich f|nskon f|saken f)\s*$/iu;
 
+/** The 69 wilayas (Latin name + Arabic name), for the "where do you live?" picker. */
+export const WILAYAS: { name: string; ar: string }[] = (() => {
+  const out: { name: string; ar: string }[] = [];
+  const seen = new Set<string>();
+  for (const [names, place, office] of PLACES) {
+    if (!office.inAlgeria || seen.has(place) || /algeria/i.test(names[0])) continue;
+    seen.add(place);
+    out.push({ name: place, ar: names.find((n) => /[\u0600-\u06FF]/.test(n)) ?? (place === "Alger" ? "الجزائر" : place) });
+  }
+  return out;
+})();
+
 export function detectPost(text: string): PostHint | null {
   const t = text.replace(/[’']/g, "'");
   // 1. Named cities/countries (longest names first so "new york city" beats "york").

@@ -17,7 +17,9 @@ node scripts/crawl-local.mjs --dry-run          # crawler for running from INSID
 ```
 
 ## Layout
-- `app/(site)/` — pages (home, ask, translate, services/passport, embassies, sources, about); `app/api/` — ask, translate, login, logout, feedback
+- `app/(site)/` — pages (home, ask, translate, services/[slug] guides, embassies, directory, about); `app/api/` — search (free, no AI), ask (Claude), translate, login, logout, feedback
+- Location: `lib/where.ts` — picker options, validation, and the office for a saved place (sent as `where` to /api/search and /api/ask).
+- Cost model: the first question gets `/api/search` results (lib/instant.ts: guides, office, contacts, official pages); Claude (`/api/ask`, 2 calls: query expansion + answer) only runs for "Get a written answer", chips and follow-ups.
 - `lib/` — `posts.ts` (where the person lives → which consulate/APC), `clarify.ts` (ask-first chips), `prompts.ts`, `search.ts` + `search-core.mjs`, `missions.ts`, `detect.ts` (language/topic), `i18n/*.json` (4 languages, keep keys in sync)
 - `data/` — `corpus.json` (pages), `sources.json` (sites), `missions.json` (embassies/consulates), `index.json` (generated)
 - `scripts/` — crawl, import, refresh, crossref; `tests/` — vitest
@@ -41,6 +43,8 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-31 — guessing location from words/connection gave mixed offices — ask "in Algeria (wilaya) / outside (country → consulate)" first (lib/where.ts, saved in the browser); a place or country named in the question still wins.
+- 2026-10-31 — every question cost 2 Claude calls even when a guide or official page already answered it — first question = free search results; AI only on request or follow-up. Measure with the `[search]` vs `/api/ask` log lines.
 - 2026-10-30 — 15 of our site links were wrong (old/renamed ministry domains) — the tester in Algeria is the check; take her corrected links, keep archived pages under their original URL.
 - 2026-10-28 — Lyon passport answer cited Médéa wilaya pages — someone living abroad gets no wilaya-portal sources (category "wilayas" in sources.json).
 - 2026-10-28 — guide pages were prebuilt (generateStaticParams) and would ignore the language cookie — pages that read cookies must be `dynamic = "force-dynamic"`.

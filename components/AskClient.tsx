@@ -4,6 +4,9 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useSta
 import { fmt, LANGUAGE_NAMES, type Dict, type Locale } from "@/lib/i18n";
 import { redact } from "@/lib/redact";
 import type { AskMeta } from "@/lib/types";
+import type { InstantResult } from "@/lib/instant";
+import type { Where, WhereOptions } from "@/lib/where";
+import Link from "next/link";
 import { formatDate } from "@/lib/dates";
 import { SendIcon } from "./Icon";
 import { Markdown } from "./Markdown";
@@ -15,6 +18,11 @@ type Status = "loading" | "streaming" | "done" | "error";
 
 interface Turn {
   id: number;
+  /** "search": free results from official pages (no AI). "ai": a written answer from Claude. */
+  kind: "search" | "ai";
+  results?: InstantResult | null;
+  /** Place picked from the results' chips ("France", "Lyon"): narrows the search and tells later answers where they live. */
+  place?: string;
   question: string;
   meta: AskMeta | null;
   answer: string;
@@ -27,8 +35,19 @@ export interface AskHandle {
   ask: (question: string) => void;
 }
 
-export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onActiveChange?: (active: boolean) => void }>(function AskClient(
-  { dict, locale, onActiveChange },
+/** Last few questions before turn `upTo` (exclusive): the opening one names the topic, the last two carry the thread. */
+function contextOf(turns: Turn[], upTo = turns.length): string {
+  const qs = turns.slice(0, upTo).map((x) => (x.place ? `${x.question} (${x.place})` : x.question));
+  return (qs.length > 3 ? [qs[0], ...qs.slice(-2)] : qs).join(" | ");
+}
+
+const WHERE_KEY = "aa_where";
+
+export const AskClient = forwardRef<
+  AskHandle,
+  { dict: Dict; locale: Locale; places: WhereOptions; onActiveChange?: (active: boolean) => void }
+>(function AskClient(
+  { dict, locale, places, onActiveChange },
   ref,
 ) {
   const t = dict.ask;
@@ -43,6 +62,33 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
   const nextId = useRef(1);
   const turnsRef = useRef<Turn[]>([]);
   turnsRef.current = turns;
+  // Where they live (asked first): narrows search and answers to their wilaya or consulate. Kept in this browser only.
+  const [where, setWhereState] = useState<Where | null>(null);
+  const whereRef = useRef<Where | null>(null);
+  whereRef.current = where;
+  useEffect(() => {
+    try {
+      const v = JSON.parse(localStorage.getItem(WHERE_KEY) ?? "null") as Where | null;
+      const ok =
+        (v?.in === "dz" && places.wilayas.some((w) => w.value === v.wilaya)) ||
+        (v?.in === "abroad" &&
+          places.countries.some((c) => c.value === v.country && (!c.cities.length || (v.city !== undefined && c.cities.includes(v.city)))));
+      if (ok) setWhereState(v);
+      else if (v) localStorage.removeItem(WHERE_KEY);
+    } catch {
+      /* storage blocked or bad value */
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- read once on mount
+  }, []);
+  const setWhere = (w: Where | null) => {
+    setWhereState(w);
+    try {
+      if (w) localStorage.setItem(WHERE_KEY, JSON.stringify(w));
+      else localStorage.removeItem(WHERE_KEY);
+    } catch {
+      /* storage blocked */
+    }
+  };
 
   useEffect(() => () => abortRef.current?.abort(), []);
   useEffect(() => onActiveChange?.(turns.length > 0), [turns.length, onActiveChange]);
@@ -57,38 +103,29 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
 
   const patch = (id: number, p: Partial<Turn>) => setTurns((ts) => ts.map((x) => (x.id === id ? { ...x, ...p } : x)));
 
-  const ask = useCallback(
-    async (raw: string) => {
-      const trimmed = raw.trim();
-      setFormError(null);
-      if (!trimmed) {
-        setFormError(t.empty);
-        inputRef.current?.focus();
-        return;
-      }
-      if (trimmed.length > MAX) {
-        setFormError(fmt(t.tooLong, { max: MAX }));
-        return;
-      }
-      const { text, removed } = redact(trimmed);
-      setNotice(removed > 0 ? fmt(t.redacted, { n: removed }) : null);
-      setQ("");
+  /**
+   * Stops whatever is in flight and settles those turns, except `keep`, so nothing stays "loading" forever
+   * (which would keep the send button disabled). A turn with nothing to show becomes an error, not a blank.
+   */
+  const abortCurrent = useCallback((keep?: number) => {
+    abortRef.current?.abort();
+    setTurns((ts) =>
+      ts.map((x) =>
+        x.id === keep || (x.status !== "loading" && x.status !== "streaming")
+          ? x
+          : x.answer || x.results
+            ? { ...x, status: "done" as const }
+            : { ...x, status: "error" as const, error: t.error },
+      ),
+    );
+    const ac = new AbortController();
+    abortRef.current = ac;
+    return ac;
+  }, [t]);
 
-      // Last few questions, so "Colorado" after "how do I renew my passport?" + "USA" still means passport renewal.
-      // Keep the opening question (it names the topic) plus the last two, so turn 5 still knows it's about a passport.
-      const qs = turnsRef.current.map((x) => x.question);
-      const prev = (qs.length > 3 ? [qs[0], ...qs.slice(-2)] : qs).join(" | ");
-      const prevAnswer = (turnsRef.current.at(-1)?.answer ?? "").slice(0, 700);
-      abortRef.current?.abort();
-      const ac = new AbortController();
-      abortRef.current = ac;
-      const id = nextId.current++;
-      setTurns((ts) => [
-        ...ts.map((x) => (x.status === "loading" || x.status === "streaming" ? { ...x, status: "done" as const } : x)),
-        { id, question: text, meta: null, answer: "", status: "loading", error: null, feedback: null },
-      ]);
-      requestAnimationFrame(() => lastTurnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
-
+  /** Streams Claude's written answer into turn `id`. */
+  const runAI = useCallback(
+    async (id: number, text: string, prev: string, prevAnswer: string, ac: AbortController) => {
       // One silent automatic retry when the answer fails before any text arrives (e.g. a brief upstream hiccup).
       for (let attempt = 0; attempt < 2; attempt++) {
         let answered = "";
@@ -97,7 +134,7 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
           const res = await fetch("/api/ask", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: text, lang: locale, context: prev, prevAnswer, ...(attempt > 0 ? { buffer: true } : {}) }),
+            body: JSON.stringify({ question: text, lang: locale, context: prev, prevAnswer, where: whereRef.current, ...(attempt > 0 ? { buffer: true } : {}) }),
             signal: ac.signal,
           });
           if (res.status === 401) {
@@ -150,6 +187,88 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
       }
     },
     [locale, t],
+  );
+
+  /** Free results from official pages into turn `id` (no AI call). */
+  const runSearch = useCallback(
+    async (id: number, text: string, ac: AbortController, context = "") => {
+      try {
+        const res = await fetch("/api/search", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: text, lang: locale, context, where: whereRef.current }),
+          signal: ac.signal,
+        });
+        if (res.status === 401) {
+          window.location.href = "/login";
+          return;
+        }
+        if (!res.ok) {
+          patch(id, { status: "error", error: res.status === 429 ? t.rateLimited : t.error });
+          return;
+        }
+        patch(id, { status: "done", results: (await res.json()) as InstantResult });
+      } catch (e) {
+        if ((e as Error).name === "AbortError") return;
+        patch(id, { status: "error", error: t.error });
+      }
+    },
+    [locale, t],
+  );
+
+  const ask = useCallback(
+    async (raw: string, opts: { ai?: boolean } = {}) => {
+      const trimmed = raw.trim();
+      setFormError(null);
+      if (!trimmed) {
+        setFormError(t.empty);
+        inputRef.current?.focus();
+        return;
+      }
+      if (trimmed.length > MAX) {
+        setFormError(fmt(t.tooLong, { max: MAX }));
+        return;
+      }
+      const { text, removed } = redact(trimmed);
+      setNotice(removed > 0 ? fmt(t.redacted, { n: removed }) : null);
+      setQ("");
+
+      // The opening question gets free results from official pages; follow-ups (and chips) get a written answer.
+      const kind: Turn["kind"] = opts.ai || turnsRef.current.length > 0 ? "ai" : "search";
+      const prev = contextOf(turnsRef.current);
+      const prevAnswer = (turnsRef.current.at(-1)?.answer ?? "").slice(0, 700);
+      const ac = abortCurrent();
+      const id = nextId.current++;
+      setTurns((ts) => [...ts, { id, kind, question: text, meta: null, answer: "", status: "loading", error: null, feedback: null }]);
+      requestAnimationFrame(() => lastTurnRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+      if (kind === "search") await runSearch(id, text, ac);
+      else await runAI(id, text, prev, prevAnswer, ac);
+    },
+    [t, runAI, runSearch, abortCurrent],
+  );
+
+  /** A place chip on a results turn: search again for that place (still free), in the same turn. */
+  const refine = useCallback(
+    (turn: Turn, chip: string) => {
+      const place = turn.place ? `${turn.place} ${chip}` : chip;
+      const ac = abortCurrent(turn.id);
+      patch(turn.id, { place, status: "loading", error: null, results: null });
+      void runSearch(turn.id, turn.question, ac, place);
+    },
+    [runSearch, abortCurrent],
+  );
+
+  /** "Get a written answer" on a results turn: the same turn becomes an AI answer. */
+  const writeAnswer = useCallback(
+    (turn: Turn) => {
+      const idx = turnsRef.current.findIndex((x) => x.id === turn.id);
+      // Include the place they picked on the results, or the answer would ask "where do you live?" again.
+      const prev = [contextOf(turnsRef.current, idx), turn.place ?? ""].filter(Boolean).join(" | ");
+      const ac = abortCurrent(turn.id);
+      patch(turn.id, { kind: "ai", status: "loading", error: null });
+      void runAI(turn.id, turn.question, prev, "", ac);
+    },
+    [runAI, abortCurrent],
   );
 
   useImperativeHandle(ref, () => ({
@@ -241,9 +360,12 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
     </form>
   );
 
+  const picker = <WherePicker where={where} onChange={setWhere} places={places} dict={dict} />;
+
   if (!started) {
     return (
       <div className="flex flex-col items-center">
+        {picker}
         {form}
         <ul className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-6" aria-label={t.examples}>
           {t.exampleList.slice(0, 4).map((ex, i) => (
@@ -273,12 +395,15 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
             dict={dict}
             locale={locale}
             onFeedback={(r, reason, comment) => sendFeedback(turn, r, reason, comment)}
-            onChip={i === turns.length - 1 ? (c) => void ask(c) : undefined}
+            onChip={i === turns.length - 1 ? (c) => void ask(c, { ai: true }) : undefined}
+            onWriteAnswer={() => writeAnswer(turn)}
+            onPlace={(c) => refine(turn, c)}
           />
         ))}
       </ol>
       <div className="sticky bottom-0 z-10 -mx-4 mt-10 bg-gradient-to-t from-paper via-paper to-paper/0 px-4 pb-4 pt-6">
         {form}
+        {where && <WherePicker where={where} onChange={setWhere} places={places} dict={dict} below />}
         <div className="mt-1 flex justify-center">
           <button type="button" onClick={reset} className="link text-sm">{t.newChat}</button>
         </div>
@@ -289,9 +414,17 @@ export const AskClient = forwardRef<AskHandle, { dict: Dict; locale: Locale; onA
 
 const TurnView = forwardRef<
   HTMLLIElement,
-  { turn: Turn; dict: Dict; locale: Locale; onFeedback: (r: "up" | "down", reason?: string, comment?: string) => void; onChip?: (chip: string) => void }
+  {
+    turn: Turn;
+    dict: Dict;
+    locale: Locale;
+    onFeedback: (r: "up" | "down", reason?: string, comment?: string) => void;
+    onChip?: (chip: string) => void;
+    onWriteAnswer: () => void;
+    onPlace: (chip: string) => void;
+  }
 >(function TurnView(
-  { turn, dict, locale, onFeedback, onChip },
+  { turn, dict, locale, onFeedback, onChip, onWriteAnswer, onPlace },
   ref,
 ) {
   const t = dict.ask;
@@ -335,7 +468,7 @@ const TurnView = forwardRef<
               <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-brand [animation-delay:-0.15s]" />
               <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-brand" />
             </span>
-            <span className="text-sm">{t.asking}</span>
+            <span className="text-sm">{turn.kind === "search" ? t.searching : t.asking}</span>
           </div>
         )}
         {turn.answer && (
@@ -344,6 +477,7 @@ const TurnView = forwardRef<
           </div>
         )}
         {turn.error && <p role="alert" className="mt-3 font-semibold text-alert">{turn.error}</p>}
+        {turn.kind === "search" && turn.results && <Results r={turn.results} place={turn.place} dict={dict} locale={locale} onWriteAnswer={onWriteAnswer} onPlace={onPlace} />}
 
         {status === "done" && meta?.chips && meta.chips.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-2" role="group">
@@ -420,7 +554,7 @@ const TurnView = forwardRef<
           </section>
         )}
 
-        {status === "done" && !(meta?.chips && meta.chips.length) && (
+        {turn.kind === "ai" && status === "done" && !(meta?.chips && meta.chips.length) && (
           <>
             {(meta?.notes ?? 0) > 0 && (
               <p className="mt-5 rounded-xl border border-line border-s-4 border-s-accent px-3 py-2 text-sm">{t.disagree}</p>
@@ -555,5 +689,213 @@ function Checklist({ items, title, dict, dir, onHide }: { items: string[]; title
         <button type="button" onClick={print} className="rounded-full border border-line bg-paper px-3 py-1 hover:border-brand">{t.print}</button>
       </div>
     </section>
+  );
+}
+
+/** Free results: matching guides, the person's office and its contacts, and official pages with snippets. */
+function Results({
+  r, place, dict, locale, onWriteAnswer, onPlace,
+}: { r: InstantResult; place?: string; dict: Dict; locale: Locale; onWriteAnswer: () => void; onPlace: (chip: string) => void }) {
+  const t = dict.ask;
+  const m = r.mission;
+  const empty = !r.pages.length && !r.guides.length && !m;
+  return (
+    <div className="space-y-5">
+      {r.askPlace && (
+        <div>
+          <p className="text-sm font-semibold">{r.askPlace.question}</p>
+          <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label={r.askPlace.question}>
+            {r.askPlace.chips.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => onPlace(c)}
+                dir="auto"
+                className="rounded-full border border-brand/40 bg-surface px-3.5 py-1.5 text-sm font-semibold text-brand transition-colors hover:border-brand hover:bg-brand hover:text-white"
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {place && !r.askPlace && !r.office && <p className="text-sm text-muted">{place}</p>}
+      {r.office && (
+        <p className="text-sm">
+          <span className="font-semibold">{t.yourOffice}: </span>
+          {r.office.inAlgeria ? fmt(t.officeAlgeria, { place: r.office.place }) : r.office.site ? (
+            <a href={r.office.site} target="_blank" rel="noopener noreferrer" className="link">{r.office.name}</a>
+          ) : (
+            r.office.name
+          )}
+          {r.office.fromConnection && <span className="text-muted"> ({t.fromConnection})</span>}
+        </p>
+      )}
+
+      {m && (
+        <section className="rounded-2xl border border-line bg-surface p-4" aria-label={t.contact}>
+          <h3 className="font-semibold">{m.name}</h3>
+          <dl className="mt-2 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-[max-content_1fr]">
+            {m.address && (<><dt className="text-muted">{t.address}</dt><dd dir="auto">{m.address}</dd></>)}
+            {m.phones.length > 0 && (<><dt className="text-muted">{t.phone}</dt><dd dir="ltr" className="text-start">{m.phones.join(" · ")}</dd></>)}
+            {m.emails.length > 0 && (<><dt className="text-muted">{t.email}</dt><dd dir="ltr" className="text-start">{m.emails.join(" · ")}</dd></>)}
+            {m.hours && (<><dt className="text-muted">{t.hours}</dt><dd dir="auto">{m.hours}</dd></>)}
+            {m.appointments && (<><dt className="text-muted">{t.appointments}</dt><dd><a href={m.appointments} target="_blank" rel="noopener noreferrer" className="link break-all">{m.appointments}</a></dd></>)}
+            {m.website && (<><dt className="text-muted">{t.website}</dt><dd><a href={m.website} target="_blank" rel="noopener noreferrer" className="link break-all">{m.website}</a></dd></>)}
+          </dl>
+          {m.checked && <p className="mt-2 text-xs text-muted">{fmt(t.checked, { date: formatDate(m.checked, locale) })}</p>}
+        </section>
+      )}
+
+      {r.guides.map((g) => (
+        <Link key={g.slug} href={`/services/${g.slug}`} className="block rounded-2xl border border-brand/40 bg-brand-soft p-4 transition-colors hover:border-brand">
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand">{t.guide}</span>
+          <span className="mt-1 block font-semibold text-ink">{g.title}</span>
+          <span className="mt-0.5 block text-sm text-muted">{g.lead}</span>
+          <span className="mt-2 inline-block text-sm font-semibold text-brand">
+            {t.openGuide} <span aria-hidden="true" className="inline-block rtl:-scale-x-100">→</span>
+          </span>
+        </Link>
+      ))}
+
+      {r.pages.length > 0 && (
+        <section aria-label={t.results}>
+          <h3 className="text-sm font-semibold text-muted">{t.results}</h3>
+          <ol className="mt-2 space-y-3">
+            {r.pages.map((p) => (
+              <li key={p.url}>
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="group block rounded-2xl border border-line px-4 py-3 transition-colors hover:border-brand">
+                  <span dir="auto" className="block font-semibold leading-snug text-ink group-hover:text-brand">{p.title}</span>
+                  <span className="block truncate text-xs text-muted">
+                    <span dir="ltr">{p.domain}</span>
+                    {p.archived ? <> · {fmt(t.archived, { date: formatDate(p.archived, locale) })}</> : null}
+                  </span>
+                  <span dir="auto" className="mt-1.5 line-clamp-3 block text-sm text-ink/80">{p.snippet}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {empty && <p className="text-sm">{t.noResults}</p>}
+
+      <div className="rounded-2xl border border-line p-4">
+        <button type="button" onClick={onWriteAnswer} className="min-h-[40px] rounded-full bg-brand px-4 text-sm font-semibold text-brand-ink hover:bg-brand/90">
+          {t.aiCta}
+        </button>
+        <p className="mt-2 text-xs text-muted">{t.aiHint}</p>
+      </div>
+    </div>
+  );
+}
+
+/** "Where do you live?" asked first: in Algeria → wilaya, outside → country (and consulate city when there are several). */
+function WherePicker({
+  where, onChange, places, dict, below = false,
+}: { where: Where | null; onChange: (w: Where | null) => void; places: WhereOptions; dict: Dict; below?: boolean }) {
+  const t = dict.ask;
+  const [step, setStepState] = useState<"idle" | "dz" | "abroad">("idle");
+  const [country, setCountry] = useState("");
+  const changeRef = useRef<HTMLButtonElement>(null);
+  const firstRef = useRef<HTMLButtonElement>(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
+  // Keep keyboard focus on the picker when its content swaps (the focused control unmounts).
+  const setStep = (s: "idle" | "dz" | "abroad") => {
+    setStepState(s);
+    requestAnimationFrame(() => (s === "idle" ? (changeRef.current ?? firstRef.current) : selectRef.current)?.focus());
+  };
+  const countryOpt = places.countries.find((c) => c.value === country);
+  const select = "field min-h-[40px] w-full rounded-full border border-line bg-paper px-4 text-sm sm:w-auto";
+  const pill = "min-h-[40px] rounded-full border border-line bg-paper px-4 text-sm font-semibold transition-colors hover:border-brand hover:bg-brand-soft";
+
+  if (where && step === "idle") {
+    const label =
+      where.in === "dz"
+        ? fmt(t.whereAlgeria, { place: places.wilayas.find((w) => w.value === where.wilaya)?.label ?? where.wilaya })
+        : [where.city, places.countries.find((c) => c.value === where.country)?.label ?? where.country].filter(Boolean).join(", ");
+    return (
+      <p className={`${below ? "mt-2" : "mb-3"} flex w-full flex-wrap items-center justify-center gap-x-2 text-sm`}>
+        <span aria-hidden="true">📍</span>
+        <span dir="auto" className="font-semibold">{label}</span>
+        <button ref={changeRef} type="button" onClick={() => setStep(where.in)} className="link">{t.whereChange}</button>
+      </p>
+    );
+  }
+
+  return (
+    <div role="group" aria-labelledby="where-title" className={`${below ? "mt-3" : "mb-4"} w-full rounded-3xl border border-line bg-surface p-4 text-center`}>
+      <p id="where-title" className="font-semibold">{t.whereTitle}</p>
+      {step === "idle" && (
+        <>
+          <div className="mt-3 flex flex-wrap justify-center gap-2">
+            <button ref={firstRef} type="button" className={pill} onClick={() => setStep("dz")}>{t.whereIn}</button>
+            <button type="button" className={pill} onClick={() => setStep("abroad")}>{t.whereOut}</button>
+          </div>
+          <p className="mt-2 text-xs text-muted">{t.whereHint}</p>
+        </>
+      )}
+      {step === "dz" && (
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+          <label className="sr-only" htmlFor="where-wilaya">{t.whereWilaya}</label>
+          <select
+            id="where-wilaya"
+            ref={selectRef}
+            className={select}
+            defaultValue=""
+            onChange={(e) => {
+              if (!e.target.value) return;
+              onChange({ in: "dz", wilaya: e.target.value });
+              setStep("idle");
+            }}
+          >
+            <option value="" disabled>{t.whereWilaya}…</option>
+            {places.wilayas.map((w) => <option key={w.value} value={w.value}>{w.label}</option>)}
+          </select>
+          <button type="button" className="link text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
+        </div>
+      )}
+      {step === "abroad" && (
+        <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+          <label className="sr-only" htmlFor="where-country">{t.whereCountry}</label>
+          <select
+            id="where-country"
+            ref={selectRef}
+            className={select}
+            value={country}
+            onChange={(e) => {
+              const c = places.countries.find((x) => x.value === e.target.value);
+              setCountry(e.target.value);
+              if (c && !c.cities.length) {
+                onChange({ in: "abroad", country: c.value });
+                setStep("idle");
+              }
+            }}
+          >
+            <option value="" disabled>{t.whereCountry}…</option>
+            {places.countries.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+          </select>
+          {countryOpt && countryOpt.cities.length > 0 && (
+            <>
+              <label className="sr-only" htmlFor="where-city">{t.whereCity}</label>
+              <select
+                id="where-city"
+                className={select}
+                defaultValue=""
+                onChange={(e) => {
+                  if (!e.target.value) return;
+                  onChange({ in: "abroad", country: countryOpt.value, city: e.target.value });
+                  setStep("idle");
+                }}
+              >
+                <option value="" disabled>{t.whereCity}…</option>
+                {countryOpt.cities.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </>
+          )}
+          <button type="button" className="link text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
+        </div>
+      )}
+    </div>
   );
 }

@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import type { Dict, Locale } from "@/lib/i18n";
 import type { Service } from "@/lib/services";
+import type { WhereOptions } from "@/lib/where";
 import { AskClient, type AskHandle } from "./AskClient";
 import { HeroBackdrop } from "./Backdrop";
 import { ExternalIcon, Icon } from "./Icon";
 
-export function HomeClient({ dict, locale, services }: { dict: Dict; locale: Locale; services: Service[] }) {
+export function HomeClient({ dict, locale, services, places }: { dict: Dict; locale: Locale; services: Service[]; places: WhereOptions }) {
   const askRef = useRef<AskHandle>(null);
   const [active, setActive] = useState(false);
   const s = dict.services;
@@ -25,7 +26,7 @@ export function HomeClient({ dict, locale, services }: { dict: Dict; locale: Loc
             <p className="mx-auto mt-3 max-w-xl text-muted">{dict.ask.sub}</p>
           </div>
         )}
-        <AskClient ref={askRef} dict={dict} locale={locale} onActiveChange={setActive} />
+        <AskClient ref={askRef} dict={dict} locale={locale} places={places} onActiveChange={setActive} />
       </section>
       </div>
 

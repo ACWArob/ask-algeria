@@ -17,6 +17,7 @@ import { corpusById } from "@/lib/corpus";
 import { detectPost, detectMultiPostCountry, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
+import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
 import sourcesJson from "@/data/sources.json";
 import { followUps } from "@/lib/followups";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
@@ -59,7 +60,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
   }
 
-  let body: { question?: unknown; lang?: unknown; context?: unknown; prevAnswer?: unknown; buffer?: unknown };
+  let body: { question?: unknown; lang?: unknown; context?: unknown; prevAnswer?: unknown; buffer?: unknown; where?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -85,13 +86,16 @@ export async function POST(req: Request) {
   const missionPost: PostHint | null = namedMission
     ? { place: namedMission.city, post: namedMission.name_en, site: namedMission.website || undefined, domains: missionHosts(namedMission) }
     : null;
-  const statedPost = detectPost(question) ?? missionPost ?? detectPost(context);
+  // Saved "where do you live?" (in Algeria → wilaya, abroad → country/city): beats the context and the connection.
+  // A country named in the question ("passport for France") still beats the saved place.
+  const where = detectMultiPostCountry(question) ? null : parseWhere(body.where);
+  const statedPost = detectPost(question) ?? missionPost ?? resolveWhere(where) ?? detectPost(context);
   // Fall back to the approximate location of the connection (e.g. Netlify geo), but say so in the answer.
   // Never when they named a country ("France"): then we ask which city instead of using where the connection is.
-  const namedCountry = detectMultiPostCountry(`${context} ${question}`);
+  const namedCountry = detectMultiPostCountry(`${context} ${question}`) ?? whereCountry(where);
   const geoPost = statedPost || namedCountry ? null : postFromGeo(readGeo(req.headers));
   const post = statedPost ?? geoPost;
-  const multiPostCountry = post ? null : detectMultiPostCountry(`${context} ${question}`);
+  const multiPostCountry = post ? null : namedCountry;
   const topics = questionTopics(`${context} ${question}`);
 
   const quickLang = chooseAnswerLang(selected, detectLanguage(question), question);
