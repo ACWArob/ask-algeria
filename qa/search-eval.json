@@ -1,0 +1,678 @@
+[
+ {
+  "q": "how do I renew my passport",
+  "lang": "en",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "renouveler passeport biométrique",
+  "lang": "fr",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "كيف أجدد جواز السفر",
+  "lang": "ar",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "كيفاش نجدد الباسبور",
+  "lang": "dz",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "kifach njadded passpor",
+  "lang": "dz",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "pasport renewel",
+  "lang": "en",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "passport for my child",
+  "lang": "en",
+  "want": "passport|passeport|mineur|minor"
+ },
+ {
+  "q": "lost passport abroad",
+  "lang": "en",
+  "want": "passport|passeport|perte|lost|laissez"
+ },
+ {
+  "q": "12S birth certificate online",
+  "lang": "en",
+  "want": "12 ?s|12s|naissance|birth|ميلاد"
+ },
+ {
+  "q": "extrait de naissance 12S",
+  "lang": "fr",
+  "want": "12 ?s|12s|naissance|birth|ميلاد"
+ },
+ {
+  "q": "شهادة الميلاد 12 خ",
+  "lang": "ar",
+  "want": "12 ?s|12s|naissance|birth|ميلاد"
+ },
+ {
+  "q": "nkhrej shahadat milad 12s",
+  "lang": "dz",
+  "want": "12 ?s|12s|naissance|birth|ميلاد"
+ },
+ {
+  "q": "criminal record extract",
+  "lang": "en",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "casier judiciaire bulletin 3",
+  "lang": "fr",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "صحيفة السوابق العدلية",
+  "lang": "ar",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "nkhrej casier",
+  "lang": "dz",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "nationality certificate",
+  "lang": "en",
+  "want": "nationalit|جنسية"
+ },
+ {
+  "q": "certificat de nationalité algérienne",
+  "lang": "fr",
+  "want": "nationalit|جنسية"
+ },
+ {
+  "q": "شهادة الجنسية",
+  "lang": "ar",
+  "want": "nationalit|جنسية"
+ },
+ {
+  "q": "biometric ID card",
+  "lang": "en",
+  "want": "identit|cni|بطاقة التعريف|id card"
+ },
+ {
+  "q": "carte d'identité biométrique",
+  "lang": "fr",
+  "want": "identit|cni|بطاقة التعريف"
+ },
+ {
+  "q": "بطاقة التعريف البيومترية",
+  "lang": "ar",
+  "want": "identit|cni|بطاقة التعريف"
+ },
+ {
+  "q": "لاكارط ديدونتيتي",
+  "lang": "dz",
+  "want": "identit|cni|بطاقة التعريف"
+ },
+ {
+  "q": "register at the consulate",
+  "lang": "en",
+  "want": "immatricul|registration|تسجيل"
+ },
+ {
+  "q": "immatriculation consulaire",
+  "lang": "fr",
+  "want": "immatricul|registration|تسجيل"
+ },
+ {
+  "q": "التسجيل القنصلي",
+  "lang": "ar",
+  "want": "immatricul|registration|تسجيل"
+ },
+ {
+  "q": "register marriage abroad",
+  "lang": "en",
+  "want": "mariage|marriage|زواج|transcription"
+ },
+ {
+  "q": "transcription acte de mariage",
+  "lang": "fr",
+  "want": "mariage|marriage|زواج|transcription"
+ },
+ {
+  "q": "تسجيل عقد الزواج",
+  "lang": "ar",
+  "want": "mariage|marriage|زواج|transcription"
+ },
+ {
+  "q": "register birth of my baby abroad",
+  "lang": "en",
+  "want": "naissance|birth|ميلاد|transcription"
+ },
+ {
+  "q": "livret de famille",
+  "lang": "fr",
+  "want": "livret|famille|family book|دفتر|civil status|état civil|etat civil"
+ },
+ {
+  "q": "national service exemption abroad",
+  "lang": "en",
+  "want": "service national|national service|خدمة الوطنية|militaire|military"
+ },
+ {
+  "q": "dispense service national",
+  "lang": "fr",
+  "want": "service national|national service|خدمة الوطنية|militaire"
+ },
+ {
+  "q": "الخدمة الوطنية إعفاء",
+  "lang": "ar",
+  "want": "service national|national service|الخدمة الوطنية|militaire"
+ },
+ {
+  "q": "sarvis militaire",
+  "lang": "dz",
+  "want": "service national|national service|الخدمة الوطنية|militaire|recensement"
+ },
+ {
+  "q": "power of attorney consulate",
+  "lang": "en",
+  "want": "procuration|attorney|توكيل|وكالة|légalisation|legaliz"
+ },
+ {
+  "q": "légalisation de documents",
+  "lang": "fr",
+  "want": "légalis|legalis|تصديق|authentif"
+ },
+ {
+  "q": "AADL 3 inscription",
+  "lang": "fr",
+  "want": "aadl|عدل|logement"
+ },
+ {
+  "q": "كيفاش نسجل في عدل",
+  "lang": "dz",
+  "want": "aadl|عدل|logement"
+ },
+ {
+  "q": "public housing application",
+  "lang": "en",
+  "want": "aadl|logement|housing|سكن"
+ },
+ {
+  "q": "allocation chômage inscription",
+  "lang": "fr",
+  "want": "chômage|chomage|minha|unemploy|بطالة|anem"
+ },
+ {
+  "q": "منحة البطالة",
+  "lang": "ar",
+  "want": "chômage|chomage|minha|unemploy|بطالة|anem"
+ },
+ {
+  "q": "unemployment benefit",
+  "lang": "en",
+  "want": "chômage|chomage|minha|unemploy|بطالة|anem"
+ },
+ {
+  "q": "CNAS attestation d'affiliation",
+  "lang": "fr",
+  "want": "cnas|affiliation|hanaa|ضمان"
+ },
+ {
+  "q": "social security card chifa",
+  "lang": "en",
+  "want": "chifa|cnas|شفاء|social"
+ },
+ {
+  "q": "retraite CNR pension",
+  "lang": "fr",
+  "want": "retraite|cnr|pension|تقاعد"
+ },
+ {
+  "q": "pay taxes online jibayatic",
+  "lang": "en",
+  "want": "jibayat|impôt|impot|tax|ضرائب"
+ },
+ {
+  "q": "déclaration d'impôts en ligne",
+  "lang": "fr",
+  "want": "jibayat|impôt|impot|tax|ضرائب|déclaration"
+ },
+ {
+  "q": "timbre fiscal électronique",
+  "lang": "fr",
+  "want": "timbre|tabioucom|طوابع"
+ },
+ {
+  "q": "bac results 2026",
+  "lang": "en",
+  "want": "bac|baccalaur|بكالوريا"
+ },
+ {
+  "q": "نتائج البكالوريا",
+  "lang": "ar",
+  "want": "bac|baccalaur|بكالوريا"
+ },
+ {
+  "q": "inscription université progres",
+  "lang": "fr",
+  "want": "progres|université|universit|inscription|étudiant"
+ },
+ {
+  "q": "student visa algeria study",
+  "lang": "en",
+  "want": "visa|étudiant|student|study"
+ },
+ {
+  "q": "visa pour l'Algérie",
+  "lang": "fr",
+  "want": "visa|تأشيرة"
+ },
+ {
+  "q": "driving licence exchange",
+  "lang": "en",
+  "want": "permis|driving|licen|رخصة"
+ },
+ {
+  "q": "permis de conduire biométrique",
+  "lang": "fr",
+  "want": "permis|driving|رخصة"
+ },
+ {
+  "q": "carte grise véhicule",
+  "lang": "fr",
+  "want": "carte grise|immatriculation|véhicule|vehicle"
+ },
+ {
+  "q": "import car to algeria customs",
+  "lang": "en",
+  "want": "douane|customs|véhicule|vehicle|car|جمارك"
+ },
+ {
+  "q": "auto-entrepreneur statut",
+  "lang": "fr",
+  "want": "auto.?entrepreneur|anae|مقاول"
+ },
+ {
+  "q": "registre de commerce création entreprise",
+  "lang": "fr",
+  "want": "registre|commerce|cnrc|sidjilcom|entreprise"
+ },
+ {
+  "q": "startup label algeria",
+  "lang": "en",
+  "want": "startup|label"
+ },
+ {
+  "q": "facture électricité sonelgaz",
+  "lang": "fr",
+  "want": "sonelgaz|électricit|facture|كهرباء"
+ },
+ {
+  "q": "edahabia card algerie poste",
+  "lang": "en",
+  "want": "edahabia|dahabia|poste|ذهبية|ccp"
+ },
+ {
+  "q": "consulate phone number london",
+  "lang": "en",
+  "want": "london|londres|لندن"
+ },
+ {
+  "q": "horaires consulat paris",
+  "lang": "fr",
+  "want": "paris|باريس"
+ },
+ {
+  "q": "bring body back to algeria repatriation",
+  "lang": "en",
+  "want": "rapatriement|repatriation|décès|death|dépouille|corps|ترحيل|جثمان"
+ },
+ {
+  "q": "death certificate abroad",
+  "lang": "en",
+  "want": "décès|death|وفاة"
+ },
+ {
+  "q": "dz travellers registration",
+  "lang": "en",
+  "want": "travel|apcs|مسافر"
+ },
+ {
+  "q": "hajj registration",
+  "lang": "en",
+  "want": "hajj|حج|omra|عمرة|consulate services",
+  "expectEmptyOk": true
+ },
+ {
+  "q": "vaccination certificate",
+  "lang": "en",
+  "want": "vaccin|لقاح|santé|health"
+ },
+ {
+  "q": "unemployment allowance how to apply",
+  "lang": "en",
+  "want": "chômage|chomage|minha|unemploy|بطالة|anem"
+ },
+ {
+  "q": "job seeker card anem",
+  "lang": "en",
+  "want": "anem|emploi|chômage|demandeur|تشغيل|job"
+ },
+ {
+  "q": "customs duties car import",
+  "lang": "en",
+  "want": "douane|customs|véhicule|vehicle|جمارك|dédouan"
+ },
+ {
+  "q": "dédouanement véhicule",
+  "lang": "fr",
+  "want": "douane|customs|véhicule|vehicle|جمارك|dédouan"
+ },
+ {
+  "q": "military service deferment",
+  "lang": "en",
+  "want": "service national|national service|الخدمة الوطنية|militaire|recensement|sursis"
+ },
+ {
+  "q": "الخدمة الوطنية للمقيمين في الخارج",
+  "lang": "ar",
+  "want": "service national|national service|الخدمة الوطنية|militaire|recensement"
+ },
+ {
+  "q": "fiscal stamp online payment",
+  "lang": "en",
+  "want": "timbre|tabioucom|طوابع|stamp"
+ },
+ {
+  "q": "droits de timbre",
+  "lang": "fr",
+  "want": "timbre|tabioucom|طوابع"
+ },
+ {
+  "q": "marriage certificate copy",
+  "lang": "en",
+  "want": "mariage|marriage|زواج"
+ },
+ {
+  "q": "عقد الزواج",
+  "lang": "ar",
+  "want": "mariage|marriage|زواج"
+ },
+ {
+  "q": "divorce transcription",
+  "lang": "en",
+  "want": "divorce|طلاق|mentions marginales|civil status|état civil"
+ },
+ {
+  "q": "death abroad what to do",
+  "lang": "en",
+  "want": "décès|death|وفاة|rapatriement|dépouille"
+ },
+ {
+  "q": "وفاة في الخارج نقل الجثمان",
+  "lang": "ar",
+  "want": "décès|death|وفاة|rapatriement|dépouille|جثمان|نقل"
+ },
+ {
+  "q": "consular card renewal",
+  "lang": "en",
+  "want": "immatricul|consular card|carte consulaire|registration"
+ },
+ {
+  "q": "change of address consulate",
+  "lang": "en",
+  "want": "résidence|residence|address|adresse|radiation|changement|transfer|transfert"
+ },
+ {
+  "q": "certificat de résidence",
+  "lang": "fr",
+  "want": "résidence|residence|إقامة"
+ },
+ {
+  "q": "laissez-passer",
+  "lang": "fr",
+  "want": "laissez|passer|مرور"
+ },
+ {
+  "q": "emergency travel document",
+  "lang": "en",
+  "want": "laissez|passer|urgence|emergency|مرور"
+ },
+ {
+  "q": "passport photo requirements",
+  "lang": "en",
+  "want": "passport|passeport|photo|جواز"
+ },
+ {
+  "q": "frais passeport consulat",
+  "lang": "fr",
+  "want": "passport|passeport|frais|tarif|جواز"
+ },
+ {
+  "q": "شحال يكلف الباسبور",
+  "lang": "dz",
+  "want": "passport|passeport|جواز|frais|tarif|fee"
+ },
+ {
+  "q": "wach lazem bach ndir passport",
+  "lang": "dz",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "lcasier judiciaire en ligne",
+  "lang": "fr",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "certificat de nationalite en ligne",
+  "lang": "fr",
+  "want": "nationalit|جنسية"
+ },
+ {
+  "q": "ID card for children",
+  "lang": "en",
+  "want": "identit|cni|بطاقة التعريف|mineur|minor"
+ },
+ {
+  "q": "procuration consulat",
+  "lang": "fr",
+  "want": "procuration|توكيل|وكالة|légalis"
+ },
+ {
+  "q": "apostille algeria documents",
+  "lang": "en",
+  "want": "légalis|legalis|apostil|تصديق|authentif"
+ },
+ {
+  "q": "taxe foncière",
+  "lang": "fr",
+  "want": "impôt|impot|tax|foncière|ضرائب|fiscal"
+ },
+ {
+  "q": "NIF numéro d'identification fiscale",
+  "lang": "fr",
+  "want": "nif|fiscal|identification|ضريب"
+ },
+ {
+  "q": "assurance maladie chifa",
+  "lang": "fr",
+  "want": "chifa|cnas|شفاء|assurance"
+ },
+ {
+  "q": "retirement pension abroad",
+  "lang": "en",
+  "want": "retraite|pension|cnr|تقاعد|retirement"
+ },
+ {
+  "q": "bourse études à l'étranger",
+  "lang": "fr",
+  "want": "bourse|scholar|étranger|études|منحة"
+ },
+ {
+  "q": "équivalence diplôme",
+  "lang": "fr",
+  "want": "équivalence|equivalence|diplôme|معادلة"
+ },
+ {
+  "q": "degree equivalence algeria",
+  "lang": "en",
+  "want": "équivalence|equivalence|diplôme|degree|معادلة"
+ },
+ {
+  "q": "residence permit foreigner algeria",
+  "lang": "en",
+  "want": "séjour|residence|résident|إقامة|carte de"
+ },
+ {
+  "q": "carte de séjour étranger",
+  "lang": "fr",
+  "want": "séjour|residence|résident|إقامة"
+ },
+ {
+  "q": "internet algerie telecom",
+  "lang": "fr",
+  "want": "algérie télécom|algerie telecom|internet|idoom|اتصالات"
+ },
+ {
+  "q": "water bill ade",
+  "lang": "en",
+  "want": "ade|eau|water|ماء|facture"
+ },
+ {
+  "q": "hospital emergency number",
+  "lang": "en",
+  "want": "santé|health|hospital|hôpital|urgence|صحة|samu|protection civile"
+ },
+ {
+  "q": "vote elections abroad",
+  "lang": "en",
+  "want": "élection|election|vote|انتخاب|ina|aneie|ANIE"
+ },
+ {
+  "q": "what papers do I need for a new passport",
+  "lang": "en",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "je veux refaire ma carte d'identité perdue",
+  "lang": "fr",
+  "want": "identit|cni|بطاقة التعريف|perte"
+ },
+ {
+  "q": "ضاع لي الباسبور",
+  "lang": "dz",
+  "want": "passport|passeport|جواز|perte|lost|laissez"
+ },
+ {
+  "q": "wach ndir bach ndir lcarte consulaire",
+  "lang": "dz",
+  "want": "immatricul|consul|registration|تسجيل"
+ },
+ {
+  "q": "inscrire mon enfant né en France",
+  "lang": "fr",
+  "want": "naissance|birth|ميلاد|transcription|état civil"
+ },
+ {
+  "q": "كيف أحصل على شهادة الجنسية الجزائرية",
+  "lang": "ar",
+  "want": "nationalit|جنسية"
+ },
+ {
+  "q": "casier judiciaire pour travailler à l'étranger",
+  "lang": "fr",
+  "want": "casier|criminal|سوابق|judiciaire"
+ },
+ {
+  "q": "military card abroad",
+  "lang": "en",
+  "want": "service national|national service|الخدمة الوطنية|militaire|recensement"
+ },
+ {
+  "q": "شحال تاخذ مدة الباسبور",
+  "lang": "dz",
+  "want": "passport|passeport|جواز"
+ },
+ {
+  "q": "renouvellement carte consulaire",
+  "lang": "fr",
+  "want": "immatricul|consul|registration"
+ },
+ {
+  "q": "marriage with a foreigner consulate",
+  "lang": "en",
+  "want": "mariage|marriage|زواج"
+ },
+ {
+  "q": "تصديق الوثائق في القنصلية",
+  "lang": "ar",
+  "want": "légalis|legalis|تصديق|authentif|مصادقة"
+ },
+ {
+  "q": "inscription logement AADL 3",
+  "lang": "fr",
+  "want": "aadl|عدل|logement"
+ },
+ {
+  "q": "how to declare taxes as auto-entrepreneur",
+  "lang": "en",
+  "want": "auto.?entrepreneur|anae|impôt|tax|jibayat|fiscal"
+ },
+ {
+  "q": "retraite pour les algériens résidant à l'étranger",
+  "lang": "fr",
+  "want": "retraite|pension|cnr|تقاعد"
+ },
+ {
+  "q": "student residence onou",
+  "lang": "en",
+  "want": "onou|résidence|residence|universit|cité|étudiant|student"
+ },
+ {
+  "q": "تسجيل في الجامعة الجزائرية للأجانب",
+  "lang": "ar",
+  "want": "universit|étudiant|student|جامعة|progres|international"
+ },
+ {
+  "q": "paiement facture eau en ligne",
+  "lang": "fr",
+  "want": "eau|water|ade|facture|ماء"
+ },
+ {
+  "q": "bac libre inscription",
+  "lang": "fr",
+  "want": "bac|baccalaur|بكالوريا|onec"
+ },
+ {
+  "q": "rapatriement du corps d'un défunt",
+  "lang": "fr",
+  "want": "rapatriement|décès|death|dépouille|corps|وفاة"
+ },
+ {
+  "q": "visa tourist algeria documents",
+  "lang": "en",
+  "want": "visa|تأشيرة"
+ },
+ {
+  "q": "passport for newborn baby",
+  "lang": "en",
+  "want": "passport|passeport|mineur|minor|جواز"
+ },
+ {
+  "q": "l'attestation de non affiliation cnas",
+  "lang": "fr",
+  "want": "cnas|affiliation|hanaa"
+ },
+ {
+  "q": "cmd nsajel f l'université",
+  "lang": "dz",
+  "want": "universit|étudiant|student|جامعة|progres|inscription"
+ },
+ {
+  "q": "appointment for passport at consulate",
+  "lang": "en",
+  "want": "passport|passeport|rendez|appointment|rdv|جواز"
+ }
+]

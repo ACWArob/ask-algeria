@@ -9,8 +9,9 @@
     "name_en": "Embassy of Algeria in Luanda",
     "name_fr": "Ambassade d'Algérie à Luanda",
     "website": "https://embluanda.mfa.gov.dz/",
-    "address": "",
+    "address": "Rue Houari Boumediene N-118, Miramar luanda",
     "phones": [
+      "Tel: +244 226 470 031",
       "Tel: +244 222 44 50 20",
       "Fax: +244 222 44 50 20"
     ],
@@ -21,7 +22,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embluanda.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -41,7 +42,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -53,16 +54,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Gaborone",
     "name_fr": "Ambassade d'Algérie à Gaborone",
-    "website": "",
+    "website": "https://embgaborone.mfa.gov.dz/",
     "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "phones": [
+      "Tel: +2673906514",
+      "Fax: +267390 6524"
+    ],
+    "emails": [
+      "gaborone.ambalgsvc@gmail.com",
+      "algemb.gaborone@gmail.com"
+    ],
+    "hours": "Monday to Friday: 9:00 AM – 4:30 PM; closed on public holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embgaborone.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "website-only"
   },
   {
     "id": "embouagadougou",
@@ -74,7 +81,7 @@
     "name_en": "Embassy of Algeria in Ouagadougou",
     "name_fr": "Ambassade d'Algérie à Ouagadougou",
     "website": "https://embouagadougou.mfa.gov.dz/",
-    "address": "",
+    "address": "Secteur 13 Zone du Bois 295, Avenue Babanguida 01, BP 3893, Ouagadougou",
     "phones": [
       "Tel: (+226) 25 36 81 81",
       "Fax: (+226) 25 36 81 79"
@@ -86,7 +93,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embouagadougou.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -110,7 +117,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embbujumbura.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -123,7 +130,7 @@
     "name_en": "Embassy of Algeria in Yaoundé",
     "name_fr": "Ambassade d'Algérie à Yaoundé",
     "website": "https://embyaounde.mfa.gov.dz/",
-    "address": "",
+    "address": "Rue 1828 Numéro 433 Quartier Bastos - Yaoundé BP 1619",
     "phones": [
       "Tel: +(237) 222 21 53 51",
       "Fax: +(237) 222 21 53 54"
@@ -135,7 +142,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embyaounde.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -148,7 +155,7 @@
     "name_en": "Embassy of Algeria in N'Djamena",
     "name_fr": "Ambassade d'Algérie à N'Djamena",
     "website": "https://embndjamena.mfa.gov.dz/",
-    "address": "",
+    "address": "Rue de Paris, N’Djamena, BP 178",
     "phones": [
       "Tel: +235 67489754"
     ],
@@ -159,7 +166,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embndjamena.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -172,15 +179,20 @@
     "name_en": "Embassy of Algeria in Brazzaville",
     "name_fr": "Ambassade d'Algérie à Brazzaville",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "Avenue Colonel Brisset BP 2100, Brazzaville",
+    "phones": [
+      "Tel: +242 22 281 17 37 / +242 05 584 54 77",
+      "Fax: +242 22 281 05 97"
+    ],
+    "emails": [
+      "ambalg.bzv@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkinshasa",
@@ -191,16 +203,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Kinshasa",
     "name_fr": "Ambassade d'Algérie à Kinshasa",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embkinshasa.mfa.gov.dz/fr",
+    "address": "50-52 Avenue Colonel, Ebeya Gombe, Kinshasa",
+    "phones": [
+      "Tel: +243 818 803 717"
+    ],
+    "emails": [
+      "kinambalg@gmail.com"
+    ],
+    "hours": "Horaires d'ouvertures au public Du lundi au vendredi Du 09:00 à 16:00; Dépôt et retrait des demandes de visas; Lundi - Mardi - Mercredi du 09:00 à 14:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embkinshasa.mfa.gov.dz/fr/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embdjibouti",
@@ -219,7 +235,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -232,7 +248,7 @@
     "name_en": "Embassy of Algeria in Cairo",
     "name_fr": "Ambassade d'Algérie à Le Caire",
     "website": "https://embcairo.mfa.gov.dz/",
-    "address": "",
+    "address": "14 Brazil Street, El Zamalek, Cairo",
     "phones": [
       "+20 2 7368527",
       "Fax: +20 2 7366659",
@@ -247,7 +263,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://embcairo.mfa.gov.dz/contact",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -260,15 +276,20 @@
     "name_en": "Embassy of Algeria in Addis Ababa",
     "name_fr": "Ambassade d'Algérie à Addis-Abeba",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "Nifas Silk Lafto K. Ketema, 03 Addis Abeba",
+    "phones": [
+      "Tel: +251 1 71 96 66",
+      "Fax: +251 1 71 96 68"
+    ],
+    "emails": [
+      "algemb@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "emblibreville",
@@ -279,16 +300,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Libreville",
     "name_fr": "Ambassade d'Algérie à Libreville",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://www.ambalglibreville.com/",
+    "address": "BP N° 4008, Libreville, Gabon",
+    "phones": [
+      "Tel: (+241) 11 44 34 80",
+      "Fax: (+241) 11 44 34 81"
+    ],
+    "emails": [
+      "reclamation@ambalglibreville.com"
+    ],
+    "hours": "Du lundi au Vendredi: 8h30 -15h",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.ambalglibreville.com/index.php",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embaccra",
@@ -300,7 +326,7 @@
     "name_en": "Embassy of Algeria in Accra",
     "name_fr": "Ambassade d'Algérie à Accra",
     "website": "https://embaccra.mfa.gov.dz/",
-    "address": "",
+    "address": "No.22, Josif Broz Tito Ave, Accra",
     "phones": [
       "Tel: +233 302 77 67 19",
       "Fax: +233 302 77 68 28",
@@ -313,7 +339,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embaccra.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -325,16 +351,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Conakry",
     "name_fr": "Ambassade d'Algérie à Conakry",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://algeriegn.org/",
+    "address": "Cité des Nations, Quartiers Kaloum BP, 1004 Conakry",
+    "phones": [
+      "Tel: +224 662 055 555"
+    ],
+    "emails": [
+      "ambalg-cky@yahoo.fr"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embabidjan",
@@ -346,15 +376,21 @@
     "name_en": "Embassy of Algeria in Abidjan",
     "name_fr": "Ambassade d'Algérie à Abidjan",
     "website": "https://embabidjan.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "53 Bd Clozel /01 BP 1015 Abidjan 01",
+    "phones": [
+      "Tel: +225 27 20 214 854",
+      "Tel: +225 27 20 212 340",
+      "Fax: +225 27 20 223 712"
+    ],
+    "emails": [
+      "ambalgci2020@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embabidjan.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embnairobi",
@@ -366,7 +402,7 @@
     "name_en": "Embassy of Algeria in Nairobi",
     "name_fr": "Ambassade d'Algérie à Nairobi",
     "website": "https://embnairobi.mfa.gov.dz/",
-    "address": "",
+    "address": "Muthaiga Road, No. 37, P.O. Box 64140 Mobil PLAZA 00620, Nairobi, Kenya",
     "phones": [
       "Tel: + 254 20 2680 728 / + 254 20 4055 559",
       "Fax: + 254 20 4055 560"
@@ -378,8 +414,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embnairobi.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embnairobi.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embtripoli",
@@ -398,7 +437,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -418,7 +457,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -431,15 +470,21 @@
     "name_en": "Embassy of Algeria in Antananarivo",
     "name_fr": "Ambassade d'Algérie à Antananarivo",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "05 Rue Reverend Pere Callet Behoririka",
+    "phones": [
+      "Tel: +261 20 22 228 64",
+      "Tel: +261 20 22 221 55",
+      "Fax: +261 20 22 622 55"
+    ],
+    "emails": [
+      "ambalg_tnr@yahoo.fr"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbamako",
@@ -450,16 +495,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Bamako",
     "name_fr": "Ambassade d'Algérie à Bamako",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbamako.mfa.gov.dz/en",
+    "address": "BP NR 02, Daoudabougou, Bamako",
+    "phones": [
+      "Tel: +223 20 20 18 83 / +223 20 20 45 72 / +223 20 20 51 76",
+      "Fax: +223 20 22 93 74"
+    ],
+    "emails": [
+      "bamakoalger@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbamako.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cgao",
@@ -478,7 +528,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -490,16 +540,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Nouakchott",
     "name_fr": "Ambassade d'Algérie à Nouakchott",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embnouakchott.mfa.gov.dz/ar",
+    "address": "Ilot A Tevragh Zeina BP 625",
+    "phones": [
+      "+22245253569",
+      "+22245254007",
+      "Fax: +22245254777"
+    ],
+    "emails": [
+      "cj.ambalgnouakchott@mae.dz",
+      "ambalgnktt@gmail.com"
+    ],
+    "hours": "Monday to Thursday, from 9 am to 4 pm; Friday, from 9 am to 12 pm except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embnouakchott.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cnouadhibou",
@@ -511,15 +568,44 @@
     "name_en": "Consulate of Algeria in Nouadhibou",
     "name_fr": "Consulat d'Algérie à Nouadhibou",
     "website": "",
-    "address": "",
-    "phones": [],
+    "address": "NR 45 RUE NR 30 RAS-LIMAN BP 262 NOUADHIBOU",
+    "phones": [
+      "Tel: +222 4574 60 86",
+      "Fax: +222 4574 59 40"
+    ],
+    "emails": [
+      "consulatndb@hotmail.com"
+    ],
+    "hours": "",
+    "jurisdiction": "",
+    "appointment_url": "",
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
+  },
+  {
+    "id": "embrabat",
+    "country": "Morocco",
+    "country_fr": "Maroc",
+    "country_ar": "المغرب",
+    "city": "Rabat",
+    "type": "Embassy",
+    "name_en": "Embassy of Algeria in Rabat",
+    "name_fr": "Ambassade d'Algérie à Rabat",
+    "website": "https://www.ambalg.ma/",
+    "address": "Rue Ghiata, Av. Mohammed VI, Rabat",
+    "phones": [
+      "Consular section: +212 537 76 76 68",
+      "Consular section fax: +212 537 76 78 58"
+    ],
     "emails": [],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.ambalg.ma/contact",
+    "checked": "2026-10-31",
+    "status": "verified",
+    "note": "Consular section: 46, 48 avenue Tarek Ibn Ziad, Rabat BP 448. Urgent cases (WhatsApp, 24/7): +212 666 90 26 30."
   },
   {
     "id": "cgcasablanca",
@@ -531,15 +617,18 @@
     "name_en": "Consulate General of Algeria in Casablanca",
     "name_fr": "Consulat général d'Algérie à Casablanca",
     "website": "",
-    "address": "",
-    "phones": [],
+    "address": "701 Boulevard Modibo Keita, Casablanca",
+    "phones": [
+      "Tel: +212 522 28 21 56 / 75",
+      "Fax: +212 522 80 19 13"
+    ],
     "emails": [],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.ambalg.ma/contact",
+    "checked": "2026-10-31",
+    "status": "verified"
   },
   {
     "id": "coujda",
@@ -551,15 +640,23 @@
     "name_en": "Consulate of Algeria in Oujda",
     "name_fr": "Consulat d'Algérie à Oujda",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "11 Boulevard Bir Anzarane B.P N°444 – Oujda 60000",
+    "phones": [
+      "Tel: +212 536 71 04 52",
+      "Fax: +212 536 70 04 16"
+    ],
+    "emails": [
+      "consalg_oujda@yahoo.fr"
+    ],
+    "hours": "Du Lundi au Vendredi: De 8h30 à 15h30",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://www.ambalg.ma/contact/#oujda"
+    ]
   },
   {
     "id": "embmaputo",
@@ -571,7 +668,7 @@
     "name_en": "Embassy of Algeria in Maputo",
     "name_fr": "Ambassade d'Algérie à Maputo",
     "website": "https://embmaputo.mfa.gov.dz/",
-    "address": "",
+    "address": "Rua de Mukumbura N 121/125 C.P 1709 - Maputo",
     "phones": [
       "Fax: +258. 21485067",
       "Toll-free (emergency): +258 21 49 22 03"
@@ -583,8 +680,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embmaputo.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embmaputo.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embwindhoek",
@@ -595,16 +695,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Windhoek",
     "name_fr": "Ambassade d'Algérie à Windhoek",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embwindhoek.mfa.gov.dz/",
+    "address": "96 Joseph Mukwayu Ithana Street, Ludwigsdorf, Windhoek",
+    "phones": [
+      "Tel: +26461221507",
+      "Fax: +26461236376",
+      "Emergency toll-free: 800221507"
+    ],
+    "emails": [
+      "info@embassyofalgeria-namibia.org"
+    ],
+    "hours": "Monday to Friday 09:00 to 15:30 except national and religious holidays in Algeria and Namibia",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embwindhoek.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embniamey",
@@ -615,16 +721,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Niamey",
     "name_fr": "Ambassade d'Algérie à Niamey",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embniamey.mfa.gov.dz/",
+    "address": "Rue des Ambassades, BP 142 -Niamey",
+    "phones": [
+      "Tel: 00227 20 72 35 83",
+      "Toll-free (green number): 0027 20 37 10 26 / 0027 97 06 22 10"
+    ],
+    "emails": [
+      "ambalgniamey@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embniamey.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cagadez",
@@ -636,15 +747,21 @@
     "name_en": "Consulate of Algeria in Agadez",
     "name_fr": "Consulat d'Algérie à Agadez",
     "website": "https://cagadez.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "BP 175 Agadez Niger",
+    "phones": [
+      "Tel: (+227) 20 44 01 17",
+      "(+227) 20 44 04 83",
+      "Fax: (+227) 20 44 04 83"
+    ],
+    "emails": [
+      "agadez.consulat2019@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://cagadez.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embabuja",
@@ -656,7 +773,7 @@
     "name_en": "Embassy of Algeria in Abuja",
     "name_fr": "Ambassade d'Algérie à Abuja",
     "website": "https://embabuja.mfa.gov.dz/",
-    "address": "",
+    "address": "Plot 09, Cadastral Zone A4 1398 Honorable Justice Mamman Nasir Street Asokoro District P.O. Box 10739, Garki Abuja Nigéria",
     "phones": [
       "Tel: +234 7034045321"
     ],
@@ -667,8 +784,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embabuja.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embabuja.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embkigali",
@@ -687,7 +807,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -699,16 +819,26 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Dakar",
     "name_fr": "Ambassade d'Algérie à Dakar",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embdakar.mfa.gov.dz/en",
+    "address": "05, Rue Jean Mermoz Dakar",
+    "phones": [
+      "Tel: +221 33 849 57 00 / 2",
+      "Toll-free (green number): 800 21 21 21",
+      "Fax: +221 33 849 57 01"
+    ],
+    "emails": [
+      "mail@ambalgdakar.org",
+      "consulaire@ambalgdakar.org",
+      "administration@ambalgdakar.org",
+      "mail.ambalgdakar@gmail.com",
+      "consulaire.ambalgdakar@gmail.com"
+    ],
+    "hours": "Monday to Friday 08:30 to 15:30 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embdakar.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embfreetown",
@@ -727,7 +857,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -739,16 +869,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Pretoria",
     "name_fr": "Ambassade d'Algérie à Pretoria",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embpretoria.mfa.gov.dz/en",
+    "address": "950 Arcadia Street, Arcadia, 0083 Pretoria",
+    "phones": [
+      "Tel: +27 12 342 50 74/75/77",
+      "Fax: +27 12 342 6479"
+    ],
+    "emails": [
+      "algemb.pretoria@gmail.com",
+      "consular.algemb@gmail.com",
+      "visaapplication.algemb@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embpretoria.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkhartoum",
@@ -760,15 +897,20 @@
     "name_en": "Embassy of Algeria in Khartoum",
     "name_fr": "Ambassade d'Algérie à Khartoum",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "Sixteen Street, Block 84, House N°12, Ryadh-Khartoum",
+    "phones": [
+      "Tel: +249 183 23 32 12",
+      "Fax: +249 183 23 47 71"
+    ],
+    "emails": [
+      "ambalgkhartoum@yahoo.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embdaressalaam",
@@ -779,16 +921,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Dar es Salaam",
     "name_fr": "Ambassade d'Algérie à Dar es Salaam",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embdaressalaam.mfa.gov.dz/en",
+    "address": "30, Ali Hassan Mwinyi Road P.O.Box2963 Dar es Salaam Tanzania",
+    "phones": [
+      "Tel: +255 222117619",
+      "Fax: +255 222117620",
+      "Emergency toll-free: 0800750230"
+    ],
+    "emails": [
+      "algembdar@yahoo.com",
+      "algembdar@mae.dz"
+    ],
+    "hours": "Monday to Friday 09:00 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embdaressalaam.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embtunis",
@@ -799,16 +948,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Tunis",
     "name_fr": "Ambassade d'Algérie à Tunis",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embtunis.mfa.gov.dz/en",
+    "address": "Rue du Lac d'Annecy,les Berges du Lac 1053 Tunis B.P.75",
+    "phones": [
+      "Tel: 00216 71 962 028",
+      "Fax: 00216 71 961 929"
+    ],
+    "emails": [
+      "ambdztn@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embtunis.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "ckef",
@@ -820,15 +974,22 @@
     "name_en": "Consulate of Algeria in El Kef",
     "name_fr": "Consulat d'Algérie à Le Kef",
     "website": "https://ckef.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "03. Hedi Chaker Street 7100 Kef - Tunisia",
+    "phones": [
+      "+216.78.200.169",
+      "+216.78.202.186",
+      "+216.78.203.880",
+      "Toll-free (green number): 80 10 41 41"
+    ],
+    "emails": [
+      "consalgkef@gmail.com"
+    ],
+    "hours": "Monday - Thursday: 8:00 AM - 3:00 PM; Friday: 8:00 AM - 3:00 PM",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://ckef.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cgafsa",
@@ -839,16 +1000,20 @@
     "type": "Consulate",
     "name_en": "Consulate of Algeria in Gafsa",
     "name_fr": "Consulat d'Algérie à Gafsa",
-    "website": "",
-    "address": "",
-    "phones": [],
+    "website": "https://cgafsa.mfa.gov.dz/en",
+    "address": "Irak Street, 2100 ,Gafsa",
+    "phones": [
+      "Tel: +216 76 221 366",
+      "Fax: +216 76 226 662",
+      "Toll-free (green number): 80 10 77 00"
+    ],
     "emails": [],
-    "hours": "",
+    "hours": "Monday to Friday: From 08:30 to 15:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://cgafsa.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkampala",
@@ -860,15 +1025,19 @@
     "name_en": "Embassy of Algeria in Kampala",
     "name_fr": "Ambassade d'Algérie à Kampala",
     "website": "https://embkampala.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "P.O.Box 4025, Kampala, Uganda Plot 14, John Babiiha Avenue – Kololo – Kampala",
+    "phones": [
+      "Tel: +256 414 343 886/890"
+    ],
+    "emails": [
+      "amb-kampala@mae.dz"
+    ],
+    "hours": "Monday to Friday 09:00 to 17:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embkampala.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "emblusaka",
@@ -880,15 +1049,19 @@
     "name_en": "Embassy of Algeria in Lusaka",
     "name_fr": "Ambassade d'Algérie à Lusaka",
     "website": "https://emblusaka.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "18G Cheetah Road, Kabulonga, Lusaka. Postal code 10101",
+    "phones": [
+      "Tel: (+260) 211 269 104"
+    ],
+    "emails": [
+      "algeriaembassy.zambia@yahoo.com"
+    ],
+    "hours": "Monday to Friday 08:00 to 13:00; 14:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://emblusaka.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embharare",
@@ -899,16 +1072,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Harare",
     "name_fr": "Ambassade d'Algérie à Harare",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embharare.mfa.gov.dz/en",
+    "address": "8 Pascoe Avenue, Harare",
+    "phones": [
+      "Tel: + 263 242 791 791",
+      "Tel: + 263 242 791 773",
+      "Tel: + 263 242 791 278",
+      "Fax: + 263 242 701 125"
+    ],
+    "emails": [
+      "algerianembassy86@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embharare.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbuenosaires",
@@ -919,16 +1099,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Buenos Aires",
     "name_fr": "Ambassade d'Algérie à Buenos Aires",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbuenosaires.mfa.gov.dz/en",
+    "address": "Calle Montevideo, 1889 CP 1021 Buenos Aires",
+    "phones": [
+      "Tel: (0054-11) 48 15 12 71 / (0054-11) 48 15 59 69",
+      "Fax: (0054-11) 48 15 88 37"
+    ],
+    "emails": [
+      "embajadaargelia02@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbuenosaires.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbrasilia",
@@ -940,15 +1125,21 @@
     "name_en": "Embassy of Algeria in Brasília",
     "name_fr": "Ambassade d'Algérie à Brasilia",
     "website": "https://embbrasilia.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "SHIS QI 09 Conjunto 13 Casa 01, CEP 71625-130 Brasilia/DF",
+    "phones": [
+      "Tel: (+55) 61 3248-4039",
+      "(+55) 61 3248-1949",
+      "Fax: (+55) 61 3248-4691"
+    ],
+    "emails": [
+      "argelia.bsb@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embbrasilia.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embottawa",
@@ -975,7 +1166,7 @@
     "jurisdiction": "Consular section covers Ontario, Alberta, British Columbia, Saskatchewan, Manitoba, Yukon, the Northern Territories, and Gatineau and its region",
     "appointment_url": "",
     "source_url": "https://www.embassyalgeria.ca/consulat",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -988,15 +1179,21 @@
     "name_en": "Consulate General of Algeria in Montreal",
     "name_fr": "Consulat général d'Algérie à Montréal",
     "website": "http://consulatalgeriemontreal.com/",
-    "address": "",
-    "phones": [],
+    "address": "3415 rue Saint-Urbain, Montréal, H2X 2N2",
+    "phones": [
+      "Tel: 514-846-0442",
+      "Fax: 514-846-8127"
+    ],
     "emails": [],
-    "hours": "",
+    "hours": "Mardi au samedi 08:00 - 15:30; dimanche - lundi fermé",
     "jurisdiction": "Quebec (except the Outaouais region) and the provinces of Eastern Canada",
     "appointment_url": "",
     "source_url": "https://www.embassyalgeria.ca/visas",
-    "checked": "2026-10-28",
-    "status": "website-only",
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://www.consulatalgeriemontreal.com/v1.0/contact.php"
+    ],
     "note": "Website link taken from the Embassy in Ottawa site; consulate site itself could not be fetched (robots)."
   },
   {
@@ -1009,15 +1206,20 @@
     "name_en": "Embassy of Algeria in Santiago",
     "name_fr": "Ambassade d'Algérie à Santiago",
     "website": "https://embsantiago.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Málaga 370, Las Condes, Santiago",
+    "phones": [
+      "Tel: (+56) 2 22.28.16.61 / 62",
+      "Fax: (+56) 2 22.28.35.82"
+    ],
+    "emails": [
+      "embajadargelia.cl@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embsantiago.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbogota",
@@ -1028,16 +1230,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Bogotá",
     "name_fr": "Ambassade d'Algérie à Bogota",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbogota.mfa.gov.dz/en",
+    "address": "Carera 11 n 93-53 of 301, 302,303 Bogota DC 110221",
+    "phones": [
+      "Tel: +571 635 05 20",
+      "Tel: +571 635 04 74",
+      "Fax: +571 635 05 31"
+    ],
+    "emails": [
+      "admin@embajada-argelia.co"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbogota.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embhavana",
@@ -1056,7 +1264,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -1076,7 +1284,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -1096,7 +1304,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -1109,7 +1317,7 @@
     "name_en": "Embassy of Algeria in Mexico City",
     "name_fr": "Ambassade d'Algérie à Mexico",
     "website": "https://embmexico.mfa.gov.dz/",
-    "address": "",
+    "address": "Sierra Madre 540 Lomas de Chapultepec 11000, Mexico-DF",
     "phones": [
       "Tel: +52 55 55 20 86 56"
     ],
@@ -1120,8 +1328,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embmexico.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embmexico.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embmanagua",
@@ -1140,8 +1351,9 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "checked": "2026-10-30",
+    "status": "unverified",
+    "note": "Not on the MFA embassy list (www.mfa.gov.dz/embassys-locations-list) as checked by our tester on 2026-10-30: Nicaragua is covered by the Embassy of Algeria in Mexico City. Confirm before listing."
   },
   {
     "id": "emblima",
@@ -1153,15 +1365,20 @@
     "name_en": "Embassy of Algeria in Lima",
     "name_fr": "Ambassade d'Algérie à Lima",
     "website": "https://emblima.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Avenida El Rosario 380 San Isidro, Lima Peru",
+    "phones": [
+      "Tel: +511 421 75 82",
+      "Fax: +511 421 75 80"
+    ],
+    "emails": [
+      "embarg@embajadadeargelia.com"
+    ],
+    "hours": "From Monday to Friday From 9 am to 4 pm except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://emblima.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embwashington",
@@ -1180,16 +1397,18 @@
       "Office of Consular Affairs (national service): ext. 169"
     ],
     "emails": [
-      "consular-section@algerianembassy.org"
+      "consular-section@algerianembassy.org",
+      "mail@algerianembassy.org"
     ],
     "hours": "Monday to Friday 09:00 AM to 05:00 PM Closed on national and religious holidays",
     "jurisdiction": "Consular section covers: Delaware, Maryland, North Carolina, South Carolina, Virginia, West Virginia, Washington D.C.",
     "appointment_url": "",
     "source_url": "https://embwashington.mfa.gov.dz/contact-us/jurisdiction-consular-coverage",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "extra_sources": [
-      "https://embwashington.mfa.gov.dz/consular-services/biometric-passport"
+      "https://embwashington.mfa.gov.dz/consular-services/biometric-passport",
+      "https://embwashington.mfa.gov.dz/contact-us/address-phone-e-mail"
     ]
   },
   {
@@ -1217,7 +1436,7 @@
     "jurisdiction": "25 states: Alabama, Arkansas, Connecticut, Florida, Georgia, Illinois, Indiana, Iowa, Kentucky, Louisiana, Maine, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, New Hampshire, New Jersey, New York, Ohio, Pennsylvania, Rhode Island, Tennessee, Vermont, Wisconsin",
     "appointment_url": "https://algeria-cgny.org/rdv/",
     "source_url": "https://algeria-cgny.org/contactus",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "extra_sources": [
       "https://algeria-cgny.org/vacation/",
@@ -1243,11 +1462,11 @@
     "emails": [
       "secretariat@cgalgeriasf.org"
     ],
-    "hours": "",
+    "hours": "Working time: Tuesday to Saturday: 09 am to 03 pm; Sunday – Monday: Closed",
     "jurisdiction": "19 states: California, Arizona, Nevada, Oregon, Washington, Utah, Colorado, Hawaii, Alaska, North Dakota, South Dakota, Nebraska, Oklahoma, Texas, Kansas, Wyoming, Montana, Idaho, New Mexico",
     "appointment_url": "",
     "source_url": "https://embwashington.mfa.gov.dz/contact-us/jurisdiction-consular-coverage",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1260,15 +1479,20 @@
     "name_en": "Embassy of Algeria in Caracas",
     "name_fr": "Ambassade d'Algérie à Caracas",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "8 Va Transversal Con, 3RA Avenida Quinta, Azahar Altamira, Caracas 1060",
+    "phones": [
+      "Tel: +58 212 26 39 771 / +58 212 26 32 092",
+      "Fax: +58 212 26 14 254"
+    ],
+    "emails": [
+      "ambargeliacaracas@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbaku",
@@ -1280,7 +1504,7 @@
     "name_en": "Embassy of Algeria in Baku",
     "name_fr": "Ambassade d'Algérie à Bakou",
     "website": "https://embbaku.mfa.gov.dz/",
-    "address": "",
+    "address": "Narimanov district, Fatulla Rustambayov 24",
     "phones": [
       "Tel: +994 12 505 94 63",
       "Fax: +994 12 504 63 94"
@@ -1290,7 +1514,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embbaku.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1303,7 +1527,7 @@
     "name_en": "Embassy of Algeria in Manama",
     "name_fr": "Ambassade d'Algérie à Manama",
     "website": "https://embmanama.mfa.gov.dz/",
-    "address": "",
+    "address": "435, Road 3308, Um alhassam 333, Manama",
     "phones": [
       "Fax: +97317740652",
       "Tel: +97317740659",
@@ -1317,7 +1541,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embmanama.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1329,16 +1553,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Dhaka",
     "name_fr": "Ambassade d'Algérie à Dacca",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embdhaka.mfa.gov.dz/en",
+    "address": "HOUSE, 06 ROAD No 13 BARIDHARA, DIPLOMATIC ZONE, DHAKA 1212, BANGLADESH",
+    "phones": [
+      "Tel: +880 248 811 801",
+      "Fax: +880 248 811 802"
+    ],
+    "emails": [
+      "embalgdhaka@yahoo.com"
+    ],
+    "hours": "Sunday to Thursday from 10:00 a.m. to 1:00 p.m; CONSULAR SERVICE: Legalization: Sunday to Thursday from 10:00 a.m. to 1:00 p.m. with appointment.; Other services: Sunday to Thursday from 10:00 a.m. to 1:00 p.m.; VISA SERVICES: Submission of requests: Sunday to Thursday from 10:00 a.m. to 1:00 p.m.; Visa collection: Sunday to Thursday from 1:00 p.m. to 1:00 p.m. except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embdhaka.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbeijing",
@@ -1350,7 +1579,7 @@
     "name_en": "Embassy of Algeria in Beijing",
     "name_fr": "Ambassade d'Algérie à Pékin",
     "website": "https://embbeijing.mfa.gov.dz/",
-    "address": "",
+    "address": "N°7 San Li Tun Lu Chao Yang District, 100600, Beijing",
     "phones": [
       "Tel: 0086 10 65321231 / 0086 10 65323773",
       "Fax: 0086 10 65321648"
@@ -1362,7 +1591,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embbeijing.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1375,7 +1604,7 @@
     "name_en": "Embassy of Algeria in New Delhi",
     "name_fr": "Ambassade d'Algérie à New Delhi",
     "website": "https://embnewdelhi.mfa.gov.dz/",
-    "address": "",
+    "address": "B-6, Anand Niketan, New Delhi - 110021",
     "phones": [
       "Fax: (0091) 1124117590",
       "Tel: (0091) 11 24117585",
@@ -1389,7 +1618,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embnewdelhi.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1401,16 +1630,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Jakarta",
     "name_fr": "Ambassade d'Algérie à Jakarta",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embjakarta.mfa.gov.dz/fr",
+    "address": "1 Jalan HR Rasuna Said – Jakarta Capital Region",
+    "phones": [
+      "Tel: (62-21) 525.4719 / 525.4809",
+      "Fax: (62-21) 525.4654"
+    ],
+    "emails": [
+      "ambaljak@cbn.net.id"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embjakarta.mfa.gov.dz/fr",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embtehran",
@@ -1421,16 +1655,24 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Tehran",
     "name_fr": "Ambassade d'Algérie à Téhéran",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embtehran.mfa.gov.dz/",
+    "address": "N°20, 11th Street, Mahestan Street, Shahrak-e Gharb",
+    "phones": [
+      "+98 21 885 618 82",
+      "+98 21 885 618 83",
+      "+98 21 885 618 84",
+      "Fax: +98 21 883 770 31"
+    ],
+    "emails": [
+      "alg.teh@yahoo.com",
+      "visa.algteh@yahoo.com"
+    ],
+    "hours": "From Sunday to Thursday 08:30 to 15:30 except National and religious holiday",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embtehran.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbaghdad",
@@ -1441,16 +1683,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Baghdad",
     "name_fr": "Ambassade d'Algérie à Bagdad",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embbaghdad.mfa.gov.dz/en/",
+    "address": "Al Daoudi, Area 613, Street 14, House 13 Baghdad Irak",
+    "phones": [
+      "Tel: +964 7704717127"
+    ],
+    "emails": [
+      "ambalgbaghdad2022@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbaghdad.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embtokyo",
@@ -1462,15 +1708,24 @@
     "name_en": "Embassy of Algeria in Tokyo",
     "name_fr": "Ambassade d'Algérie à Tokyo",
     "website": "https://embtokyo.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "2 Chome-10-67 Mita, Meguro City, Tokyo 153-0062",
+    "phones": [
+      "+81-(0)3-3711-2661",
+      "Fax: +81-(0)3-3710-6534"
+    ],
+    "emails": [
+      "secretary@algerianembassy-japan.jp",
+      "secretarycom@algerianembassy-japan.jp",
+      "a.politiques@algerianembassy-japan.jp",
+      "a.economiques@algerianembassy-japan.jp",
+      "s.consulair@algerianembassy-japan.jp"
+    ],
+    "hours": "Monday to Friday 09:00 to 17:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embtokyo.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embamman",
@@ -1482,15 +1737,21 @@
     "name_en": "Embassy of Algeria in Amman",
     "name_fr": "Ambassade d'Algérie à Amman",
     "website": "https://embamman.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Jabal Amman, Avenue Soltane El Atrach, N° 06",
+    "phones": [
+      "Fax: +962 64 62 90 75",
+      "Tel: +962 64 64 12 71",
+      "+962 64 64 12 72"
+    ],
+    "emails": [
+      "ambalg-amman@mae.dz"
+    ],
+    "hours": "Sunday to Thursday 09:00 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embamman.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embastana",
@@ -1501,16 +1762,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Astana",
     "name_fr": "Ambassade d'Algérie à Astana",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embastana.mfa.gov.dz/fr",
+    "address": "Kazakhstan, Astana, microdistrict Karaotkel - 2, 111",
+    "phones": [
+      "Tel: +7 717 257 3813",
+      "Emergency: +7 717 257 3813",
+      "Fax: +7 717 256 3806"
+    ],
+    "emails": [
+      "algerianemb.kz@mail.ru"
+    ],
+    "hours": "from Monday to Friday 09:00 to 16:30 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embastana.mfa.gov.dz/en/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkuwait",
@@ -1521,16 +1788,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Kuwait City",
     "name_fr": "Ambassade d'Algérie à Koweït",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embkuwait.mfa.gov.dz/en/",
+    "address": "Embassies Area , Bloc 5, Yeman street, Daiya-Kuwait",
+    "phones": [
+      "Tel: +965 225 199 84/87",
+      "Fax: +965 225 19497",
+      "Emergency toll-free: +965 22519984"
+    ],
+    "emails": [
+      "ambalg.kw@gmail.com"
+    ],
+    "hours": "Sunday to Thursday 08:30 to 14:30 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embkuwait.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbeirut",
@@ -1541,16 +1814,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Beirut",
     "name_fr": "Ambassade d'Algérie à Beyrouth",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embalgeria-lb.net/",
+    "address": "شارع الجناح، بيروت",
+    "phones": [
+      "Tel: +961 1 826712",
+      "Fax: +961 1 826711"
+    ],
+    "emails": [
+      "safara-beyrouth@mae.dz"
+    ],
+    "hours": "Horaires de réception Du lundi au vendredi : de 8h30 à 15h30; Permanence Samedi-Dimanche: de 9h00 à 14h00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embalgeria-lb.net/index.php",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkualalumpur",
@@ -1561,16 +1839,25 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Kuala Lumpur",
     "name_fr": "Ambassade d'Algérie à Kuala Lumpur",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embkualalumpur.mfa.gov.dz/en",
+    "address": "No 5 Jalan Mesra off Jalan Damai 55000 Kuala Lumpur Malaysia",
+    "phones": [
+      "Tel: +603-21459604",
+      "Tel: +603-21488159",
+      "Fax: +603-21488154"
+    ],
+    "emails": [
+      "dz@algerianembassy.org.my",
+      "consular@algerianembassy.org.my",
+      "passport@algerianembassy.org.my",
+      "visa@algerianembassy.org.my"
+    ],
+    "hours": "Office hours: Monday to Thursday From 09.00 AM to 01:00 PM 02:00 PM to 04:00 PM; Friday From 09.00 AM to 01:00 PM 02:00 PM to 03:00 PM; Consular hours (Submission and Collection); Monday to Friday 09:30 AM to 01:00 PM",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embkualalumpur.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embmuscat",
@@ -1582,15 +1869,23 @@
     "name_en": "Embassy of Algeria in Muscat",
     "name_fr": "Ambassade d'Algérie à Mascate",
     "website": "https://embmuscat.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Rue de la Ligue Arabe, B.P 216 Code Postale 115 Mascate",
+    "phones": [
+      "Tel: 00 968 24 60 55 93",
+      "Fax: 00 968 24 69 44 19",
+      "Emergency toll-free: 80050762",
+      "00 968 24 69 49 45"
+    ],
+    "emails": [
+      "mct.consulaire@gmail.com",
+      "algeria1@omantel.net.om"
+    ],
+    "hours": "Sunday to Thursday 09:00 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embmuscat.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embislamabad",
@@ -1601,16 +1896,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Islamabad",
     "name_fr": "Ambassade d'Algérie à Islamabad",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embislamabad.mfa.gov.dz/en",
+    "address": "House 107, Street 9 E7 Islamabad",
+    "phones": [
+      "Tel: +92 512 653 795",
+      "Fax: +92 512 653 795",
+      "Toll-free (green number): +92 302 856 0975"
+    ],
+    "emails": [
+      "algembpk@yahoo.com",
+      "pkalgembassy@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holiday",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embislamabad.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embdoha",
@@ -1622,15 +1924,22 @@
     "name_en": "Embassy of Algeria in Doha",
     "name_fr": "Ambassade d'Algérie à Doha",
     "website": "https://embdoha.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "bat 211, Street nr 905 nouvelle zone diplomatique n° 66, Doha, boite postale 2494",
+    "phones": [
+      "Tel: +974 44 83 87 29",
+      "Tel: +974 44 83 58 80 /81",
+      "Fax: +974 44 83 69 23",
+      "Fax: +974 44 83 60 72"
+    ],
+    "emails": [
+      "info@embalgdoha.com.qa"
+    ],
+    "hours": "sunday to thursday 08:30 to 14:30 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embdoha.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embriyadh",
@@ -1642,15 +1951,21 @@
     "name_en": "Embassy of Algeria in Riyadh",
     "name_fr": "Ambassade d'Algérie à Riyad",
     "website": "https://embriyadh.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Quartier Diplomatique, BP n°94388, Riyadh 11693",
+    "phones": [
+      "Tel: 00966114887171",
+      "Fax: 00966114821703",
+      "Emergency toll-free: 8003010103"
+    ],
+    "emails": [
+      "mail@algerianembassy-saudi.com"
+    ],
+    "hours": "Sunday to Thursday 09:00 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embriyadh.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cgjeddah",
@@ -1662,15 +1977,22 @@
     "name_en": "Consulate General of Algeria in Jeddah",
     "name_fr": "Consulat général d'Algérie à Djeddah",
     "website": "https://cgjeddah.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "P.O BOX 8132 , Jeddah 21482 KSA",
+    "phones": [
+      "Tel: +966 (0)126985034",
+      "Tel: +966 (0)126985035",
+      "Fax: +966 (0)126985038",
+      "Toll-free (green number): 800 127 0007"
+    ],
+    "emails": [
+      "cg.algeria@consalg-jeddah.org"
+    ],
+    "hours": "Sunday to Thursday: From 09:00 to 15:00; Visas: Visa Drop-off : Sunday to Thursday from 9:00 to 13:00; Visa Drawal : Sunday to Thursday from 13:00 to 15:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://cgjeddah.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embseoul",
@@ -1681,16 +2003,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Seoul",
     "name_fr": "Ambassade d'Algérie à Séoul",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "http://www.algerianemb.or.kr/",
+    "address": "Heonamu ro 81 ( 2-6, Itaewon 2 dong), Yongsan-gu, Seoul. postal code 04344",
+    "phones": [
+      "Tel: 82-2-794-5034,5",
+      "Consular service: 82-2-794-5036 (more available on Monday, Thursday & Friday)",
+      "Fax: 82-2-792-7845"
+    ],
+    "emails": [
+      "dzemb@algerianemb.or.kr"
+    ],
+    "hours": "Office Hours: Monday to Friday : 09:00-12:00, 13:00-17:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "http://www.algerianemb.or.kr/index.php/contact/",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embdamascus",
@@ -1701,16 +2029,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Damascus",
     "name_fr": "Ambassade d'Algérie à Damas",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embdamascus.mfa.gov.dz/en",
+    "address": "Damascus Abo Roumana EL-NOSS Building",
+    "phones": [
+      "Fax: +(963) 11 3334698",
+      "Tel: +(963) 11 3334548"
+    ],
+    "emails": [
+      "ambalgdamas@gmail.com"
+    ],
+    "hours": "Sunday to Thursday 08:30 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embdamascus.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embankara",
@@ -1722,16 +2055,19 @@
     "name_en": "Embassy of Algeria in Ankara",
     "name_fr": "Ambassade d'Algérie à Ankara",
     "website": "https://embankara.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
+    "address": "Şehit Ersan Cad., No: 42, 06680 Çankaya, Ankara",
+    "phones": [
+      "Tel: (0312) 468 77 19 - 428 80 37",
+      "Fax: (0312) 468 75 93"
+    ],
     "emails": [
       "secambalgankara@mae.dz"
     ],
-    "hours": "",
+    "hours": "Consular Service: Monday to Friday: from 09:00 to 12:00 and from 13:00 to 17:00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://embankara.mfa.gov.dz/",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1744,7 +2080,7 @@
     "name_en": "Consulate General of Algeria in Istanbul",
     "name_fr": "Consulat général d'Algérie à Istanbul",
     "website": "https://cgistanbul.mfa.gov.dz/",
-    "address": "",
+    "address": "Gazeteciler 23 Temmuz Sokak No. 7 Şişli / Esentepe / İstanbul",
     "phones": [
       "Social Affairs & Document Authentication: +90 501 813 22 80",
       "Civil Status: +90 501 813 22 78",
@@ -1752,12 +2088,14 @@
       "Visa, Commercial & Maritime Authentication: +90 501 086 11 80",
       "On-call & General Affairs: +90 501 813 22 77"
     ],
-    "emails": [],
+    "emails": [
+      "cgalgerie.istanbul@mae.dz"
+    ],
     "hours": "Monday-Friday 9:00-15:00, without appointment.",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://cgistanbul.mfa.gov.dz/consular-services/opening-hours",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1769,16 +2107,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Tashkent",
     "name_fr": "Ambassade d'Algérie à Tachkent",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embtashkent.mfa.gov.dz/en",
+    "address": "St: Tafakkur 1st passage N:41 Tashkent 100070",
+    "phones": [
+      "Tel: +998-71-281-50-54",
+      "Tel: +998-71-281-55-65",
+      "Fax: +998-78-120-61-80"
+    ],
+    "emails": [
+      "ambassade@algerie.uz"
+    ],
+    "hours": "From Monday to Friday From 9:00 to 12:30; From 13:30 to 17:00 hours; Filing of files: From Monday to Friday From 9:30 to 11:30; Pulling files: From Monday to Friday From 14:00 to 16:00 hour",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embtashkent.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embhanoi",
@@ -1789,16 +2133,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Hanoi",
     "name_fr": "Ambassade d'Algérie à Hanoï",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embhanoi.mfa.gov.dz/",
+    "address": "13 Phan Chu Trinh – Hoan Kiem – Hanoï",
+    "phones": [
+      "Tel: (84-24) 39 33 21 51",
+      "Fax: (84-24) 38 26 08 30"
+    ],
+    "emails": [
+      "ambassade@amb-algerie.vn"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embhanoi.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embabudhabi",
@@ -1824,7 +2173,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://embabudhabi.mfa.gov.dz/contact",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Wikipedia lists this embassy as closed in 2026; the MFA contact page was still online on 2026-10-27. Confirm status."
   },
@@ -1837,16 +2186,20 @@
     "type": "Consulate General",
     "name_en": "Consulate General of Algeria in Dubai",
     "name_fr": "Consulat général d'Algérie à Dubaï",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://cgdubai.mfa.gov.dz/",
+    "address": "Al wasl rd, St 24B villa no 45, Jumeira 02",
+    "phones": [
+      "+97143444377"
+    ],
+    "emails": [
+      "cgalg.consulaire@gmail.com"
+    ],
+    "hours": "Consular Department: From Sunday to Thursday from 09:00 am to 02:00 pm; Visa Departement; - Visa submission: From Monday to Thursday from 09:00 am to 12:00 pm; - Visa collection: From Sunday to Thursday from 12:30 am to 02:45 pm",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://cgdubai.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embsanaa",
@@ -1858,15 +2211,20 @@
     "name_en": "Embassy of Algeria in Sana'a",
     "name_fr": "Ambassade d'Algérie à Sanaa",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "67 Rue Amman, Sanaa",
+    "phones": [
+      "Tel: 967 1 20 63 50 / 967 1 20 96 89",
+      "Fax: 967 1 20 96 88"
+    ],
+    "emails": [
+      "ambalg-sa-ye@y.net.ye"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embcanberra",
@@ -1878,15 +2236,22 @@
     "name_en": "Embassy of Algeria in Canberra",
     "name_fr": "Ambassade d'Algérie à Canberra",
     "website": "https://embcanberra.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "7 Culgoa Cct, O'Malley ACT 2606",
+    "phones": [
+      "Fax: +61 (02) 62 86 70 37",
+      "Emergency: +61 (02)62 86 73 56",
+      "Tel: +61 (02)62 86 73 55"
+    ],
+    "emails": [
+      "info@algeriaemb.org.au",
+      "consular.algeria@outlook.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 15:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embcanberra.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embtirana",
@@ -1905,7 +2270,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "unverified"
   },
   {
@@ -1918,7 +2283,7 @@
     "name_en": "Embassy of Algeria in Vienna",
     "name_fr": "Ambassade d'Algérie à Vienne",
     "website": "https://embvienna.mfa.gov.dz/",
-    "address": "",
+    "address": "Rudolfinergasse 18 Wien 1190 Autriche",
     "phones": [
       "Tel: 00 (43) 1 3698853-0",
       "Fax: 00 (43) 1 3698856",
@@ -1931,7 +2296,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embvienna.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -1943,16 +2308,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Brussels",
     "name_fr": "Ambassade d'Algérie à Bruxelles",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embbrussels.mfa.gov.dz/en",
+    "address": "Avenue Molière 207, Ixelles, 1050, Bruxelles, Belgique",
+    "phones": [
+      "Tel: +32 2 343 50 78",
+      "Fax: +32 2 343 51 68"
+    ],
+    "emails": [
+      "info@algerian-embassy.be"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbrussels.mfa.gov.dz/en",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cgbrussels",
@@ -1964,17 +2334,30 @@
     "name_en": "Consulate General of Algeria in Brussels",
     "name_fr": "Consulat général d'Algérie à Bruxelles",
     "website": "https://cgbrussels.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [
-      "immatriculation@consulatalgerie.be"
+    "address": "Rue d’Edimbourg 28, 1050 Ixelles",
+    "phones": [
+      "Tel: +32 (0)2/537.82.41",
+      "Fax: +32 (0)2/537.81.33",
+      "Toll-free (green number): +32 (0) 474.53.00.39"
     ],
-    "hours": "",
+    "emails": [
+      "immatriculation@consulatalgerie.be",
+      "secretariat@consulatalgerie.be",
+      "service.visa@consulatalgerie.be",
+      "service.juridique@consulatalgerie.be",
+      "etat.civil@consulatalgerie.be",
+      "service.social@consulatalgerie.be",
+      "passeport.biom@consulatalgerie.be"
+    ],
+    "hours": "Tuesday to Friday: From 09:00 to 15:30; Saturday: From 09:00 to 15:00; Visas: Application lodging: Tuesday to Friday from 9 am to 12 pm; Collection : Tuesday to Friday from 13:00 to 15:00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://cgbrussels.mfa.gov.dz/",
-    "checked": "2026-10-27",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://cgbrussels.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embsarajevo",
@@ -1985,16 +2368,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Sarajevo",
     "name_fr": "Ambassade d'Algérie à Sarajevo",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embsarajevo.mfa.gov.dz/en",
+    "address": "Safvet-bega Bašagića 61, Sarajevo 71000",
+    "phones": [
+      "387 33 520 555 / 556",
+      "Fax: +387 33 520 557 / 559"
+    ],
+    "emails": [
+      "ambalg.sarajevo@outlook.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embsarajevo.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embsofia",
@@ -2006,7 +2394,7 @@
     "name_en": "Embassy of Algeria in Sofia",
     "name_fr": "Ambassade d'Algérie à Sofia",
     "website": "https://embsofia.mfa.gov.dz/",
-    "address": "",
+    "address": "16 Slavyanska Str., Sofia 1000, Bulgaria",
     "phones": [
       "Fax: +35929810328",
       "Tel: +35929802250",
@@ -2019,7 +2407,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embsofia.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -2032,15 +2420,20 @@
     "name_en": "Embassy of Algeria in Zagreb",
     "name_fr": "Ambassade d'Algérie à Zagreb",
     "website": "https://embzagreb.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "Babonićeva ul. 94, 10000, Zagreb",
+    "phones": [
+      "Tel: +38513780333",
+      "Fax: +38513780334"
+    ],
+    "emails": [
+      "info@ambalgzagreb.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embzagreb.mfa.gov.dz/",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embprague",
@@ -2051,16 +2444,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Prague",
     "name_fr": "Ambassade d'Algérie à Prague",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embprague.mfa.gov.dz/en",
+    "address": "V tišině 483/10, 160 01, Praha 6",
+    "phones": [
+      "(00420 )233 101 770",
+      "Fax: (00420) 233 371 144"
+    ],
+    "emails": [
+      "ambalger@volny.cz"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embprague.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embcopenhagen",
@@ -2071,16 +2469,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Copenhagen",
     "name_fr": "Ambassade d'Algérie à Copenhague",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://algerianembassy.dk/",
+    "address": "Hellerupvej 66, 2900 Hellerup, Denmark",
+    "phones": [
+      "Tel: +45 33 11 94 40"
+    ],
+    "emails": [
+      "mail@algerianembassy.dk"
+    ],
+    "hours": "Monday to Thursday : 09:30 - 15:30; Friday : 09:30 - 14:30",
     "jurisdiction": "",
-    "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "appointment_url": "https://algerianembassy.dk/appointment",
+    "source_url": "https://algerianembassy.dk/",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embhelsinki",
@@ -2092,7 +2494,7 @@
     "name_en": "Embassy of Algeria in Helsinki",
     "name_fr": "Ambassade d'Algérie à Helsinki",
     "website": "https://embhelsinki.mfa.gov.dz/",
-    "address": "",
+    "address": "Pohjoinen Makasiinikatu 6 A 6, 00130 Helsinki, Finland",
     "phones": [
       "Tel: (+358) 9 270 920 80",
       "Tel: (+358) 46 922 43 17"
@@ -2105,7 +2507,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embhelsinki.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -2130,7 +2532,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2149,12 +2551,14 @@
       "+33 1 53 72 07 00",
       "+33 1 53 72 07 14"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-paris-algerie.fr"
+    ],
+    "hours": "Mardi - Samedi, 08h30 - 15h00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "alt_websites": [
       "https://cgparis.mfa.gov.dz/"
@@ -2176,12 +2580,14 @@
       "+33 3 28 38 01 40",
       "+33 3 20 42 01 30"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "cgal@consulatalgerielille.org"
+    ],
+    "hours": "Du mardi au vendredi de 8h30 à 16h00; samedi de 8h00 à 15h00",
     "jurisdiction": "",
-    "appointment_url": "",
+    "appointment_url": "https://consulat-lille-algerie.fr/rdv",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2201,11 +2607,11 @@
       "+33 4 72 83 85 62"
     ],
     "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "hours": "Horaires de réception du public: Du Mardi au Samedi de 08:30 à 15:30; Horaires durant le mois de Ramadhan : 09:00 - 15:00; Service des visas : Dépôt : du Mardi au Samedi de 08h30 à 11h30; Retrait : du Mardi au Samedi de 15h00 à 15h30",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "alt_websites": [
       "https://cglyon.mfa.gov.dz/"
@@ -2224,14 +2630,17 @@
     "website": "https://www.consulat-marseille-algerie.fr/",
     "address": "363 Rue Paradis, 13008 Marseille, France",
     "phones": [
-      "+33 4 91 13 99 50"
+      "+33 4 91 13 99 50",
+      "Numéro vert: 0805291190"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-marseille-algerie.fr"
+    ],
+    "hours": "Horaires de réception du public: Du Mardi au Vendredi de 08:30 à 15:00; Samedi de 08:00 à 14:00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2250,12 +2659,14 @@
       "+33 3 88 30 17 51",
       "+33 3 88 30 83 64"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-strasbourg-algerie.fr"
+    ],
+    "hours": "Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 09h00 à 15h00; Visas : Dépôt des demandes: du mardi au vendredi de 9h00 à 12h00; Retrait des visas: du mardi au vendredi de 14h00 à 15h",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2274,12 +2685,14 @@
       "+33 3 81 80 31 79",
       "+33 3 81 48 91 18"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "info@consulat-algerie-besancon.org"
+    ],
+    "hours": "Horaires de réception Du Mardi au Vendredi : Le matin de 8h30 à 11h30; L'après-midi de 13h00 à 15h30; Le Samedi; En continu, de 8h30 à 13h00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2298,12 +2711,15 @@
       "+33 1 41 50 58 58",
       "+33 1 48 32 35 09"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "info@consulat-bobigny-algerie.fr",
+      "etatcivil@consulat-bobigny-algerie.fr"
+    ],
+    "hours": "Horaires Réception du public : du Mardi au Samedi de 08h30 à 15h30",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2322,12 +2738,14 @@
       "+33 5 56 99 03 36",
       "+33 5 56 98 64 33"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-bordeaux-algerie.fr"
+    ],
+    "hours": "Horaires d’accueil du public : Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 08h30 à 14h30; Horaires du service « visas » : Dépôt des demandes : du mardi au vendredi (09h00 à 12h00); Retrait des visas : du mardi au vendredi (13h00 à 14h30)",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2347,11 +2765,11 @@
       "+33 1 47 18 04 46"
     ],
     "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "hours": "Mardi – Samedi, 08h00 – 15h00 (réception du public)",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2370,12 +2788,14 @@
       "+33 4 76 54 30 18",
       "+33 4 76 42 49 85"
     ],
-    "emails": [],
+    "emails": [
+      "courrier@consulat-algerie-grenoble.org"
+    ],
     "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2394,12 +2814,14 @@
       "+33 3 87 66 41 61",
       "+33 3 87 66 10 80"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-metz-algerie.fr"
+    ],
+    "hours": "Horaires d'ouverture du consulat du mardi au samedi : Réception du public de 09h00 à 14h30; Horaires service des visas : du mardi au vendredi; Dépôt demande : 09h00-12h00; Retrait visa : 13h00-14h30",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2418,12 +2840,14 @@
       "+33 4 67 54 54 15",
       "+33 4 67 54 37 43"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "infos@consulat-montpellier-algerie.fr"
+    ],
+    "hours": "Horaires de réception du public Du Mardi au Vendredi: De 8h30 à 15h30; Le Samedi: De 8h00 à 15h00; Horaires du Service des Visas, voir la Rubrique VISAS; Service des Passeports et Cartes d'identités Biométriques SUR RDV",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2443,11 +2867,11 @@
       "+33 1 47 25 09 77"
     ],
     "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "hours": "Horaires de réception Du mardi au samedi : 09h00 à 15h00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2466,12 +2890,14 @@
       "+33 2 40 74 38 19",
       "+33 2 40 74 61 19"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-nantes-algerie.fr"
+    ],
+    "hours": "Du mardi au samedi de 08h30 à 16h00; Horaires Service CCR Du mardi au vendredi: Dépôt et retrait: 09H00- 14H00; Samedi, dimanche, lundi fermé / Service Visa : Du mardi au vendredi: Dépôt: 09H00 – 12H00; Retrait: 13h00 – 14h00; Samedi , Dimanche, lundi fermé",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "alt_websites": [
       "https://cnantes.mfa.gov.dz/"
@@ -2493,12 +2919,14 @@
       "+33 4 93 97 71 00",
       "+33 4 93 97 71 06"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "contact@consulat-algerie-nice.org"
+    ],
+    "hours": "Horaires de réception: du mardi au samedi de 08h30 à 15h30; service des visas: du mardi au vendredi, dépôt demande 09h00-12h00, retrait passeport 12h00-15h00",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2516,12 +2944,14 @@
     "phones": [
       "+33 1 30 73 27 75"
     ],
-    "emails": [],
+    "emails": [
+      "info@consulat-pontoise-algerie.fr"
+    ],
     "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
     "jurisdiction": "Val-d'Oise (95), Oise (60), Calvados (14), Eure (27), Manche (50), Orne (61), Seine-Maritime (76)",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "extra_sources": [
       "https://cpontoise.mfa.gov.dz/"
@@ -2545,12 +2975,15 @@
     "phones": [
       "+33 4 77 80 67 83"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "info@consulat-saint-etienne-algerie.fr",
+      "doleances@consulat-saint-etienne-algerie.fr"
+    ],
+    "hours": "Ouvert au public du mardi au samedi de 08h30 à 15h00; pour les cas d’urgence une permanence est assurée le lundi de 9h à 15h",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2569,12 +3002,14 @@
       "+33 5 61 62 97 07",
       "+33 5 61 63 80 44"
     ],
-    "emails": [],
-    "hours": "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.",
+    "emails": [
+      "Info@consulat-toulouse-algerie.fr"
+    ],
+    "hours": "Horaires de réception DU MARDI AU VENDREDI : DE 08 H 30 A 15 H 00; LE SAMEDI : DE 08 H 00 A 14 H 30",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://www.amb-algerie.fr/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "note": "Phone numbers are unlabelled on the source page; the second number may be a fax."
   },
@@ -2588,15 +3023,21 @@
     "name_en": "Embassy of Algeria in Berlin",
     "name_fr": "Ambassade d'Algérie à Berlin",
     "website": "https://embberlin.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Görschstr. 45, 13187 Berlin",
+    "phones": [
+      "Tel: +49 30-43737-171",
+      "Fax: +49 30 43737-214",
+      "Hotline: 080 00 00 52 10"
+    ],
+    "emails": [
+      "konsular@algerische-botschaft.de"
+    ],
+    "hours": "Passport Department: Monday - Friday 9:00 a.m. to 1:00 p.m.; Civil Registration Department: Monday - Friday 9:00 a.m. to 1:00 p.m.; Visa Section (no appointment required): applications Mondays and Wednesdays 09:00 to 13:00, collection Fridays 09:00 to 13:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embberlin.mfa.gov.dz/en/contact-us/opening-hours",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cgfrankfurt",
@@ -2607,16 +3048,27 @@
     "type": "Consulate General",
     "name_en": "Consulate General of Algeria in Frankfurt",
     "name_fr": "Consulat général d'Algérie à Francfort",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://konsulat-algerien.de/",
+    "address": "Friedrich-Ebert-Anlage 32, 60325 Frankfurt am Main-Innenstadt II, Germany",
+    "phones": [
+      "Tel: 069 7060 950",
+      "Fax: 069 70 6095111"
+    ],
+    "emails": [
+      "biometrischer.reisepass@konsulat-algerien.de",
+      "visa@konsulat-algerien.de",
+      "sozialer-juristischer.dienst@konsulat-algerien.de",
+      "sekretariat@konsulat-algerien.de",
+      "zivilstand@konsulat-algerien.de",
+      "wehrdienst@konsulat-algerien.de",
+      "reclamations@konsulat-algerien.de"
+    ],
+    "hours": "Bureaux: Mardi au Samedi de 09h00 á 15h00; Service État-Civil: Mardi au Samedi de 09:00 á 15:00 / Avec Rendez-Vous !",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://konsulat-algerien.de/contact-acces/",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embathens",
@@ -2627,16 +3079,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Athens",
     "name_fr": "Ambassade d'Algérie à Athènes",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embathens.mfa.gov.dz/",
+    "address": "14, Vassileos Constantinou Avenue-116 35 Athens",
+    "phones": [
+      "+ 30 210 75 64 191",
+      "+ 30 210 75 64 192",
+      "+ 30 210 70 18 681-2"
+    ],
+    "emails": [
+      "embalg@otenet.gr"
+    ],
+    "hours": "Opening hours : Embassy : Monday to Friday, 09:00 - 15:00; Consular Section : Tuesday to Friday, 09:30 - 14:30",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embathens.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbudapest",
@@ -2647,16 +3105,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Budapest",
     "name_fr": "Ambassade d'Algérie à Budapest",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbudapest.mfa.gov.dz/en",
+    "address": "Zugligeti ut 27, 1121, Budapest",
+    "phones": [
+      "+3613920510"
+    ],
+    "emails": [
+      "consular@algerianembassy.hu"
+    ],
+    "hours": "Monday to Friday 9 a.m. to 4 p.m. except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbudapest.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embdublin",
@@ -2668,7 +3130,7 @@
     "name_en": "Embassy of Algeria in Dublin",
     "name_fr": "Ambassade d'Algérie à Dublin",
     "website": "https://embdublin.mfa.gov.dz/",
-    "address": "",
+    "address": "14 Clyde Road, Dublin 4, D04 KP74, Ireland",
     "phones": [
       "Tel: +353 (0)1 668 9202",
       "Toll-free (emergency): 01 667 3850"
@@ -2681,7 +3143,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embdublin.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -2694,7 +3156,7 @@
     "name_en": "Embassy of Algeria in Rome",
     "name_fr": "Ambassade d'Algérie à Rome",
     "website": "https://embrome.mfa.gov.dz/",
-    "address": "",
+    "address": "Embassy : Via Bartolomeo Eustachio, 12 -Cap 00161 Roma, Italia / Consular Section : 26 Via Barnaba Oriani ,00197 Roma, Italia",
     "phones": [
       "Tel: 0039 6.44.20.25.33 - TEL SEZIONE CONSOLARE: 06.808.41.41",
       "Toll-free (emergency): 08005508",
@@ -2707,7 +3169,7 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embrome.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -2720,16 +3182,21 @@
     "name_en": "Consulate General of Algeria in Milan",
     "name_fr": "Consulat général d'Algérie à Milan",
     "website": "https://cgmilan.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
+    "address": "Via Rovello n°7/11, 20121, Milan",
+    "phones": [
+      "Tel: + 39 0272 08 05 95",
+      "Fax: + 39 0289 01 5912",
+      "Toll-free (green number): 800721204"
+    ],
     "emails": [
-      "biometrie@consulatgeneralalgeriemilan.it"
+      "biometrie@consulatgeneralalgeriemilan.it",
+      "contact@consulatgeneralalgeriemilan.it"
     ],
     "hours": "Tuesday-Saturday 9:00-16:00, without appointment. Visas: submission Tuesday-Friday 9:00-11:00; collection Tuesday-Friday 14:00-15:00.",
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://cgmilan.mfa.gov.dz/consular-services/opening-hours",
-    "checked": "2026-10-27",
+    "checked": "2026-10-30",
     "status": "verified"
   },
   {
@@ -2742,15 +3209,19 @@
     "name_en": "Consulate General of Algeria in Naples",
     "name_fr": "Consulat général d'Algérie à Naples",
     "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "address": "Centro Direzionale, Via G. Porzio, 4 Isola F 10, 7 PIANO, 80143, Napoli",
+    "phones": [
+      "Tel: +39 081 1828 2655"
+    ],
+    "emails": [
+      "infocgalg-naples@mae.dz"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://www.mfa.gov.dz/embassys-locations-list",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embthehague",
@@ -2762,15 +3233,19 @@
     "name_en": "Embassy of Algeria in The Hague",
     "name_fr": "Ambassade d'Algérie à La Haye",
     "website": "https://embthehague.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Van Stolklaan 3, 2585 JS Den Haag",
+    "phones": [
+      "Tel: +31 070 3 52 29 54"
+    ],
+    "emails": [
+      "consular.affairs@embalg.nl"
+    ],
+    "hours": "From monday to friday from 9am to 4 pm; Consular department : From tuesday to saturday 9am to 1pm; Visa section : From tuesday to friday 9am to 1pm except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embthehague.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "emboslo",
@@ -2782,7 +3257,7 @@
     "name_en": "Embassy of Algeria in Oslo",
     "name_fr": "Ambassade d'Algérie à Oslo",
     "website": "https://emboslo.mfa.gov.dz/",
-    "address": "",
+    "address": "Sigurd Syrs Gate 2, Oslo",
     "phones": [
       "Tel: +47 21 60 88 30"
     ],
@@ -2796,8 +3271,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://emboslo.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://emboslo.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embwarsaw",
@@ -2809,15 +3287,22 @@
     "name_en": "Embassy of Algeria in Warsaw",
     "name_fr": "Ambassade d'Algérie à Varsovie",
     "website": "https://embwarsaw.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Ignacego Krasickiego 10, 02-628 Warszawa",
+    "phones": [
+      "Fax: +48 22 616 00 81",
+      "Tel: +48 22 617 58 55",
+      "Tel: +48 22 617 59 31",
+      "Emergency: +48 780 605 353"
+    ],
+    "emails": [
+      "consular@algerianembassy.pl"
+    ],
+    "hours": "Monday to Friday from 09:00 a.m. to 04:00 p.m. except national and religious holidays; Visas service: Tuesday and Thursday from 10:00 a.m. to 1:00 p.m.; (Visas applications and Passports withdrawals)",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embwarsaw.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "emblisbon",
@@ -2828,16 +3313,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Lisbon",
     "name_fr": "Ambassade d'Algérie à Lisbonne",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://emblisbon.mfa.gov.dz/en",
+    "address": "Rua Duarte Pacheco Pereira, nº 58 1400-140 LISBOA",
+    "phones": [
+      "Tel: + (351) 21 304 1520",
+      "Fax: + (351) 21 301 0393"
+    ],
+    "emails": [
+      "geral@emb-argelia.pt"
+    ],
+    "hours": "Monday to Friday 09:00 to 16:00 except national and religious holiday",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://emblisbon.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbucharest",
@@ -2849,15 +3339,24 @@
     "name_en": "Embassy of Algeria in Bucharest",
     "name_fr": "Ambassade d'Algérie à Bucarest",
     "website": "https://embbucharest.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Theodor Aman Street nr. 4, 010778, Bucharest",
+    "phones": [
+      "Tel: +40 21 211 51 50",
+      "Tel: +40 21 212 41 85",
+      "Toll-free (green number): 0800 800 249",
+      "Fax: +40 31 620 82 13"
+    ],
+    "emails": [
+      "ambalgeria@ambasada-algeriei.ro",
+      "consulaire@ambasada-algeriei.ro",
+      "visa@ambasada-algeriei.ro"
+    ],
+    "hours": "From Monday to Thursday From 09:00 to 16:00; Friday From 09:00 to 14:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://embbucharest.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embmoscow",
@@ -2869,7 +3368,7 @@
     "name_en": "Embassy of Algeria in Moscow",
     "name_fr": "Ambassade d'Algérie à Moscou",
     "website": "https://embmoscow.mfa.gov.dz/",
-    "address": "",
+    "address": "Krapivinsky per., 1a - 115127, Moscow",
     "phones": [
       "Tel: +7(495)937 46 00",
       "Fax: +7(495) 937 46 25"
@@ -2883,8 +3382,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embmoscow.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embmoscow.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "embbelgrade",
@@ -2895,16 +3397,23 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Belgrade",
     "name_fr": "Ambassade d'Algérie à Belgrade",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbelgrade.mfa.gov.dz/en",
+    "address": "Maglajska 26 B, 11000 Belgrade, Serbie",
+    "phones": [
+      "Tel: +381 (11) 3671 211",
+      "Tel: +381 (11) 3671 213",
+      "Fax: +381 (11) 2668 200",
+      "Fax: +381 (11) 3671 981"
+    ],
+    "emails": [
+      "ambalgerie-serbie@eunet.rs"
+    ],
+    "hours": "Monday to Friday 09:00 to 15:30 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbelgrade.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbratislava",
@@ -2915,16 +3424,21 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Bratislava",
     "name_fr": "Ambassade d'Algérie à Bratislava",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embbratislava.mfa.gov.dz/en",
+    "address": "Radvanská 6800/15, 811 01 Staré Mesto",
+    "phones": [
+      "+421 2/4333 0430",
+      "Fax: +421 2/4960 8374"
+    ],
+    "emails": [
+      "SECAMB.BRATISLAVA@mae.dz"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbratislava.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embljubljana",
@@ -2935,16 +3449,20 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Ljubljana",
     "name_fr": "Ambassade d'Algérie à Ljubljana",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://embljubljana.mfa.gov.dz/",
+    "address": "Opekarska cesta 35, 1000 Ljubljana, Slovénie",
+    "phones": [
+      "Tel: +386 (0) 83 83 17 00"
+    ],
+    "emails": [
+      "algeria.slovenia2024@gmail.com"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embljubljana.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embmadrid",
@@ -2956,7 +3474,7 @@
     "name_en": "Embassy of Algeria in Madrid",
     "name_fr": "Ambassade d'Algérie à Madrid",
     "website": "https://embmadrid.mfa.gov.dz/",
-    "address": "",
+    "address": "C/ General Oraá, 12, 28006 Madrid",
     "phones": [
       "Fax: (+34) 915 629 877",
       "Tel: (+34) 915 629 705",
@@ -2975,8 +3493,11 @@
     "jurisdiction": "",
     "appointment_url": "",
     "source_url": "https://web.archive.org/web/2026/https://embmadrid.mfa.gov.dz/contact",
-    "checked": "2026-10-28",
-    "status": "verified"
+    "checked": "2026-10-30",
+    "status": "verified",
+    "extra_sources": [
+      "https://embmadrid.mfa.gov.dz/contact"
+    ]
   },
   {
     "id": "cgbarcelona",
@@ -2987,16 +3508,21 @@
     "type": "Consulate General",
     "name_en": "Consulate General of Algeria in Barcelona",
     "name_fr": "Consulat général d'Algérie à Barcelone",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
+    "website": "https://cgbarcelona.mfa.gov.dz/",
+    "address": "Av. del Tibidabo, 6, 08022 ,Barcelona",
+    "phones": [
+      "Tel: (+34) 934.18.81.21",
+      "Fax: (+34) 934.18.68.96"
+    ],
+    "emails": [
+      "courrier@consulatdz-bcn.org"
+    ],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://cgbarcelona.mfa.gov.dz/",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "calicante",
@@ -3007,16 +3533,20 @@
     "type": "Consulate",
     "name_en": "Consulate of Algeria in Alicante",
     "name_fr": "Consulat d'Algérie à Alicante",
-    "website": "",
-    "address": "",
-    "phones": [],
+    "website": "https://calicante.mfa.gov.dz/",
+    "address": "Carrer Pintor Velazquez, 32, 03004 Alacante, Alicante",
+    "phones": [
+      "Tel: +34 966 59 15 40",
+      "Fax: +34 966 59 15 46",
+      "Toll-free (green number): +34 900 103 051"
+    ],
     "emails": [],
     "hours": "",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://calicante.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embstockholm",
@@ -3027,16 +3557,24 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Stockholm",
     "name_fr": "Ambassade d'Algérie à Stockholm",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embstockholm.mfa.gov.dz/en",
+    "address": "Danderydsgatan 3-5,10041 Stockholm",
+    "phones": [
+      "Tel: +46 86 79 91 30",
+      "Fax: +46 86 79 58 11"
+    ],
+    "emails": [
+      "ambassade@embalgeria.se",
+      "pass@embalgeria.se",
+      "visa@embalgeria.se",
+      "consular@embalgeria.se"
+    ],
+    "hours": "Reception days: Monday to Friday 09:00 to 13:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embstockholm.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embbern",
@@ -3047,16 +3585,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Bern",
     "name_fr": "Ambassade d'Algérie à Berne",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embbern.mfa.gov.dz/fr",
+    "address": "Willadingweg, 74 CH-3006 Berne, Suisse",
+    "phones": [
+      "Tel: +41 31 350 10 50",
+      "Fax: +41 31 350 10 59"
+    ],
+    "emails": [
+      "info@ambassade-algerie.ch"
+    ],
+    "hours": "lundi à vendredi 09h00 à 16h00; sauf fêtes nationales et religieuses",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embbern.mfa.gov.dz/fr",
+    "checked": "2026-10-31",
+    "status": "verified",
+    "note": "Phone, fax and email from the footer of the embassy's official site (its contact page has shown another embassy's numbers)."
   },
   {
     "id": "cggeneva",
@@ -3068,15 +3612,20 @@
     "name_en": "Consulate General of Algeria in Geneva",
     "name_fr": "Consulat général d'Algérie à Genève",
     "website": "https://cggeneva.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Route de Lausanne 308 bis, 1293 Bellevue, Genève",
+    "phones": [
+      "Tel: +41 (0) 22 774 19 19",
+      "Fax: +41 (0) 22 774 19 06"
+    ],
+    "emails": [
+      "consulat-algerie@consulat-algerie.ch"
+    ],
+    "hours": "Tuesday, wednesday, thursday: From 08:30 to 12:30 morning; From 13:30 to 15:30 the afternoon; Friday: From 08:30 to 12:00 morning; From 14:00 to 15:30 the afternoon; saturday: From 08:30 to 12:30 morning; From 13:30 to 15:00 the afternoon; Visas: Application lodging: Tuesday to thursdayfrom 9:00 to 12:30.; Collection : Tuesday to thursday from 13:30 to 15:30; Friday from 14:00 to 15:30; saturday from 13:30 to 15:00",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://cggeneva.mfa.gov.dz/consular-services/opening-hours",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "embkyiv",
@@ -3087,16 +3636,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in Kyiv",
     "name_fr": "Ambassade d'Algérie à Kiev",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://embkiev.mfa.gov.dz/",
+    "address": "Zvirynetska Street, 76, Kyiv, 02000",
+    "phones": [
+      "+380442867688",
+      "Emergency toll-free: 0800-500068",
+      "Fax: +380442867786"
+    ],
+    "emails": [
+      "ambalgkiev.cons@gmail.com"
+    ],
+    "hours": "Opening Hours: from Monday to Friday, from09:30 a.m. to 4:00 p.m.; Consular Services Hours: from Monday to Friday, from 10:00 a.m. to 1:00 p.m. except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://embkiev.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "emblondon",
@@ -3107,16 +3662,22 @@
     "type": "Embassy",
     "name_en": "Embassy of Algeria in London",
     "name_fr": "Ambassade d'Algérie à Londres",
-    "website": "",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "website": "https://emblondon.mfa.gov.dz/en",
+    "address": "1-3 Riding House Street, W1W 7DR, London",
+    "phones": [
+      "Tel: +44 207 299 7077",
+      "Fax: +44 207 299 7076"
+    ],
+    "emails": [
+      "info@algerianembassy.org.uk",
+      "students@algerianembassy.org.uk"
+    ],
+    "hours": "Monday to Friday 09:00 to 17:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "unverified"
+    "source_url": "https://emblondon.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "cglondon",
@@ -3140,7 +3701,7 @@
     "jurisdiction": "",
     "appointment_url": "https://algerian-consulate.org.uk/contact-us/take-an-appointment",
     "source_url": "https://algerian-consulate.org.uk/",
-    "checked": "2026-10-28",
+    "checked": "2026-10-30",
     "status": "verified",
     "extra_sources": [
       "https://cglondon.mfa.gov.dz/contact",
@@ -3161,15 +3722,20 @@
     "name_en": "Permanent Mission of Algeria to the United Nations (New York)",
     "name_fr": "Mission permanente de l'Algérie auprès de l'Organisation des Nations unies (New York)",
     "website": "https://pmnewyork.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "326 E 48th St, New York, NY 10017",
+    "phones": [
+      "Tel: +1 212-750-1960",
+      "Fax: +1 212-759-9538"
+    ],
+    "emails": [
+      "algeriamission.ny@gmail.com"
+    ],
+    "hours": "Monday to Friday 09:00 to 17:00 except for National, Religious, and United Nation Holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://pmnewyork.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   },
   {
     "id": "pmgeneva",
@@ -3181,14 +3747,19 @@
     "name_en": "Permanent Mission of Algeria to the United Nations Office at Geneva (Geneva)",
     "name_fr": "Mission permanente de l'Algérie auprès de l'Office des Nations unies à Genève (Genève)",
     "website": "https://pmgeneva.mfa.gov.dz/",
-    "address": "",
-    "phones": [],
-    "emails": [],
-    "hours": "",
+    "address": "Route de Lausanne 308 1293 Bellevue, Geneve",
+    "phones": [
+      "Tel: +41 22 959 84 84",
+      "Fax: +41 22 774 30 49"
+    ],
+    "emails": [
+      "contact@mission-algeria.ch"
+    ],
+    "hours": "Monday to Friday 09:00 to 17:00 except national and religious holidays",
     "jurisdiction": "",
     "appointment_url": "",
-    "source_url": "",
-    "checked": "2026-10-28",
-    "status": "website-only"
+    "source_url": "https://pmgeneva.mfa.gov.dz/contact",
+    "checked": "2026-10-30",
+    "status": "verified"
   }
 ]

@@ -3,6 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import MiniSearch from "minisearch";
 import { buildChunks, INDEX_VERSION, MINISEARCH_OPTIONS, normalizeCorpus, type Chunk } from "@/lib/search-core.mjs";
+import { coversGroup, searchTokens } from "@/lib/synonyms";
 
 export type { Chunk };
 
@@ -52,13 +53,54 @@ export interface SearchOptions {
   topics?: string[];
   /** Domains never to use (e.g. consulates in other countries than the person's). */
   excludeDomains?: string[];
+  /**
+   * What a relevant page must mention (lib/synonyms expandQuery groups). Pages are scored by how much of it they
+   * cover, rare words counting more (a page about "registration" alone isn't about "hajj registration").
+   */
+  groups?: string[][][];
+  /** How many of `groups` are synonym concepts (the rest are leftover words, which weigh half and are ignored if unknown). */
+  conceptCount?: number;
+  /** With groups: drop pages covering less than this share (0..1). */
+  minCoverage?: number;
 }
+
+const tokenCache = new Map<string, { list: string[]; set: Set<string> }>();
+function chunkTokens(h: Hit) {
+  let t = tokenCache.get(h.id);
+  if (!t) {
+    const list = searchTokens(`${h.title} ${h.text}`);
+    t = { list, set: new Set(list) };
+    if (tokenCache.size > 20000) tokenCache.clear();
+    tokenCache.set(h.id, t);
+  }
+  return t;
+}
+
+/** Inverse document frequency of a group: rare topics ("hajj") weigh more than common words ("registration"). */
+const dfCache = new Map<string, number>();
+function groupDf(ms: MiniSearch<Chunk>, group: string[][]): number {
+  const key = group.map((s) => s.join(" ")).join("|");
+  const hit = dfCache.get(key);
+  if (hit !== undefined) return hit;
+  const n = countDf(ms, group);
+  if (dfCache.size > 5000) dfCache.clear();
+  dfCache.set(key, n);
+  return n;
+}
+function countDf(ms: MiniSearch<Chunk>, group: string[][]): number {
+  const ids = new Set<string>();
+  for (const seq of group) {
+    for (const r of ms.search(seq.join(" "), { combineWith: "AND", fuzzy: false, prefix: false, processTerm: (t: string) => t })) ids.add(r.id as string);
+  }
+  return ids.size;
+}
+const idf = (ms: MiniSearch<Chunk>, df: number) => Math.log(1 + ms.documentCount / (1 + df));
 
 /** Pages that are never useful for procedures (speeches, history, biographies). */
 const JUNK = /history of algeria|histoire de l'alg|biograph|speech|discours|allocution|condolence|congratulat|félicit|visite (de travail|officielle)|working visit/i;
 
 export function searchChunks(queries: string[], limit: number, opts: SearchOptions | string[] = {}): Hit[] {
-  const { boostDomains = [], topics = [], excludeDomains = [] } = Array.isArray(opts) ? { boostDomains: opts } : opts;
+  const { boostDomains = [], topics = [], excludeDomains = [], groups = [], minCoverage = 0, conceptCount = groups.length } = Array.isArray(opts) ? { boostDomains: opts } : opts;
   const excluded = new Set(excludeDomains.map((d) => d.replace(/^www\./, "").toLowerCase()));
   const ms = getIndex();
   const best = new Map<string, Hit>();
@@ -90,6 +132,22 @@ export function searchChunks(queries: string[], limit: number, opts: SearchOptio
     if (boost.has(h.domain.replace(/^www\./, ""))) h.score *= 3;
     if (topicSet.size && topicSet.has(h.topic)) h.score *= 1.6;
     if (JUNK.test(h.title)) h.score *= 0.2;
+  }
+  if (groups.length) {
+    // Concepts weigh fully. Leftover words weigh half (they may be in another language than the page), and a word
+    // that appears nowhere (typo, Darija spelling) is ignored rather than sinking every page.
+    const weights = groups.map((g, i) => {
+      const df = groupDf(ms, g);
+      if (i < conceptCount) return idf(ms, df);
+      return df === 0 ? 0 : 0.5 * idf(ms, df);
+    });
+    const total = weights.reduce((a, b) => a + b, 0) || 1;
+    for (const [id, h] of best) {
+      const { list, set } = chunkTokens(h);
+      const cov = groups.reduce((n, g, i) => n + (coversGroup(list, set, g) ? weights[i] : 0), 0) / total;
+      if (weights.filter(Boolean).length >= 2 && cov < minCoverage) best.delete(id);
+      else h.score *= 0.3 + 0.7 * cov;
+    }
   }
   const ranked = [...best.values()].sort((a, b) => b.score - a.score);
   const top = ranked[0]?.score ?? 0;

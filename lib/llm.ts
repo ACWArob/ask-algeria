@@ -16,11 +16,13 @@ export interface Expansion {
   lang: Locale | null;
   queries: string[];
   topic: string;
+  /** The model call failed and the heuristic fallback was used (answers built on it are not cached). */
+  fellBack?: boolean;
 }
 
 /** Haiku: detect language + produce FR/AR/EN search queries. Falls back to heuristics on any failure. */
 export async function expandQuery(question: string, context = ""): Promise<Expansion> {
-  const fallback: Expansion = { lang: detectLanguage(question), queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)], topic: "" };
+  const fallback: Expansion = { lang: detectLanguage(question), queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)], topic: "", fellBack: true };
   try {
     const res = await anthropic().messages.create({
       model: MODELS.expand,

@@ -18,6 +18,9 @@ node scripts/crawl-local.mjs --dry-run          # crawler for running from INSID
 
 ## Layout
 - `app/(site)/` — pages (home, ask, translate, services/[slug] guides, embassies, directory, about); `app/api/` — search (free, no AI), ask (Claude), translate, login, logout, feedback
+- Free search quality: `lib/synonyms.ts` (en/fr/ar/Darija/Arabizi concepts) + coverage scoring in `lib/search.ts`; gate = `tests/search-eval.test.ts` over `qa/search-eval.json` (≥95% top-3). A missed real query → add it to the eval, then fix synonyms.
+- Prepare my file: `/prepare` (components/PrepareClient.tsx, lib/prepare*.ts, lib/packet-html.ts, lib/zip.ts). Personal details never leave the browser: no fetch/log of those fields, ever. Letters are our own neutral template, never an imitation of an official form.
+- Answer cache: `lib/answer-cache.ts` (first questions only, per instance, 24h; `ANSWER_CACHE=off` disables) and `lib/expand-local.ts` (skip the LLM query-rewrite when synonyms already cover the question). Watch `[ask]` log lines for hit rate.
 - Location: `lib/where.ts` — picker options, validation, and the office for a saved place (sent as `where` to /api/search and /api/ask).
 - Cost model: the first question gets `/api/search` results (lib/instant.ts: guides, office, contacts, official pages); Claude (`/api/ask`, 2 calls: query expansion + answer) only runs for "Get a written answer", chips and follow-ups.
 - `lib/` — `posts.ts` (where the person lives → which consulate/APC), `clarify.ts` (ask-first chips), `prompts.ts`, `search.ts` + `search-core.mjs`, `missions.ts`, `detect.ts` (language/topic), `i18n/*.json` (4 languages, keep keys in sync)
@@ -43,6 +46,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-10-31 — "unemployment benefit" found nothing (pages are French), "hajj registration" returned consular registration — cross-language synonyms + rare-word-weighted coverage; measure every search change on the eval (baseline was 86% top-3).
 - 2026-10-31 — guessing location from words/connection gave mixed offices — ask "in Algeria (wilaya) / outside (country → consulate)" first (lib/where.ts, saved in the browser); a place or country named in the question still wins.
 - 2026-10-31 — every question cost 2 Claude calls even when a guide or official page already answered it — first question = free search results; AI only on request or follow-up. Measure with the `[search]` vs `/api/ask` log lines.
 - 2026-10-30 — 15 of our site links were wrong (old/renamed ministry domains) — the tester in Algeria is the check; take her corrected links, keep archived pages under their original URL.

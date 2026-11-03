@@ -20,6 +20,8 @@ import { makeScrubber } from "@/lib/scrub";
 import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
 import sourcesJson from "@/data/sources.json";
 import { followUps } from "@/lib/followups";
+import { answerCacheKey, answerStore, corpusVersion, isCacheable } from "@/lib/answer-cache";
+import { localExpansion, localExpansionDecision } from "@/lib/expand-local";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
 export const runtime = "nodejs";
@@ -80,6 +82,14 @@ export async function POST(req: Request) {
     typeof body.prevAnswer === "string" ? redact(body.prevAnswer.replace(/\u0000ERROR/g, "").trim().slice(0, 700)).text : "";
 
   const started = Date.now();
+  const headers = {
+    "Content-Type": "text/plain; charset=utf-8",
+    "Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff",
+  };
+  // One line per request, to measure cost: cache hit/miss/skip, how the query was expanded, model calls made.
+  const logAsk = (cache: "hit" | "miss" | "skip", expand: "llm" | "local" | "none", calls: number, extra: Record<string, unknown> = {}) =>
+    console.log(`[ask] ${JSON.stringify({ cache, expand, calls, ms: Date.now() - started, ...extra })}`);
   // A mission named in the question ("the consulate in Beijing") is the office they mean, even if that city
   // isn't in the place tables; it also beats the connection's location.
   const namedMission = !detectPost(question) && isMissionContactQuestion(question) ? matchMissions(question, [], 1)[0] : undefined;
@@ -111,19 +121,44 @@ export async function POST(req: Request) {
   if (!post && shouldAsk && (contactNoPlace || topics.some((t) => LOCATION_FIRST.includes(t))) && !OTHER_PLACE.test(question)) {
     const c: Clarify | null = multiPostCountry ? askCity(multiPostCountry, quickLang) : askCountry(quickLang);
     if (c) {
+      logAsk("skip", "none", 0, { clarify: true });
       const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], chips: c.chips, redactedServer: removed };
       return new Response(`${JSON.stringify(meta)}\n${c.text}`, { headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" } });
     }
   }
 
   const mock = isMock();
-  const expansion = mock
-    ? {
-        lang: detectLanguage(question),
-        queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)],
-        topic: "",
-      }
-    : await expandQuery(question, context);
+
+  // Answer cache (lib/answer-cache.ts): first questions only; a follow-up depends on the conversation so far.
+  const cache = !context && !prevAnswer ? answerStore() : null;
+  const office = post
+    ? `${post.inAlgeria ? "dz" : "abroad"}:${post.post}:${post.place}${geoPost ? ":geo" : ""}`
+    : multiPostCountry
+      ? `country:${multiPostCountry}`
+      : "none";
+  const cacheKey = cache ? answerCacheKey({ question, lang: quickLang, office, version: `${corpusVersion()}${mock ? ":mock" : ""}` }) : "";
+  if (cache) {
+    const hit = await cache.get(cacheKey).catch(() => null);
+    if (hit) {
+      logAsk("hit", "none", 0);
+      const meta: AskMeta = { ...hit.meta, redactedServer: removed };
+      return new Response(`${JSON.stringify(meta)}\n${hit.text}`, { headers });
+    }
+  }
+
+  // Skip the expansion model call for short questions the synonym list/glossary already understands (lib/expand-local.ts).
+  const decision = localExpansionDecision(question, context);
+  const expandMode: "llm" | "local" = decision.local ? "local" : "llm";
+  const expansion: { lang: Locale | null; queries: string[]; topic: string; fellBack?: boolean } = decision.local
+    ? localExpansion(question, decision)
+    : mock
+      ? {
+          lang: detectLanguage(question),
+          queries: [question, ...glossaryQueries(context ? `${context} ${question}` : question)],
+          topic: "",
+        }
+      : await expandQuery(question, context);
+  const expandCalls = expandMode === "llm" && !mock ? 1 : 0;
   const answerLang = chooseAnswerLang(selected, expansion.lang, question);
 
   const base = [...new Set([...expansion.queries, ...glossaryQueries(`${context} ${question}`)])];
@@ -194,10 +229,14 @@ export async function POST(req: Request) {
   };
 
   const enc = new TextEncoder();
-  const headers = {
-    "Content-Type": "text/plain; charset=utf-8",
-    "Cache-Control": "no-store",
-    "X-Content-Type-Options": "nosniff",
+  // Cache only answers in the key's language, built on a successful expansion.
+  const mayStore = Boolean(cache) && answerLang === quickLang && !expansion.fellBack;
+  const store = (text: string, finishedNormally: boolean): boolean => {
+    if (!cache || !mayStore) return false;
+    const outcome = { finishedNormally, text, meta, wrongLanguage: wrongScript(text.slice(0, 400), answerLang) };
+    if (!isCacheable(outcome)) return false;
+    void cache.set(cacheKey, { meta, text }).catch((err) => console.error("[ask] cache set failed:", err instanceof Error ? err.message : err));
+    return true;
   };
 
   if (mock) {
@@ -206,12 +245,16 @@ export async function POST(req: Request) {
       async start(controller) {
         controller.enqueue(enc.encode(JSON.stringify(meta) + "\n"));
         const reader = answer.getReader();
+        const dec = new TextDecoder();
+        let full = "";
         for (;;) {
           const { done, value } = await reader.read();
           if (done) break;
+          full += dec.decode(value, { stream: true });
           controller.enqueue(value);
         }
         controller.close();
+        logAsk(cache ? "miss" : "skip", expandMode, 0, { mock: true, stored: store(full, true) });
       },
     });
     return new Response(out, { headers });
@@ -258,6 +301,14 @@ export async function POST(req: Request) {
   const out = new ReadableStream<Uint8Array>({
     async start(controller) {
       controller.enqueue(enc.encode(JSON.stringify(meta) + "\n"));
+      // Everything sent after the meta line, for the cache; only set on the normal, complete path.
+      let full = "";
+      let finishedNormally = false;
+      let calls = expandCalls;
+      const emit = (t: string) => {
+        full += t;
+        controller.enqueue(enc.encode(t));
+      };
       let wrote = 0;
       const models = [MODELS.answer, MODELS.answer, MODELS.fallback];
       let langRetry = false;
@@ -275,6 +326,7 @@ export async function POST(req: Request) {
             },
             { maxRetries: 0, timeout: remaining },
           );
+          calls++;
           const timer = setTimeout(() => stream.abort(), remaining);
           const scrub = makeScrubber(answerLang);
           // Hold the first ~120 characters to check the script: a short Arabic follow-up sometimes gets an
@@ -292,10 +344,10 @@ export async function POST(req: Request) {
               }
               t = held;
             }
-            controller.enqueue(enc.encode(t));
+            emit(t);
           };
           const flushHeld = () => {
-            if (!checked && held) controller.enqueue(enc.encode(held));
+            if (!checked && held) emit(held);
             checked = true;
           };
           try {
@@ -309,7 +361,8 @@ export async function POST(req: Request) {
             send(scrub.flush());
             flushHeld();
             const fin = await stream.finalMessage().catch(() => null);
-            if (fin?.stop_reason === "max_tokens") controller.enqueue(enc.encode(SHORTENED[answerLang]));
+            if (fin?.stop_reason === "max_tokens") emit(SHORTENED[answerLang]);
+            else finishedNormally = true;
             return; // finished normally
           } catch (err) {
             clearTimeout(timer);
@@ -330,16 +383,17 @@ export async function POST(req: Request) {
             console.error(`[ask] attempt ${attempt + 1} (${models[attempt]}) failed after ${Date.now() - started}ms:`, err instanceof Error ? err.message : err);
             if (wrote > 0) {
               // Something already reached the user: never restart, just close politely.
-              controller.enqueue(enc.encode(SHORTENED[answerLang]));
+              emit(SHORTENED[answerLang]);
               return;
             }
             if (timedOut) break;
             await new Promise((r) => setTimeout(r, 250));
           }
         }
-        controller.enqueue(enc.encode("\n\n\u0000ERROR"));
+        emit("\n\n\u0000ERROR");
       } finally {
         controller.close();
+        logAsk(cache ? "miss" : "skip", expandMode, calls, { stored: store(full, finishedNormally), ...(finishedNormally ? {} : { ok: false }) });
       }
     },
   });

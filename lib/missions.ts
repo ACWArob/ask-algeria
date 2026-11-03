@@ -98,7 +98,9 @@ export function parsePhone(entry: string): { label: string | null; display: stri
   const m = /^\s*([^:+\d][^:]*):\s*(.+)$/.exec(entry);
   const label = m ? m[1].trim() : null;
   const display = (m ? m[2] : entry).trim();
-  const digits = display.replace(/(?!^\+)[^\d]/g, "");
+  // Only the first number is dialable: "+33 1 50 74/75/77" lists several endings, and "a / b" lists two numbers.
+  const first = display.split(/\s*(?:\/|;|,|\bor\b|\bou\b|أو)\s*/u)[0];
+  const digits = first.replace(/(?!^\+)[^\d]/g, "");
   return { label, display, tel: digits.replace(/\D/g, "").length >= 6 ? digits : null };
 }
 

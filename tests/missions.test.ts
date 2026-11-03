@@ -17,6 +17,20 @@ describe("missions.json", () => {
     for (const m of MISSIONS) for (const l of ["en", "fr", "ar", "dz"] as const) expect(missionName(m, l), `${m.id} ${l}`).toBeTruthy();
   });
 
+  it("applies the 2026-10-30 tester review (Chaima, from Algeria)", () => {
+    const byId = (id: string) => MISSIONS.find((m) => m.id === id)!;
+    const ba = byId("embbuenosaires");
+    expect(ba.website).toBe("https://embbuenosaires.mfa.gov.dz/en");
+    expect(ba.status).toBe("verified");
+    expect(ba.checked).toBe("2026-10-30");
+    // tester note: another phone number is on the official contact page
+    expect(byId("embluanda").phones).toContain("Tel: +244 226 470 031");
+    // rows copied from another mission are not applied (Bern had Zagreb's numbers)
+    expect(byId("embbern").phones.join(" ")).not.toMatch(/\+385/);
+    // third-party-only sources (embassypages.com) are not used
+    expect(byId("embhavana").status).toBe("unverified");
+  });
+
   it("maps every US state to a listed mission", () => {
     const states = usStateOffices();
     expect(states.length).toBeGreaterThanOrEqual(50);
@@ -94,5 +108,14 @@ describe("other countries' consulates never answer for the person", () => {
   it("country without a city", () => {
     expect(foreignMissionHostsForCountry("France")).toContain("algeria-cgny.org");
     expect(foreignMissionHostsForCountry("France")).not.toContain("consulat-nice-algerie.fr");
+  });
+});
+
+describe("phone links", () => {
+  it("dials only the first number of a shorthand list", async () => {
+    const { parsePhone } = await import("@/lib/missions");
+    expect(parsePhone("+33 1 53 93 20 74/75/77").tel).toBe("+33153932074");
+    expect(parsePhone("Tel: +44 20 7221 7800").tel).toBe("+442072217800");
+    expect(parsePhone("+1 202 265 2800 / +1 202 265 2801").tel).toBe("+12022652800");
   });
 });

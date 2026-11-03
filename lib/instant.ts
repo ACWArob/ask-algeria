@@ -4,6 +4,7 @@ import { glossaryQueries, questionTopics } from "@/lib/detect";
 import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions } from "@/lib/missions";
 import { searchChunks } from "@/lib/search";
+import { expandQuery } from "@/lib/synonyms";
 import { corpusById } from "@/lib/corpus";
 import { GUIDES } from "@/lib/guides";
 import sourcesJson from "@/data/sources.json";
@@ -96,9 +97,11 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
     ...(post ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria)) : country ? foreignMissionHostsForCountry(country) : []),
     ...(abroad ? WILAYA_PORTALS : []),
   ];
-  const queries = [...new Set([question, ...glossaryQueries(`${context} ${question}`)])];
+  // Synonyms across en/fr/ar/Darija (lib/synonyms), so the page's language doesn't have to match the question's.
+  const exp = expandQuery(question);
+  const queries = [...new Set([question, exp.query, ...glossaryQueries(`${context} ${question}`)].filter(Boolean))];
   if (post && !post.inAlgeria) queries.push(`${question} ${post.place}`);
-  const hits = searchChunks(queries, 12, { boostDomains: post?.domains ?? [], topics, excludeDomains });
+  const hits = searchChunks(queries, 12, { boostDomains: post?.domains ?? [], topics, excludeDomains, groups: exp.groups, conceptCount: exp.conceptCount, minCoverage: 0.4 });
 
   const corpus = corpusById();
   const pages: InstantPage[] = [];
