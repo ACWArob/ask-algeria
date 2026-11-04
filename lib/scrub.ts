@@ -12,6 +12,12 @@ const RULES: [RegExp, string][] = [
   [/\bthe provided (?:official )?(?:sources|pages|excerpts)\b/gi, "the official pages"],
   [/\b(?:official )?(?:page|pages|sources)? ?provided here\b/gi, "official page"],
   [/\b(?:the )?excerpts\b/gi, "the official pages"],
+  // "the Lyon page in your sources" — the reader gave us no sources.
+  [/\s*\b(?:in|from|among) your sources\b/gi, ""],
+  [/\byour sources\b/gi, "the official pages"],
+  [/\s*\b(?:dans|parmi) vos sources\b/gi, ""],
+  [/\bvos sources\b/gi, "les pages officielles"],
+  [/\s*(?:في|ضمن) مصادرك/g, ""],
   [/\bin our consular map\b/gi, ""],
   // Non-numeric bracket tags like "[system guidance]" (citations are numbers only; keep [text](url) links).
   [/ ?\[(?![0-9٠-٩]{1,2}\])(?![^\]\n]*\]\()[^\]\n]{1,40}\]/g, ""],

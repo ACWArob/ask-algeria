@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { ExternalIcon } from "@/components/Icon";
 import { LANGUAGE_NAMES, type Dict, type Locale } from "@/lib/i18n";
+import { EXTRA } from "@/lib/i18n-extra";
 import { packetFiles } from "@/lib/packet-html";
 import {
   buildPacket,
@@ -163,6 +164,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
         detailsIntro: t.detailsIntro,
         linksIntro: t.linksIntro,
         fields: t.fields,
+        extras: EXTRA[locale].prepareExtras,
       },
       letterLang,
       letter: letters[letterLang],
@@ -361,6 +363,22 @@ function DocBody({ doc, opensNew }: { doc: PacketDoc; opensNew: string }) {
               </ul>
             </section>
           ))}
+          {doc.extras && (
+            <section className="mt-6 rounded-2xl border border-dashed border-line px-4 py-3">
+              <h3 className="text-lg font-semibold">{doc.extras.title}</h3>
+              <p className="mt-1 text-sm text-muted">{doc.extras.note}</p>
+              <ul className="mt-2 divide-y divide-line">
+                {doc.extras.items.map((x, i) => (
+                  <li key={i}>
+                    <label className="flex cursor-pointer items-start gap-3 py-2.5">
+                      <input type="checkbox" className="mt-1.5 h-4 w-4 shrink-0 accent-brand" />
+                      <span>{x}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           {doc.sources.length > 0 && (
             <section className="mt-6">
               <h3 className="text-lg font-semibold">{doc.sourcesTitle}</h3>

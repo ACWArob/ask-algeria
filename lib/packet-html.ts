@@ -27,6 +27,9 @@ ul.check li{display:flex;gap:.6rem;align-items:flex-start;padding:.4rem 0;border
 ul.check input{margin-top:.35rem;width:1rem;height:1rem;flex:none}
 .mine{display:inline-block;font-size:.75rem;font-weight:700;border:1px solid #333;border-radius:.3rem;padding:0 .3rem;margin-inline-end:.3rem}
 .nums{font-size:.75rem;color:#555;white-space:nowrap}
+.extras{margin-top:1.5rem;border:1px dashed #888;border-radius:.4rem;padding:.25rem .9rem .6rem}
+.extras h2{margin-top:.75rem}
+.extras .sub{font-size:.9rem}
 ol.src{padding-inline-start:1.4rem;font-size:.9rem}
 ol.src a,.links a{color:#0b5a32;word-break:break-word}
 .url{display:block;font-size:.8rem;color:#555;direction:ltr;text-align:start;word-break:break-all}
@@ -62,6 +65,12 @@ export function docBody(doc: PacketDoc): string {
               .join("")}</ul>`,
         )
         .join("")}${
+        doc.extras
+          ? `<section class="extras"><h2>${esc(doc.extras.title)}</h2><p class="sub">${esc(doc.extras.note)}</p><ul class="check">${doc.extras.items
+              .map((x) => `<li><label><input type="checkbox"><span>${esc(x)}</span></label></li>`)
+              .join("")}</ul></section>`
+          : ""
+      }${
         doc.sources.length
           ? `<h2>${esc(doc.sourcesTitle)}</h2><ol class="src">${doc.sources
               .map((s) => `<li><a href="${esc(safeUrl(s.url))}">${esc(s.title)}</a><span class="url">${esc(s.url)}</span></li>`)

@@ -1,4 +1,5 @@
 import "server-only";
+import { recordSpend } from "@/lib/spend";
 import Anthropic from "@anthropic-ai/sdk";
 import { MODELS } from "@/lib/config";
 import { expandSystemPrompt } from "@/lib/prompts";
@@ -31,6 +32,7 @@ export async function expandQuery(question: string, context = ""): Promise<Expan
       system: expandSystemPrompt(),
       messages: [{ role: "user", content: context ? `Previous question in this conversation (context only): ${context}\n\nQuestion: ${question}` : question }],
     }, { timeout: 2200, maxRetries: 0 });
+    recordSpend(MODELS.expand, res.usage);
     const text = res.content.map((b) => (b.type === "text" ? b.text : "")).join("");
     const json = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1)) as {
       lang?: unknown;
@@ -49,6 +51,7 @@ export async function expandQuery(question: string, context = ""): Promise<Expan
     };
   } catch (err) {
     console.error("[expand] falling back to heuristic:", err instanceof Error ? err.message : err);
+    recordSpend(MODELS.expand, { input_tokens: 600, output_tokens: 200 }); // a timed-out call may still be billed
     return fallback;
   }
 }

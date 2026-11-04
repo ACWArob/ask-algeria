@@ -95,6 +95,8 @@ describe("/api/ask in mock mode", () => {
   afterEach(() => vi.unstubAllEnvs());
   it("serves the second identical first question from the cache with zero model calls", async () => {
     vi.stubEnv("MOCK_LLM", "1");
+    const { setSharedKv } = await import("@/lib/kv");
+    setSharedKv(null); // memory store, whatever the environment says
     const { POST } = await import("@/app/api/ask/route");
     const logs: string[] = [];
     const spy = vi.spyOn(console, "log").mockImplementation((m: unknown) => void logs.push(String(m)));

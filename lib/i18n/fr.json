@@ -13,7 +13,9 @@
     "about": "À propos",
     "logout": "Se déconnecter",
     "menu": "Menu",
-    "embassies": "Ambassades et consulats"
+    "embassies": "Ambassades et consulats",
+    "status": "État des portails",
+    "glossary": "Glossaire"
   },
   "lang": {
     "label": "Langue",
@@ -147,7 +149,9 @@
     "result": "Résultat",
     "error": "Impossible de traiter ce document. Réessayez, ou utilisez un scan plus net.",
     "disclaimer": "La traduction automatique peut comporter des erreurs. Pour toute démarche officielle, fiez-vous au document original.",
-    "takePhoto": "📷 Prendre une photo"
+    "takePhoto": "📷 Prendre une photo",
+    "tooManyPages": "Ce PDF est trop long. Envoyez seulement les pages utiles (10 maximum).",
+    "paused": "L'aide aux documents est suspendue pour le moment en raison d'une forte demande. Réessayez plus tard."
   },
   "directory": {
     "heading": "Sites officiels",

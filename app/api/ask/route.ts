@@ -21,6 +21,7 @@ import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
 import sourcesJson from "@/data/sources.json";
 import { followUps } from "@/lib/followups";
 import { answerCacheKey, answerStore, corpusVersion, isCacheable } from "@/lib/answer-cache";
+import { allowAi, overBudget, recordSpend, spendSettled, type Block } from "@/lib/spend";
 import { localExpansion, localExpansionDecision } from "@/lib/expand-local";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
 
@@ -34,6 +35,28 @@ export const maxDuration = 60;
  * everything after is the Markdown answer as it is generated.
  */
 class WrongLanguage extends Error {}
+
+/** Shown instead of a written answer when the spending guard says no (the free results stay on screen). */
+const PAUSED: Record<Block, Record<Locale, string>> = {
+  disabled: {
+    en: "Written answers are switched off for now. The results from official pages above, the guides and the embassy list still work.",
+    fr: "Les réponses rédigées sont désactivées pour le moment. Les résultats des pages officielles ci-dessus, les guides et la liste des ambassades restent disponibles.",
+    ar: "الإجابات المكتوبة متوقفة حاليًا. ما زالت نتائج الصفحات الرسمية أعلاه والأدلة وقائمة السفارات متاحة.",
+    dz: "الأجوبة المكتوبة راهي متوقفة دروك. النتايج تاع الصفحات الرسمية لفوق، الأدلة وليستة السفارات راهم يخدمو.",
+  },
+  budget: {
+    en: "Written answers are paused until tomorrow because of high demand. The results from official pages above, the guides and the embassy list still work.",
+    fr: "Les réponses rédigées sont suspendues jusqu'à demain en raison d'une forte demande. Les résultats des pages officielles ci-dessus, les guides et la liste des ambassades restent disponibles.",
+    ar: "الإجابات المكتوبة متوقفة حتى الغد بسبب كثرة الطلب. ما زالت نتائج الصفحات الرسمية أعلاه والأدلة وقائمة السفارات متاحة.",
+    dz: "الأجوبة المكتوبة حبسناها حتى لغدوة على خاطر كاين بزاف الطلب. النتايج تاع الصفحات الرسمية لفوق، الأدلة وليستة السفارات راهم يخدمو.",
+  },
+  quota: {
+    en: "You've reached today's limit of written answers. Try again tomorrow; the results from official pages, the guides and the embassy list still work.",
+    fr: "Vous avez atteint la limite de réponses rédigées pour aujourd'hui. Réessayez demain ; les résultats des pages officielles, les guides et la liste des ambassades restent disponibles.",
+    ar: "بلغت الحد اليومي للإجابات المكتوبة. حاول غدًا؛ ما زالت نتائج الصفحات الرسمية والأدلة وقائمة السفارات متاحة.",
+    dz: "وصلت للحد تاع اليوم في الأجوبة المكتوبة. عاود غدوة؛ النتايج تاع الصفحات الرسمية، الأدلة وليستة السفارات راهم يخدمو.",
+  },
+};
 
 /** Wilaya (province) portals: local procedures inside Algeria. */
 const WILAYA_PORTALS = (sourcesJson as { domain: string; category?: string }[])
@@ -146,6 +169,16 @@ export async function POST(req: Request) {
     }
   }
 
+  // Spending guard (lib/spend.ts): kill switch, daily budget, per-visitor quota. Cached answers above stay free.
+  if (!mock) {
+    const allowed = await allowAi(clientIp(req.headers), "ask");
+    if (!allowed.ok) {
+      logAsk("skip", "none", 0, { blocked: allowed.reason });
+      const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], redactedServer: removed };
+      return new Response(`${JSON.stringify(meta)}\n${PAUSED[allowed.reason][quickLang]}`, { headers });
+    }
+  }
+
   // Skip the expansion model call for short questions the synonym list/glossary already understands (lib/expand-local.ts).
   const decision = localExpansionDecision(question, context);
   const expandMode: "llm" | "local" = decision.local ? "local" : "llm";
@@ -231,13 +264,17 @@ export async function POST(req: Request) {
   const enc = new TextEncoder();
   // Cache only answers in the key's language, built on a successful expansion.
   const mayStore = Boolean(cache) && answerLang === quickLang && !expansion.fellBack;
+  // Shared-store writes (cache set, spend totals) are awaited before the stream closes, so the platform doesn't
+  // freeze the function with them unsent; each is bounded by the store's short timeout (lib/kv.ts).
+  const writes: Promise<unknown>[] = [];
   const store = (text: string, finishedNormally: boolean): boolean => {
     if (!cache || !mayStore) return false;
     const outcome = { finishedNormally, text, meta, wrongLanguage: wrongScript(text.slice(0, 400), answerLang) };
     if (!isCacheable(outcome)) return false;
-    void cache.set(cacheKey, { meta, text }).catch((err) => console.error("[ask] cache set failed:", err instanceof Error ? err.message : err));
+    writes.push(cache.set(cacheKey, { meta, text }).catch((err) => console.error("[ask] cache set failed:", err instanceof Error ? err.message : err)));
     return true;
   };
+  const settle = () => Promise.all([...writes, spendSettled()]).catch(() => undefined);
 
   if (mock) {
     const answer = streamText(mockAnswer(answerLang, promptSources.length));
@@ -253,8 +290,10 @@ export async function POST(req: Request) {
           full += dec.decode(value, { stream: true });
           controller.enqueue(value);
         }
+        const stored = store(full, true);
+        await settle();
         controller.close();
-        logAsk(cache ? "miss" : "skip", expandMode, 0, { mock: true, stored: store(full, true) });
+        logAsk(cache ? "miss" : "skip", expandMode, 0, { mock: true, stored });
       },
     });
     return new Response(out, { headers });
@@ -316,6 +355,7 @@ export async function POST(req: Request) {
         for (let attempt = 0; attempt < models.length; attempt++) {
           const remaining = DEADLINE_MS - (Date.now() - started);
           if (remaining < 2500) break;
+          if (attempt > 0 && overBudget()) break; // no retries (or Sonnet fallback) once today's budget is spent
           const stream = anthropic().messages.stream(
             {
               model: models[attempt],
@@ -361,11 +401,15 @@ export async function POST(req: Request) {
             send(scrub.flush());
             flushHeld();
             const fin = await stream.finalMessage().catch(() => null);
+            // Real usage when the API returns it; otherwise a rough estimate (~3 characters per token).
+            recordSpend(models[attempt], fin?.usage ?? { input_tokens: Math.ceil((system.length + userPrompt.length) / 3), output_tokens: Math.ceil(wrote / 3) });
             if (fin?.stop_reason === "max_tokens") emit(SHORTENED[answerLang]);
             else finishedNormally = true;
             return; // finished normally
           } catch (err) {
             clearTimeout(timer);
+            // A failed or aborted attempt is still billed for its prompt (and whatever was generated).
+            recordSpend(models[attempt], { input_tokens: Math.ceil((system.length + userPrompt.length) / 3), output_tokens: Math.ceil(Math.max(wrote, 120) / 3) });
             if (err instanceof WrongLanguage) {
               stream.abort();
               langRetry = true;
@@ -392,8 +436,10 @@ export async function POST(req: Request) {
         }
         emit("\n\n\u0000ERROR");
       } finally {
+        const stored = store(full, finishedNormally);
+        await settle();
         controller.close();
-        logAsk(cache ? "miss" : "skip", expandMode, calls, { stored: store(full, finishedNormally), ...(finishedNormally ? {} : { ok: false }) });
+        logAsk(cache ? "miss" : "skip", expandMode, calls, { stored, ...(finishedNormally ? {} : { ok: false }) });
       }
     },
   });

@@ -155,9 +155,14 @@ export function mentionsOffice(text: string, words: string[]): boolean {
 // ───────── The packet ─────────
 
 export interface PacketMeta { lang: string; dir: "ltr" | "rtl" }
+/** Practical "also bring" tips: our own common sense, never presented as an official requirement. */
+export interface PacketExtras { title: string; note: string; items: string[] }
+
 export interface ChecklistDoc extends PacketMeta {
   kind: "checklist"; title: string; intro: string; mineLabel: string; sourcesTitle: string;
   groups: { title: string; items: { text: string; nums: number[]; mine: boolean }[] }[];
+  /** Separate, clearly labelled section after the official items (no citations). */
+  extras?: PacketExtras;
   sources: PacketSource[];
 }
 export interface LetterDoc extends PacketMeta {
@@ -195,6 +200,8 @@ export interface PacketText {
   detailsIntro: string;
   linksIntro: string;
   fields: Record<DetailField, string>;
+  /** "Also bring, just in case" tips (lib/i18n-extra.ts `prepareExtras`), in the UI language. */
+  extras?: PacketExtras;
 }
 
 export interface PacketInput {
@@ -238,6 +245,7 @@ export function buildPacket(i: PacketInput): Packet {
       const items = g.points.map((p) => ({ text: p.text, nums: p.nums, mine: mentionsOffice(p.match, words) }));
       return { title: g.title, items: [...items.filter((x) => x.mine), ...items.filter((x) => !x.mine)] };
     }),
+    ...(t.extras && t.extras.items.length ? { extras: { title: t.extras.title, note: t.extras.note, items: [...t.extras.items] } } : {}),
     sources: s.sources,
   };
 

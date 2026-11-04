@@ -140,3 +140,11 @@ describe("every 'where do you live?' button is understood", () => {
     }
   });
 });
+
+describe("no 'your sources'", () => {
+  it("drops phrases that imply the reader supplied the pages", async () => {
+    const { scrubHedges } = await import("@/lib/scrub");
+    expect(scrubHedges("The Lyon-specific page in your sources doesn't spell out the amount.")).toBe("The Lyon-specific page doesn't spell out the amount.");
+    expect(scrubHedges("La page du consulat dans vos sources ne précise pas le tarif.", "fr")).toBe("La page du consulat ne précise pas le tarif.");
+  });
+});

@@ -3,14 +3,17 @@
  * ("renew passport", same office, same language) costs zero model calls after the first time.
  *
  * Key = normalized question + answer language + office (or "none") + corpus/index/deploy version.
- * Store: in-memory LRU per serverless instance (ANSWER_CACHE=memory, the default; ANSWER_CACHE=off disables).
- * A shared store (Vercel KV / Upstash) can implement AnswerStore later and be picked in answerStore() by env var.
+ * Store: in-memory LRU per serverless instance; when a shared store is configured (lib/kv.ts, Upstash Redis) the
+ * memory LRU sits in front of it, so an answer written on one instance is served by all of them.
+ * ANSWER_CACHE=memory forces memory only; ANSWER_CACHE=off disables caching.
  */
+import { createHash } from "node:crypto";
 import { closeSync, existsSync, openSync, readSync, statSync } from "node:fs";
 import path from "node:path";
 import { INDEX_VERSION, normalizeTerm } from "@/lib/search-core.mjs";
 import type { Locale } from "@/lib/i18n";
 import type { AskMeta } from "@/lib/types";
+import { sharedKv, type Kv } from "@/lib/kv";
 
 export interface CachedAnswer {
   meta: AskMeta;
@@ -49,17 +52,56 @@ export class MemoryAnswerStore implements AnswerStore {
   }
 }
 
+/**
+ * Shared store (Upstash Redis) behind a per-instance memory LRU. get: memory first (0 commands), else one GET;
+ * set: memory + one SET … EX ttl. If the store can't be reached it behaves exactly like the memory store.
+ */
+export class KvAnswerStore implements AnswerStore {
+  constructor(
+    private kv: Kv,
+    private ttlMs = 24 * 60 * 60 * 1000,
+    private local = new MemoryAnswerStore(500, ttlMs),
+  ) {}
+  /** Cache keys contain the whole question; hash them to keep Redis keys short. */
+  static redisKey(key: string): string {
+    return `aa:ans:${createHash("sha256").update(key).digest("base64url")}`;
+  }
+  async get(key: string): Promise<CachedAnswer | null> {
+    const near = await this.local.get(key);
+    if (near) return near;
+    const r = await this.kv.get(KvAnswerStore.redisKey(key));
+    if (!r.ok || !r.value) return null;
+    try {
+      const v = JSON.parse(r.value) as CachedAnswer;
+      if (typeof v?.text !== "string" || v.meta?.type !== "meta") return null;
+      await this.local.set(key, v);
+      return v;
+    } catch {
+      return null;
+    }
+  }
+  async set(key: string, value: CachedAnswer): Promise<void> {
+    await this.local.set(key, value);
+    await this.kv.setEx(KvAnswerStore.redisKey(key), JSON.stringify(value), this.ttlMs / 1000);
+  }
+}
+
 let store: AnswerStore | null | undefined;
 /** The configured store, or null when caching is off. */
 export function answerStore(): AnswerStore | null {
   if (store !== undefined) return store;
-  const kind = (process.env.ANSWER_CACHE || "memory").toLowerCase();
-  // Future: if (kind === "kv") store = new KvAnswerStore(process.env.KV_REST_API_URL, …)
-  store =
-    kind === "off" || kind === "0" || kind === "false"
-      ? null
-      : new MemoryAnswerStore(Number(process.env.ANSWER_CACHE_MAX) || 500, Number(process.env.ANSWER_CACHE_TTL_MS) || 24 * 60 * 60 * 1000);
+  const kind = (process.env.ANSWER_CACHE || "auto").toLowerCase();
+  if (kind === "off" || kind === "0" || kind === "false") return (store = null);
+  const ttl = Number(process.env.ANSWER_CACHE_TTL_MS) || 24 * 60 * 60 * 1000;
+  const memory = new MemoryAnswerStore(Number(process.env.ANSWER_CACHE_MAX) || 500, ttl);
+  const kv = kind === "memory" ? null : sharedKv();
+  store = kv ? new KvAnswerStore(kv, ttl, memory) : memory;
   return store;
+}
+
+/** For tests: pick the store from the environment again. */
+export function resetAnswerStore() {
+  store = undefined;
 }
 
 const ARABIC_MARKS = /[ؐ-ًؚ-ٰٟۖ-ۭـ]/g;

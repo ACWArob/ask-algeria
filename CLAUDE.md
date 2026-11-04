@@ -20,7 +20,9 @@ node scripts/crawl-local.mjs --dry-run          # crawler for running from INSID
 - `app/(site)/` — pages (home, ask, translate, services/[slug] guides, embassies, directory, about); `app/api/` — search (free, no AI), ask (Claude), translate, login, logout, feedback
 - Free search quality: `lib/synonyms.ts` (en/fr/ar/Darija/Arabizi concepts) + coverage scoring in `lib/search.ts`; gate = `tests/search-eval.test.ts` over `qa/search-eval.json` (≥95% top-3). A missed real query → add it to the eval, then fix synonyms.
 - Prepare my file: `/prepare` (components/PrepareClient.tsx, lib/prepare*.ts, lib/packet-html.ts, lib/zip.ts). Personal details never leave the browser: no fetch/log of those fields, ever. Letters are our own neutral template, never an imitation of an official form.
-- Answer cache: `lib/answer-cache.ts` (first questions only, per instance, 24h; `ANSWER_CACHE=off` disables) and `lib/expand-local.ts` (skip the LLM query-rewrite when synonyms already cover the question). Watch `[ask]` log lines for hit rate.
+- Answer cache: `lib/answer-cache.ts` (first questions only, 24h; shared via Upstash when configured, else per instance; `ANSWER_CACHE=off` disables, `=memory` forces memory) and `lib/expand-local.ts` (skip the LLM query-rewrite when synonyms already cover the question). Watch `[ask]` log lines for hit rate.
+- Spending guard: `lib/spend.ts` (AI_DISABLED kill switch, AI_DAILY_BUDGET_USD, per-IP daily quotas, PDF page cap); every model call goes through `allowAi` and `recordSpend`. Optional shared store `lib/kv.ts` (Upstash REST, 300 ms timeout, falls back to memory; never used by free search). Costs and Console spend limit: docs/cost.md.
+- Extra pages: `/status` (lib/portal-status.ts, cached checks from our server + tester notes in sources.json), `/embassies/[id]` (lib/mission-page.ts), `/glossary` (lib/glossary.ts), exemption card (lib/exemption.ts, quotes official pages verbatim). Their strings live in lib/i18n-status.ts, lib/i18n-mission.ts, lib/i18n-extra.ts (key-parity tested).
 - Location: `lib/where.ts` — picker options, validation, and the office for a saved place (sent as `where` to /api/search and /api/ask).
 - Cost model: the first question gets `/api/search` results (lib/instant.ts: guides, office, contacts, official pages); Claude (`/api/ask`, 2 calls: query expansion + answer) only runs for "Get a written answer", chips and follow-ups.
 - `lib/` — `posts.ts` (where the person lives → which consulate/APC), `clarify.ts` (ask-first chips), `prompts.ts`, `search.ts` + `search-core.mjs`, `missions.ts`, `detect.ts` (language/topic), `i18n/*.json` (4 languages, keep keys in sync)
@@ -46,6 +48,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-11-03 — clientIp trusted `x-nf-client-connection-ip` first, which a client can send on Vercel → unlimited per-IP quota — read only the header the current platform sets.
 - 2026-10-31 — "unemployment benefit" found nothing (pages are French), "hajj registration" returned consular registration — cross-language synonyms + rare-word-weighted coverage; measure every search change on the eval (baseline was 86% top-3).
 - 2026-10-31 — guessing location from words/connection gave mixed offices — ask "in Algeria (wilaya) / outside (country → consulate)" first (lib/where.ts, saved in the browser); a place or country named in the question still wins.
 - 2026-10-31 — every question cost 2 Claude calls even when a guide or official page already answered it — first question = free search results; AI only on request or follow-up. Measure with the `[search]` vs `/api/ask` log lines.

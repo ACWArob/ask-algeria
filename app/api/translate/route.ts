@@ -7,6 +7,10 @@ import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { translateSystemPrompt } from "@/lib/prompts";
 import { anthropic } from "@/lib/llm";
 import { mockTranslation, streamText } from "@/lib/mock";
+import { allowAi, pdfAllowed, recordSpend, spendSettled } from "@/lib/spend";
+
+/** Longer PDFs cost much more (each page is billed as text + image); ask people to send only the pages they need. */
+const MAX_PDF_PAGES = Number(process.env.TRANSLATE_MAX_PDF_PAGES) || 10;
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,7 +38,9 @@ export async function POST(req: Request) {
   const content: Anthropic.ContentBlockParam[] = [];
   if (file instanceof File && file.size > 0) {
     if (file.size > LIMITS.uploadMaxBytes) return NextResponse.json({ error: "too_large" }, { status: 413 });
-    const data = Buffer.from(await file.arrayBuffer()).toString("base64");
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    if (file.type === "application/pdf" && !pdfAllowed(bytes, MAX_PDF_PAGES)) return NextResponse.json({ error: "too_many_pages" }, { status: 413 });
+    const data = Buffer.from(bytes).toString("base64");
     if (file.type === "application/pdf") {
       content.push({ type: "document", source: { type: "base64", media_type: "application/pdf", data } });
     } else if ((IMAGE_TYPES as readonly string[]).includes(file.type)) {
@@ -52,8 +58,14 @@ export async function POST(req: Request) {
 
   const headers = { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" };
   if (isMock()) return new Response(streamText(mockTranslation(target, mode)), { headers });
+  // Spending guard (lib/spend.ts): kill switch, daily budget, per-visitor daily quota.
+  const allowed = await allowAi(clientIp(req.headers), "translate");
+  if (!allowed.ok) return NextResponse.json({ error: allowed.reason === "quota" ? "rate_limited" : "paused" }, { status: 429 });
 
   const enc = new TextEncoder();
+  // Rough input size for cost accounting if the API doesn't report usage: text ~3 chars/token, a file ~1 token per 3 bytes, capped.
+  const estimatedInput = Math.ceil(rawText.length / 3) + (file instanceof File ? Math.min(Math.ceil(file.size / 3), 250_000) : 0);
+  let written = 0;
   const out = new ReadableStream<Uint8Array>({
     async start(controller) {
       try {
@@ -65,13 +77,23 @@ export async function POST(req: Request) {
           messages: [{ role: "user", content }],
         });
         req.signal.addEventListener("abort", () => stream.abort());
-        for await (const ev of stream) {
-          if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") controller.enqueue(enc.encode(ev.delta.text));
+        try {
+          for await (const ev of stream) {
+            if (ev.type === "content_block_delta" && ev.delta.type === "text_delta") {
+              written += ev.delta.text.length;
+              controller.enqueue(enc.encode(ev.delta.text));
+            }
+          }
+        } finally {
+          // Billed even when the visitor leaves or the stream fails: real usage if available, else an estimate.
+          const fin = await stream.finalMessage().catch(() => null);
+          recordSpend(MODELS.answer, fin?.usage ?? { input_tokens: estimatedInput, output_tokens: Math.ceil(Math.max(written, 200) / 3) });
         }
       } catch (err) {
         console.error("[translate] failed:", err instanceof Error ? err.message : err);
         controller.enqueue(enc.encode("\n\n\u0000ERROR"));
       } finally {
+        await spendSettled(); // shared-store spend write (bounded by its short timeout) before the function can freeze
         controller.close();
       }
     },

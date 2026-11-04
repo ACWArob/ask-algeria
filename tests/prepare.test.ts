@@ -9,6 +9,8 @@ import en from "@/lib/i18n/en.json";
 import fr from "@/lib/i18n/fr.json";
 import ar from "@/lib/i18n/ar.json";
 import dz from "@/lib/i18n/dz.json";
+import { EXTRA } from "@/lib/i18n-extra";
+import { LOCALES } from "@/lib/i18n";
 import { docHtml, packetFiles } from "@/lib/packet-html";
 import {
   buildPacket,
@@ -145,7 +147,7 @@ const proc: PrepareProcedure = {
   ],
 };
 
-function packet(situation = 0, letterLang: "en" | "fr" | "ar" = "fr", details = {}) {
+function packet(situation = 0, letterLang: "en" | "fr" | "ar" = "fr", details = {}, extras: typeof EXTRA.en.prepareExtras | null = EXTRA.en.prepareExtras) {
   return buildPacket({
     procedure: proc,
     situation: proc.situations[situation],
@@ -155,7 +157,7 @@ function packet(situation = 0, letterLang: "en" | "fr" | "ar" = "fr", details = 
     text: {
       brand: en.brand.name, independent: en.strip.independent, notOfficial: en.prepare.notOfficial, prepared: en.prepare.prepared,
       docs: en.prepare.docs, checklistIntro: en.prepare.checklistIntro, mine: en.prepare.mine, sources: en.prepare.sources,
-      detailsIntro: en.prepare.detailsIntro, linksIntro: en.prepare.linksIntro, fields: en.prepare.fields,
+      detailsIntro: en.prepare.detailsIntro, linksIntro: en.prepare.linksIntro, fields: en.prepare.fields, extras: extras ?? undefined,
     },
     letterLang,
     letter: { en: en.prepare.letter, fr: fr.prepare.letter, ar: ar.prepare.letter }[letterLang],
@@ -204,5 +206,44 @@ describe("packet", () => {
     expect(String(files[1].data)).toContain('dir="rtl"');
     expect(String(files[0].data)).toContain('dir="ltr"');
     expect(docHtml(p, p.docs[2])).toContain("&lt;script&gt;");
+  });
+
+  it("adds the clearly labelled 'also bring' tips after the official items, uncited, in print and zip", () => {
+    const p = packet(0, "fr");
+    const c = p.docs[0];
+    if (c.kind !== "checklist") throw new Error();
+    expect(c.extras?.title).toBe(EXTRA.en.prepareExtras.title);
+    expect(c.extras?.title).toMatch(/not official requirements/);
+    expect(c.extras?.items).toHaveLength(6);
+    // official items stay as they were: the tips never mix into the cited groups
+    expect(c.groups.flatMap((g) => g.items.map((i) => i.text))).not.toContain(EXTRA.en.prepareExtras.items[0]);
+    const html = String(packetFiles(p)[0].data);
+    expect(html).toContain('class="extras"');
+    expect(html).toContain(EXTRA.en.prepareExtras.title);
+    for (const item of EXTRA.en.prepareExtras.items) expect(html).toContain(item.replace(/'/g, "&#39;"));
+    // the tips come after the official groups and before the sources
+    expect(html.indexOf('class="extras"')).toBeGreaterThan(html.indexOf("London asks for four photos."));
+    expect(html.indexOf('class="extras"')).toBeLessThan(html.indexOf('class="src"'));
+    // online situations get them too (checklist only)
+    const online = packet(1).docs[0];
+    expect(online.kind === "checklist" && online.extras?.items.length).toBe(6);
+  });
+
+  it("no tips section when none are given", () => {
+    const c = packet(0, "fr", {}, null).docs[0];
+    expect(c.kind === "checklist" && c.extras).toBeFalsy();
+    expect(String(packetFiles(packet(0, "fr", {}, null))[0].data)).not.toContain('class="extras"');
+  });
+
+  it("the tips exist in all four languages, six items each, and say they are not official", () => {
+    for (const l of LOCALES) {
+      const x = EXTRA[l].prepareExtras;
+      expect(x.title && x.note, l).toBeTruthy();
+      expect(x.items, l).toHaveLength(6);
+      for (const i of x.items) expect(i.trim(), l).toBeTruthy();
+    }
+    expect(EXTRA.fr.prepareExtras.title).toMatch(/pas des exigences officielles/);
+    expect(EXTRA.ar.prepareExtras.title).toMatch(/ليست شروطاً رسمية/);
+    expect(EXTRA.dz.prepareExtras.title).toMatch(/ماشي شروط رسمية/);
   });
 });

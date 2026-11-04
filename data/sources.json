@@ -16,7 +16,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 6
   },
   {
@@ -56,7 +56,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -116,7 +116,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); DGI notice cited by algerie360",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
@@ -177,7 +177,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-30): correct site is https://mmad.gov.dz/ (was https://www.m-moudjahidine.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://mmad.gov.dz/ (was https://www.m-moudjahidine.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 15
   },
   {
@@ -197,7 +197,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://marw.gov.dz/ (was https://www.marw.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://marw.gov.dz/ (was https://www.marw.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -217,7 +217,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -237,7 +237,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mpt.gov.dz/fr/ (was https://www.mpt.dz/). MFA list uses mpt.dz; mpt.gov.dz also responded robots (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mpt.gov.dz/fr/ (was https://www.mpt.dz/). MFA list uses mpt.dz; mpt.gov.dz also responded robots (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -257,7 +257,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://msport.gov.dz/fr/accueil/ (was https://www.mjs.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://msport.gov.dz/fr/accueil/ (was https://www.mjs.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -277,7 +277,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.industrie.gov.dz/fr/ (was https://www.mdipi.gov.dz/). Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.industrie.gov.dz/fr/ (was https://www.mdipi.gov.dz/). Domain from older ministry name; may have moved; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
@@ -297,7 +297,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://madr.gov.dz/ (was https://www.minagri.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://madr.gov.dz/ (was https://www.minagri.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -317,7 +317,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -337,7 +337,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mt.gov.dz/ (was https://www.mtp.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mt.gov.dz/ (was https://www.mtp.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -357,7 +357,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-30): link points to https://www.ade.dz/ (already listed); not crawled. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): link points to https://www.ade.dz/ (already listed); not crawled. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -378,7 +378,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
-    "notes": "Tester in Algeria (2026-10-30): correct site is https://www.mta.gov.dz/?lang=fr (was https://www.mtatf.gov.dz/).",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://www.mta.gov.dz/?lang=fr (was https://www.mtatf.gov.dz/).",
     "pages": 1
   },
   {
@@ -398,7 +398,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -418,7 +418,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.me.gov.dz/fr/e-services/ (was https://www.meer.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.me.gov.dz/fr/e-services/ (was https://www.meer.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -438,7 +438,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Press (algerie360) names dzds.dz as the official single portal launched by the government (Ministry of Digitization and Statistics); APS reports on the portal; algerie360 warns .com/.online copies are fake",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -498,7 +498,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK; DGI official reference domain per DGI notice",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 23
   },
   {
@@ -518,7 +518,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "TSA-Algérie: DGI moved Jibayatic to jibayatic.mf.gov.dz on 26 Apr 2026 (formerly jibayatic.mfdgi.gov.dz / jibayatic.dz)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -538,7 +538,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "TSA-Algérie citing DGI (replaces nifenligne.mfdgi.gov.dz)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -558,7 +558,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360 citing DGI warning listing official payment portals",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page.",
     "pages": 0
   },
   {
@@ -578,7 +578,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360 citing DGI warning listing official payment portals",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -639,7 +639,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); many pages indexed (fr/ar/en)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -659,7 +659,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Ministry of Commerce has a 'Portail du CNRC' page; Sidjilcom widely cited (zoomalgerie, upgrowth)",
-    "notes": "Domain from secondary sources; confirm; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Domain from secondary sources; confirm; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 11
   },
   {
@@ -680,7 +680,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Embassy of Algeria Nairobi page cites www.aapi.dz",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -701,7 +701,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "TSA-Algérie: AAPI platform at invest.gov.dz",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -740,7 +740,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "nesda.dz/Home/InscriptionCNRC indexed in search results",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 5
   },
   {
@@ -780,7 +780,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Algerie360 cites www.cnas.dz as official; El-Hanaa subdomain fetched OK",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 7
   },
   {
@@ -820,7 +820,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Guide (demarchesdz) labels casnos.com.dz official; damancom.casnos.dz linked from it",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.casnos.dz/ (was https://casnos.com.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.casnos.dz/ (was https://casnos.com.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 3
   },
   {
@@ -860,7 +860,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Guide (demarchesdz) cites www.cnr.dz and dz.cnr.dz",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 5
   },
   {
@@ -880,7 +880,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Algerie360: ANEM announced its site www.anem.dz on its official Facebook",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -900,7 +900,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Widely cited by press (radioalgerie, dzair-tube 'Minha platform')",
-    "notes": "Exact hostname from secondary sources; verify",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Exact hostname from secondary sources; verify",
     "pages": 0
   },
   {
@@ -920,7 +920,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -940,7 +940,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
@@ -960,7 +960,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -980,7 +980,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "ObservAlgérie (Mar 2025) calls www.aadl.dz the agency's official site",
-    "notes": "Older domain aadl.com.dz; AADL3 2024 signup used aadl3inscription2024.dz (temporary)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Older domain aadl.com.dz; AADL3 2024 signup used aadl3inscription2024.dz (temporary)",
     "pages": 0
   },
   {
@@ -999,7 +999,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK ('Programmes d'aide au logement de l'État')",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria.",
     "pages": 1
   },
   {
@@ -1019,7 +1019,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -1039,7 +1039,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from education.gov.dz (onec.dz/archives.html)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -1059,7 +1059,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Linked from education.gov.dz",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page.",
     "pages": 1
   },
   {
@@ -1079,7 +1079,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360 'site officiel ONEC' for BEM 2025 results",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page.",
     "pages": 0
   },
   {
@@ -1099,7 +1099,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360 hyperlink (text says awlya.education.dz - inconsistent)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://awlyaa.education.dz/ (was https://awlya.education.gov.dz/). Verify exact host",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://awlyaa.education.dz/ (was https://awlya.education.gov.dz/). Verify exact host",
     "pages": 0
   },
   {
@@ -1119,7 +1119,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "MEA Tech Watch report on 2025 recruitment platform",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://tawdif.education.dz/ (was https://tawdif.education.gov.dz/).",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://tawdif.education.dz/ (was https://tawdif.education.gov.dz/).",
     "pages": 0
   },
   {
@@ -1139,7 +1139,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from education.gov.dz",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 7
   },
   {
@@ -1180,7 +1180,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from mesrs.dz (student portal, diploma authentication)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1261,7 +1261,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://mvet.gov.dz/ (was https://www.mfep.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://mvet.gov.dz/ (was https://www.mfep.gov.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1281,7 +1281,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Algerie360: Ministry announced Feb 2026 registration via www.takwin.dz",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -1301,7 +1301,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Indexed by ahrefs; DGFP concours documents cited by universities",
-    "notes": "concours-fonction-publique.gov.dz also appears in ahrefs (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. concours-fonction-publique.gov.dz also appears in ahrefs (unverified); WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1321,7 +1321,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official website",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -1382,7 +1382,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Ministry PDF indexed at miph.gov.dz/en/wp-content/...",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -1422,7 +1422,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Wikipedia infobox: www.poste.dz",
-    "notes": "State-owned public enterprise; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. State-owned public enterprise; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
@@ -1442,7 +1442,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Wikipedia infobox: www.algerietelecom.dz",
-    "notes": "State-owned company; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. State-owned company; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 2
   },
   {
@@ -1482,7 +1482,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); Wikipedia official site (with /ar/ and /fr/)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 16
   },
   {
@@ -1502,7 +1502,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Algerie360 article on online documents",
-    "notes": "Hostname from press; verify; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Hostname from press; verify; WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1542,7 +1542,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Court PDFs indexed at coursupreme.dz/wp-content/...",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1563,7 +1563,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from the official Wilaya d'Oran site (wilayaoran.dz); English version reported Jan 2026",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1583,7 +1583,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched OK under mdn.dz/site_cgn/",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -1603,7 +1603,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Wikipedia official website; wilayaoran.dz also links dgpc.dz",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://dgpc.dz/ (was https://www.protectioncivile.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://dgpc.dz/ (was https://www.protectioncivile.dz/). WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1743,7 +1743,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK, title 'Site Officiel de la wilaya d'Oran'",
-    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 18
   },
   {
@@ -1763,7 +1763,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK, title 'الموقع الرسمي لولاية باتنة'",
-    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -1783,7 +1783,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "English Wikipedia infobox",
-    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1803,7 +1803,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "English Wikipedia infobox (older: wbejaia.gov.dz)",
-    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. Tester in Algeria (2026-10-30): not working from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1844,7 +1844,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 2
   },
   {
@@ -1864,7 +1864,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Embassy Santiago announcement (embsantiago.mfa.gov.dz)",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -1885,7 +1885,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 20
   },
   {
@@ -1906,7 +1906,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 8
   },
   {
@@ -1926,7 +1926,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Form PDF indexed at cpontoise.mfa.gov.dz/media/...",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 21
   },
   {
@@ -1947,7 +1947,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Announcement page indexed",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 17
   },
   {
@@ -1968,7 +1968,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 2
   },
   {
@@ -2050,7 +2050,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed as supervised entity / linked body on the official Ministry of Knowledge Economy site (mkesm.gov.dz homepage, fetched 2026-10-27); page states it is under supervision of the Minister of Knowledge Economy",
-    "notes": "Root https://www.angem.dz/ returned robots block, /en/ fetched OK. AR/FR assumed, not verified",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Root https://www.angem.dz/ returned robots block, /en/ fetched OK. AR/FR assumed, not verified",
     "pages": 7
   },
   {
@@ -2110,7 +2110,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed as supervised entity / linked body on the official Ministry of Knowledge Economy site (mkesm.gov.dz homepage, fetched 2026-10-27); site describes itself as the first state-owned startup accelerator in Algeria",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -2129,7 +2129,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed as supervised entity / linked body on the official Ministry of Knowledge Economy site (mkesm.gov.dz homepage, fetched 2026-10-27); site states it is a government initiative overseen by the ministry and implemented by Algeria Venture",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2169,7 +2169,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Search engine indexes official ANIE communiqué PDFs hosted at ina-elections.dz/wp-content/uploads (2021-2025); ANIE activity covered by state radio (news.radioalgerie.dz).",
-    "notes": "WebFetch robots-blocked (flaky); existence supported by indexed PDFs on the domain. Languages not verified",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. WebFetch robots-blocked (flaky); existence supported by indexed PDFs on the domain. Languages not verified",
     "pages": 7
   },
   {
@@ -2209,7 +2209,7 @@
     "reachable": true,
     "fetch_status": "dead",
     "evidence": "Site states ALGEX is an EPA created by executive decree 04-174 of 12 June 2004.",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.commerce.gov.dz/fr/agence-nationale-de-la-promotion-du-commerce-exterieur-algex (commerce.gov.dz, already listed) (was https://www.algex.dz/). Not crawled.",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.commerce.gov.dz/fr/agence-nationale-de-la-promotion-du-commerce-exterieur-algex (commerce.gov.dz, already listed) (was https://www.algex.dz/). Not crawled.",
     "pages": 1
   },
   {
@@ -2379,7 +2379,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2400,7 +2400,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2420,7 +2420,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 2
   },
   {
@@ -2439,7 +2439,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2459,7 +2459,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "Root robots-blocked; /biography fetched OK",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Root robots-blocked; /biography fetched OK",
     "pages": 23
   },
   {
@@ -2478,7 +2478,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -2498,7 +2498,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz; homepage fetched with consular news",
-    "notes": "City inferred from subdomain naming convention (cg+city) - page excerpt did not name the city; verify",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. City inferred from subdomain naming convention (cg+city) - page excerpt did not name the city; verify",
     "pages": 0
   },
   {
@@ -2517,7 +2517,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission (Consul speech page indexed)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -2536,7 +2536,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2555,7 +2555,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 1
   },
   {
@@ -2574,7 +2574,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission (footer: Ministry of Foreign Affairs and National Community Abroad)",
-    "notes": "City from subdomain",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. City from subdomain",
     "pages": 0
   },
   {
@@ -2635,7 +2635,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27); page identifies the Direction de Coopération et des Echanges Universitaires of MESRS",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -2655,7 +2655,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mesrs.dz/fr/plateformes-mesrs/ (mesrs.dz, already listed) (was https://ask.mesrs.dz/). Not crawled. Languages not verified",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://www.mesrs.dz/fr/plateformes-mesrs/ (mesrs.dz, already listed) (was https://ask.mesrs.dz/). Not crawled. Languages not verified",
     "pages": 0
   },
   {
@@ -2675,7 +2675,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Tester in Algeria (2026-10-30): correct site is https://startup.dz/ (already listed); not crawled.",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://startup.dz/ (already listed); not crawled.",
     "pages": 0
   },
   {
@@ -2695,7 +2695,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Tester in Algeria (2026-10-30): the clearance-certificate service is at https://services.mesrs.dz/plateforme/ (services.mesrs.dz, already listed); not crawled.",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. Tester in Algeria (2026-10-30): the clearance-certificate service is at https://services.mesrs.dz/plateforme/ (services.mesrs.dz, already listed); not crawled.",
     "pages": 0
   },
   {
@@ -2715,7 +2715,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Tester in Algeria (2026-10-30): correct page is https://www.mesrs.dz/fr/mobilite-entrante-formation-des-etudiants-internationaux/ (mesrs.dz, already listed); not crawled.",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria. Tester in Algeria (2026-10-30): correct page is https://www.mesrs.dz/fr/mobilite-entrante-formation-des-etudiants-internationaux/ (mesrs.dz, already listed); not crawled.",
     "pages": 0
   },
   {
@@ -2735,7 +2735,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "Tester in Algeria (2026-10-30): correct site is https://webonou.mesrs.dz/ (was https://onou.mesrs.dz/).",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Tester in Algeria (2026-10-30): correct site is https://webonou.mesrs.dz/ (was https://onou.mesrs.dz/).",
     "pages": 0
   },
   {
@@ -2775,7 +2775,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked from the official MESRS digital-platforms page (https://www.mesrs.dz/index.php/plateformes-mesrs-ar/, fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-30): not working from inside Algeria.",
     "pages": 0
   },
   {
@@ -3040,7 +3040,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked as Ministry of Interior e-service from official wilaya portals wilaya-djelfa.dz and wilaya-adrar.dz (fetched 2026-10-27)",
-    "notes": "Languages not verified",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page. Languages not verified",
     "pages": 0
   },
   {
@@ -3080,7 +3080,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked as Ministry of Interior e-service from official wilaya portals wilaya-djelfa.dz and wilaya-adrar.dz (fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria, but it redirects to a login page.",
     "pages": 0
   },
   {
@@ -3101,7 +3101,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site self-describes as 'البوابة الرسمية لولاية الجلفة' and links to Presidency, PM, Interior, SGG and Interior e-services",
-    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria.",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-30): works from inside Algeria.",
     "pages": 2
   },
   {
@@ -3120,7 +3120,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Site carries wali's messages/events and links to Interior Ministry e-services (etatcivil/prestations.interieur.gov.dz)",
-    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Moderate evidence: self-presentation only",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-30): works from inside Algeria. Moderate evidence: self-presentation only",
     "pages": 0
   },
   {
@@ -3161,7 +3161,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz (Ministry of Foreign Affairs); page footer/header identifies the mission",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria.",
     "pages": 23
   },
   {
@@ -3180,7 +3180,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz; footer credits MFA and National Community Abroad",
-    "notes": "City inferred from subdomain; page excerpt did not name mission",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. City inferred from subdomain; page excerpt did not name mission",
     "pages": 14
   },
   {
@@ -3199,7 +3199,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz; footer credits MFA and National Community Abroad",
-    "notes": "City inferred from subdomain",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. City inferred from subdomain",
     "pages": 3
   },
   {
@@ -3218,7 +3218,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Subdomain of mfa.gov.dz; MFA news content",
-    "notes": "City inferred from subdomain",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. City inferred from subdomain",
     "pages": 20
   },
   {
@@ -3259,7 +3259,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Search for the literal string 'mpeche.gov.dz' matched official pages commerce.gov.dz/fr/liens-utiles, energy.gov.dz and MFA useful-links pages (contents not readable - robots). Ministry is in current cabinet.",
-    "notes": "Domain inferred from search-index match on official useful-links pages, not read directly - verify before production",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. Domain inferred from search-index match on official useful-links pages, not read directly - verify before production",
     "pages": 0
   },
   {
@@ -3279,7 +3279,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Listed on MFA useful-links pages (cgmilan.mfa.gov.dz and embsantiago.mfa.gov.dz /contact-us/useful-links)",
-    "notes": "Probably superseded by mkesm.gov.dz - low priority",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. Probably superseded by mkesm.gov.dz - low priority",
     "pages": 0
   },
   {
@@ -3299,7 +3299,7 @@
     "reachable": false,
     "fetch_status": "dead",
     "evidence": "Parent domain of sidjilcom.cnrc.dz (already in verified list); Ministry of Trade has a dedicated 'Portail du CNRC' page (commerce.gov.dz/fr/portail-du-cnrc) in search index",
-    "notes": "Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://sidjilcom.cnrc.dz/ (already listed) (was https://www.cnrc.dz/). Not crawled. Main domain not read directly (robots)",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Tester in Algeria (2026-10-29): sheet link was wrong; correct site is https://sidjilcom.cnrc.dz/ (already listed) (was https://www.cnrc.dz/). Not crawled. Main domain not read directly (robots)",
     "pages": 0
   },
   {
@@ -3367,7 +3367,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 2
   },
   {
@@ -3383,7 +3383,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 1
   },
   {
@@ -3399,7 +3399,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 4
   },
   {
@@ -3415,7 +3415,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 1
   },
   {
@@ -3431,7 +3431,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 9
   },
   {
@@ -3447,7 +3447,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 1
   },
   {
@@ -3463,7 +3463,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Pages fetched from this official site for the corpus",
-    "notes": "auto-added from corpus",
+    "notes": "Tester in Algeria (2026-10-30): works from inside Algeria. auto-added from corpus",
     "pages": 1
   },
   {
@@ -3499,7 +3499,7 @@
     "reachable": false,
     "fetch_status": "archived",
     "evidence": "Wayback Machine snapshots (2023-06-06) of ade.dz/missions and ade.dz/reseau-agences-clientele-de-lade; the page says it is the public water service operator under the Ministry of Hydraulics",
-    "notes": "Live site not reachable from outside Algeria; content taken from archived copies only",
+    "notes": "Tester in Algeria (2026-10-29): works from inside Algeria. Live site not reachable from outside Algeria; content taken from archived copies only",
     "pages": 2
   },
   {
@@ -3519,7 +3519,7 @@
     "reachable": false,
     "fetch_status": "archived",
     "evidence": "Subdomain of cnrc.dz (already listed); Wayback snapshots 2023-01-31 to 2023-12-10",
-    "notes": "Archived copies only; content dates from 2023 – check against current law",
+    "notes": "Tester in Algeria (2026-10-29): not working from inside Algeria. Archived copies only; content dates from 2023 – check against current law",
     "pages": 11
   },
   {

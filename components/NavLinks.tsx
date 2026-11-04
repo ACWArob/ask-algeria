@@ -11,6 +11,8 @@ export function NavLinks({ dict }: { dict: Dict }) {
     { href: "/translate", label: dict.nav.translate },
     { href: "/prepare", label: dict.prepare.nav },
     { href: "/embassies", label: dict.nav.embassies },
+    { href: "/status", label: dict.nav.status },
+    { href: "/glossary", label: dict.nav.glossary },
     { href: "/directory", label: dict.nav.directory },
     { href: "/about", label: dict.nav.about },
   ];

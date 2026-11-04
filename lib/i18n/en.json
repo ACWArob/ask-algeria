@@ -13,7 +13,9 @@
     "about": "About",
     "logout": "Sign out",
     "menu": "Menu",
-    "embassies": "Embassies & consulates"
+    "embassies": "Embassies & consulates",
+    "status": "Portal status",
+    "glossary": "Glossary"
   },
   "lang": {
     "label": "Language",
@@ -147,7 +149,9 @@
     "result": "Result",
     "error": "We couldn't process that document. Try again, or try a clearer scan.",
     "disclaimer": "Machine translation can contain mistakes. For anything official, rely on the original document.",
-    "takePhoto": "📷 Take a photo"
+    "takePhoto": "📷 Take a photo",
+    "tooManyPages": "This PDF is too long. Send only the pages you need (up to 10).",
+    "paused": "Document help is paused for now because of high demand. Please try again later."
   },
   "directory": {
     "heading": "Official sites",

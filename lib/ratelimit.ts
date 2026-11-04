@@ -15,12 +15,13 @@ export function rateLimit(key: string, limit: number, windowMs = 60_000, now = D
   return { ok: true, retryAfter: 0 };
 }
 
-export function clientIp(headers: Headers): string {
-  return (
-    headers.get("x-nf-client-connection-ip") ||
-    headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() ||
-    headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    headers.get("x-real-ip") ||
-    "unknown"
-  );
+/**
+ * The visitor's IP, read only from the header the hosting platform itself sets. Other headers can be sent by
+ * the client, so trusting them would let one person get a fresh quota on every request.
+ */
+export function clientIp(headers: Headers, env: Record<string, string | undefined> = process.env): string {
+  const first = (h: string) => headers.get(h)?.split(",")[0]?.trim() || "";
+  if (env.VERCEL) return first("x-vercel-forwarded-for") || first("x-real-ip") || "unknown";
+  if (env.NETLIFY) return first("x-nf-client-connection-ip") || "unknown";
+  return first("x-nf-client-connection-ip") || first("x-vercel-forwarded-for") || first("x-forwarded-for") || first("x-real-ip") || "unknown";
 }

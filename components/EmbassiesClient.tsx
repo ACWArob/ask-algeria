@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { formatDate } from "@/lib/dates";
 import { fmt, type Dict, type Locale } from "@/lib/i18n";
@@ -209,7 +210,9 @@ function MissionCard({ m, dict, locale }: { m: MissionView; dict: Dict; locale: 
     <article>
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
-          <h3 className="font-semibold leading-snug">{m.name}</h3>
+          <h3 className="font-semibold leading-snug">
+            <Link href={`/embassies/${encodeURIComponent(m.id)}`} className="underline decoration-brand/40 underline-offset-[3px] hover:text-brand hover:decoration-brand">{m.name}</Link>
+          </h3>
           {m.altName && <p className="text-sm text-muted"><bdi>{m.altName}</bdi></p>}
           {!m.name.includes(m.city) && <p className="mt-0.5 text-sm text-muted"><bdi>{m.city}</bdi></p>}
         </div>

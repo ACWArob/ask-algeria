@@ -72,7 +72,14 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
       }
       if (!res.ok) {
         const code = ((await res.json().catch(() => ({}))) as { error?: string }).error;
-        setError(code === "too_large" ? t.tooLarge : code === "bad_type" ? t.badType : code === "rate_limited" ? dict.ask.rateLimited : t.error);
+        setError(
+          code === "too_large" ? t.tooLarge
+          : code === "too_many_pages" ? t.tooManyPages
+          : code === "bad_type" ? t.badType
+          : code === "rate_limited" ? dict.ask.rateLimited
+          : code === "paused" ? t.paused
+          : t.error,
+        );
         setStatus("error");
         return;
       }
