@@ -23,7 +23,7 @@ export const CONCEPTS: Record<string, string[]> = {
   consular_registration: ["consular registration", "consular card", "immatriculation consulaire", "immatriculation", "carte consulaire", "التسجيل القنصلي", "البطاقة القنصلية", "register at the consulate", "carte consulaire", "lcarte consulaire"],
   change_residence: ["change of address", "change of residence", "changement de résidence", "changement d'adresse", "radiation", "de-registration", "file transfer", "transfert de dossier", "تغيير الإقامة", "نقل الملف"],
   residence_cert: ["residence certificate", "certificat de résidence", "شهادة الإقامة"],
-  laissez_passer: ["laissez-passer", "laissez passer", "emergency travel document", "emergency passport", "passeport d'urgence", "جواز مرور", "رخصة مرور"],
+  laissez_passer: ["laissez-passer", "laissez passer", "emergency travel document", "emergency passport", "passeport d'urgence", "جواز مرور", "رخصة مرور", "جواز السفر الاستعجالي", "الجواز الاستعجالي"],
   parental_auth: ["parental authorization", "autorisation parentale", "autorisation de sortie", "إذن أبوي", "ترخيص أبوي"],
   minors: ["child", "children", "minor", "minors", "enfant", "enfants", "mineur", "mineurs", "قاصر", "قصر", "أطفال", "صغار", "wlidi", "weldi"],
   power_attorney: ["power of attorney", "procuration", "توكيل", "وكالة", "wakala"],

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { guideAnswer, quickAnswer, units } from "@/lib/quick-answer";
+import { guideAnswer, pageOnTopic, quickAnswer, units } from "@/lib/quick-answer";
 
 vi.mock("server-only", () => ({}));
 const { instantSearch } = await import("@/lib/instant");
@@ -15,6 +15,20 @@ describe("free quick answer", () => {
     ]);
     expect(qa?.facts[0].text).toMatch(/renewed/);
     expect(qa?.sources[0].url).toBe("https://x/p");
+  });
+
+  it("skips headings, the same sentence twice, and emergency-passport pages for a renewal question", () => {
+    const q = "I live in London, how do I renew my passport?";
+    expect(pageOnTopic(q, { title: "Emergency Passport - Consulate General of Algeria in London", url: "u", domain: "d", text: "" })).toBe(false);
+    expect(pageOnTopic(q, { title: "Passport renewal - Consulate General of Algeria in London", url: "u", domain: "d", text: "" })).toBe(true);
+    const note = "Note: the passport renewal file must include the expired passport and two photos.";
+    const qa = quickAnswer(q, [
+      { title: "A", url: "https://a/1", domain: "a", office: true, text: `Biometric Passport and/or CNIBE: Renewal\n${note}` },
+      { title: "B", url: "https://b/1", domain: "b", office: true, text: `"${note}"\nRenewal is possible in the six months before the passport expires.` },
+    ]);
+    const texts = qa!.facts.map((f) => f.text);
+    expect(texts).not.toContain("Biometric Passport and/or CNIBE: Renewal");
+    expect(texts.filter((t) => /expired passport and two photos/.test(t))).toHaveLength(1);
   });
 
   it("drops another consulate's rules from guide points", () => {

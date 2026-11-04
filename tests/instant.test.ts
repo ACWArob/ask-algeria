@@ -11,6 +11,13 @@ describe("instant search (no AI)", () => {
     expect(s.length).toBeLessThan(260);
   });
 
+  it("drops pages that only share a qualifier or use the subject word once in passing", () => {
+    // The Startup label page says "renouveler" and calls the label a "passeport" once.
+    const r = instantSearch("How do I renew my passport? I live in Lyon", "en");
+    expect(r.pages.some((p) => p.domain === "startup.dz")).toBe(false);
+    expect(r.pages.length).toBeGreaterThan(2);
+  });
+
   it("someone living in Algeria gets the guide's in-Algeria passport points, not the rules for Algerians abroad", () => {
     const r = instantSearch("how do I renew my passport", "en", undefined, "", { in: "dz", wilaya: "Oran" });
     expect(r.quick?.from).toBe("guide");

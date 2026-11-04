@@ -47,14 +47,39 @@ const FACT = /\d|\$|€|£|dz?d|da\b|dinar|fee|frais|tarif|document|pièce|requi
 /** Concepts that only qualify a question ("renew", "fees"): a page about them alone isn't about the topic. */
 const GENERIC = new Set(["renewal", "fees", "documents", "lost", "appointment", "contact", "minors", "abroad", "foreigner"]);
 
+/** Concepts that make a page about a different variant of the procedure ("emergency passport" vs "passport"). */
+const VARIANT = new Set(["laissez_passer", "emergency"]);
+
 export function pageOnTopic(question: string, page: QuickPage): boolean {
   const exp = expandQuery(question);
+  // A page about a variant the person didn't ask about (emergency passport) is not their answer.
+  if (expandQuery(page.title).concepts.some((c) => VARIANT.has(c) && !exp.concepts.includes(c))) return false;
   const toks = searchTokens(page.title);
   const set = new Set(toks);
   const idx = exp.concepts.map((c, i) => (GENERIC.has(c) ? -1 : i)).filter((i) => i >= 0);
   const want = idx.length ? idx : exp.concepts.map((_, i) => i);
   if (!want.length) return exp.groups.some((g) => coversGroup(toks, set, g));
   return want.some((i) => coversGroup(toks, set, exp.groups[i]));
+}
+
+/**
+ * Is this page about the question's main subject (a non-GENERIC concept)? Yes when its title names it, or when at
+ * least two lines of its text do. Stops a page that only shares a qualifier, or uses the word once in passing
+ * ("the label is a passeport to state facilities"), from showing up for "renew my passport".
+ */
+export function coversTopic(question: string, title: string, text: string): boolean {
+  const exp = expandQuery(question);
+  const main = exp.concepts.map((c, i) => (GENERIC.has(c) ? -1 : i)).filter((i) => i >= 0);
+  if (!main.length) return true;
+  const hit = (t: string) => {
+    const toks = searchTokens(t);
+    const set = new Set(toks);
+    return main.some((i) => coversGroup(toks, set, exp.groups[i]));
+  };
+  if (hit(title)) return true;
+  let lines = 0;
+  for (const line of text.slice(0, 8000).split(/\n+|(?<=[.!?؟])\s+/)) if (line.length > 3 && hit(line) && ++lines >= 2) return true;
+  return false;
 }
 
 export function quickAnswer(question: string, pages: QuickPage[], maxFacts = 5): QuickAnswer | null {
@@ -67,6 +92,7 @@ export function quickAnswer(question: string, pages: QuickPage[], maxFacts = 5):
     units(p.text).forEach((u, ui) => {
       if (u.toLowerCase().replace(/\W+$/, "") === title) return; // the page title repeated as its first line
       if (/^[^.:]{0,90} [-–|] (?:Consulate|Embassy|Consulat|Ambassade)\b/i.test(u)) return; // a page heading, not a fact
+      if (u.length < 70 && !/[.;!?؟)]$/.test(u) && !/\d/.test(u)) return; // a short heading ("Biometric passport: Renewal"), not a fact
       const list = searchTokens(u);
       const set = new Set(list);
       // Concepts weigh 2, leftover words 1: "renew" + "passport" beats a line that only says "passport".
@@ -80,13 +106,19 @@ export function quickAnswer(question: string, pages: QuickPage[], maxFacts = 5):
     });
   });
   if (!scored.length) return null;
-  const seen = new Set<string>();
+  // The same sentence on two sites of one consulate (quotes, punctuation differ): keep it once.
+  const kept: Set<string>[] = [];
   const picked = scored
     .sort((a, b) => b.score - a.score)
     .filter((s) => {
-      const k = s.text.toLowerCase().slice(0, 60);
-      if (seen.has(k)) return false;
-      seen.add(k);
+      const toks = new Set(searchTokens(s.text));
+      const dup = kept.some((k) => {
+        let both = 0;
+        for (const t of toks) if (k.has(t)) both++;
+        return both / Math.max(1, Math.min(toks.size, k.size)) >= 0.8;
+      });
+      if (dup) return false;
+      kept.push(toks);
       return true;
     })
     .slice(0, maxFacts)

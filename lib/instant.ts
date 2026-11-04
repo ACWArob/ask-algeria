@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
 import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions, MISSIONS } from "@/lib/missions";
-import { guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
+import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
 import { expandQuery } from "@/lib/synonyms";
 import { corpusById } from "@/lib/corpus";
@@ -126,6 +126,8 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
     if (seen.has(h.docId)) continue;
     seen.add(h.docId);
     const rec = corpus.get(h.docId);
+    // Off-topic pages that only share a word like "renew" are left out (the question names a subject, they don't).
+    if (!coversTopic(question, h.title, rec?.text ?? h.text)) continue;
     if (rec) quickPages.push({ title: h.title, url: h.url, domain: h.domain.replace(/^www\./, ""), text: rec.text, office: officeHosts.has(h.domain.replace(/^www\./, "")) });
     pages.push({
       title: h.title,
