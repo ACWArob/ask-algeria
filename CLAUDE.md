@@ -19,9 +19,10 @@ node scripts/crawl-local.mjs --dry-run          # crawler for running from INSID
 ## Layout
 - `app/(site)/` — pages (home, ask, translate, services/[slug] guides, embassies, directory, about); `app/api/` — search (free, no AI), ask (Claude), translate, login, logout, feedback
 - Free search quality: `lib/synonyms.ts` (en/fr/ar/Darija/Arabizi concepts) + coverage scoring in `lib/search.ts`; gate = `tests/search-eval.test.ts` over `qa/search-eval.json` (≥95% top-3). A missed real query → add it to the eval, then fix synonyms.
-- Prepare my file: `/prepare` (components/PrepareClient.tsx, lib/prepare*.ts, lib/packet-html.ts, lib/zip.ts). Personal details never leave the browser: no fetch/log of those fields, ever. Letters are our own neutral template, never an imitation of an official form.
+- Prepare my file: `/prepare` (components/PrepareClient.tsx, lib/prepare*.ts, lib/packet-html.ts, lib/zip.ts). Asks inside/outside Algeria first (each situation has a `place`); points naming other consulates go in a separate "specific consulates" box. Personal details never leave the browser: no fetch/log of those fields, ever. Letters are our own neutral template, never an imitation of an official form.
 - Answer cache: `lib/answer-cache.ts` (first questions only, 24h; shared via Upstash when configured, else per instance; `ANSWER_CACHE=off` disables, `=memory` forces memory) and `lib/expand-local.ts` (skip the LLM query-rewrite when synonyms already cover the question). Watch `[ask]` log lines for hit rate.
 - Spending guard: `lib/spend.ts` (AI_DISABLED kill switch, AI_DAILY_BUDGET_USD, per-IP daily quotas, PDF page cap); every model call goes through `allowAi` and `recordSpend`. Optional shared store `lib/kv.ts` (Upstash REST, 300 ms timeout, falls back to memory; never used by free search). Costs and Console spend limit: docs/cost.md.
+- Contact us: About page form → `/api/feedback` with `kind: "contact"` (`[contact]` log lines, + FEEDBACK_WEBHOOK_URL); optional `CONTACT_EMAIL` shows a mailto.
 - Extra pages: `/status` (lib/portal-status.ts, cached checks from our server + tester notes in sources.json), `/embassies/[id]` (lib/mission-page.ts), `/glossary` (lib/glossary.ts), exemption card (lib/exemption.ts, quotes official pages verbatim). Their strings live in lib/i18n-status.ts, lib/i18n-mission.ts, lib/i18n-extra.ts (key-parity tested).
 - Quick answer (free, top of results): `lib/quick-answer.ts`. The person's own office pages first (best lines, cited), else the matching guide's points for their office/location, else the best lines of the top pages.
 - Location: `lib/where.ts` — picker options, validation, and the office for a saved place (sent as `where` to /api/search and /api/ask).
@@ -49,6 +50,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-11-04 — tester living in Algeria saw London/Washington rules in her passport checklist — ask inside/outside Algeria before showing any procedure, and keep one consulate's rule out of everyone's list.
 - 2026-11-03 — free results showed only links and the user said it didn't help — always lead with the facts themselves (quick answer), links second.
 - 2026-11-03 — clientIp trusted `x-nf-client-connection-ip` first, which a client can send on Vercel → unlimited per-IP quota — read only the header the current platform sets.
 - 2026-10-31 — "unemployment benefit" found nothing (pages are French), "hajj registration" returned consular registration — cross-language synonyms + rare-word-weighted coverage; measure every search change on the eval (baseline was 86% top-3).

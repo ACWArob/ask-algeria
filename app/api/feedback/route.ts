@@ -16,6 +16,7 @@ export async function POST(req: Request) {
   if (!rateLimit(`fb:${clientIp(req.headers)}`, 30).ok) return NextResponse.json({ ok: false }, { status: 429 });
   try {
     const j = (await req.json()) as Record<string, unknown>;
+    if (j.kind === "contact") return contact(j);
     const rating = j.rating === "up" || j.rating === "down" ? j.rating : null;
     if (!rating) return NextResponse.json({ ok: false }, { status: 400 });
     const entry = {
@@ -30,12 +31,38 @@ export async function POST(req: Request) {
       sources: Number(j.sources ?? 0) || 0,
     };
     console.log(`[feedback] ${JSON.stringify(entry)}`);
-    const hook = process.env.FEEDBACK_WEBHOOK_URL;
-    if (hook && /^https:\/\//.test(hook)) {
-      await fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry), signal: AbortSignal.timeout(5000) }).catch(() => {});
-    }
+    await forward(entry);
   } catch {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
+  return NextResponse.json({ ok: true });
+}
+
+async function forward(entry: Record<string, unknown>) {
+  const hook = process.env.FEEDBACK_WEBHOOK_URL;
+  if (hook && /^https:\/\//.test(hook)) {
+    await fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry), signal: AbortSignal.timeout(5000) }).catch(() => {});
+  }
+}
+
+const EMAIL = /^[^\s@<>]{1,64}@[^\s@<>]{1,190}\.[a-z]{2,}$/i;
+
+/**
+ * "Contact us" (About page). The message is redacted like feedback (emails, phones, ID numbers removed); the reply
+ * address is kept only when the person typed one in its own field, because they asked for a reply.
+ */
+async function contact(j: Record<string, unknown>) {
+  const message = clip(j.message, 2000);
+  if (message.length < 3) return NextResponse.json({ ok: false }, { status: 400 });
+  const reply = typeof j.replyTo === "string" ? j.replyTo.trim().slice(0, 254) : "";
+  const entry = {
+    at: new Date().toISOString(),
+    kind: "contact",
+    message,
+    replyTo: EMAIL.test(reply) ? reply : undefined,
+    lang: ["en", "fr", "ar", "dz"].includes(String(j.lang)) ? String(j.lang) : undefined,
+  };
+  console.log(`[contact] ${JSON.stringify(entry)}`);
+  await forward(entry);
   return NextResponse.json({ ok: true });
 }

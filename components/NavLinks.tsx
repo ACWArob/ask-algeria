@@ -6,7 +6,9 @@ import type { Dict } from "@/lib/i18n";
 
 export function NavLinks({ dict }: { dict: Dict }) {
   const path = usePathname();
+  // About first: new visitors want to know what the site is before using it (tester feedback, 4 Nov 2026).
   const items = [
+    { href: "/about", label: dict.nav.about },
     { href: "/", label: dict.nav.ask },
     { href: "/translate", label: dict.nav.translate },
     { href: "/prepare", label: dict.prepare.nav },
@@ -14,7 +16,6 @@ export function NavLinks({ dict }: { dict: Dict }) {
     { href: "/status", label: dict.nav.status },
     { href: "/glossary", label: dict.nav.glossary },
     { href: "/directory", label: dict.nav.directory },
-    { href: "/about", label: dict.nav.about },
   ];
   return (
     <nav aria-label={dict.nav.menu} className="-mx-1 overflow-x-auto lg:mx-0">

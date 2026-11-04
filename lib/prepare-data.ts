@@ -2,9 +2,19 @@ import "server-only";
 import { corpusById } from "@/lib/corpus";
 import { GUIDES } from "@/lib/guides";
 import { getDict, type Locale } from "@/lib/i18n";
+import { MISSIONS } from "@/lib/missions";
 import { LETTER_LANGS, PROCEDURES, type LetterLang, type PacketSource, type PrepareProcedure } from "@/lib/prepare";
 
 type Situations = Record<string, string>;
+
+/** Cities with an Algerian consulate or embassy, as whole, capitalised words (so "Nice" the city, not "nice"). */
+const CITY_RES = [...new Set([...MISSIONS.map((m) => m.city).filter(Boolean), "Washington"])].map(
+  (c) => [c, new RegExp(`(?<![\\p{L}\\p{N}])${c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "u")] as const,
+);
+/** The consulate cities a guide point names (in its English or French text). */
+export function namedOffices(text: string): string[] {
+  return CITY_RES.filter(([, re]) => re.test(text)).map(([c]) => c);
+}
 
 /**
  * The procedures for the "Prepare my file" page in one UI language. Checklist points are the guide's own
@@ -42,6 +52,7 @@ export function prepareProcedures(locale: Locale): PrepareProcedure[] {
               // Office matching also looks at the Latin-script versions: people type "Lyon" in any UI language.
               match: [pt.text[locale], pt.text.en, pt.text.fr].join(" \n "),
               nums: num(pt.cites),
+              offices: namedOffices(`${pt.text.en} \n ${pt.text.fr}`),
             })),
           }));
         const sources: PacketSource[] = order.map((id, i) => {
@@ -51,7 +62,7 @@ export function prepareProcedures(locale: Locale): PrepareProcedure[] {
         const letterSubject = Object.fromEntries(
           LETTER_LANGS.map((l) => [l, `${G.title[l]} — ${(getDict(l).prepare.situations as Situations)[s.id] ?? s.id}`]),
         ) as Record<LetterLang, string>;
-        return { id: s.id, label: labels[s.id] ?? s.id, office: s.office, groups, sources, letterSubject };
+        return { id: s.id, label: labels[s.id] ?? s.id, office: s.office, place: s.place, groups, sources, letterSubject };
       }),
     };
   });

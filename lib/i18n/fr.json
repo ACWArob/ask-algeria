@@ -15,7 +15,8 @@
     "menu": "Menu",
     "embassies": "Ambassades et consulats",
     "status": "État des portails",
-    "glossary": "Glossaire"
+    "glossary": "Glossaire",
+    "contact": "Nous contacter"
   },
   "lang": {
     "label": "Langue",
@@ -223,7 +224,21 @@
           "Les réponses décrivent uniquement les procédures officielles. Nous ne prenons pas position sur les partis, les candidats ou les questions politiques. Pour les élections, nous expliquons seulement comment s'inscrire et voter selon les sources officielles."
         ]
       }
-    ]
+    ],
+    "contact": {
+      "title": "Nous contacter",
+      "lead": "Vous avez une question, une suggestion ou un avis sur notre site ? N'hésitez pas à nous écrire. Signalez une information erronée, un lien cassé ou une idée, et nous l'examinerons.",
+      "independent": "Nous sommes une équipe indépendante : nous ne pouvons pas traiter votre dossier ni contacter une administration à votre place.",
+      "message": "Votre message",
+      "email": "Votre e-mail",
+      "emailHint": "Seulement si vous souhaitez une réponse. Nous ne l'utilisons pour rien d'autre.",
+      "noPersonal": "Merci de ne pas indiquer de numéros d'identité ni de copies de documents personnels.",
+      "send": "Envoyer",
+      "sending": "Envoi…",
+      "sent": "Merci. Votre message a été envoyé à l'équipe.",
+      "error": "Le message n'a pas pu être envoyé. Réessayez dans une minute.",
+      "emailUs": "Ou écrivez-nous :"
+    }
   },
   "services": {
     "heading": "Services les plus demandés",
@@ -367,7 +382,9 @@
       "civil-update": "Mettre à jour un acte ou un divorce à l'étranger",
       "service-census": "Recensement",
       "service-deferment": "Sursis",
-      "service-exemption": "Dispense"
+      "service-exemption": "Dispense",
+      "passport-algeria-first": "Premier passeport",
+      "passport-algeria-renewal": "Renouvellement, perte ou vol"
     },
     "letter": {
       "heading": "Lettre d'accompagnement",
@@ -390,6 +407,25 @@
         "court": "Le Procureur de la République"
       },
       "notice": "Lettre personnelle rédigée avec Ask Algeria, site indépendant (pas un site gouvernemental). Ce document n’est pas un formulaire officiel."
+    },
+    "what": {
+      "title": "À quoi sert cette page",
+      "body": "Obtenir un document officiel demande souvent de réunir plusieurs pièces. Cette page vous aide à rassembler et à organiser tout ce qu'il faut pour votre demande, au même endroit.",
+      "steps": [
+        "Indiquez où vous habitez (en Algérie ou à l'étranger) et le document dont vous avez besoin.",
+        "Saisissez vos informations une seule fois. Elles restent sur votre appareil.",
+        "Imprimez ou téléchargez votre dossier : la liste des pièces tirée des pages officielles, une lettre d'accompagnement, une fiche avec vos informations à recopier sur le formulaire officiel, et les liens officiels."
+      ]
+    },
+    "place": {
+      "legend": "Où habitez-vous ?",
+      "algeria": "En Algérie",
+      "abroad": "À l'étranger",
+      "hint": "Choisissez pour voir les démarches et les pièces qui vous concernent."
+    },
+    "otherOffices": {
+      "title": "Règles propres à certains consulats",
+      "note": "Elles viennent des pages d'autres consulats. Vérifiez ce que demande votre propre service."
     }
   }
 }

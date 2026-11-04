@@ -15,7 +15,8 @@
     "menu": "Menu",
     "embassies": "Embassies & consulates",
     "status": "Portal status",
-    "glossary": "Glossary"
+    "glossary": "Glossary",
+    "contact": "Contact us"
   },
   "lang": {
     "label": "Language",
@@ -223,7 +224,21 @@
           "Answers describe official procedures only. We don't take positions on parties, candidates or political questions. For elections, we only explain how to register and vote according to official sources."
         ]
       }
-    ]
+    ],
+    "contact": {
+      "title": "Contact us",
+      "lead": "Do you have a question, suggestion, or feedback about our website? Feel free to contact us. Tell us about wrong information, a broken link or an idea, and we will look at it.",
+      "independent": "We are an independent team: we can't handle your file or contact an office for you.",
+      "message": "Your message",
+      "email": "Your email",
+      "emailHint": "Only if you want a reply. We use it for nothing else.",
+      "noPersonal": "Please don't include ID numbers or copies of personal documents.",
+      "send": "Send",
+      "sending": "Sending…",
+      "sent": "Thank you. Your message was sent to the team.",
+      "error": "The message could not be sent. Try again in a minute.",
+      "emailUs": "Or email us:"
+    }
   },
   "services": {
     "heading": "Popular services",
@@ -367,7 +382,9 @@
       "civil-update": "Update a record or a divorce abroad",
       "service-census": "Census (recensement)",
       "service-deferment": "Deferment (sursis)",
-      "service-exemption": "Exemption (dispense)"
+      "service-exemption": "Exemption (dispense)",
+      "passport-algeria-first": "First passport",
+      "passport-algeria-renewal": "Renewal, loss or theft"
     },
     "letter": {
       "heading": "Cover letter",
@@ -390,6 +407,25 @@
         "court": "The Public Prosecutor of the Republic"
       },
       "notice": "Personal letter written with Ask Algeria, an independent site (not a government website). This is not an official form."
+    },
+    "what": {
+      "title": "What this page does",
+      "body": "Getting an official document usually means gathering several papers. This page helps you collect and organise everything your request needs, in one place.",
+      "steps": [
+        "Choose where you live (inside or outside Algeria) and the document you need.",
+        "Type your details once. They stay on your device.",
+        "Print or download your file: the list of documents from official pages, a cover letter, a sheet with your details to copy onto the official form, and the official links."
+      ]
+    },
+    "place": {
+      "legend": "Where do you live?",
+      "algeria": "Inside Algeria",
+      "abroad": "Outside Algeria",
+      "hint": "Choose one to see the procedures and documents that apply to you."
+    },
+    "otherOffices": {
+      "title": "Rules quoted from specific consulates",
+      "note": "These come from other consulates' pages. Check what your own office asks for."
     }
   }
 }

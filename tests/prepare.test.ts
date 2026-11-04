@@ -108,6 +108,22 @@ describe("prepare config", () => {
     }
   });
 
+  it("asks inside / outside Algeria: every situation has a place, and both places have procedures", () => {
+    const all = PROCEDURES.flatMap((p) => p.situations);
+    for (const s of all) expect(["algeria", "abroad", "any"], s.id).toContain(s.place);
+    expect(all.filter((s) => s.place !== "abroad").length).toBeGreaterThan(3);
+    // Someone living in Algeria can prepare a passport file, from the Ministry of the Interior's pages.
+    const pass = PROCEDURES.find((p) => p.slug === "passport")!;
+    const inDz = pass.situations.filter((s) => s.place === "algeria");
+    expect(inDz.map((s) => s.office)).toEqual(["apc", "apc"]);
+    for (const s of inDz)
+      for (const sec of s.sections)
+        for (const pt of GUIDES.passport.sections.find((x) => x.id === sec)!.points) {
+          expect(pt.text.en, "no consulate rules in the in-Algeria checklist").not.toMatch(/London|Washington|Milan|consulate/i);
+          expect(pt.cites.every((c) => c.startsWith("interieur-gov-dz"))).toBe(true);
+        }
+  });
+
   it("finds the person's office as a whole word, in Latin or Arabic script", () => {
     expect(officeWords("Consulat général d'Algérie à Lyon")).toContain("lyon");
     expect(officeWords("Consulate General in London")).toEqual(["london"]);
@@ -136,14 +152,15 @@ const proc: PrepareProcedure = {
       id: "passport-first",
       label: "First passport",
       office: "consulate",
+      place: "abroad",
       groups: [{ title: "Documents", points: [
         { text: "Valid consular card.", match: "Valid consular card.", nums: [1] },
-        { text: "London asks for four photos.", match: "London asks for four photos.", nums: [2] },
+        { text: "London asks for four photos.", match: "London asks for four photos.", nums: [2], offices: ["London"] },
       ] }],
       sources: [{ n: 1, title: "A", url: "https://a.example/x", domain: "a.example" }, { n: 2, title: "B", url: "https://b.example/y", domain: "b.example" }],
       letterSubject: { en: "Biometric passport — First passport", fr: "Passeport — Premier passeport", ar: "جواز السفر — أول جواز سفر" },
     },
-    { id: "cni", label: "ID card (online)", office: "online", groups: [], sources: [], letterSubject: { en: "x", fr: "x", ar: "x" } },
+    { id: "cni", label: "ID card (online)", office: "online", place: "abroad", groups: [], sources: [], letterSubject: { en: "x", fr: "x", ar: "x" } },
   ],
 };
 
@@ -158,6 +175,7 @@ function packet(situation = 0, letterLang: "en" | "fr" | "ar" = "fr", details = 
       brand: en.brand.name, independent: en.strip.independent, notOfficial: en.prepare.notOfficial, prepared: en.prepare.prepared,
       docs: en.prepare.docs, checklistIntro: en.prepare.checklistIntro, mine: en.prepare.mine, sources: en.prepare.sources,
       detailsIntro: en.prepare.detailsIntro, linksIntro: en.prepare.linksIntro, fields: en.prepare.fields, extras: extras ?? undefined,
+      otherOffices: en.prepare.otherOffices,
     },
     letterLang,
     letter: { en: en.prepare.letter, fr: fr.prepare.letter, ar: ar.prepare.letter }[letterLang],
@@ -182,6 +200,17 @@ describe("packet", () => {
     expect(l.paragraphs[0]).toContain(fr.prepare.letter.blank); // empty fields become blanks to fill by hand
     expect(l.paragraphs.join(" ")).toContain("1234");
     expect(l.subject).toBe("Passeport — Premier passeport");
+  });
+
+  it("keeps other consulates' rules apart when the person's office isn't one of them", () => {
+    const c = packet(0, "fr", { office: "Consulat général à Lyon", city: "Lyon" }).docs[0];
+    if (c.kind !== "checklist") throw new Error();
+    expect(c.groups[0].items.map((x) => x.text)).toEqual(["Valid consular card."]);
+    expect(c.others).toMatchObject({ title: en.prepare.otherOffices.title, items: [{ text: "London asks for four photos.", nums: [2] }] });
+    expect(String(packetFiles(packet(0, "fr", { city: "Lyon" }))[0].data)).toContain(en.prepare.otherOffices.title);
+    // No office typed yet: still apart, so nobody reads London's rule as their own.
+    const blank = packet(0).docs[0];
+    if (blank.kind === "checklist") expect(blank.others?.items).toHaveLength(1);
   });
 
   it("Arabic letter is RTL and uses the Arabic name; online situations have no letter", () => {

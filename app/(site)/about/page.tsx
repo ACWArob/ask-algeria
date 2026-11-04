@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ContactForm } from "@/components/ContactForm";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 
@@ -8,7 +9,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function AboutPage() {
-  const dict = getDict(getLocale());
+  const locale = getLocale();
+  const dict = getDict(locale);
+  // Optional public address for the team (set CONTACT_EMAIL on the host); the form works without it.
+  const email = process.env.CONTACT_EMAIL && /^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(process.env.CONTACT_EMAIL) ? process.env.CONTACT_EMAIL : null;
   const a = dict.about;
   const [how, notGov, privacy, neutral] = a.sections;
   return (
@@ -52,6 +56,19 @@ export default function AboutPage() {
           {neutral.body.map((p, i) => <p key={i} className="mt-5">{p}</p>)}
         </section>
       </div>
+
+      <section id="contact" aria-labelledby="contact-title" className="mt-16 scroll-mt-24 rounded-3xl border border-line bg-surface px-6 py-7 sm:px-8">
+        <h2 id="contact-title" className="display text-2xl font-semibold">{a.contact.title}</h2>
+        <p className="mt-3 max-w-prose">{a.contact.lead}</p>
+        <p className="mt-2 max-w-prose text-sm text-muted">{a.contact.independent}</p>
+        <ContactForm dict={dict} locale={locale} />
+        {email && (
+          <p className="mt-2 text-sm">
+            {a.contact.emailUs}{" "}
+            <a href={`mailto:${email}`} className="link font-semibold" dir="ltr">{email}</a>
+          </p>
+        )}
+      </section>
 
       <p className="mt-16 flex flex-wrap gap-4">
         <Link href="/" className="btn-primary">{dict.nav.ask}</Link>

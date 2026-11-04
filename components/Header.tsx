@@ -50,6 +50,7 @@ export function Footer({ dict, authed = true }: { dict: Dict; authed?: boolean }
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <Link href="/embassies" className="link">{dict.nav.embassies}</Link>
             <Link href="/about" className="link">{dict.nav.about}</Link>
+            <Link href="/about#contact" className="link">{dict.nav.contact}</Link>
             <form action="/api/logout" method="post">
               <button type="submit" className="link">{dict.nav.logout}</button>
             </form>

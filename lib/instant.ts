@@ -145,7 +145,11 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
   // The facts themselves (free): the matching guide's points for this person's office, else the best lines of the pages.
   let quick: InstantQuick | undefined;
   // 1. The person's own office has pages on this: its own rules beat a guide that summarises several consulates.
-  const officePages = quickPages.filter((p) => p.office && pageOnTopic(question, p));
+  // Living in Algeria with a guide that has in-Algeria sections: the guide wins (the Ministry's pages mix rules
+  // for residents and for Algerians abroad on one page, in two languages).
+  const gslug0 = guides[0]?.slug;
+  const guideForAlgeria = Boolean(post?.inAlgeria && gslug0 && GUIDES[gslug0].sections.some((x) => /in-algeria/.test(x.id)));
+  const officePages = guideForAlgeria ? [] : quickPages.filter((p) => p.office && pageOnTopic(question, p));
   if (officePages.length) {
     const qa = quickAnswer(question, officePages, 6);
     // Facts in another script than the reader's (French page, Arabic reader) lose to a guide in their language.

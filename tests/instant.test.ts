@@ -11,6 +11,14 @@ describe("instant search (no AI)", () => {
     expect(s.length).toBeLessThan(260);
   });
 
+  it("someone living in Algeria gets the guide's in-Algeria passport points, not the rules for Algerians abroad", () => {
+    const r = instantSearch("how do I renew my passport", "en", undefined, "", { in: "dz", wilaya: "Oran" });
+    expect(r.quick?.from).toBe("guide");
+    expect(r.quick?.sections[0].title).toMatch(/living in Algeria/);
+    const text = r.quick!.sections.flatMap((x) => x.points.map((p) => p.text)).join(" ");
+    expect(text).not.toMatch(/consulate|abroad|London|Washington/i);
+  });
+
   it("returns the guide and official pages for a passport question, without wilaya pages for someone abroad", () => {
     const r = instantSearch("I live in Lyon, how do I renew my passport?", "en");
     expect(r.guides.map((g) => g.slug)).toContain("passport");

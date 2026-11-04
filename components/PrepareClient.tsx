@@ -19,7 +19,9 @@ import {
   type LetterText,
   type Packet,
   type PacketDoc,
+  type Place,
   type PrepareProcedure,
+  type PrepareSituation,
 } from "@/lib/prepare";
 import { zipBlob } from "@/lib/zip";
 
@@ -28,6 +30,12 @@ import { zipBlob } from "@/lib/zip";
  * (no fetch, no form POST, no logging). They are kept in localStorage only when the person asks for it.
  */
 const STORE_KEY = "aa_prepare";
+/** "Inside / outside Algeria" (not personal; remembered so the question isn't asked again). */
+const PLACE_KEY = "aa_prepare_place";
+/** The home page's "where do you live?" answer, used as the default place. */
+const WHERE_KEY = "aa_where";
+
+const fitsPlace = (s: PrepareSituation, place: Place | null) => place !== null && (s.place === "any" || s.place === place);
 
 type FieldKind = { type: string; autoComplete?: string; dir?: "ltr" | "auto" };
 const KIND: Record<DetailField, FieldKind> = {
@@ -82,10 +90,15 @@ interface Props {
 export function PrepareClient({ dict, locale, procedures, letters, formLabels, initial }: Props) {
   const t = dict.prepare;
   const rtl = locale === "ar" || locale === "dz";
+  const [place, setPlaceState] = useState<Place | null>(null);
+  // Only the procedures and situations for where the person lives (Chaima's test: London/Washington rules
+  // confused someone living in Algeria).
+  const shown = procedures.filter((p) => p.situations.some((s) => fitsPlace(s, place)));
   const [slug, setSlug] = useState(initial ?? procedures[0]?.slug ?? "");
-  const proc = procedures.find((p) => p.slug === slug) ?? procedures[0];
-  const [situationId, setSituationId] = useState(proc?.situations[0]?.id ?? "");
-  const situation = proc?.situations.find((s) => s.id === situationId) ?? proc?.situations[0];
+  const proc = shown.find((p) => p.slug === slug) ?? shown[0];
+  const situations = proc?.situations.filter((s) => fitsPlace(s, place)) ?? [];
+  const [situationId, setSituationId] = useState("");
+  const situation = situations.find((s) => s.id === situationId) ?? situations[0];
   const [details, setDetails] = useState<Details>(emptyDetails);
   const [remember, setRemember] = useState(false);
   const [letterLang, setLetterLang] = useState<LetterLang>(locale === "en" ? "en" : locale === "fr" ? "fr" : "ar");
@@ -97,6 +110,17 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
   useEffect(() => {
     setToday(new Date());
     try {
+      const p = localStorage.getItem(PLACE_KEY);
+      if (p === "algeria" || p === "abroad") setPlaceState(p);
+      else {
+        const w = JSON.parse(localStorage.getItem(WHERE_KEY) ?? "null") as { in?: string } | null;
+        if (w?.in === "dz") setPlaceState("algeria");
+        else if (w?.in === "abroad") setPlaceState("abroad");
+      }
+    } catch {
+      /* storage blocked or bad value */
+    }
+    try {
       const raw = localStorage.getItem(STORE_KEY);
       if (raw) {
         const v = JSON.parse(raw) as { details?: unknown; slug?: unknown; situation?: unknown; letterLang?: unknown };
@@ -106,7 +130,6 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
           setSlug(v.slug);
           const p = procedures.find((x) => x.slug === v.slug)!;
           if (typeof v.situation === "string" && p.situations.some((s) => s.id === v.situation)) setSituationId(v.situation);
-          else setSituationId(p.situations[0]?.id ?? "");
         }
         if (typeof v.letterLang === "string" && (LETTER_LANGS as string[]).includes(v.letterLang)) setLetterLang(v.letterLang as LetterLang);
       }
@@ -130,7 +153,17 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
 
   function pickProcedure(s: string) {
     setSlug(s);
-    setSituationId(procedures.find((p) => p.slug === s)?.situations[0]?.id ?? "");
+    setSituationId("");
+  }
+
+  function setPlace(p: Place) {
+    setPlaceState(p);
+    setSituationId("");
+    try {
+      localStorage.setItem(PLACE_KEY, p);
+    } catch {
+      /* storage blocked */
+    }
   }
 
   function erase() {
@@ -161,6 +194,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
         checklistIntro: t.checklistIntro,
         mine: t.mine,
         sources: t.sources,
+        otherOffices: t.otherOffices,
         detailsIntro: t.detailsIntro,
         linksIntro: t.linksIntro,
         fields: t.fields,
@@ -186,8 +220,8 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
     setTimeout(() => URL.revokeObjectURL(url), 10_000);
   }
 
-  if (!proc || !situation) return null;
   const set = (f: DetailField, value: string) => setDetails((d) => ({ ...d, [f]: value }));
+  const ready = Boolean(proc && situation);
 
   return (
     <>
@@ -204,10 +238,24 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
 
         <section aria-labelledby="prep-step1" className="space-y-5">
           <h2 id="prep-step1" className="display text-2xl font-semibold">{t.step1}</h2>
+          <fieldset className="max-w-prose">
+            <legend className="mb-1.5 font-semibold">{t.place.legend}</legend>
+            <div className="grid grid-cols-2 gap-2">
+              {(["algeria", "abroad"] as const).map((p) => (
+                <label key={p} className="flex min-h-[48px] cursor-pointer items-center gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 font-semibold has-[:checked]:border-brand has-[:checked]:bg-brand/5">
+                  <input type="radio" name="prep-place" value={p} checked={place === p} onChange={() => setPlace(p)} className="accent-[rgb(var(--brand))]" />
+                  <span>{t.place[p]}</span>
+                </label>
+              ))}
+            </div>
+            {!place && <p className="mt-2 text-sm text-muted">{t.place.hint}</p>}
+          </fieldset>
+          {proc && situation && (
+          <>
           <div className="max-w-prose">
             <label htmlFor="prep-procedure" className="mb-1.5 block font-semibold">{t.procedure}</label>
             <select id="prep-procedure" value={proc.slug} onChange={(e) => pickProcedure(e.target.value)} className="field">
-              {procedures.map((p) => (
+              {shown.map((p) => (
                 <option key={p.slug} value={p.slug}>{p.title}</option>
               ))}
             </select>
@@ -216,7 +264,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
           <fieldset className="max-w-prose">
             <legend className="mb-1.5 font-semibold">{t.situation}</legend>
             <div className="grid gap-2 sm:grid-cols-2">
-              {proc.situations.map((s) => (
+              {situations.map((s) => (
                 <label key={s.id} className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 has-[:checked]:border-brand has-[:checked]:bg-brand/5">
                   <input type="radio" name="prep-situation" value={s.id} checked={situation.id === s.id} onChange={() => setSituationId(s.id)} className="mt-1.5 accent-[rgb(var(--brand))]" />
                   <span>{s.label}</span>
@@ -224,8 +272,12 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
               ))}
             </div>
           </fieldset>
+          </>
+          )}
         </section>
 
+        {proc && situation && (
+        <>
         <section aria-labelledby="prep-step2" className="space-y-5">
           <div>
             <h2 id="prep-step2" className="display text-2xl font-semibold">{t.step2}</h2>
@@ -300,9 +352,11 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
           <p className="max-w-prose text-sm text-muted">{t.printHint}</p>
           {situation.office === "online" && <p className="max-w-prose rounded-xl border border-line bg-surface px-3 py-2 text-sm">{t.noLetter}</p>}
         </section>
+        </>
+        )}
       </div>
 
-      {packet && (
+      {packet && ready && (
         <div id="prepare-packet" role="region" className="mt-8 space-y-8 print:mt-0 print:space-y-0" aria-label={packet.title}>
           {packet.docs.map((doc) => (
             <DocView key={doc.kind} doc={doc} packet={packet} opensNew={dict.services.opensNew} />
@@ -363,6 +417,27 @@ function DocBody({ doc, opensNew }: { doc: PacketDoc; opensNew: string }) {
               </ul>
             </section>
           ))}
+          {doc.others && (
+            <section className="mt-6 rounded-2xl border border-dashed border-line px-4 py-3">
+              <h3 className="text-lg font-semibold">{doc.others.title}</h3>
+              <p className="mt-1 text-sm text-muted">{doc.others.note}</p>
+              <ul className="mt-2 divide-y divide-line">
+                {doc.others.items.map((it, i) => (
+                  <li key={i}>
+                    <label className="flex cursor-pointer items-start gap-3 py-2.5">
+                      <input type="checkbox" className="mt-1.5 h-4 w-4 shrink-0 accent-brand" />
+                      <span>
+                        {it.text}{" "}
+                        {it.nums.map((n) => (
+                          <span key={n} className="cite" aria-label={`${doc.sourcesTitle} ${n}`}>{n}</span>
+                        ))}
+                      </span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           {doc.extras && (
             <section className="mt-6 rounded-2xl border border-dashed border-line px-4 py-3">
               <h3 className="text-lg font-semibold">{doc.extras.title}</h3>

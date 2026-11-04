@@ -10,46 +10,50 @@ export type OfficeKind = "consulate" | "apc" | "court" | "online";
 export type LetterLang = "en" | "fr" | "ar";
 export const LETTER_LANGS: LetterLang[] = ["fr", "ar", "en"];
 
-export interface SituationConfig { id: string; sections: string[]; office: OfficeKind }
+/** Where the person lives: the Prepare page asks first and only shows the situations for that place. */
+export type Place = "algeria" | "abroad";
+export interface SituationConfig { id: string; sections: string[]; office: OfficeKind; place: Place | "any" }
 export interface ProcedureConfig { slug: string; base: string[]; situations: SituationConfig[] }
 
 /** Guide slugs (lib/guides) with the sections that apply to each situation. `base` sections apply to all of them. */
 export const PROCEDURES: ProcedureConfig[] = [
   { slug: "passport", base: [], situations: [
-    { id: "passport-first", sections: ["how", "documents"], office: "consulate" },
-    { id: "passport-renewal", sections: ["documents", "renewal"], office: "consulate" },
-    { id: "passport-minor", sections: ["documents", "minors"], office: "consulate" },
-    { id: "cni", sections: ["cni"], office: "online" },
+    { id: "passport-algeria-first", sections: ["in-algeria"], office: "apc", place: "algeria" },
+    { id: "passport-algeria-renewal", sections: ["in-algeria-renewal"], office: "apc", place: "algeria" },
+    { id: "passport-first", sections: ["how", "documents"], office: "consulate", place: "abroad" },
+    { id: "passport-renewal", sections: ["documents", "renewal"], office: "consulate", place: "abroad" },
+    { id: "passport-minor", sections: ["documents", "minors"], office: "consulate", place: "abroad" },
+    { id: "cni", sections: ["cni"], office: "online", place: "abroad" },
   ] },
   { slug: "birth-12s", base: ["what"], situations: [
-    { id: "12s-abroad", sections: ["abroad"], office: "online" },
-    { id: "12s-born-abroad", sections: ["born-abroad"], office: "consulate" },
-    { id: "12s-algeria", sections: ["in-algeria"], office: "apc" },
+    { id: "12s-abroad", sections: ["abroad"], office: "online", place: "abroad" },
+    { id: "12s-born-abroad", sections: ["born-abroad"], office: "consulate", place: "abroad" },
+    { id: "12s-algeria", sections: ["in-algeria"], office: "apc", place: "algeria" },
   ] },
   { slug: "criminal-record", base: ["language-fees"], situations: [
-    { id: "record-online", sections: ["online"], office: "online" },
-    { id: "record-abroad", sections: ["abroad"], office: "consulate" },
-    { id: "record-algeria", sections: ["in-algeria"], office: "court" },
+    { id: "record-online", sections: ["online"], office: "online", place: "any" },
+    { id: "record-abroad", sections: ["abroad"], office: "consulate", place: "abroad" },
+    { id: "record-algeria", sections: ["in-algeria"], office: "court", place: "algeria" },
   ] },
   { slug: "nationality", base: ["cases"], situations: [
-    { id: "nationality-abroad", sections: ["abroad", "attestation"], office: "consulate" },
-    { id: "nationality-algeria", sections: ["in-algeria"], office: "court" },
+    { id: "nationality-abroad", sections: ["abroad", "attestation"], office: "consulate", place: "abroad" },
+    { id: "nationality-algeria", sections: ["in-algeria"], office: "court", place: "algeria" },
   ] },
   { slug: "consular-registration", base: ["who"], situations: [
-    { id: "registration-first", sections: ["first"], office: "consulate" },
-    { id: "registration-renewal", sections: ["renewal-transfer"], office: "consulate" },
-    { id: "registration-ending", sections: ["ending"], office: "consulate" },
+    { id: "registration-first", sections: ["first"], office: "consulate", place: "abroad" },
+    { id: "registration-renewal", sections: ["renewal-transfer"], office: "consulate", place: "abroad" },
+    { id: "registration-ending", sections: ["ending"], office: "consulate", place: "abroad" },
   ] },
   { slug: "civil-status", base: ["why"], situations: [
-    { id: "transcribe-birth", sections: ["birth"], office: "consulate" },
-    { id: "transcribe-marriage", sections: ["marriage"], office: "consulate" },
-    { id: "family-book", sections: ["family-book"], office: "consulate" },
-    { id: "civil-update", sections: ["changes"], office: "consulate" },
+    { id: "transcribe-birth", sections: ["birth"], office: "consulate", place: "abroad" },
+    { id: "transcribe-marriage", sections: ["marriage"], office: "consulate", place: "abroad" },
+    { id: "family-book", sections: ["family-book"], office: "consulate", place: "abroad" },
+    { id: "civil-update", sections: ["changes"], office: "consulate", place: "abroad" },
   ] },
   { slug: "national-service", base: ["rule"], situations: [
-    { id: "service-census", sections: ["census"], office: "consulate" },
-    { id: "service-deferment", sections: ["deferment"], office: "consulate" },
-    { id: "service-exemption", sections: ["exemption"], office: "consulate" },
+    { id: "service-census", sections: ["census"], office: "consulate", place: "abroad" },
+    { id: "service-deferment", sections: ["deferment"], office: "consulate", place: "abroad" },
+    { id: "service-exemption", sections: ["exemption"], office: "consulate", place: "abroad" },
   ] },
 ];
 
@@ -82,11 +86,13 @@ export function cleanDetails(v: unknown): Details {
 // ───────── Data passed from the server page (built in lib/prepare-data.ts) ─────────
 
 export interface PacketSource { n: number; title: string; url: string; domain: string }
-export interface PreparePoint { text: string; match: string; nums: number[] }
+/** `offices`: the consulate cities the point names ("four photos in London"): that office's rule, not everyone's. */
+export interface PreparePoint { text: string; match: string; nums: number[]; offices?: string[] }
 export interface PrepareSituation {
   id: string;
   label: string;
   office: OfficeKind;
+  place: Place | "any";
   groups: { title: string; points: PreparePoint[] }[];
   sources: PacketSource[];
   /** "<guide title> — <situation>" in each letter language. */
@@ -152,6 +158,11 @@ export function mentionsOffice(text: string, words: string[]): boolean {
   return re.test(text);
 }
 
+/** A point that names specific consulates, none of them the person's office (e.g. "London asks for four photos"). */
+export function isOtherOffice(p: PreparePoint, words: string[]): boolean {
+  return Boolean(p.offices?.length) && !mentionsOffice(p.match, words);
+}
+
 // ───────── The packet ─────────
 
 export interface PacketMeta { lang: string; dir: "ltr" | "rtl" }
@@ -161,6 +172,8 @@ export interface PacketExtras { title: string; note: string; items: string[] }
 export interface ChecklistDoc extends PacketMeta {
   kind: "checklist"; title: string; intro: string; mineLabel: string; sourcesTitle: string;
   groups: { title: string; items: { text: string; nums: number[]; mine: boolean }[] }[];
+  /** Points that only quote other consulates' rules (not the person's office), kept apart so they don't read as required. */
+  others?: { title: string; note: string; items: { text: string; nums: number[] }[] };
   /** Separate, clearly labelled section after the official items (no citations). */
   extras?: PacketExtras;
   sources: PacketSource[];
@@ -200,6 +213,8 @@ export interface PacketText {
   detailsIntro: string;
   linksIntro: string;
   fields: Record<DetailField, string>;
+  /** Heading and note for the points that quote specific consulates other than the person's. */
+  otherOffices?: { title: string; note: string };
   /** "Also bring, just in case" tips (lib/i18n-extra.ts `prepareExtras`), in the UI language. */
   extras?: PacketExtras;
 }
@@ -239,12 +254,18 @@ export function buildPacket(i: PacketInput): Packet {
 
   // 1. Checklist: only the guide's cited points for this situation; points naming the person's office go first.
   const words = officeWords(`${d.office} ${d.city}`);
+  const others = s.groups.flatMap((g) => g.points.filter((p) => isOtherOffice(p, words)).map((p) => ({ text: p.text, nums: p.nums })));
   const checklist: ChecklistDoc = {
     ...ui, kind: "checklist", title: t.docs.checklist, intro: t.checklistIntro, mineLabel: t.mine, sourcesTitle: t.sources,
-    groups: s.groups.map((g) => {
-      const items = g.points.map((p) => ({ text: p.text, nums: p.nums, mine: mentionsOffice(p.match, words) }));
-      return { title: g.title, items: [...items.filter((x) => x.mine), ...items.filter((x) => !x.mine)] };
-    }),
+    groups: s.groups
+      .map((g) => {
+        const items = g.points
+          .filter((p) => !isOtherOffice(p, words))
+          .map((p) => ({ text: p.text, nums: p.nums, mine: mentionsOffice(p.match, words) }));
+        return { title: g.title, items: [...items.filter((x) => x.mine), ...items.filter((x) => !x.mine)] };
+      })
+      .filter((g) => g.items.length),
+    ...(others.length && t.otherOffices ? { others: { title: t.otherOffices.title, note: t.otherOffices.note, items: others } } : {}),
     ...(t.extras && t.extras.items.length ? { extras: { title: t.extras.title, note: t.extras.note, items: [...t.extras.items] } } : {}),
     sources: s.sources,
   };

@@ -21,6 +21,9 @@ const CW = "cni-embwashington-identity-card";
 const CM = "cni-cgmilan-national-identity-card";
 const CL = "cni-cglondon-national-identity-card";
 const CS = "cni-cgsanfrancisco-identity-cards";
+// Ministry of the Interior: the 2025 passport page and the older biometric passport page (for people living in Algeria).
+const PN = "interieur-gov-dz-2025-03-17-passeport-national";
+const PB = "interieur-gov-dz-accueil-fr-passeport-biometrique";
 
 export const PASSPORT_GUIDE = {
   title: {
@@ -30,10 +33,10 @@ export const PASSPORT_GUIDE = {
     dz: "الباسبور ولاكارط ديدونتيتي البيومتريين",
   } as L,
   lead: {
-    en: "What official consular pages say about applying, the documents to bring, fees, minors and renewal.",
-    fr: "Ce que disent les pages consulaires officielles sur la demande, les pièces à fournir, les tarifs, les mineurs et le renouvellement.",
-    ar: "ما تذكره الصفحات القنصلية الرسمية عن تقديم الطلب والوثائق المطلوبة والرسوم والقُصّر والتجديد.",
-    dz: "واش يقولو الصفحات الرسمية تاع القنصليات على الطلب، الوراق لي لازم تجيبهم، السوما، الصغار والتجديد.",
+    en: "What official pages (the Ministry of the Interior and the consulates) say about applying in Algeria or abroad, the documents to bring, fees, minors and renewal.",
+    fr: "Ce que disent les pages officielles (ministère de l'Intérieur et consulats) sur la demande en Algérie ou à l'étranger, les pièces à fournir, les tarifs, les mineurs et le renouvellement.",
+    ar: "ما تذكره الصفحات الرسمية (وزارة الداخلية والقنصليات) عن تقديم الطلب داخل الجزائر أو خارجها، والوثائق المطلوبة والرسوم والقُصّر والتجديد.",
+    dz: "واش يقولو الصفحات الرسمية (وزارة الداخلية والقنصليات) على الطلب في الدزاير ولا برّا، الوراق لي لازم تجيبهم، السوما، الصغار والتجديد.",
   } as L,
   portals: [
     { url: "https://passeport.interieur.gov.dz", label: { en: "Passport and biometric ID portal (Ministry of the Interior)", fr: "Portail passeport et CNIBE (ministère de l'Intérieur)", ar: "بوابة جواز السفر وبطاقة التعريف (وزارة الداخلية)", dz: "بوابة الباسبور ولاكارط (وزارة الداخلية)" } as L },
@@ -111,6 +114,108 @@ export const PASSPORT_GUIDE = {
         { cites: [W], text: { en: "Washington handles renewal through the same application; you need a passport that has expired or expires within six months.", fr: "Washington traite le renouvellement avec la même demande ; il faut un passeport expiré ou expirant dans les six mois.", ar: "تعالج سفارة واشنطن التجديد بالطلب نفسه، ويُشترط جواز منتهٍ أو ينتهي خلال ستة أشهر.", dz: "في واشنطن التجديد بنفس الطلب؛ لازم يكون الباسبور فايت ولا باقيلو أقل من ستة شهور." } },
         { cites: [LR], text: { en: "London lets you check availability online by entering the registration number from your deposit receipt.", fr: "Londres permet de vérifier la disponibilité en ligne avec le numéro d'enregistrement du récépissé de dépôt.", ar: "تتيح قنصلية لندن التحقق من جاهزية الجواز عبر الإنترنت برقم التسجيل المدوّن في وصل الإيداع.", dz: "في لندن تقدر تشوف إذا وجد الباسبور من الأنترنت بالنمرو لي في الوصل." } },
         { cites: [W, WD], text: { en: "Lost, stolen or damaged (Washington): add a notarised declaration explaining what happened and pay a $125 penalty by money order.", fr: "Perte, vol ou détérioration (Washington) : ajouter une déclaration notariée expliquant les circonstances et payer une pénalité de 125 $ par mandat.", ar: "الضياع أو السرقة أو التلف (واشنطن): إضافة تصريح موثّق يشرح الظروف ودفع غرامة 125 دولارًا بحوالة بريدية.", dz: "إذا ضاع، تسرق ولا تقطّع (واشنطن): زيد تصريح عند الموثق تشرح واش صرا وخلّص غرامة 125 دولار بمونداة." } },
+      ],
+    },
+    {
+      id: "in-algeria",
+      title: { en: "First passport, living in Algeria", fr: "Premier passeport, résident en Algérie", ar: "أول جواز سفر للمقيمين في الجزائر", dz: "أول باسبور، ساكن في الدزاير" },
+      points: [
+        { cites: [PB, PN], text: {
+          en: "You submit the file at any commune (APC), daïra or administrative district of your wilaya. You get a receipt once the file is accepted and your photo and fingerprints are taken.",
+          fr: "Le dossier se dépose auprès de n'importe quelle commune, daïra ou circonscription administrative de votre wilaya. Un récépissé est remis une fois le dossier accepté et les données biométriques enregistrées.",
+          ar: "يُودَع الملف لدى أي بلدية أو دائرة أو مقاطعة إدارية في ولايتك. ويُسلَّم وصل بعد قبول الملف وأخذ الصورة والبصمات.",
+          dz: "تديپوزي الدوسي في أي بلدية، دايرة ولا مقاطعة إدارية في الولاية تاعك. يعطوك وصل كي يقبلو الدوسي وياخذو التصويرة والبصمات." } },
+        { cites: [PN, PB], text: {
+          en: "The passport application form, filled in and signed by you, or by the legal guardian for a minor.",
+          fr: "Le formulaire de demande de passeport rempli et signé par l'intéressé, ou par le tuteur légal pour un mineur.",
+          ar: "استمارة طلب جواز السفر مملوءة وموقّعة من صاحب الطلب، أو من الولي الشرعي بالنسبة للقاصر.",
+          dz: "استمارة الباسبور معمّرة وممضية من عندك، ولا من الولي الشرعي إذا كان صغير." } },
+        { cites: [PN], text: {
+          en: "Algerian nationality certificate, unless your biometric ID card was already issued on the basis of one.",
+          fr: "Certificat de nationalité algérienne, sauf si votre carte d'identité biométrique a déjà été délivrée sur la base d'un certificat de nationalité.",
+          ar: "شهادة الجنسية الجزائرية، إلا إذا سبق أن صدرت بطاقة تعريفك البيومترية على أساس شهادة جنسية.",
+          dz: "شهادة الجنسية، غير إذا لاكارط ديدونتيتي البيومترية تاعك خرجت من قبل بشهادة الجنسية." } },
+        { cites: [PN, PB], text: {
+          en: "Residence certificate, if you hold no biometric document or have moved. Under-19s don't need one. The Ministry's older page asks for one less than six months old.",
+          fr: "Certificat de résidence, si vous n'avez aucun document biométrique ou avez changé de résidence. Les moins de 19 ans en sont dispensés. L'ancienne page du ministère le demande daté de moins de six mois.",
+          ar: "شهادة الإقامة، إذا لم تكن تملك وثيقة بيومترية أو غيّرت مقر إقامتك. ويُعفى منها من هم دون 19 سنة. وتطلبها الصفحة القديمة للوزارة بتاريخ لا يتجاوز ستة أشهر.",
+          dz: "شهادة الإقامة، إذا ما عندكش ورقة بيومترية ولا بدّلت السكنى. لي عمرهم تحت 19 سنة ما يحتاجوهاش. الصفحة القديمة تاع الوزارة تطلبها ما تفوتش ستة شهور." } },
+        { cites: [PN], text: {
+          en: "Work certificate, certificate of non-activity, or school certificate for students and pupils.",
+          fr: "Attestation de travail, attestation de non-activité, ou certificat de scolarité pour les étudiants et les élèves.",
+          ar: "شهادة عمل أو شهادة عدم النشاط، أو شهادة مدرسية للطلبة والتلاميذ.",
+          dz: "شهادة العمل، شهادة عدم النشاط، ولا شهادة مدرسية للطلبة والتلاميذ." } },
+        { cites: [PN, PB], text: {
+          en: "Recent, identical colour ID photos on a plain white background with no border. The Ministry's 2025 page asks for two; its biometric passport page asks for four.",
+          fr: "Photos d'identité en couleur, récentes et identiques, sur fond blanc uni et sans contour. La page 2025 du ministère en demande deux ; sa page sur le passeport biométrique en demande quatre.",
+          ar: "صور شمسية ملوّنة حديثة ومتطابقة بخلفية بيضاء موحّدة ودون إطار. تطلب صفحة الوزارة لسنة 2025 صورتين، وتطلب صفحتها عن الجواز البيومتري أربع صور.",
+          dz: "تصاور ملوّنين جداد وكيف كيف، الخلفية بيضاء بلا إطار. الصفحة تاع الوزارة 2025 تطلب زوج؛ الصفحة تاع الباسبور البيومتري تطلب أربعة." } },
+        { cites: [PN, PB], text: {
+          en: "A tax receipt (quittance fiscale or fiscal stamp) for the amount that matches the document and the procedure.",
+          fr: "Une quittance fiscale (ou timbre fiscal) dont le montant correspond au document demandé et au type de procédure.",
+          ar: "وصل جبائي (أو طابع جبائي) بالمبلغ الموافق لنوع الوثيقة والإجراء.",
+          dz: "وصل الضريبة (ولا تامبر) بالسوما لي تناسب الوثيقة ونوع الإجراء." } },
+        { cites: [PN, PB], text: {
+          en: "A copy of your blood group card.",
+          fr: "La copie de la carte du groupe sanguin.",
+          ar: "نسخة من بطاقة فصيلة الدم.",
+          dz: "نسخة من كارطة لوغروب سانڨان." } },
+        { cites: [PB, PN], text: {
+          en: "12S birth certificate: listed on the Ministry's biometric passport page; its 2025 page lists it only for Algerians living abroad.",
+          fr: "Extrait de naissance 12S : demandé sur la page du ministère consacrée au passeport biométrique ; sa page 2025 ne le cite que pour les Algériens résidant à l'étranger.",
+          ar: "شهادة الميلاد 12خ: تذكرها صفحة الوزارة عن الجواز البيومتري، بينما لا تذكرها صفحتها لسنة 2025 إلا للجزائريين المقيمين بالخارج.",
+          dz: "شهادة الميلاد 12S: مكتوبة في صفحة الوزارة تاع الباسبور البيومتري؛ الصفحة تاع 2025 تذكرها غير للي ساكنين برّا." } },
+        { cites: [PN, PB], text: {
+          en: "You collect the passport yourself after an SMS says it is ready, and check the details printed on it. Anyone aged 12 or over must attend both submission and collection; under-12s attend submission only. Validity: 10 years for adults, 5 for minors.",
+          fr: "Le passeport est retiré par le demandeur lui-même après un SMS, en vérifiant les informations imprimées. La présence est obligatoire au dépôt et au retrait à partir de 12 ans ; avant 12 ans, seulement au dépôt. Validité : 10 ans pour les majeurs, 5 ans pour les mineurs.",
+          ar: "يستلم صاحب الطلب الجواز بنفسه بعد رسالة نصية تدعوه لذلك، ويتحقق من المعلومات المطبوعة فيه. الحضور إلزامي عند الإيداع والاستلام لمن بلغ 12 سنة فأكثر، وعند الإيداع فقط لمن هم دون 12 سنة. مدة الصلاحية 10 سنوات للبالغين و5 سنوات للقُصّر.",
+          dz: "تجبد الباسبور بروحك كي يجيك SMS، وتشوف المعلومات لي مكتوبين فيه. من 12 سنة وفوق لازم تحضر في الإيداع والاستلام؛ تحت 12 سنة غير في الإيداع. الصلاحية 10 سنين للكبار و5 للصغار." } },
+      ],
+    },
+    {
+      id: "in-algeria-renewal",
+      title: { en: "Renewal, loss or theft, living in Algeria", fr: "Renouvellement, perte ou vol, résident en Algérie", ar: "التجديد أو الضياع أو السرقة للمقيمين في الجزائر", dz: "التجديد، الضياع ولا السرقة، ساكن في الدزاير" },
+      points: [
+        { cites: [PN], text: {
+          en: "You can renew in the six months before the passport expires, or when its visa pages are full.",
+          fr: "Le passeport peut être renouvelé dans les six mois qui précèdent son expiration, ou lorsque ses feuillets de visas sont remplis.",
+          ar: "يمكن تجديد الجواز خلال الأشهر الستة التي تسبق انتهاء صلاحيته، أو عندما تمتلئ صفحات التأشيرات.",
+          dz: "تقدر تجدد الباسبور في الستة شهور لي قبل ما يكمل، ولا كي تعمر الصفحات تاع الفيزا." } },
+        { cites: [PN, PB], text: {
+          en: "Bring the old passport. If it was lost, stolen or damaged, bring the loss or theft declaration, or the damage report, instead.",
+          fr: "Apportez l'ancien passeport. En cas de perte, de vol ou de détérioration, apportez à la place la déclaration de perte ou de vol, ou le procès-verbal de détérioration.",
+          ar: "أحضر الجواز القديم. وفي حالة الضياع أو السرقة أو التلف، أحضر بدله التصريح بالضياع أو السرقة، أو محضر التلف.",
+          dz: "جيب الباسبور القديم. إذا ضاع، تسرق ولا تقطّع، جيب في بلاصتو التصريح بالضياع ولا السرقة، ولا محضر التقطيع." } },
+        { cites: [PN], text: {
+          en: "Residence certificate only if you have moved.",
+          fr: "Certificat de résidence uniquement en cas de changement de résidence.",
+          ar: "شهادة الإقامة فقط في حالة تغيير مقر الإقامة.",
+          dz: "شهادة الإقامة غير إذا بدّلت السكنى." } },
+        { cites: [PN], text: {
+          en: "Work certificate, certificate of non-activity, or school certificate for students and pupils.",
+          fr: "Attestation de travail, attestation de non-activité, ou certificat de scolarité pour les étudiants et les élèves.",
+          ar: "شهادة عمل أو شهادة عدم النشاط، أو شهادة مدرسية للطلبة والتلاميذ.",
+          dz: "شهادة العمل، شهادة عدم النشاط، ولا شهادة مدرسية للطلبة والتلاميذ." } },
+        { cites: [PN], text: {
+          en: "Two recent, identical colour photos on a plain white background, and the tax receipt for the procedure.",
+          fr: "Deux photos d'identité en couleur, récentes et identiques, sur fond blanc uni, et la quittance fiscale correspondant à la procédure.",
+          ar: "صورتان شمسيتان ملوّنتان حديثتان ومتطابقتان بخلفية بيضاء، والوصل الجبائي الموافق للإجراء.",
+          dz: "زوج تصاور ملوّنين جداد وكيف كيف بخلفية بيضاء، ووصل الضريبة تاع الإجراء." } },
+        { cites: [PB], text: {
+          en: "The Ministry's biometric passport page also asks, for a renewal, for your father's or mother's birth certificate, or a parent's death certificate if neither is available.",
+          fr: "La page du ministère sur le passeport biométrique demande aussi, pour un renouvellement, l'acte de naissance du père ou de la mère, ou à défaut l'acte de décès de l'un des parents.",
+          ar: "وتطلب صفحة الوزارة عن الجواز البيومتري أيضًا، عند التجديد، عقد ميلاد الأب أو الأم، أو عند تعذّر ذلك عقد وفاة أحد الوالدين.",
+          dz: "الصفحة تاع الوزارة على الباسبور البيومتري تطلب زادة في التجديد شهادة ميلاد الباباك ولا اليماك، ولا شهادة وفاة واحد فيهم إذا ما كانش." } },
+        { cites: [PN], text: {
+          en: "A passport with a wrong or duplicate national identification number (NIN) can be replaced; no stamp duty is due when it is still valid and not declared lost, damaged or stolen.",
+          fr: "Un passeport comportant un NIN erroné ou attribué à une autre personne peut être remplacé ; aucun droit de timbre n'est dû s'il est en cours de validité et n'est pas déclaré perdu, détérioré ou volé.",
+          ar: "يمكن استبدال جواز يحمل رقم تعريف وطني خاطئ أو مكرّر، ولا تُدفع حقوق الطابع إذا كان ساري الصلاحية ولم يُصرَّح بضياعه أو تلفه أو سرقته.",
+          dz: "الباسبور لي فيه NIN غالط ولا مكرّر يتبدّل؛ ما تخلّصش التامبر إذا مازال صالح وما صرّحتش بلي ضاع، تقطّع ولا تسرق." } },
+        { cites: [PN], text: {
+          en: "If your request is refused, you can appeal to the daïra or administrative district responsible for your area.",
+          fr: "En cas de rejet de la demande, un recours peut être introduit auprès de la daïra ou de la circonscription administrative territorialement compétente.",
+          ar: "في حالة رفض الطلب، يمكن تقديم طعن لدى الدائرة أو المقاطعة الإدارية المختصة إقليميًا.",
+          dz: "إذا رفضو الطلب، تقدر تدير طعن في الدايرة ولا المقاطعة الإدارية تاع البلاصة تاعك." } },
       ],
     },
     {

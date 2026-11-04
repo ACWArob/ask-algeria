@@ -136,7 +136,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Listed on MFA consulate 'useful links' page (cgmilan.mfa.gov.dz/contact-us/useful-links); subpages fetched OK",
-    "notes": "Root blocked robots but /site_cgn/ pages fetched",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria. Root blocked robots but /site_cgn/ pages fetched",
     "pages": 3
   },
   {
@@ -458,7 +458,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Embassy of Algeria in Canberra (embcanberra.mfa.gov.dz) cites passeport.interieur.gov.dz/fr/DemandeCNIBE_FR/Demande",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 0
   },
   {
@@ -478,7 +478,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Cited by Consulate General London (cglondon.mfa.gov.dz/consular-services/12-s) and Embassy Abu Dhabi",
-    "notes": "WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria. WebFetch blocked by robots.txt - existence not proven by fetch (a fake .gov.dz also returned this)",
     "pages": 1
   },
   {
@@ -800,7 +800,7 @@
     "reachable": true,
     "fetch_status": "ok",
     "evidence": "Fetched OK (title 'ELHANAA - CNAS')",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria.",
     "pages": 4
   },
   {
@@ -840,7 +840,7 @@
     "reachable": false,
     "fetch_status": "not_tested",
     "evidence": "Legal-doctrine article on CASNOS launching Damancom",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria.",
     "pages": 0
   },
   {
@@ -3060,7 +3060,7 @@
     "reachable": false,
     "fetch_status": "robots",
     "evidence": "Linked as Ministry of Interior e-service from official wilaya portals wilaya-djelfa.dz and wilaya-adrar.dz (fetched 2026-10-27)",
-    "notes": "",
+    "notes": "Tester in Algeria (2026-11-04): works from inside Algeria.",
     "pages": 1
   },
   {
