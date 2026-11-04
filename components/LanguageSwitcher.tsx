@@ -28,7 +28,7 @@ export function LanguageSwitcher({ current, label }: { current: Locale; label: s
           aria-pressed={l === current}
           title={FULL[l]}
           lang={l === "dz" ? "arq" : l}
-          className={`min-h-[36px] rounded-full px-2.5 font-semibold transition-colors sm:px-3 ${
+          className={`min-h-[40px] rounded-full px-2.5 font-semibold transition-colors sm:px-3 ${
             l === current ? "bg-brand text-brand-ink" : "text-muted hover:text-ink"
           }`}
         >

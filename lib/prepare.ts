@@ -87,7 +87,7 @@ export function cleanDetails(v: unknown): Details {
 
 export interface PacketSource { n: number; title: string; url: string; domain: string }
 /** `offices`: the consulate cities the point names ("four photos in London"): that office's rule, not everyone's. */
-export interface PreparePoint { text: string; match: string; nums: number[]; offices?: string[] }
+export interface PreparePoint { text: string; match: string; nums: number[]; offices?: string[]; consular?: boolean }
 export interface PrepareSituation {
   id: string;
   label: string;
@@ -233,6 +233,8 @@ export interface PacketInput {
   today: Date;
   /** Formats a date for a language tag (en, fr, ar, arq). */
   formatDate: (d: Date, lang: string) => string;
+  /** Where the person lives: in Algeria, consulates' rules are left out even from shared sections. */
+  place?: Place;
 }
 
 export function fill(template: string, vars: Record<string, string>): string {
@@ -254,10 +256,11 @@ export function buildPacket(i: PacketInput): Packet {
 
   // 1. Checklist: only the guide's cited points for this situation; points naming the person's office go first.
   const words = officeWords(`${d.office} ${d.city}`);
-  const others = s.groups.flatMap((g) => g.points.filter((p) => isOtherOffice(p, words)).map((p) => ({ text: p.text, nums: p.nums })));
+  const groupsHere = i.place === "algeria" ? s.groups.map((g) => ({ ...g, points: g.points.filter((p) => !p.consular && !p.offices?.length) })) : s.groups;
+  const others = groupsHere.flatMap((g) => g.points.filter((p) => isOtherOffice(p, words)).map((p) => ({ text: p.text, nums: p.nums })));
   const checklist: ChecklistDoc = {
     ...ui, kind: "checklist", title: t.docs.checklist, intro: t.checklistIntro, mineLabel: t.mine, sourcesTitle: t.sources,
-    groups: s.groups
+    groups: groupsHere
       .map((g) => {
         const items = g.points
           .filter((p) => !isOtherOffice(p, words))
@@ -267,7 +270,8 @@ export function buildPacket(i: PacketInput): Packet {
       .filter((g) => g.items.length),
     ...(others.length && t.otherOffices ? { others: { title: t.otherOffices.title, note: t.otherOffices.note, items: others } } : {}),
     ...(t.extras && t.extras.items.length ? { extras: { title: t.extras.title, note: t.extras.note, items: [...t.extras.items] } } : {}),
-    sources: s.sources,
+    // Only the pages still cited (in Algeria some consulate pages drop out with their points).
+    sources: i.place === "algeria" ? s.sources.filter((x) => groupsHere.some((g) => g.points.some((p) => p.nums.includes(x.n)))) : s.sources,
   };
 
   const docs: PacketDoc[] = [checklist];
@@ -323,7 +327,7 @@ export function buildPacket(i: PacketInput): Packet {
   docs.push({ ...ui, kind: "links", title: t.docs.links, intro: t.linksIntro, links: i.procedure.portals });
 
   return {
-    title: `${i.procedure.title} — ${s.label}`,
+    title: `${i.procedure.title}: ${s.label}`,
     brand: t.brand,
     independent: t.independent,
     notOfficial: t.notOfficial,

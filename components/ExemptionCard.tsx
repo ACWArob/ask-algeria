@@ -65,6 +65,7 @@ export function ExemptionCard({ locale }: { locale: Locale }) {
         ))}
       </ol>
       <p className="mt-5 text-sm">{t.limits}</p>
+      <p className="mt-3 text-xs text-muted print:text-black">{t.printNotice}</p>
       <div className="mt-5">
         <PrintCardButton target={ID} label={t.print} />
       </div>

@@ -78,8 +78,9 @@ npm run build                # also rebuilds the search index
 | Variable | | Purpose |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | required* | Claude API key (*not needed with `MOCK_LLM=1`) |
-| `SITE_PASSWORD` | required | Password for the private demo |
-| `AUTH_SECRET` | optional | Separate cookie-signing key; rotate it to sign everyone out |
+| `SITE_PASSWORD` | required* | Password for the private demo (*not used once `PUBLIC_SITE=1`) |
+| `PUBLIC_SITE` | optional | `1` = public launch: no password, indexable by search engines (redeploy after changing) |
+| `AUTH_SECRET` | optional | Separate cookie-signing key; rotate it to sign everyone out. Also keys the hashed IPs (or set `IP_HASH_SECRET`) |
 | `AI_DISABLED` | optional | `1` turns off every AI call |
 | `AI_DAILY_BUDGET_USD` | optional | Daily AI budget across all servers (default 5) |
 | `AI_DAILY_PER_IP`, `TRANSLATE_DAILY_PER_IP` | optional | Daily quotas per visitor (defaults 40 and 10) |
@@ -104,6 +105,7 @@ To refresh the data: `npm run refresh` (check pages, cross-check facts, rebuild 
 - ID, phone and card numbers are removed in the browser before a question is sent, and again on the server.
 - No accounts, no database of conversations. Uploaded documents are used for one request and never saved.
 - Prepare my file builds every document in the browser; nothing typed there is sent anywhere.
+- The full privacy notice, terms and legal notice are on [/legal](https://www.algeriagov.online/legal).
 
 ## Project layout
 

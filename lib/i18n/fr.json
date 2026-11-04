@@ -16,7 +16,9 @@
     "embassies": "Ambassades et consulats",
     "status": "État des portails",
     "glossary": "Glossaire",
-    "contact": "Nous contacter"
+    "contact": "Nous contacter",
+    "report": "Signaler une erreur",
+    "legal": "Mentions légales"
   },
   "lang": {
     "label": "Langue",
@@ -90,7 +92,7 @@
     },
     "commentPlaceholder": "Facultatif : dites-nous quelle est la bonne réponse",
     "send": "Envoyer",
-    "feedbackNote": "Votre question est enregistrée avec votre avis (données personnelles retirées) pour améliorer les réponses.",
+    "feedbackNote": "Votre avis est enregistré avec cette question, jusqu'à 3 questions précédentes, le début de la réponse et votre commentaire (numéros personnels retirés).",
     "checklist": "Faire une checklist",
     "checklistTitle": "Checklist",
     "copy": "Copier",
@@ -140,9 +142,9 @@
     "placeholder": "Collez ici le texte du document…",
     "or": "ou",
     "upload": "Importer un PDF ou une photo",
-    "uploadHint": "PDF, JPG, PNG ou WebP, 5 Mo maximum",
+    "uploadHint": "PDF, JPG, PNG ou WebP, 4 Mo maximum",
     "remove": "Retirer le fichier",
-    "tooLarge": "Ce fichier dépasse 5 Mo. Essayez un scan plus léger ou une seule page.",
+    "tooLarge": "Ce fichier dépasse 4 Mo. Essayez un scan plus léger ou une seule page.",
     "badType": "Ce type de fichier n'est pas pris en charge. Utilisez un PDF, JPG, PNG ou WebP.",
     "target": "Traduire en",
     "mode": "Que souhaitez-vous ?",
@@ -150,7 +152,7 @@
     "modeSummary": "Résumé simple + ce que vous devez faire",
     "submit": "Obtenir le résultat",
     "working": "Lecture du document…",
-    "privacy": "Votre document est traité uniquement pour produire ce résultat. Il n'est pas conservé.",
+    "privacy": "Votre document est envoyé à notre prestataire d'IA (Anthropic) uniquement pour produire ce résultat, et nous ne le conservons pas. Les numéros contenus dans un fichier importé ne sont pas retirés.",
     "redacted": "Nous avons retiré {n} numéro(s) personnel(s) du texte collé avant l'envoi.",
     "needInput": "Collez un texte ou choisissez d'abord un fichier.",
     "result": "Résultat",
@@ -169,7 +171,7 @@
     "empty": "Aucun site ne correspond à « {q} ».",
     "count": "{n} sites",
     "unverified": "Non vérifié",
-    "unverifiedHint": "Nous n'avons pas pu ouvrir ce site automatiquement. Comment nous savons qu'il est officiel :",
+    "unverifiedHint": "Nous n'avons pas pu ouvrir ce site automatiquement depuis l'étranger, nous ne l'avons donc pas vérifié nous-mêmes. Il figure ici parce que des sources officielles y renvoient.",
     "domainPages": "{n} pages dans notre index",
     "lastChecked": "Dernière vérification le {date}"
   },
@@ -197,7 +199,7 @@
         "body": [
           "Nous lisons régulièrement les sites officiels du gouvernement algérien, principalement en .gov.dz et .dz, y compris les guides et formulaires PDF qu'ils publient.",
           "Quand vous posez une question, le système cherche dans cette collection en français, en arabe et en anglais, et retient les passages les plus pertinents.",
-          "Un modèle d'IA rédige la réponse uniquement à partir de ces passages. Chaque information renvoie à la page d'où elle provient.",
+          "La première réponse est une recherche gratuite : les lignes utiles de ces pages, citées avec leur source. Si vous demandez une réponse rédigée, un modèle d'IA l'écrit uniquement à partir de ces passages, et chaque information renvoie à sa page.",
           "Si les pages officielles dont nous disposons ne couvrent pas votre question, la réponse le dit clairement et vous oriente vers le site officiel le plus pertinent."
         ]
       },
@@ -213,9 +215,11 @@
       {
         "title": "Votre vie privée",
         "body": [
-          "Les numéros d'identité, de téléphone, les e-mails et les numéros de compte ou de carte sont retirés dans votre navigateur avant l'envoi de votre question.",
-          "Nous ne conservons pas l'historique de vos conversations.",
-          "Les documents que vous importez sont traités uniquement pour produire le résultat et ne sont pas conservés."
+          "Avant l'envoi, votre navigateur retire les numéros d'identité, de téléphone, de carte et de compte ainsi que les e-mails. Les noms, adresses et dates ne sont pas retirés : ne les indiquez pas.",
+          "Nous ne conservons pas vos conversations. Si vous notez une réponse, nous enregistrons cette question, jusqu'à 3 questions précédentes, le début de la réponse et votre commentaire (numéros personnels retirés) pour améliorer les réponses. Les messages envoyés via « Nous contacter » sont conservés pour être lus, avec votre e-mail seulement si vous l'indiquez.",
+          "Les réponses rédigées sont gardées 24 heures, sans lien avec vous, pour répondre plus vite à la même question.",
+          "Les documents importés sont envoyés à notre prestataire d'IA (Anthropic) pour produire le résultat. Nous ne les conservons pas. Les numéros contenus dans un fichier importé ne sont pas retirés.",
+          "Contre les abus, nous comptons les demandes par connexion pendant 2 jours, à partir d'une forme brouillée (hachée) de votre adresse IP. Votre langue, votre service et, si vous le choisissez, vos informations « Préparer mon dossier » restent dans votre navigateur."
         ]
       },
       {
@@ -427,5 +431,9 @@
       "title": "Règles propres à certains consulats",
       "note": "Elles viennent des pages d'autres consulats. Vérifiez ce que demande votre propre service."
     }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Cette page n'existe pas ou a été déplacée. Posez votre question sur la page d'accueil, ou parcourez les sites officiels."
   }
 }

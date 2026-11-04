@@ -75,7 +75,8 @@ export function DirectoryClient({ dict, groups, locale }: { dict: Dict; groups: 
                         {t.unverified}
                       </summary>
                       <p className="mt-1.5 max-w-prose">
-                        {t.unverifiedHint} <span dir="ltr" className="[unicode-bidi:isolate]">{e.evidence}</span>
+                        {/* Our research notes (e.evidence) stay internal: only this plain explanation is shown. */}
+                        {t.unverifiedHint}
                       </p>
                     </details>
                   )}

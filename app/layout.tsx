@@ -3,13 +3,19 @@ import "./globals.css";
 import { fontVars } from "./fonts";
 import { getDict, htmlLang, isRtl } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
+import { isPublic, SITE_URL } from "@/lib/site";
 
 export function generateMetadata(): Metadata {
   const dict = getDict(getLocale());
   return {
     title: { default: dict.brand.name, template: `%s · ${dict.brand.name}` },
     description: dict.brand.tagline,
-    robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
+    metadataBase: new URL(SITE_URL),
+    // The independence notice goes into link previews too, so a shared link never looks like a government site.
+    openGraph: { type: "website", siteName: dict.brand.name, title: `${dict.brand.name} · ${dict.strip.independent}`, description: dict.brand.tagline, url: "/" },
+    robots: isPublic()
+      ? { index: true, follow: true }
+      : { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
     icons: { icon: "/icon.svg" },
   };
 }

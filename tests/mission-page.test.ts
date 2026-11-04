@@ -113,7 +113,8 @@ describe("hasLaissezPasser", () => {
 
 describe("status and notes", () => {
   it("maps unknown statuses to unverified and hides notes for unverified missions", () => {
-    expect(missionBadge(mission({ status: "verified" }))).toBe("verified");
+    expect(missionBadge(mission({ status: "verified", source_url: "https://cglondon.mfa.gov.dz/" }))).toBe("verified");
+    expect(missionBadge(mission({ status: "verified", source_url: "https://web.archive.org/web/2026id_/https://x.mfa.gov.dz/" }))).toBe("archived");
     expect(missionBadge(mission({ status: "website-only" }))).toBe("website-only");
     expect(missionBadge(mission({ status: "weird" }))).toBe("unverified");
     expect(missionNotes(mission({ status: "unverified", note: "Closed on Friday" })).note).toBe("");

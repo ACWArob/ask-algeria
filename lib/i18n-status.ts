@@ -123,7 +123,7 @@ const ar: StatusStrings = {
   rateLimited: "عدد كبير من الفحوصات من اتصالك. أعد المحاولة بعد دقيقة.",
   checkNow: "افحص الآن",
   lastChecked: "آخر فحص على الساعة {time}. الفحص الجديد بعد {next}.",
-  summary: "استجابت {up} من أصل {n} بوابة لخادمنا.",
+  summary: "البوابات التي استجابت لخادمنا: {up} من أصل {n}.",
   insideWorks: "تعمل",
   insideNotWorking: "لا تعمل",
   insideLogin: "صفحة الدخول فقط",
@@ -138,7 +138,7 @@ const ar: StatusStrings = {
   ],
   tipsNote: "نصائح عامة، وليست رسمية.",
   openPortal: "افتح البوابة",
-  opensNew: "يفتح الموقع الرسمي في علامة تبويب جديدة",
+  opensNew: "يفتح الموقع الرسمي في نافذة جديدة",
 };
 
 /** Algerian Darija (never Moroccan: تاع not ديال, ضرك not دابا). */
@@ -170,7 +170,7 @@ const dz: StatusStrings = {
   rateLimited: "بزاف تاع الفحوصات من الكونيكسيون تاعك. عاود جرّب من بعد دقيقة.",
   checkNow: "افحص ضرك",
   lastChecked: "آخر فحص على {time}. الفحص الجديد من بعد {next}.",
-  summary: "{up} من {n} بوابات جاوبو السيرفور تاعنا.",
+  summary: "البوابات لي جاوبو السيرفور تاعنا: {up} من {n}.",
   insideWorks: "تخدم",
   insideNotWorking: "ما تخدمش",
   insideLogin: "غير صفحة الدخول",
@@ -185,7 +185,7 @@ const dz: StatusStrings = {
   ],
   tipsNote: "نصايح عامة، ماشي رسمية.",
   openPortal: "حل البوابة",
-  opensNew: "يحل الموقع الرسمي في تبويب جديد",
+  opensNew: "يحلّ الموقع الرسمي في نافذة جديدة",
 };
 
 export const STATUS_STRINGS: Record<Locale, StatusStrings> = { en, fr, ar, dz };

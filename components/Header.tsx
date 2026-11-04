@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Dict, Locale } from "@/lib/i18n";
+import { isPublic } from "@/lib/site";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { NavLinks } from "./NavLinks";
 
@@ -47,13 +48,28 @@ export function Footer({ dict, authed = true }: { dict: Dict; authed?: boolean }
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <p className="font-semibold text-ink">{dict.footer.independent}</p>
         {authed && (
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <Link href="/embassies" className="link">{dict.nav.embassies}</Link>
-            <Link href="/about" className="link">{dict.nav.about}</Link>
-            <Link href="/about#contact" className="link">{dict.nav.contact}</Link>
-            <form action="/api/logout" method="post">
-              <button type="submit" className="link">{dict.nav.logout}</button>
-            </form>
+          <div className="flex flex-wrap items-center gap-x-4">
+            {/* Every section, so nothing is hidden behind the scrolling menu on a phone. Padded for 40px tap targets. */}
+            {(
+              [
+                ["/prepare", dict.prepare.nav],
+                ["/embassies", dict.nav.embassies],
+                ["/status", dict.nav.status],
+                ["/glossary", dict.nav.glossary],
+                ["/directory", dict.nav.directory],
+                ["/about", dict.nav.about],
+                ["/about#contact", dict.nav.contact],
+                ["/about#contact", dict.nav.report],
+                ["/legal", dict.nav.legal],
+              ] as const
+            ).map(([href, label], i) => (
+              <Link key={i} href={href} className="link inline-flex min-h-[40px] items-center">{label}</Link>
+            ))}
+            {!isPublic() && (
+              <form action="/api/logout" method="post">
+                <button type="submit" className="link inline-flex min-h-[40px] items-center">{dict.nav.logout}</button>
+              </form>
+            )}
           </div>
         )}
       </div>

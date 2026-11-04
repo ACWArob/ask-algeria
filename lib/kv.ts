@@ -17,6 +17,8 @@ export interface KvOptions {
   url: string;
   token: string;
   timeoutMs?: number;
+  /** Time limit until the first successful call (connection setup on a new instance). */
+  firstTimeoutMs?: number;
   fetch?: typeof fetch;
   now?: () => number;
 }
@@ -27,6 +29,9 @@ export class Kv {
   private url: string;
   private token: string;
   private timeoutMs: number;
+  /** Longer limit until the first success: a new instance's first request also sets up the TLS connection. */
+  private firstTimeoutMs: number;
+  private warm = false;
   private fetchImpl: typeof fetch;
   private now: () => number;
   private downUntil = 0;
@@ -35,6 +40,7 @@ export class Kv {
     this.url = o.url.replace(/\/+$/, "");
     this.token = o.token;
     this.timeoutMs = o.timeoutMs ?? 300;
+    this.firstTimeoutMs = Math.max(this.timeoutMs, o.firstTimeoutMs ?? 0);
     this.fetchImpl = o.fetch ?? ((...a) => fetch(...a));
     this.now = o.now ?? Date.now;
   }
@@ -47,7 +53,8 @@ export class Kv {
     if (cmds.length === 0) return [];
     if (this.now() < this.downUntil) return null;
     const ac = new AbortController();
-    const timer = setTimeout(() => ac.abort(), this.timeoutMs);
+    const limit = this.warm ? this.timeoutMs : this.firstTimeoutMs;
+    const timer = setTimeout(() => ac.abort(), limit);
     try {
       const res = await this.fetchImpl(`${this.url}/pipeline`, {
         method: "POST",
@@ -61,10 +68,11 @@ export class Kv {
       if (!Array.isArray(body) || body.length !== cmds.length) throw new Error("unexpected response");
       const bad = body.find((r) => !r || typeof r !== "object" || r.error);
       if (bad) throw new Error(`command failed: ${bad?.error ?? "?"}`);
+      this.warm = true;
       return body.map((r) => r.result ?? null);
     } catch (err) {
       this.downUntil = this.now() + SKIP_AFTER_FAILURE_MS;
-      const why = ac.signal.aborted ? `timeout after ${this.timeoutMs} ms` : err instanceof Error ? err.message : String(err);
+      const why = ac.signal.aborted ? `timeout after ${limit} ms` : err instanceof Error ? err.message : String(err);
       console.warn(`[kv] shared store unavailable (${why}); using in-memory counters for ${SKIP_AFTER_FAILURE_MS / 1000}s`);
       return null;
     } finally {
@@ -110,7 +118,8 @@ let shared: Kv | null | undefined;
 export function sharedKv(): Kv | null {
   if (shared !== undefined) return shared;
   const c = kvConfig();
-  shared = c ? new Kv({ ...c, timeoutMs: Number(process.env.KV_TIMEOUT_MS) || 300 }) : null;
+  // A cold instance's first call timed out at 300 ms on Vercel (TLS setup), which skipped the shared cache write.
+  shared = c ? new Kv({ ...c, timeoutMs: Number(process.env.KV_TIMEOUT_MS) || 300, firstTimeoutMs: 1500 }) : null;
   return shared;
 }
 

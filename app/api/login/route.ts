@@ -8,7 +8,8 @@ export const dynamic = "force-dynamic";
 
 function safeNext(v: unknown): string {
   const s = typeof v === "string" ? v : "/";
-  return s.startsWith("/") && !s.startsWith("//") && !s.startsWith("/api/") ? s : "/";
+  // A path on this site only: "/\\evil.com" or "//evil.com" would be read as another host.
+  return /^\/(?![/\\])/.test(s) && !s.startsWith("/api/") && !/[\u0000-\u001f\\]/.test(s) ? s : "/";
 }
 
 /** Accepts JSON {password, next} or a classic form post (works without JS). */

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { redact } from "@/lib/redact";
+import { redact, sheetSafe } from "@/lib/redact";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
@@ -41,7 +41,8 @@ export async function POST(req: Request) {
 async function forward(entry: Record<string, unknown>) {
   const hook = process.env.FEEDBACK_WEBHOOK_URL;
   if (hook && /^https:\/\//.test(hook)) {
-    await fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry), signal: AbortSignal.timeout(5000) }).catch(() => {});
+    const safe = Object.fromEntries(Object.entries(entry).map(([k, v]) => [k, sheetSafe(v)]));
+    await fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(safe), signal: AbortSignal.timeout(5000) }).catch(() => {});
   }
 }
 
@@ -52,6 +53,8 @@ const EMAIL = /^[^\s@<>]{1,64}@[^\s@<>]{1,190}\.[a-z]{2,}$/i;
  * address is kept only when the person typed one in its own field, because they asked for a reply.
  */
 async function contact(j: Record<string, unknown>) {
+  // Honeypot: a hidden field people never fill; bots that fill every field get a quiet "ok".
+  if (typeof j.website === "string" && j.website.trim()) return NextResponse.json({ ok: true });
   const message = clip(j.message, 2000);
   if (message.length < 3) return NextResponse.json({ ok: false }, { status: 400 });
   const reply = typeof j.replyTo === "string" ? j.replyTo.trim().slice(0, 254) : "";

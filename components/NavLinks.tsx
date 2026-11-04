@@ -18,8 +18,12 @@ export function NavLinks({ dict }: { dict: Dict }) {
     { href: "/directory", label: dict.nav.directory },
   ];
   return (
-    <nav aria-label={dict.nav.menu} className="-mx-1 overflow-x-auto lg:mx-0">
-      <ul className="flex gap-1 whitespace-nowrap text-[0.9375rem] lg:text-[0.875rem]">
+    // On a phone the menu scrolls sideways; the fade at the end shows there is more (every page is also in the footer).
+    <nav
+      aria-label={dict.nav.menu}
+      className="-mx-1 overflow-x-auto [mask-image:linear-gradient(to_right,#000_85%,transparent)] rtl:[mask-image:linear-gradient(to_left,#000_85%,transparent)] lg:mx-0 lg:[mask-image:none] lg:rtl:[mask-image:none]"
+    >
+      <ul className="flex gap-1 whitespace-nowrap pe-10 text-[0.9375rem] lg:pe-0 lg:text-[0.875rem]">
         {items.map((it) => {
           const active = it.href === "/" ? path === "/" : path.startsWith(it.href);
           return (

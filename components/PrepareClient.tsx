@@ -205,8 +205,9 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
       formLabels,
       today,
       formatDate,
+      place: place ?? undefined,
     });
-  }, [proc, situation, details, today, locale, rtl, dict, t, letterLang, letters, formLabels]);
+  }, [proc, situation, details, today, locale, rtl, dict, t, letterLang, letters, formLabels, place]);
 
   function download() {
     if (!packet || !proc) return;
@@ -284,7 +285,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
             <p className="mt-2 text-muted">{t.fieldsHint}</p>
           </div>
           <form className="grid gap-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()} autoComplete="on" noValidate>
-            {DETAIL_FIELDS.map((f) => {
+            {DETAIL_FIELDS.filter((f) => !(f === "consularNo" && place === "algeria")).map((f) => {
               const k = KIND[f];
               const wide = f === "address" || f === "office";
               return (
@@ -372,7 +373,7 @@ function DocView({ doc, packet, opensNew }: { doc: PacketDoc; packet: Packet; op
     <article lang={doc.lang} dir={doc.dir} className="packet-doc rounded-3xl border border-line bg-surface p-5 sm:p-8" aria-labelledby={`doc-${doc.kind}`}>
       {doc.kind !== "letter" && (
         <p className="border-b border-line pb-2 text-xs text-muted">
-          {packet.brand} · {packet.independent} — {packet.title}
+          {packet.brand} · {packet.independent} · {packet.title}
         </p>
       )}
       {doc.kind === "letter" ? (

@@ -16,7 +16,9 @@
     "embassies": "Embassies & consulates",
     "status": "Portal status",
     "glossary": "Glossary",
-    "contact": "Contact us"
+    "contact": "Contact us",
+    "report": "Report wrong information",
+    "legal": "Legal & privacy"
   },
   "lang": {
     "label": "Language",
@@ -90,7 +92,7 @@
     },
     "commentPlaceholder": "Optional: tell us what the right answer is",
     "send": "Send",
-    "feedbackNote": "Your question is saved with your feedback (personal details removed) to improve answers.",
+    "feedbackNote": "Your rating is saved with this question, up to 3 earlier ones, the start of the answer and your comment (personal numbers removed).",
     "checklist": "Make a checklist",
     "checklistTitle": "Checklist",
     "copy": "Copy",
@@ -140,9 +142,9 @@
     "placeholder": "Paste the text of the document here…",
     "or": "or",
     "upload": "Upload a PDF or photo",
-    "uploadHint": "PDF, JPG, PNG or WebP, up to 5 MB",
+    "uploadHint": "PDF, JPG, PNG or WebP, up to 4 MB",
     "remove": "Remove file",
-    "tooLarge": "That file is larger than 5 MB. Try a smaller scan or a single page.",
+    "tooLarge": "That file is larger than 4 MB. Try a smaller scan or a single page.",
     "badType": "That file type isn't supported. Use a PDF, JPG, PNG or WebP.",
     "target": "Translate into",
     "mode": "What do you want?",
@@ -150,7 +152,7 @@
     "modeSummary": "Plain-language summary + what you need to do",
     "submit": "Get the result",
     "working": "Reading the document…",
-    "privacy": "Your document is processed only to produce this result. It is not stored.",
+    "privacy": "Your document is sent to our AI provider (Anthropic) only to produce this result, and we don't store it. Numbers inside an uploaded file are not removed.",
     "redacted": "We removed {n} personal number(s) from the pasted text before sending it.",
     "needInput": "Paste some text or choose a file first.",
     "result": "Result",
@@ -169,7 +171,7 @@
     "empty": "No site matches “{q}”.",
     "count": "{n} sites",
     "unverified": "Not verified",
-    "unverifiedHint": "We couldn't open this site automatically. How we know it's official:",
+    "unverifiedHint": "We couldn't open this site automatically from outside Algeria, so we haven't checked it ourselves. It is listed because official sources link to it.",
     "domainPages": "{n} pages in our index",
     "lastChecked": "Last checked {date}"
   },
@@ -197,7 +199,7 @@
         "body": [
           "We regularly read official Algerian government websites, mostly .gov.dz and .dz domains, including the PDF guides and forms they publish.",
           "When you ask a question, the system searches that collection in French, Arabic and English and picks the most relevant passages.",
-          "An AI model writes the answer using only those passages. Every fact links to the page it came from.",
+          "Your first answer is free search: the matching lines of those pages, quoted with their source. If you ask for a written answer, an AI model writes it using only those passages, and every fact links to the page it came from.",
           "If the official pages we have don't cover your question, the answer says so and points you to the most relevant official site."
         ]
       },
@@ -213,9 +215,11 @@
       {
         "title": "Your privacy",
         "body": [
-          "ID numbers, phone numbers, emails and bank or card numbers are removed in your browser before your question is sent.",
-          "We don't keep a history of your conversations.",
-          "Documents you upload are processed only to produce your result and are not stored."
+          "Before your question is sent, your browser removes ID, phone, card and account numbers and emails. Names, addresses and dates are not removed, so leave them out.",
+          "We don't keep your conversations. If you rate an answer, we save that question, up to 3 earlier questions, the start of the answer and your comment (personal numbers removed) to improve answers. Messages sent through Contact us are kept so we can read them, with your email only if you give one.",
+          "Written answers are kept for 24 hours, not linked to you, so the same question is answered faster next time.",
+          "Documents you upload are sent to our AI provider (Anthropic) to produce your result. We don't store them. Numbers inside an uploaded file are not removed.",
+          "To limit abuse we count requests per connection for 2 days, using a scrambled (hashed) form of your IP address. Your language, your office and, if you choose, your Prepare my file details stay in your browser."
         ]
       },
       {
@@ -427,5 +431,9 @@
       "title": "Rules quoted from specific consulates",
       "note": "These come from other consulates' pages. Check what your own office asks for."
     }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page doesn't exist or has moved. Ask your question on the home page, or browse the official sites."
   }
 }

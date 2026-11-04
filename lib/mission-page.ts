@@ -99,10 +99,12 @@ export function hasLaissezPasser(records: Pick<CorpusRecord, "title" | "text">[]
   return records.some((r) => LAISSEZ_PASSER.test(r.title) || LAISSEZ_PASSER.test(r.text));
 }
 
-export type MissionBadge = "verified" | "website-only" | "unverified";
+export type MissionBadge = "verified" | "archived" | "website-only" | "unverified";
 
+/** "verified" only when the details come from the live official site; from a Wayback copy they say so. */
 export function missionBadge(m: Mission): MissionBadge {
-  return m.status === "verified" || m.status === "website-only" ? m.status : "unverified";
+  if (m.status === "verified") return /(?:^|\/\/)web\.archive\.org\//.test(m.source_url ?? "") ? "archived" : "verified";
+  return m.status === "website-only" ? "website-only" : "unverified";
 }
 
 /** Visitor-facing note, same rule as the /embassies list: fax hint or a public note (closures, appointments). */

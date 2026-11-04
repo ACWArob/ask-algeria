@@ -1,7 +1,7 @@
 import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
-import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
+import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
 import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions, MISSIONS } from "@/lib/missions";
 import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
@@ -40,6 +40,7 @@ const MISSION_CITIES = [...new Set(MISSIONS.map((m) => m.city).filter(Boolean)),
 export interface InstantResult {
   quick?: InstantQuick;
   guides: InstantGuide[];
+  /** `place` is the wilaya or city in the reader's script when we have it (Arabic names for ar/dz). */
   office?: { place: string; name: string; site?: string; inAlgeria: boolean; fromConnection: boolean };
   mission?: InstantMission;
   pages: InstantPage[];
@@ -93,6 +94,12 @@ export function snippet(text: string, query: string, max = 240): string {
     if (space > start + max / 2) end = space;
   }
   return `${start > 0 ? "… " : ""}${clean.slice(start, end)}${end < clean.length ? " …" : ""}`;
+}
+
+/** A wilaya's Arabic name for Arabic and Darija readers ("Oran" → "وهران"); other places as they are. */
+function localPlace(post: PostHint, locale: Locale): string {
+  if ((locale === "ar" || locale === "dz") && post.inAlgeria) return WILAYAS.find((w) => w.name === post.place)?.ar ?? post.place;
+  return post.place;
 }
 
 export function instantSearch(question: string, locale: Locale, headers?: Headers, context = "", where: Where | null = null): InstantResult {
@@ -216,7 +223,7 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
     ...(quick ? { quick } : {}),
     guides,
     ...(askPlace ? { askPlace } : {}),
-    ...(post ? { office: { place: post.place, name: post.post, site: post.site, inAlgeria: Boolean(post.inAlgeria), fromConnection: !stated } } : {}),
+    ...(post ? { office: { place: localPlace(post, locale), name: post.post, site: post.site, inAlgeria: Boolean(post.inAlgeria), fromConnection: !stated } } : {}),
     ...(mission ? { mission } : {}),
     pages,
   };

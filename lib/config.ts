@@ -11,7 +11,8 @@ export const MODELS = {
 export const LIMITS = {
   questionMaxChars: 1000,
   translateMaxChars: 20000,
-  uploadMaxBytes: 5 * 1024 * 1024,
+  // Under Vercel's 4.5 MB request-body limit, so a too-big file gets our message, not the platform's error.
+  uploadMaxBytes: 4 * 1024 * 1024,
   rateLimitPerMinute: Number(process.env.RATE_LIMIT_PER_MIN) || 20,
   topChunks: 8,
   answerMaxTokens: 1400,

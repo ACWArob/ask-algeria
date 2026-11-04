@@ -73,3 +73,6 @@ export function redact(input: string): RedactionResult {
   }
   return { text, removed, kinds: [...kinds] };
 }
+
+/** A text starting with = + - @ would run as a formula if a webhook appends it to a spreadsheet: make it plain text. */
+export const sheetSafe = (v: unknown) => (typeof v === "string" && /^[=+\-@\t\r]/.test(v) ? `'${v}` : v);

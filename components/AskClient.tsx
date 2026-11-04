@@ -644,7 +644,9 @@ function Checklist({ items, title, dict, dir, onHide }: { items: string[]; title
   const t = dict.ask;
   const [done, setDone] = useState<boolean[]>(() => items.map(() => false));
   const [copied, setCopied] = useState(false);
-  const text = `${title}\n\n${items.map((it, i) => `${done[i] ? "☑" : "☐"} ${it}`).join("\n")}`;
+  // Shared or printed lists carry the independence notice and the site, so they never pass for an official list.
+  const notice = `${dict.brand.name} · ${dict.strip.independent} · algeriagov.online · ${dict.footer.confirm}`;
+  const text = `${title}\n\n${items.map((it, i) => `${done[i] ? "☑" : "☐"} ${it}`).join("\n")}\n\n${notice}`;
   async function copy() {
     try {
       await navigator.clipboard.writeText(text);
@@ -658,7 +660,7 @@ function Checklist({ items, title, dict, dir, onHide }: { items: string[]; title
     const w = window.open("", "_blank");
     if (!w) return;
     const esc = (x: string) => x.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
-    w.document.write(`<html dir="${dir}"><title>${esc(title)}</title><body style="font-family:system-ui;padding:24px"><h2>${esc(title)}</h2><ul style="list-style:none;padding:0">${items.map((it) => `<li style="margin:8px 0">☐ ${esc(it)}</li>`).join("")}</ul></body></html>`);
+    w.document.write(`<html dir="${dir}"><title>${esc(title)}</title><body style="font-family:system-ui;padding:24px"><h2>${esc(title)}</h2><ul style="list-style:none;padding:0">${items.map((it) => `<li style="margin:8px 0">☐ ${esc(it)}</li>`).join("")}</ul><p style="margin-top:24px;font-size:12px;color:#444">${esc(notice)}</p></body></html>`);
     w.document.close();
     w.print();
   }

@@ -112,7 +112,7 @@ export function docHtml(packet: Packet, doc: PacketDoc): string {
 <style>${CSS}</style>
 </head>
 <body>
-${doc.kind === "letter" ? "" : `<div class="top">${esc(packet.brand)} · ${esc(packet.independent)} — ${esc(packet.title)}</div>\n`}${docBody(doc)}
+${doc.kind === "letter" ? "" : `<div class="top">${esc(packet.brand)} · ${esc(packet.independent)} · ${esc(packet.title)}</div>\n`}${docBody(doc)}
 <p class="foot">${doc.kind === "letter" ? esc(doc.notice) : `${esc(packet.notOfficial)} ${esc(packet.prepared)}`}</p>
 </body>
 </html>

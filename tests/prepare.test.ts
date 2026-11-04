@@ -158,7 +158,7 @@ const proc: PrepareProcedure = {
         { text: "London asks for four photos.", match: "London asks for four photos.", nums: [2], offices: ["London"] },
       ] }],
       sources: [{ n: 1, title: "A", url: "https://a.example/x", domain: "a.example" }, { n: 2, title: "B", url: "https://b.example/y", domain: "b.example" }],
-      letterSubject: { en: "Biometric passport — First passport", fr: "Passeport — Premier passeport", ar: "جواز السفر — أول جواز سفر" },
+      letterSubject: { en: "Biometric passport: First passport", fr: "Passeport: Premier passeport", ar: "جواز السفر: أول جواز سفر" },
     },
     { id: "cni", label: "ID card (online)", office: "online", place: "abroad", groups: [], sources: [], letterSubject: { en: "x", fr: "x", ar: "x" } },
   ],
@@ -199,7 +199,7 @@ describe("packet", () => {
     expect(l.paragraphs[0]).toContain("BENALI Amel");
     expect(l.paragraphs[0]).toContain(fr.prepare.letter.blank); // empty fields become blanks to fill by hand
     expect(l.paragraphs.join(" ")).toContain("1234");
-    expect(l.subject).toBe("Passeport — Premier passeport");
+    expect(l.subject).toBe("Passeport: Premier passeport");
   });
 
   it("keeps other consulates' rules apart when the person's office isn't one of them", () => {
@@ -211,6 +211,17 @@ describe("packet", () => {
     // No office typed yet: still apart, so nobody reads London's rule as their own.
     const blank = packet(0).docs[0];
     if (blank.kind === "checklist") expect(blank.others?.items).toHaveLength(1);
+  });
+
+  it("living in Algeria: consulate rules and their sources are left out, even from a situation for everyone", () => {
+    const p = buildPacket({ procedure: proc, situation: proc.situations[0], details: { ...emptyDetails(), city: "Oran" }, uiLang: "en", uiDir: "ltr",
+      text: { brand: "b", independent: "i", notOfficial: "n", prepared: "{date}", docs: en.prepare.docs, checklistIntro: "c", mine: "m", sources: "s", detailsIntro: "d", linksIntro: "l", fields: en.prepare.fields, otherOffices: en.prepare.otherOffices },
+      letterLang: "fr", letter: fr.prepare.letter, formLabels: { fr: fr.prepare.fields, ar: ar.prepare.fields }, today: new Date(2026, 9, 31), formatDate: (d: Date) => d.toISOString().slice(0, 10), place: "algeria" });
+    const c = p.docs[0];
+    if (c.kind !== "checklist") throw new Error();
+    expect(c.others).toBeUndefined();
+    expect(c.groups.flatMap((g) => g.items.map((x) => x.text))).toEqual(["Valid consular card."]);
+    expect(c.sources.map((x) => x.n)).toEqual([1]);
   });
 
   it("Arabic letter is RTL and uses the Arabic name; online situations have no letter", () => {

@@ -93,6 +93,22 @@ describe("lib/kv client", () => {
     expect(await f.kv.get("missing")).toEqual({ ok: true, value: null });
   });
 
+  it("gives a new instance's first call longer (connection setup), then uses the short limit", async () => {
+    let calls = 0;
+    // First response after 60 ms: too slow for the 30 ms limit, fine for the 200 ms first-call limit.
+    const slowOnce = (async () => {
+      calls++;
+      if (calls === 1) await new Promise((r) => setTimeout(r, 60));
+      return new Response(JSON.stringify([{ result: "v" }]), { status: 200 });
+    }) as unknown as typeof fetch;
+    const kv = new Kv({ url: URL_, token: "t", timeoutMs: 30, firstTimeoutMs: 200, fetch: slowOnce });
+    expect(await kv.get("k")).toEqual({ ok: true, value: "v" });
+    const hang = new Kv({ url: URL_, token: "t", timeoutMs: 30, firstTimeoutMs: 200, fetch: hangingFetch });
+    const t0 = Date.now();
+    expect(await hang.get("k")).toEqual({ ok: false });
+    expect(Date.now() - t0).toBeGreaterThanOrEqual(150);
+  });
+
   it("times out quickly, reports failure instead of throwing, then skips the store for a while", async () => {
     let now = 0;
     const kv = new Kv({ url: URL_, token: "t", timeoutMs: 30, fetch: hangingFetch, now: () => now });

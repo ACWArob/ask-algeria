@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n";
 
 export interface MissionStrings {
   back: string;
-  status: { verified: string; "website-only": string; unverified: string };
+  status: { verified: string; archived: string; "website-only": string; unverified: string };
   checked: string;
   source: string;
   contactTitle: string;
@@ -35,7 +35,7 @@ export interface MissionStrings {
 export const MISSION_STRINGS: Record<Locale, MissionStrings> = {
   en: {
     back: "All embassies & consulates",
-    status: { verified: "Details verified", "website-only": "Website only", unverified: "Not verified" },
+    status: { verified: "Details verified", archived: "From an archived official page", "website-only": "Website only", unverified: "Not verified" },
     checked: "Details checked on {date}",
     source: "Source",
     contactTitle: "Contact",
@@ -94,7 +94,7 @@ export const MISSION_STRINGS: Record<Locale, MissionStrings> = {
   },
   fr: {
     back: "Toutes les ambassades et consulats",
-    status: { verified: "Coordonnées vérifiées", "website-only": "Site web seulement", unverified: "Non vérifié" },
+    status: { verified: "Coordonnées vérifiées", archived: "D'après une page officielle archivée", "website-only": "Site web seulement", unverified: "Non vérifié" },
     checked: "Coordonnées vérifiées le {date}",
     source: "Source",
     contactTitle: "Coordonnées",
@@ -153,7 +153,7 @@ export const MISSION_STRINGS: Record<Locale, MissionStrings> = {
   },
   ar: {
     back: "كل السفارات والقنصليات",
-    status: { verified: "بيانات موثَّقة", "website-only": "الموقع الإلكتروني فقط", unverified: "غير موثَّقة" },
+    status: { verified: "بيانات موثَّقة", archived: "من نسخة مؤرشفة لصفحة رسمية", "website-only": "الموقع الإلكتروني فقط", unverified: "غير موثَّقة" },
     checked: "تم التحقق من البيانات في {date}",
     source: "المصدر",
     contactTitle: "بيانات الاتصال",
@@ -212,7 +212,7 @@ export const MISSION_STRINGS: Record<Locale, MissionStrings> = {
   },
   dz: {
     back: "ڨاع السفارات والقنصليات",
-    status: { verified: "المعلومات مأكدة", "website-only": "غير السيت", unverified: "ماشي مأكدة" },
+    status: { verified: "المعلومات مأكدة", archived: "من نسخة مأرشفة لصفحة رسمية", "website-only": "غير السيت", unverified: "ماشي مأكدة" },
     checked: "المعلومات تشافو في {date}",
     source: "المصدر",
     contactTitle: "كيفاش تتصل",

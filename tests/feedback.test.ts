@@ -32,3 +32,15 @@ describe("contact us", () => {
     expect((await POST(req({ comment: "x" }, "203.0.113.10"))).status).toBe(400);
   });
 });
+
+describe("contact abuse", () => {
+  it("quietly drops honeypot posts and defuses spreadsheet formulas sent to the webhook", async () => {
+    const { sheetSafe } = await import("@/lib/redact");
+    expect(sheetSafe("=IMPORTXML(\"http://x\")")).toBe("'=IMPORTXML(\"http://x\")");
+    expect(sheetSafe("hello")).toBe("hello");
+    const log = vi.spyOn(console, "log").mockImplementation(() => {});
+    const r = await POST(req({ kind: "contact", message: "buy now", website: "spam.example" }, "203.0.113.20"));
+    expect(r.status).toBe(200);
+    expect(log.mock.calls.some((c) => String(c[0]).startsWith("[contact]"))).toBe(false);
+  });
+});

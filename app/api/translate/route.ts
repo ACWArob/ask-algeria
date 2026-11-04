@@ -8,6 +8,7 @@ import { translateSystemPrompt } from "@/lib/prompts";
 import { anthropic } from "@/lib/llm";
 import { mockTranslation, streamText } from "@/lib/mock";
 import { allowAi, pdfAllowed, recordSpend, spendSettled } from "@/lib/spend";
+import { untag } from "@/lib/prompts";
 
 /** Longer PDFs cost much more (each page is billed as text + image); ask people to send only the pages they need. */
 const MAX_PDF_PAGES = Number(process.env.TRANSLATE_MAX_PDF_PAGES) || 10;
@@ -51,7 +52,7 @@ export async function POST(req: Request) {
   }
   if (rawText) {
     if (rawText.length > LIMITS.translateMaxChars) return NextResponse.json({ error: "too_long" }, { status: 413 });
-    content.push({ type: "text", text: `<document>\n${redact(rawText).text}\n</document>` });
+    content.push({ type: "text", text: `<document>\n${untag(redact(rawText).text)}\n</document>` });
   }
   if (content.length === 0) return NextResponse.json({ error: "empty" }, { status: 400 });
   content.push({ type: "text", text: mode === "full" ? "Translate this document." : "Summarise this document and list what I need to do." });

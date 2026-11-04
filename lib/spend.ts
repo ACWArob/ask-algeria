@@ -10,7 +10,7 @@
  * the monthly spend limit set on the API workspace in the Claude Console (see docs/cost.md). Prices are per million
  * tokens (MTok).
  */
-import { createHash } from "node:crypto";
+import { createHmac } from "node:crypto";
 import { sharedKv } from "@/lib/kv";
 
 type Price = { in: number; out: number; inLong?: number; outLong?: number };
@@ -54,8 +54,13 @@ const pending = new Set<Promise<void>>();
 /** Shared keys live two days, so a day's key is still there just after midnight UTC and then disappears. */
 const KEY_TTL_S = 2 * 24 * 60 * 60;
 const spendKey = (d: string) => `aa:spend:${d}`;
-/** Visitor IPs are hashed before they go to the shared store. */
-const quotaKey = (kind: string, d: string, ip: string) => `aa:quota:${kind}:${d}:${createHash("sha256").update(ip).digest("base64url").slice(0, 22)}`;
+/**
+ * Visitor IPs are hashed with a secret before they go to the shared store: a plain hash of an IPv4 address can be
+ * reversed by trying all 4 billion of them. The key is AUTH_SECRET (or SITE_PASSWORD, or IP_HASH_SECRET).
+ */
+const ipSecret = () => process.env.IP_HASH_SECRET || process.env.AUTH_SECRET || process.env.SITE_PASSWORD || "ask-algeria-quota";
+export const hashIp = (ip: string, secret = ipSecret()) => createHmac("sha256", `aa-ip:${secret}`).update(ip).digest("base64url").slice(0, 22);
+const quotaKey = (kind: string, d: string, ip: string) => `aa:quota:${kind}:${d}:${hashIp(ip)}`;
 
 function roll(now: number) {
   const d = today(now);
@@ -181,7 +186,8 @@ export function resetSpend() {
 
 /** Rough page count of a PDF (counts page objects); 0 if it can't tell. */
 export function pdfPageCount(bytes: Uint8Array): number {
-  const s = Buffer.from(bytes).toString("latin1");
+  // PDF names may escape letters ("/P#61ge" is "/Page"): decode them before counting.
+  const s = Buffer.from(bytes).toString("latin1").replace(/#([0-9a-f]{2})/gi, (_, h: string) => String.fromCharCode(parseInt(h, 16)));
   return (s.match(/\/Type\s*\/Page(?![a-zA-Z])/g) ?? []).length;
 }
 
@@ -191,7 +197,8 @@ export function pdfPageCount(bytes: Uint8Array): number {
  */
 export function pdfAllowed(bytes: Uint8Array, maxPages: number, maxUncountedBytes = 1_500_000): boolean {
   const pages = pdfPageCount(bytes);
-  const hidden = Buffer.from(bytes.subarray(0, Math.min(bytes.length, 4_000_000))).toString("latin1").includes("/ObjStm");
+  const raw = Buffer.from(bytes).toString("latin1");
+  const hidden = raw.includes("/ObjStm") || /\/O(?:#62|b)(?:#6a|j)S/i.test(raw);
   if (pages > maxPages) return false;
   if (pages === 0 || hidden) return bytes.length <= maxUncountedBytes;
   return true;

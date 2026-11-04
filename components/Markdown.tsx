@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { isOfficialUrl } from "@/lib/official-hosts";
 
 export interface CiteTarget {
   n: number;
@@ -27,6 +28,15 @@ export function linkCitations(md: string): string {
   );
 }
 
+const host = (u: string) => {
+  try {
+    return new URL(u).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+};
+const sameHost = (a: string, b: string) => Boolean(host(a)) && host(a) === host(b);
+
 export function Markdown({ text, cites = [] }: { text: string; cites?: CiteTarget[] }) {
   const byN = new Map(cites.map((c) => [c.n, c]));
   return (
@@ -40,12 +50,15 @@ export function Markdown({ text, cites = [] }: { text: string; cites?: CiteTarge
               const c = byN.get(Number(m[1]));
               if (!c) return <sup className="text-muted">[{m[1]}]</sup>;
               return (
-                <a className="cite" href={c.url} target="_blank" rel="noopener noreferrer" title={`${c.title} — ${c.domain}`} aria-label={`[${c.n}] ${c.title}`}>
+                <a className="cite" href={c.url} target="_blank" rel="noopener noreferrer" title={`${c.title} (${c.domain})`} aria-label={`[${c.n}] ${c.title}`}>
                   {c.n}
                 </a>
               );
             }
-            const external = href && /^https?:/.test(href);
+            const external = Boolean(href && /^https?:/.test(href));
+            // Only official sites (.dz, known consulates, the pages cited) become links; anything else the model
+            // writes stays plain text, so a manipulated answer can't hand out a clickable look-alike site.
+            if (external && !isOfficialUrl(href!) && !cites.some((c) => sameHost(c.url, href!))) return <span>{children}</span>;
             return (
               <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                 {children}

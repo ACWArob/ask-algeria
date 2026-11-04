@@ -18,6 +18,7 @@ const GUIDE_SLUGS = ["passport", "consular-registration", "birth-12s"];
 
 const BADGE_STYLE: Record<string, string> = {
   verified: "bg-brand-soft text-brand",
+  archived: "border border-line text-ink",
   "website-only": "border border-line text-muted",
   unverified: "border border-accent/60 text-muted",
 };

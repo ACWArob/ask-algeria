@@ -47,8 +47,8 @@ export default function DirectoryPage() {
           category: s.category,
           pages: stats.get(s.domain.replace(/^www\./, ""))?.pages ?? s.pages,
           checked: stats.get(s.domain.replace(/^www\./, ""))?.checked ?? undefined,
-          // fetch_status itself is never shown; unverified entries only expose the evidence note.
-          evidence: s.reachable ? undefined : s.evidence,
+          // fetch_status and our research notes are never sent to the browser: unverified entries only get a flag.
+          evidence: !s.reachable && s.evidence ? "unverified" : undefined,
         })),
     }))
     .filter((g) => g.entries.length > 0);

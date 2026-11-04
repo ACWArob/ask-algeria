@@ -1,11 +1,19 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { verifyToken } from "@/lib/auth";
 import { COOKIE } from "@/lib/config";
+import { isPublic } from "@/lib/site";
 
 const PUBLIC_PATHS = new Set(["/login", "/api/login", "/robots.txt"]);
 
 export async function middleware(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
+
+  // Public launch (PUBLIC_SITE=1): no password, indexable, robots.txt from /api/robots, no login page.
+  if (isPublic()) {
+    if (pathname === "/robots.txt") return NextResponse.rewrite(new URL("/api/robots", req.url));
+    if (pathname === "/login") return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.next();
+  }
 
   if (!PUBLIC_PATHS.has(pathname)) {
     const ok = await verifyToken(
@@ -32,5 +40,6 @@ function withNoIndex(res: NextResponse) {
 
 export const config = {
   // Everything except Next static assets and public files with an extension (icons, fonts, robots.txt).
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|woff2?)$).*)"],
+  // robots.txt is listed on its own so public mode can serve the indexable version.
+  matcher: ["/robots.txt", "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|woff2?)$).*)"],
 };
