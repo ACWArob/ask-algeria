@@ -62,7 +62,7 @@ export const CONCEPTS: Record<string, string[]> = {
   travellers: ["dz travellers", "travellers", "voyageurs", "travel registration", "المسافرين"],
   fees: ["fee", "fees", "cost", "price", "frais", "tarif", "tarifs", "prix", "رسوم", "ثمن", "سعر", "شحال", "يكلف", "chhal", "bch7al"],
   documents: ["documents", "required documents", "pièces à fournir", "dossier", "الوثائق", "الوراق", "lwra9", "papiers"],
-  renewal: ["renew", "renewal", "renewel", "renouveler", "renouvellement", "تجديد", "نجدد", "أجدد", "جدد", "يجدد", "njadded", "njeded"],
+  renewal: ["renew", "renewal", "renewel", "renewed", "renewing", "renouvelé", "renouvelée", "renouveler", "renouvellement", "تجديد", "نجدد", "أجدد", "جدد", "يجدد", "njadded", "njeded"],
   abroad: ["abroad", "à l'étranger", "a l'etranger", "étranger", "living abroad", "diaspora", "communauté nationale à l'étranger", "الخارج", "بالخارج", "في الخارج", "الجالية", "الجالية الوطنية بالخارج", "برا"],
   foreigner: ["foreigner", "foreigners", "foreign national", "étranger", "étrangers", "ressortissant étranger", "أجنبي", "الأجانب", "أجانب"],
   lost: ["lost", "stolen", "perte", "perdu", "vol", "ضياع", "ضاع", "سرقة", "dha3"],

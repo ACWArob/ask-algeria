@@ -124,7 +124,13 @@
     "whereCity": "Your consulate",
     "whereChange": "Change",
     "whereBack": "Back",
-    "whereAlgeria": "{place}, Algeria"
+    "whereAlgeria": "{place}, Algeria",
+    "quickAnswer": "Quick answer",
+    "quickFromPages": "Copied from the official pages below, no AI. Check with your office before you go.",
+    "quickFromGuide": "From our step-by-step guide, built only from official pages. Check with your office before you go.",
+    "quickFee": "Fees",
+    "quickSources": "Sources",
+    "morePages": "More official pages"
   },
   "translate": {
     "heading": "Understand an official document",

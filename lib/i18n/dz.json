@@ -124,7 +124,13 @@
     "whereCity": "القنصلية تاعك",
     "whereChange": "بدّل",
     "whereBack": "ارجع",
-    "whereAlgeria": "{place}، الدزاير"
+    "whereAlgeria": "{place}، الدزاير",
+    "quickAnswer": "جواب سريع",
+    "quickFromPages": "منقول من الصفحات الرسمية لتحت، بلا ذكاء اصطناعي. تأكد مع الإدارة تاعك قبل ما تروح.",
+    "quickFromGuide": "من الدليل تاعنا خطوة بخطوة، مبني غير على الصفحات الرسمية. تأكد مع الإدارة تاعك قبل ما تروح.",
+    "quickFee": "السومة",
+    "quickSources": "المصادر",
+    "morePages": "صفحات رسمية أخرى"
   },
   "translate": {
     "heading": "فهّمني وثيقة رسمية",

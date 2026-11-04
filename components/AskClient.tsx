@@ -747,6 +747,47 @@ function Results({
         </section>
       )}
 
+      {r.quick && (
+        <section className="rounded-2xl border border-brand/40 bg-surface p-4" aria-label={t.quickAnswer}>
+          <h3 className="text-xs font-semibold uppercase tracking-wide text-brand">{t.quickAnswer}</h3>
+          {r.quick.sections.map((sec, si) => (
+            <div key={si} className="mt-2">
+              {sec.title && <p dir="auto" className="font-semibold">{sec.title}</p>}
+              <ul className="mt-1 list-disc space-y-1.5 ps-5 text-[0.9375rem]">
+                {sec.points.map((pt, pi) => (
+                  <li key={pi} dir="auto">
+                    {pt.text}{" "}
+                    {pt.sources.map((n) => {
+                      const src = r.quick!.sources.find((x) => x.n === n);
+                      return src ? (
+                        <a key={n} href={src.url} target="_blank" rel="noopener noreferrer" className="cite" title={src.title}>{n}</a>
+                      ) : null;
+                    })}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {r.quick.fee && (
+            <p dir="auto" className="mt-3 text-sm">
+              <span className="font-semibold">{t.quickFee} · {r.quick.fee.office}: </span>
+              {r.quick.fee.items} ({r.quick.fee.payment})
+            </p>
+          )}
+          {r.quick.sources.length > 0 && (
+            <ol className="mt-3 space-y-0.5 text-xs text-muted">
+              {r.quick.sources.map((src) => (
+                <li key={src.n}>
+                  <span className="cite !m-0 me-1" aria-hidden="true">{src.n}</span>
+                  <a href={src.url} target="_blank" rel="noopener noreferrer" className="link" dir="auto">{src.title}</a> <span dir="ltr">({src.domain})</span>
+                </li>
+              ))}
+            </ol>
+          )}
+          <p className="mt-2 text-xs text-muted">{r.quick.from === "guide" ? t.quickFromGuide : t.quickFromPages}</p>
+        </section>
+      )}
+
       {r.guides.map((g) => (
         <Link key={g.slug} href={`/services/${g.slug}`} className="block rounded-2xl border border-brand/40 bg-brand-soft p-4 transition-colors hover:border-brand">
           <span className="text-xs font-semibold uppercase tracking-wide text-brand">{t.guide}</span>
@@ -760,7 +801,7 @@ function Results({
 
       {r.pages.length > 0 && (
         <section aria-label={t.results}>
-          <h3 className="text-sm font-semibold text-muted">{t.results}</h3>
+          <h3 className="text-sm font-semibold text-muted">{r.quick ? t.morePages : t.results}</h3>
           <ol className="mt-2 space-y-3">
             {r.pages.map((p) => (
               <li key={p.url}>

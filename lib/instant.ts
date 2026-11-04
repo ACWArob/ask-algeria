@@ -2,7 +2,8 @@ import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
 import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
-import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions } from "@/lib/missions";
+import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions, MISSIONS } from "@/lib/missions";
+import { guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
 import { expandQuery } from "@/lib/synonyms";
 import { corpusById } from "@/lib/corpus";
@@ -24,7 +25,20 @@ export interface InstantGuide { slug: string; title: string; lead: string }
 export interface InstantMission {
   name: string; address?: string; phones: string[]; emails: string[]; hours?: string; website?: string; appointments?: string; checked?: string;
 }
+/** The actual facts, shown first: from our step-by-step guide when one matches, else from the top official pages. */
+export interface InstantQuick {
+  from: "guide" | "pages";
+  slug?: string;
+  sections: { title?: string; points: { text: string; sources: number[] }[] }[];
+  fee?: { office: string; items: string; payment: string; sources: number[] };
+  sources: { n: number; title: string; url: string; domain: string }[];
+}
+
+/** Cities that have an Algerian mission: a guide point naming one of them is that office's rule, not a general one. */
+const MISSION_CITIES = [...new Set(MISSIONS.map((m) => m.city).filter(Boolean)), "Washington"];
+
 export interface InstantResult {
+  quick?: InstantQuick;
   guides: InstantGuide[];
   office?: { place: string; name: string; site?: string; inAlgeria: boolean; fromConnection: boolean };
   mission?: InstantMission;
@@ -105,11 +119,14 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
 
   const corpus = corpusById();
   const pages: InstantPage[] = [];
+  const quickPages: QuickPage[] = [];
   const seen = new Set<string>();
+  const officeHosts = new Set((post?.domains ?? []).map((d) => d.replace(/^www\./, "")));
   for (const h of hits) {
     if (seen.has(h.docId)) continue;
     seen.add(h.docId);
     const rec = corpus.get(h.docId);
+    if (rec) quickPages.push({ title: h.title, url: h.url, domain: h.domain.replace(/^www\./, ""), text: rec.text, office: officeHosts.has(h.domain.replace(/^www\./, "")) });
     pages.push({
       title: h.title,
       url: h.url,
@@ -124,6 +141,44 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
     .filter(([, ts]) => ts.some((t) => topics.includes(t)))
     .map(([slug]) => ({ slug, title: GUIDES[slug].title[locale], lead: GUIDES[slug].lead[locale] }))
     .slice(0, 2);
+
+  // The facts themselves (free): the matching guide's points for this person's office, else the best lines of the pages.
+  let quick: InstantQuick | undefined;
+  // 1. The person's own office has pages on this: its own rules beat a guide that summarises several consulates.
+  const officePages = quickPages.filter((p) => p.office && pageOnTopic(question, p));
+  if (officePages.length) {
+    const qa = quickAnswer(question, officePages, 6);
+    // Facts in another script than the reader's (French page, Arabic reader) lose to a guide in their language.
+    const arabicShare = qa ? (qa.facts.map((f) => f.text).join(" ").match(/[\u0600-\u06FF]/g) ?? []).length / Math.max(1, qa.facts.map((f) => f.text).join(" ").length) : 0;
+    const wrongScript = (locale === "ar" || locale === "dz") ? arabicShare < 0.3 : arabicShare > 0.5;
+    if (qa && qa.facts.length >= 2 && !(wrongScript && guides.length)) quick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
+  }
+  // 2. Else the matching guide (curated, in the reader's language), keeping points that fit their office.
+  const gslug = guides[0]?.slug;
+  if (!quick && gslug) {
+    const officeCity = post?.post.match(/\bin ([^,()]+)/)?.[1]?.trim();
+    const ga = guideAnswer(GUIDES[gslug] as never, question, locale, {
+      inAlgeria: post ? Boolean(post.inAlgeria) : null,
+      officeCities: [officeCity, post?.place].filter((x): x is string => Boolean(x)),
+      otherCities: MISSION_CITIES,
+    });
+    if (ga) {
+      quick = {
+        from: "guide",
+        slug: gslug,
+        sections: ga.sections,
+        ...(ga.fee ? { fee: ga.fee } : {}),
+        sources: ga.sources.map((s) => {
+          const r = corpus.get(s.id);
+          return { n: s.n, title: r?.title ?? s.id, url: r?.url ?? "", domain: (r?.domain ?? "").replace(/^www\./, "") };
+        }).filter((s) => s.url),
+      };
+    }
+  }
+  if (!quick) {
+    const qa = quickAnswer(question, quickPages);
+    if (qa) quick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
+  }
 
   let mission: InstantMission | undefined;
   if (isMissionContactQuestion(question) && !post?.inAlgeria) {
@@ -152,6 +207,7 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
   }
 
   return {
+    ...(quick ? { quick } : {}),
     guides,
     ...(askPlace ? { askPlace } : {}),
     ...(post ? { office: { place: post.place, name: post.post, site: post.site, inAlgeria: Boolean(post.inAlgeria), fromConnection: !stated } } : {}),
