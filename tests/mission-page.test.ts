@@ -159,6 +159,9 @@ describe("consulate hours and notes in the reader's language", () => {
     }
     expect(localHours("anything new", "fr")).toBe("anything new");
     expect(localHours("x", "en")).toBe("x");
+    // Hours copied in French from a consulate page are shown in English to English readers.
+    const lyon = "Horaires de réception du public: Du Mardi au Samedi de 08:30 à 15:30; Horaires durant le mois de Ramadhan : 09:00 - 15:00; Service des visas : Dépôt : du Mardi au Samedi de 08h30 à 11h30; Retrait : du Mardi au Samedi de 15h00 à 15h30";
+    expect(localHours(lyon, "en")).toMatch(/^Public reception hours: Tuesday to Saturday/);
   });
 
   it("every mission city is in Arabic script for ar and dz, and Arabic names use it", async () => {

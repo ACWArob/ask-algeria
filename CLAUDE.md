@@ -54,6 +54,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-11-05 — UI pass: one import in lib/posts.ts (used by the browser) pulled all of missions.json into the embassies page bundle (+160 KB) — keep browser-side modules free of data imports (tested); Arabic fonts are not preloaded and limited to Arabic letters (en/fr pages −200 KB); French-only consulate hours get an English translation too.
 - 2026-11-05 — metrics showed 0 searches/answers for a week: counts flushed only from a fire-and-forget call a minute after a server started, so short-lived Vercel servers lost them — flush with `after()` (the platform waits for it), first count at once, then every 10 s. The /api/health limit is 120/min so monitors sharing a connection aren't refused.
 - 2026-11-05 — QA: a cut-off query-expansion reply (bad JSON) marked the AI "failing" in /api/health — only failed API calls count as AI errors; parse the partial reply (lib/llm parseExpansion), max_tokens 700.
 - 2026-11-05 — QA: a stolen-SIM question was answered "for Boulder, Colorado" with SF pages — the connection's location is used only for office-dependent topics (lib/posts locationDependent); "وانا في دزاير" now counts as in Algeria, and the longer of two overlapping place matches wins (الجزائر العاصمة).

@@ -26,7 +26,7 @@ export function Header({ dict, locale, authed = true }: { dict: Dict; locale: Lo
   return (
     <header className="border-b border-line bg-paper">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 lg:flex-nowrap">
-        <Link href="/" className="shrink-0 rounded-lg py-1">
+        <Link href="/" className="inline-flex min-h-[40px] shrink-0 items-center rounded-lg">
           <Wordmark dict={dict} />
         </Link>
         {authed && (

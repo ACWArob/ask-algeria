@@ -3,7 +3,6 @@
  * (Latin, Arabic or Darija spelling). Used to (1) boost that office's pages in search and
  * (2) tell the model which office applies, so answers state it as a fact.
  */
-import { isMissionContactQuestion } from "@/lib/missions";
 
 export interface PostHint {
   /** Place the person mentioned, as we understood it (e.g. "Colorado"). */
@@ -275,15 +274,6 @@ export const WILAYAS: { name: string; ar: string }[] = (() => {
 
 /** Procedures that depend on the person's office: ask where they live first (no mixed answer from random consulates). */
 export const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
-
-/**
- * May the connection's approximate location stand in for where the person lives? Only when the answer depends on
- * the office (procedures above, visas, "where is the consulate"). A stolen SIM or a divorce question is not
- * answered "for Boulder, Colorado".
- */
-export function locationDependent(topics: string[], question: string): boolean {
-  return topics.some((t) => LOCATION_FIRST.includes(t) || t === "consular_visa") || isMissionContactQuestion(question);
-}
 
 export function detectPost(text: string): PostHint | null {
   const t = text.replace(/[’']/g, "'");

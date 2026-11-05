@@ -7,6 +7,7 @@ export default async function SiteNotFound() {
   const dict = getDict((await getLocale()));
   return (
     <div className="pb-16 pt-14">
+      <title>{`${dict.notFound.title} · ${dict.brand.name}`}</title>
       <h1 className="display text-4xl font-bold sm:text-5xl">{dict.notFound.title}</h1>
       <p className="mt-4 max-w-prose text-lg text-muted">{dict.notFound.body}</p>
       <p className="mt-8 flex flex-wrap gap-4">

@@ -28,7 +28,8 @@
     "Horaires d'ouvertures au public Du lundi au vendredi Du 09:00 à 16:00; Dépôt et retrait des demandes de visas; Lundi - Mardi - Mercredi du 09:00 à 14:00": {
       "fr": "Horaires d'ouvertures au public Du lundi au vendredi Du 09:00 à 16:00; Dépôt et retrait des demandes de visas; Lundi - Mardi - Mercredi du 09:00 à 14:00",
       "ar": "مواعيد استقبال الجمهور: من الاثنين إلى الجمعة من 09:00 إلى 16:00; إيداع طلبات التأشيرة وسحبها; الاثنين - الثلاثاء - الأربعاء من 09:00 إلى 14:00",
-      "dz": "أوقات استقبال الناس: من الثنين للجمعة من 09:00 حتى 16:00; إيداع وسحب طلبات الفيزا; الثنين - الثلاثا - الأربعا من 09:00 حتى 14:00"
+      "dz": "أوقات استقبال الناس: من الثنين للجمعة من 09:00 حتى 16:00; إيداع وسحب طلبات الفيزا; الثنين - الثلاثا - الأربعا من 09:00 حتى 14:00",
+      "en": "Opening hours for the public: Monday to Friday, 09:00 to 16:00; visa applications (submission and collection): Monday, Tuesday, Wednesday, 09:00 to 14:00"
     },
     "Embassy: Sunday-Thursday 09:00-17:00. Consular service: Saturday-Wednesday 09:00-17:00. Visas: lodging Saturday-Wednesday 09:00-12:00; collection 13:00-16:00.": {
       "fr": "Ambassade : dimanche-jeudi 09:00-17:00. Service consulaire : samedi-mercredi 09:00-17:00. Visas : dépôt samedi-mercredi 09:00-12:00; retrait 13:00-16:00.",
@@ -38,7 +39,8 @@
     "Du lundi au Vendredi: 8h30 -15h": {
       "fr": "Du lundi au Vendredi: 8h30 -15h",
       "ar": "من الاثنين إلى الجمعة: 8:30 - 15:00",
-      "dz": "من الثنين للجمعة: 8:30 - 15:00"
+      "dz": "من الثنين للجمعة: 8:30 - 15:00",
+      "en": "Monday to Friday: 8:30 to 15:00"
     },
     "From Monday to Friday 09:00 to 16:00 except national and religious holidays": {
       "fr": "Du lundi au vendredi de 09:00 à 16:00, sauf jours fériés nationaux et religieux",
@@ -53,7 +55,8 @@
     "Du Lundi au Vendredi: De 8h30 à 15h30": {
       "fr": "Du Lundi au Vendredi: De 8h30 à 15h30",
       "ar": "من الاثنين إلى الجمعة: من 8:30 إلى 15:30",
-      "dz": "من الثنين للجمعة: من 8:30 حتى 15:30"
+      "dz": "من الثنين للجمعة: من 8:30 حتى 15:30",
+      "en": "Monday to Friday: 8:30 to 15:30"
     },
     "Monday to Friday 9 a.m. to 4 p.m. except national and religious holidays": {
       "fr": "Du lundi au vendredi de 9 h à 16 h, sauf jours fériés nationaux et religieux",
@@ -103,7 +106,8 @@
     "Mardi au samedi 08:00 - 15:30; dimanche - lundi fermé": {
       "fr": "Mardi au samedi 08:00 - 15:30; dimanche - lundi fermé",
       "ar": "من الثلاثاء إلى السبت 08:00 - 15:30; الأحد - الاثنين مغلق",
-      "dz": "من الثلاثا للسبت 08:00 - 15:30; الحد - الثنين مسكّر"
+      "dz": "من الثلاثا للسبت 08:00 - 15:30; الحد - الثنين مسكّر",
+      "en": "Tuesday to Saturday 08:00 to 15:30; closed Sunday and Monday"
     },
     "From Monday to Friday From 9 am to 4 pm except national and religious holidays": {
       "fr": "Du lundi au vendredi de 9 h à 16 h, sauf jours fériés nationaux et religieux",
@@ -158,7 +162,8 @@
     "Horaires de réception Du lundi au vendredi : de 8h30 à 15h30; Permanence Samedi-Dimanche: de 9h00 à 14h00": {
       "fr": "Horaires de réception Du lundi au vendredi : de 8h30 à 15h30; Permanence Samedi-Dimanche: de 9h00 à 14h00",
       "ar": "مواعيد الاستقبال: من الاثنين إلى الجمعة: من 8:30 إلى 15:30; مداومة السبت-الأحد: من 9:00 إلى 14:00",
-      "dz": "أوقات الاستقبال: من الثنين للجمعة: من 8:30 حتى 15:30; المداومة السبت-الحد: من 9:00 حتى 14:00"
+      "dz": "أوقات الاستقبال: من الثنين للجمعة: من 8:30 حتى 15:30; المداومة السبت-الحد: من 9:00 حتى 14:00",
+      "en": "Reception hours: Monday to Friday, 8:30 to 15:30; on duty Saturday and Sunday: 9:00 to 14:00"
     },
     "Office hours: Monday to Thursday From 09.00 AM to 01:00 PM 02:00 PM to 04:00 PM; Friday From 09.00 AM to 01:00 PM 02:00 PM to 03:00 PM; Consular hours (Submission and Collection); Monday to Friday 09:30 AM to 01:00 PM": {
       "fr": "Heures de bureau : du lundi au jeudi de 09 h 00 à 13 h 00 et de 14 h 00 à 16 h 00; vendredi de 09 h 00 à 13 h 00 et de 14 h 00 à 15 h 00; Horaires consulaires (dépôt et retrait); du lundi au vendredi de 09 h 30 à 13 h 00",
@@ -243,47 +248,56 @@
     "Mardi - Samedi, 08h30 - 15h00": {
       "fr": "Mardi - Samedi, 08h30 - 15h00",
       "ar": "الثلاثاء - السبت، 08:30 - 15:00",
-      "dz": "الثلاثا - السبت، 08:30 - 15:00"
+      "dz": "الثلاثا - السبت، 08:30 - 15:00",
+      "en": "Tuesday to Saturday, 08:30 to 15:00"
     },
     "Du mardi au vendredi de 8h30 à 16h00; samedi de 8h00 à 15h00": {
       "fr": "Du mardi au vendredi de 8h30 à 16h00; samedi de 8h00 à 15h00",
       "ar": "من الثلاثاء إلى الجمعة من 8:30 إلى 16:00; السبت من 8:00 إلى 15:00",
-      "dz": "من الثلاثا للجمعة من 8:30 حتى 16:00; السبت من 8:00 حتى 15:00"
+      "dz": "من الثلاثا للجمعة من 8:30 حتى 16:00; السبت من 8:00 حتى 15:00",
+      "en": "Tuesday to Friday, 8:30 to 16:00; Saturday, 8:00 to 15:00"
     },
     "Horaires de réception du public: Du Mardi au Samedi de 08:30 à 15:30; Horaires durant le mois de Ramadhan : 09:00 - 15:00; Service des visas : Dépôt : du Mardi au Samedi de 08h30 à 11h30; Retrait : du Mardi au Samedi de 15h00 à 15h30": {
       "fr": "Horaires de réception du public: Du Mardi au Samedi de 08:30 à 15:30; Horaires durant le mois de Ramadhan : 09:00 - 15:00; Service des visas : Dépôt : du Mardi au Samedi de 08h30 à 11h30; Retrait : du Mardi au Samedi de 15h00 à 15h30",
       "ar": "مواعيد استقبال الجمهور: من الثلاثاء إلى السبت من 08:30 إلى 15:30; المواعيد خلال شهر رمضان: 09:00 - 15:00; مصلحة التأشيرات: الإيداع: من الثلاثاء إلى السبت من 08:30 إلى 11:30; السحب: من الثلاثاء إلى السبت من 15:00 إلى 15:30",
-      "dz": "أوقات استقبال الناس: من الثلاثا للسبت من 08:30 حتى 15:30; الأوقات في شهر رمضان: 09:00 - 15:00; مصلحة الفيزا: الإيداع: من الثلاثا للسبت من 08:30 حتى 11:30; السحب: من الثلاثا للسبت من 15:00 حتى 15:30"
+      "dz": "أوقات استقبال الناس: من الثلاثا للسبت من 08:30 حتى 15:30; الأوقات في شهر رمضان: 09:00 - 15:00; مصلحة الفيزا: الإيداع: من الثلاثا للسبت من 08:30 حتى 11:30; السحب: من الثلاثا للسبت من 15:00 حتى 15:30",
+      "en": "Public reception hours: Tuesday to Saturday, 08:30 to 15:30; during Ramadan: 09:00 to 15:00; visa service: submission Tuesday to Saturday 08:30 to 11:30, collection Tuesday to Saturday 15:00 to 15:30"
     },
     "Horaires de réception du public: Du Mardi au Vendredi de 08:30 à 15:00; Samedi de 08:00 à 14:00": {
       "fr": "Horaires de réception du public: Du Mardi au Vendredi de 08:30 à 15:00; Samedi de 08:00 à 14:00",
       "ar": "مواعيد استقبال الجمهور: من الثلاثاء إلى الجمعة من 08:30 إلى 15:00; السبت من 08:00 إلى 14:00",
-      "dz": "أوقات استقبال الناس: من الثلاثا للجمعة من 08:30 حتى 15:00; السبت من 08:00 حتى 14:00"
+      "dz": "أوقات استقبال الناس: من الثلاثا للجمعة من 08:30 حتى 15:00; السبت من 08:00 حتى 14:00",
+      "en": "Public reception hours: Tuesday to Friday, 08:30 to 15:00; Saturday, 08:00 to 14:00"
     },
     "Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 09h00 à 15h00; Visas : Dépôt des demandes: du mardi au vendredi de 9h00 à 12h00; Retrait des visas: du mardi au vendredi de 14h00 à 15h": {
       "fr": "Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 09h00 à 15h00; Visas : Dépôt des demandes: du mardi au vendredi de 9h00 à 12h00; Retrait des visas: du mardi au vendredi de 14h00 à 15h",
       "ar": "من الثلاثاء إلى الجمعة: من 09:00 إلى 15:30; السبت: من 09:00 إلى 15:00; التأشيرات: إيداع الطلبات: من الثلاثاء إلى الجمعة من 9:00 إلى 12:00; سحب التأشيرات: من الثلاثاء إلى الجمعة من 14:00 إلى 15:00",
-      "dz": "من الثلاثا للجمعة: من 09:00 حتى 15:30; السبت: من 09:00 حتى 15:00; الفيزا: إيداع الطلبات: من الثلاثا للجمعة من 9:00 حتى 12:00; سحب الفيزا: من الثلاثا للجمعة من 14:00 حتى 15:00"
+      "dz": "من الثلاثا للجمعة: من 09:00 حتى 15:30; السبت: من 09:00 حتى 15:00; الفيزا: إيداع الطلبات: من الثلاثا للجمعة من 9:00 حتى 12:00; سحب الفيزا: من الثلاثا للجمعة من 14:00 حتى 15:00",
+      "en": "Tuesday to Friday: 09:00 to 15:30; Saturday: 09:00 to 15:00; visas: applications Tuesday to Friday 9:00 to 12:00, collection Tuesday to Friday 14:00 to 15:00"
     },
     "Horaires de réception Du Mardi au Vendredi : Le matin de 8h30 à 11h30; L'après-midi de 13h00 à 15h30; Le Samedi; En continu, de 8h30 à 13h00": {
       "fr": "Horaires de réception Du Mardi au Vendredi : Le matin de 8h30 à 11h30; L'après-midi de 13h00 à 15h30; Le Samedi; En continu, de 8h30 à 13h00",
       "ar": "مواعيد الاستقبال من الثلاثاء إلى الجمعة: صباحًا من 8:30 إلى 11:30; بعد الظهر من 13:00 إلى 15:30; السبت; بدون انقطاع، من 8:30 إلى 13:00",
-      "dz": "أوقات الاستقبال من الثلاثا للجمعة: الصباح من 8:30 حتى 11:30; العشية من 13:00 حتى 15:30; السبت; بلا انقطاع، من 8:30 حتى 13:00"
+      "dz": "أوقات الاستقبال من الثلاثا للجمعة: الصباح من 8:30 حتى 11:30; العشية من 13:00 حتى 15:30; السبت; بلا انقطاع، من 8:30 حتى 13:00",
+      "en": "Reception hours: Tuesday to Friday, mornings 8:30 to 11:30 and afternoons 13:00 to 15:30; Saturday, without a break, 8:30 to 13:00"
     },
     "Horaires Réception du public : du Mardi au Samedi de 08h30 à 15h30": {
       "fr": "Horaires Réception du public : du Mardi au Samedi de 08h30 à 15h30",
       "ar": "مواعيد استقبال الجمهور: من الثلاثاء إلى السبت من 08:30 إلى 15:30",
-      "dz": "أوقات استقبال الناس: من الثلاثا للسبت من 08:30 حتى 15:30"
+      "dz": "أوقات استقبال الناس: من الثلاثا للسبت من 08:30 حتى 15:30",
+      "en": "Public reception hours: Tuesday to Saturday, 08:30 to 15:30"
     },
     "Horaires d’accueil du public : Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 08h30 à 14h30; Horaires du service « visas » : Dépôt des demandes : du mardi au vendredi (09h00 à 12h00); Retrait des visas : du mardi au vendredi (13h00 à 14h30)": {
       "fr": "Horaires d’accueil du public : Du mardi au vendredi : de 09h00 à 15h30; Le samedi : de 08h30 à 14h30; Horaires du service « visas » : Dépôt des demandes : du mardi au vendredi (09h00 à 12h00); Retrait des visas : du mardi au vendredi (13h00 à 14h30)",
       "ar": "مواعيد استقبال الجمهور: من الثلاثاء إلى الجمعة: من 09:00 إلى 15:30; السبت: من 08:30 إلى 14:30; مواعيد مصلحة التأشيرات: إيداع الطلبات: من الثلاثاء إلى الجمعة (09:00 إلى 12:00); سحب التأشيرات: من الثلاثاء إلى الجمعة (13:00 إلى 14:30)",
-      "dz": "أوقات استقبال الناس: من الثلاثا للجمعة: من 09:00 حتى 15:30; السبت: من 08:30 حتى 14:30; أوقات مصلحة الفيزا: إيداع الطلبات: من الثلاثا للجمعة (09:00 حتى 12:00); سحب الفيزا: من الثلاثا للجمعة (13:00 حتى 14:30)"
+      "dz": "أوقات استقبال الناس: من الثلاثا للجمعة: من 09:00 حتى 15:30; السبت: من 08:30 حتى 14:30; أوقات مصلحة الفيزا: إيداع الطلبات: من الثلاثا للجمعة (09:00 حتى 12:00); سحب الفيزا: من الثلاثا للجمعة (13:00 حتى 14:30)",
+      "en": "Public reception hours: Tuesday to Friday, 09:00 to 15:30; Saturday, 08:30 to 14:30; visa service: applications Tuesday to Friday (09:00 to 12:00), collection Tuesday to Friday (13:00 to 14:30)"
     },
     "Mardi – Samedi, 08h00 – 15h00 (réception du public)": {
       "fr": "Mardi – Samedi, 08h00 – 15h00 (réception du public)",
       "ar": "الثلاثاء - السبت، 08:00 - 15:00 (استقبال الجمهور)",
-      "dz": "الثلاثا - السبت، 08:00 - 15:00 (استقبال الناس)"
+      "dz": "الثلاثا - السبت، 08:00 - 15:00 (استقبال الناس)",
+      "en": "Tuesday to Saturday, 08:00 to 15:00 (public reception)"
     },
     "Consular posts in France open Tuesday-Saturday (per Embassy of Algeria in France); check the consulate for exact hours.": {
       "fr": "Les postes consulaires en France sont ouverts du mardi au samedi (selon l'Ambassade d'Algérie en France); vérifiez les horaires exacts auprès du consulat.",
@@ -293,37 +307,44 @@
     "Horaires d'ouverture du consulat du mardi au samedi : Réception du public de 09h00 à 14h30; Horaires service des visas : du mardi au vendredi; Dépôt demande : 09h00-12h00; Retrait visa : 13h00-14h30": {
       "fr": "Horaires d'ouverture du consulat du mardi au samedi : Réception du public de 09h00 à 14h30; Horaires service des visas : du mardi au vendredi; Dépôt demande : 09h00-12h00; Retrait visa : 13h00-14h30",
       "ar": "مواعيد فتح القنصلية من الثلاثاء إلى السبت: استقبال الجمهور من 09:00 إلى 14:30; مواعيد مصلحة التأشيرات: من الثلاثاء إلى الجمعة; إيداع الطلب: 09:00-12:00; سحب التأشيرة: 13:00-14:30",
-      "dz": "أوقات فتح القنصلية من الثلاثا للسبت: استقبال الناس من 09:00 حتى 14:30; أوقات مصلحة الفيزا: من الثلاثا للجمعة; إيداع الطلب: 09:00-12:00; سحب الفيزا: 13:00-14:30"
+      "dz": "أوقات فتح القنصلية من الثلاثا للسبت: استقبال الناس من 09:00 حتى 14:30; أوقات مصلحة الفيزا: من الثلاثا للجمعة; إيداع الطلب: 09:00-12:00; سحب الفيزا: 13:00-14:30",
+      "en": "Consulate opening hours, Tuesday to Saturday: public reception 09:00 to 14:30; visa service, Tuesday to Friday: applications 09:00 to 12:00, collection 13:00 to 14:30"
     },
     "Horaires de réception du public Du Mardi au Vendredi: De 8h30 à 15h30; Le Samedi: De 8h00 à 15h00; Horaires du Service des Visas, voir la Rubrique VISAS; Service des Passeports et Cartes d'identités Biométriques SUR RDV": {
       "fr": "Horaires de réception du public Du Mardi au Vendredi: De 8h30 à 15h30; Le Samedi: De 8h00 à 15h00; Horaires du Service des Visas, voir la Rubrique VISAS; Service des Passeports et Cartes d'identités Biométriques SUR RDV",
       "ar": "مواعيد استقبال الجمهور من الثلاثاء إلى الجمعة: من 8:30 إلى 15:30; السبت: من 8:00 إلى 15:00; مواعيد مصلحة التأشيرات: انظر قسم VISAS; مصلحة جوازات السفر وبطاقات التعريف البيومترية بموعد",
-      "dz": "أوقات استقبال الناس من الثلاثا للجمعة: من 8:30 حتى 15:30; السبت: من 8:00 حتى 15:00; أوقات مصلحة الفيزا: شوف قسم VISAS; مصلحة جوازات السفر وبطاقات التعريف البيومترية بالموعد"
+      "dz": "أوقات استقبال الناس من الثلاثا للجمعة: من 8:30 حتى 15:30; السبت: من 8:00 حتى 15:00; أوقات مصلحة الفيزا: شوف قسم VISAS; مصلحة جوازات السفر وبطاقات التعريف البيومترية بالموعد",
+      "en": "Public reception hours: Tuesday to Friday, 8:30 to 15:30; Saturday, 8:00 to 15:00; visa service hours: see the VISAS section; biometric passports and ID cards: BY APPOINTMENT"
     },
     "Horaires de réception Du mardi au samedi : 09h00 à 15h00": {
       "fr": "Horaires de réception Du mardi au samedi : 09h00 à 15h00",
       "ar": "مواعيد الاستقبال من الثلاثاء إلى السبت: 09:00 إلى 15:00",
-      "dz": "أوقات الاستقبال من الثلاثا للسبت: 09:00 حتى 15:00"
+      "dz": "أوقات الاستقبال من الثلاثا للسبت: 09:00 حتى 15:00",
+      "en": "Reception hours: Tuesday to Saturday, 09:00 to 15:00"
     },
     "Du mardi au samedi de 08h30 à 16h00; Horaires Service CCR Du mardi au vendredi: Dépôt et retrait: 09H00- 14H00; Samedi, dimanche, lundi fermé / Service Visa : Du mardi au vendredi: Dépôt: 09H00 – 12H00; Retrait: 13h00 – 14h00; Samedi , Dimanche, lundi fermé": {
       "fr": "Du mardi au samedi de 08h30 à 16h00; Horaires Service CCR Du mardi au vendredi: Dépôt et retrait: 09H00- 14H00; Samedi, dimanche, lundi fermé / Service Visa : Du mardi au vendredi: Dépôt: 09H00 – 12H00; Retrait: 13h00 – 14h00; Samedi , Dimanche, lundi fermé",
       "ar": "من الثلاثاء إلى السبت من 08:30 إلى 16:00; مواعيد مصلحة CCR من الثلاثاء إلى الجمعة: الإيداع والسحب: 09:00 - 14:00; السبت، الأحد، الاثنين مغلق / مصلحة التأشيرات: من الثلاثاء إلى الجمعة: الإيداع: 09:00 - 12:00; السحب: 13:00 - 14:00; السبت، الأحد، الاثنين مغلق",
-      "dz": "من الثلاثا للسبت من 08:30 حتى 16:00; أوقات مصلحة CCR من الثلاثا للجمعة: الإيداع والسحب: 09:00 - 14:00; السبت، الحد، الثنين مسكّر / مصلحة الفيزا: من الثلاثا للجمعة: الإيداع: 09:00 - 12:00; السحب: 13:00 - 14:00; السبت، الحد، الثنين مسكّر"
+      "dz": "من الثلاثا للسبت من 08:30 حتى 16:00; أوقات مصلحة CCR من الثلاثا للجمعة: الإيداع والسحب: 09:00 - 14:00; السبت، الحد، الثنين مسكّر / مصلحة الفيزا: من الثلاثا للجمعة: الإيداع: 09:00 - 12:00; السحب: 13:00 - 14:00; السبت، الحد، الثنين مسكّر",
+      "en": "Tuesday to Saturday, 08:30 to 16:00; consular registration (CCR): submission and collection Tuesday to Friday 09:00 to 14:00; closed Saturday, Sunday and Monday / Visa service: Tuesday to Friday, submission 09:00 to 12:00, collection 13:00 to 14:00; closed Saturday, Sunday and Monday"
     },
     "Horaires de réception: du mardi au samedi de 08h30 à 15h30; service des visas: du mardi au vendredi, dépôt demande 09h00-12h00, retrait passeport 12h00-15h00": {
       "fr": "Horaires de réception: du mardi au samedi de 08h30 à 15h30; service des visas: du mardi au vendredi, dépôt demande 09h00-12h00, retrait passeport 12h00-15h00",
       "ar": "مواعيد الاستقبال: من الثلاثاء إلى السبت من 08:30 إلى 15:30; مصلحة التأشيرات: من الثلاثاء إلى الجمعة، إيداع الطلب 09:00-12:00، سحب جواز السفر 12:00-15:00",
-      "dz": "أوقات الاستقبال: من الثلاثا للسبت من 08:30 حتى 15:30; مصلحة الفيزا: من الثلاثا للجمعة، إيداع الطلب 09:00-12:00، سحب جواز السفر 12:00-15:00"
+      "dz": "أوقات الاستقبال: من الثلاثا للسبت من 08:30 حتى 15:30; مصلحة الفيزا: من الثلاثا للجمعة، إيداع الطلب 09:00-12:00، سحب جواز السفر 12:00-15:00",
+      "en": "Reception hours: Tuesday to Saturday, 08:30 to 15:30; visa service: Tuesday to Friday, applications 09:00 to 12:00, passport collection 12:00 to 15:00"
     },
     "Ouvert au public du mardi au samedi de 08h30 à 15h00; pour les cas d’urgence une permanence est assurée le lundi de 9h à 15h": {
       "fr": "Ouvert au public du mardi au samedi de 08h30 à 15h00; pour les cas d’urgence une permanence est assurée le lundi de 9h à 15h",
       "ar": "مفتوح للجمهور من الثلاثاء إلى السبت من 08:30 إلى 15:00; للحالات المستعجلة تُضمن مداومة يوم الاثنين من 9:00 إلى 15:00",
-      "dz": "مفتوح للناس من الثلاثا للسبت من 08:30 حتى 15:00; للحالات المستعجلة كاين مداومة نهار الثنين من 9:00 حتى 15:00"
+      "dz": "مفتوح للناس من الثلاثا للسبت من 08:30 حتى 15:00; للحالات المستعجلة كاين مداومة نهار الثنين من 9:00 حتى 15:00",
+      "en": "Open to the public Tuesday to Saturday, 08:30 to 15:00; for emergencies, someone is on duty on Monday from 9:00 to 15:00"
     },
     "Horaires de réception DU MARDI AU VENDREDI : DE 08 H 30 A 15 H 00; LE SAMEDI : DE 08 H 00 A 14 H 30": {
       "fr": "Horaires de réception DU MARDI AU VENDREDI : DE 08 H 30 A 15 H 00; LE SAMEDI : DE 08 H 00 A 14 H 30",
       "ar": "مواعيد الاستقبال من الثلاثاء إلى الجمعة: من 08:30 إلى 15:00; السبت: من 08:00 إلى 14:30",
-      "dz": "أوقات الاستقبال من الثلاثا للجمعة: من 08:30 حتى 15:00; السبت: من 08:00 حتى 14:30"
+      "dz": "أوقات الاستقبال من الثلاثا للجمعة: من 08:30 حتى 15:00; السبت: من 08:00 حتى 14:30",
+      "en": "Reception hours: TUESDAY TO FRIDAY, 08:30 TO 15:00; SATURDAY, 08:00 TO 14:30"
     },
     "Passport Department: Monday - Friday 9:00 a.m. to 1:00 p.m.; Civil Registration Department: Monday - Friday 9:00 a.m. to 1:00 p.m.; Visa Section (no appointment required): applications Mondays and Wednesdays 09:00 to 13:00, collection Fridays 09:00 to 13:00": {
       "fr": "Service des passeports : lundi - vendredi de 9 h 00 à 13 h 00; Service de l'état civil : lundi - vendredi de 9 h 00 à 13 h 00; Section des visas (sans rendez-vous) : dépôt des demandes les lundis et mercredis de 09:00 à 13:00, retrait les vendredis de 09:00 à 13:00",
@@ -333,7 +354,8 @@
     "Bureaux: Mardi au Samedi de 09h00 á 15h00; Service État-Civil: Mardi au Samedi de 09:00 á 15:00 / Avec Rendez-Vous !": {
       "fr": "Bureaux: Mardi au Samedi de 09h00 á 15h00; Service État-Civil: Mardi au Samedi de 09:00 á 15:00 / Avec Rendez-Vous !",
       "ar": "المكاتب: من الثلاثاء إلى السبت من 09:00 إلى 15:00; مصلحة الحالة المدنية: من الثلاثاء إلى السبت من 09:00 إلى 15:00 / بموعد!",
-      "dz": "المكاتب: من الثلاثا للسبت من 09:00 حتى 15:00; مصلحة الحالة المدنية: من الثلاثا للسبت من 09:00 حتى 15:00 / بالموعد!"
+      "dz": "المكاتب: من الثلاثا للسبت من 09:00 حتى 15:00; مصلحة الحالة المدنية: من الثلاثا للسبت من 09:00 حتى 15:00 / بالموعد!",
+      "en": "Offices: Tuesday to Saturday, 09:00 to 15:00; civil status service: Tuesday to Saturday, 09:00 to 15:00, by appointment"
     },
     "Opening hours : Embassy : Monday to Friday, 09:00 - 15:00; Consular Section : Tuesday to Friday, 09:30 - 14:30": {
       "fr": "Horaires d'ouverture : Ambassade : du lundi au vendredi, 09:00 - 15:00; Section consulaire : du mardi au vendredi, 09:30 - 14:30",
@@ -388,7 +410,8 @@
     "lundi à vendredi 09h00 à 16h00; sauf fêtes nationales et religieuses": {
       "fr": "lundi à vendredi 09h00 à 16h00; sauf fêtes nationales et religieuses",
       "ar": "من الاثنين إلى الجمعة 09:00 إلى 16:00; باستثناء الأعياد الوطنية والدينية",
-      "dz": "من الثنين للجمعة 09:00 حتى 16:00; ما عدا الأعياد الوطنية والدينية"
+      "dz": "من الثنين للجمعة 09:00 حتى 16:00; ما عدا الأعياد الوطنية والدينية",
+      "en": "Monday to Friday, 09:00 to 16:00, except national and religious holidays"
     },
     "Tuesday, wednesday, thursday: From 08:30 to 12:30 morning; From 13:30 to 15:30 the afternoon; Friday: From 08:30 to 12:00 morning; From 14:00 to 15:30 the afternoon; saturday: From 08:30 to 12:30 morning; From 13:30 to 15:00 the afternoon; Visas: Application lodging: Tuesday to thursdayfrom 9:00 to 12:30.; Collection : Tuesday to thursday from 13:30 to 15:30; Friday from 14:00 to 15:30; saturday from 13:30 to 15:00": {
       "fr": "Mardi, mercredi, jeudi : le matin de 08:30 à 12:30; l'après-midi de 13:30 à 15:30; Vendredi : le matin de 08:30 à 12:00; l'après-midi de 14:00 à 15:30; Samedi : le matin de 08:30 à 12:30; l'après-midi de 13:30 à 15:00; Visas : Dépôt des demandes : du mardi au jeudi de 9:00 à 12:30; Retrait : du mardi au jeudi de 13:30 à 15:30; vendredi de 14:00 à 15:30; samedi de 13:30 à 15:00",

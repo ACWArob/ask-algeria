@@ -14,7 +14,7 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
-import { detectPost, detectMultiPostCountry, LOCATION_FIRST, locationDependent, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
+import { detectPost, detectMultiPostCountry, LOCATION_FIRST, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
 import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
@@ -25,7 +25,7 @@ import { aiBlockedNow, noteAiError, noteAiOk } from "@/lib/health";
 import { count, METRICS, type Metric } from "@/lib/metrics";
 import { allowAi, overBudget, recordSpend, spendSettled, type Block } from "@/lib/spend";
 import { localExpansion, localExpansionDecision } from "@/lib/expand-local";
-import { hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt, otherMissionHosts } from "@/lib/missions";
+import { hostOf, missionHosts, isMissionContactQuestion, locationDependent, matchMissions, missionExcerpt, otherMissionHosts } from "@/lib/missions";
 import { coversTopic } from "@/lib/quick-answer";
 
 export const runtime = "nodejs";

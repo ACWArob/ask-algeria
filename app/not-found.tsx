@@ -15,6 +15,7 @@ export default async function NotFound() {
       <IndependenceStrip dict={dict} />
       <Header dict={dict} locale={locale} />
       <main id="main" className="mx-auto max-w-5xl px-4 pb-16 pt-14">
+        <title>{`${dict.notFound.title} · ${dict.brand.name}`}</title>
         <h1 className="display text-4xl font-bold sm:text-5xl">{n.title}</h1>
         <p className="mt-4 max-w-prose text-lg text-muted">{n.body}</p>
         <p className="mt-8 flex flex-wrap gap-4">

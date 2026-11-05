@@ -5,6 +5,7 @@
 import raw from "@/data/missions.json";
 import type { Locale } from "@/lib/i18n";
 import { localCity } from "@/lib/mission-i18n";
+import { LOCATION_FIRST } from "@/lib/posts";
 
 export type MissionType = "Embassy" | "Consulate General" | "Consulate" | "Permanent Mission";
 export type MissionStatus = "verified" | "website-only" | "unverified";
@@ -251,3 +252,13 @@ export function foreignMissionHostsForCountry(country: string): string[] {
   const keep = new Set(own.flatMap(missionHosts));
   return [...new Set(MISSIONS.flatMap(missionHosts))].filter((h) => !keep.has(h) && h !== "mfa.gov.dz");
 }
+
+/**
+ * May the connection's approximate location stand in for where the person lives? Only when the answer depends on
+ * the office (procedures above, visas, "where is the consulate"). A stolen SIM or a divorce question is not
+ * answered "for Boulder, Colorado".
+ */
+export function locationDependent(topics: string[], question: string): boolean {
+  return topics.some((t) => LOCATION_FIRST.includes(t) || t === "consular_visa") || isMissionContactQuestion(question);
+}
+

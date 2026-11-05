@@ -156,3 +156,10 @@ describe("no 'your sources'", () => {
     expect(scrubHedges("La page du consulat dans vos sources ne précise pas le tarif.", "fr")).toBe("La page du consulat ne précise pas le tarif.");
   });
 });
+
+describe("browser bundle", () => {
+  it("lib/posts.ts imports nothing: it runs in the browser (embassies finder) and must not pull the missions data in", async () => {
+    const { readFileSync } = await import("node:fs");
+    expect(readFileSync("lib/posts.ts", "utf8")).not.toMatch(/^import /m);
+  });
+});

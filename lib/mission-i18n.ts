@@ -6,11 +6,11 @@ import table from "@/data/mission-i18n.json";
  * (mostly English); data/mission-i18n.json maps each exact string to fr / ar / dz. A string without a
  * translation (a new or edited entry) is shown as it is. tests/mission-page.test.ts checks every string is covered.
  */
-type Tr = Partial<Record<Exclude<Locale, "en">, string>>;
+type Tr = Partial<Record<Locale, string>>; // "en" only where the official text is not in English
 const T = table as { hours: Record<string, Tr>; notes: Record<string, Tr>; cities: Record<string, string> };
 
 export function localHours(text: string, locale: Locale): string {
-  if (!text || locale === "en") return text;
+  if (!text) return text;
   return T.hours[text]?.[locale] || text;
 }
 

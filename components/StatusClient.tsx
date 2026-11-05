@@ -167,7 +167,7 @@ export function StatusClient({
         {portals.map((p) => (
           <li key={p.id} id={`portal-${p.id}`} className="rounded-2xl border border-line bg-paper p-4 sm:p-5">
             <h3 className="font-semibold leading-snug">
-              <a href={p.url} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1" dir="auto">
+              <a href={p.url} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[40px] items-center gap-1" dir="auto">
                 {p.name}
                 <ExternalIcon />
                 <span className="sr-only">({t.opensNew})</span>

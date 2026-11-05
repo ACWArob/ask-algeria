@@ -44,7 +44,7 @@ export function GlossaryClient({ entries, locale, t }: { entries: GlossaryEntry[
                 ))}
               </dl>
               {e.guide && (
-                <Link href={`/services/${e.guide}`} className="link mt-3 inline-block text-sm">{t.guide}</Link>
+                <Link href={`/services/${e.guide}`} className="link mt-2 inline-flex min-h-[40px] items-center text-sm">{t.guide}</Link>
               )}
             </li>
           ))}

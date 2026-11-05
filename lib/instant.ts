@@ -1,8 +1,8 @@
 import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
-import { detectMultiPostCountry, detectPost, LOCATION_FIRST, locationDependent, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
-import { isMissionContactQuestion, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
+import { detectMultiPostCountry, detectPost, LOCATION_FIRST, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
+import { isMissionContactQuestion, locationDependent, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
 import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
 import { expandQuery } from "@/lib/synonyms";

@@ -260,7 +260,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
                 <option key={p.slug} value={p.slug}>{p.title}</option>
               ))}
             </select>
-            <Link href={proc.guideHref} className="link mt-2 inline-block text-sm">{t.guideLink}</Link>
+            <Link href={proc.guideHref} className="link mt-1 inline-flex min-h-[40px] items-center text-sm">{t.guideLink}</Link>
           </div>
           <fieldset className="max-w-prose">
             <legend className="mb-1.5 font-semibold">{t.situation}</legend>

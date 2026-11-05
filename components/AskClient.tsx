@@ -567,10 +567,10 @@ const TurnView = forwardRef<
               <span className="me-1 text-xs text-muted">{turn.feedback ? t.thanks : t.helpful}</span>
               {!turn.feedback && !askWhy && (
                 <>
-                  <button type="button" onClick={() => onFeedback("up")} aria-label={t.yes} title={t.yes} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
+                  <button type="button" onClick={() => onFeedback("up")} aria-label={t.yes} title={t.yes} className="flex h-10 w-10 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
                     <ThumbIcon />
                   </button>
-                  <button type="button" onClick={() => setAskWhy(true)} aria-label={t.no} title={t.no} className="flex h-9 w-9 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
+                  <button type="button" onClick={() => setAskWhy(true)} aria-label={t.no} title={t.no} className="flex h-10 w-10 items-center justify-center rounded-full text-muted hover:bg-surface hover:text-ink">
                     <ThumbIcon down />
                   </button>
                 </>

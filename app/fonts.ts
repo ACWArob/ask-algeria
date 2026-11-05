@@ -21,6 +21,10 @@ export const arabicDisplay = localFont({
   src: [{ path: "../node_modules/@fontsource-variable/noto-kufi-arabic/files/noto-kufi-arabic-arabic-wght-normal.woff2", weight: "100 900" }],
   variable: "--font-arabic-display",
   display: "swap",
+  // Arabic fonts: not preloaded and limited to Arabic letters, so English and French pages don't download ~250 KB
+  // they never use (the browser fetches them only when Arabic text is on screen).
+  preload: false,
+  declarations: [{ prop: "unicode-range", value: "U+0600-06FF, U+0750-077F, U+0870-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F" }],
 });
 
 export const arabicBody = localFont({
@@ -31,6 +35,8 @@ export const arabicBody = localFont({
   ],
   variable: "--font-arabic-body",
   display: "swap",
+  preload: false,
+  declarations: [{ prop: "unicode-range", value: "U+0600-06FF, U+0750-077F, U+0870-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F" }],
 });
 
 export const fontVars = [display.variable, body.variable, arabicDisplay.variable, arabicBody.variable].join(" ");

@@ -156,6 +156,9 @@ html[dir="rtl"] body {
   font-variant-numeric: tabular-nums;
 }
 .cite:hover { background: rgb(var(--brand)); color: rgb(var(--surface)); }
+/* Invisible larger tap area around the small source chips (about 30 px, WCAG 2.2 target size), no layout change. */
+.cite { position: relative; }
+.cite::before { content: ""; position: absolute; inset: -6px; }
 
 .caret::after {
   content: "";
