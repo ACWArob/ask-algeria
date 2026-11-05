@@ -8,7 +8,8 @@
  * in FEEDBACK_WEBHOOK_URL. Never commit the real key.
  */
 const KEY = "PASTE_FEEDBACK_WEBHOOK_KEY_HERE";
-const SUPPORT_EMAIL = "support@ixlconsulting.tech";
+// Comma-separated list of inboxes that get each contact message (set in the Apps Script editor, not here).
+const SUPPORT_EMAIL = "PASTE_SUPPORT_EMAILS_HERE";
 
 const COLUMNS = {
   Contact: ["at", "message", "replyTo", "lang"],
