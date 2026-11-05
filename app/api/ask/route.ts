@@ -25,7 +25,8 @@ import { aiBlockedNow, noteAiError, noteAiOk } from "@/lib/health";
 import { count, METRICS, type Metric } from "@/lib/metrics";
 import { allowAi, overBudget, recordSpend, spendSettled, type Block } from "@/lib/spend";
 import { localExpansion, localExpansionDecision } from "@/lib/expand-local";
-import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
+import { hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt, otherMissionHosts } from "@/lib/missions";
+import { coversTopic } from "@/lib/quick-answer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -214,11 +215,17 @@ export async function POST(req: Request) {
   const queries = post && !post.inAlgeria ? [...base, ...base.slice(0, 3).map((q) => `${q} ${post.place}`)] : base;
   const abroad = post ? !post.inAlgeria : Boolean(multiPostCountry);
   const excludeDomains = [
-    ...(post ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria)) : multiPostCountry ? foreignMissionHostsForCountry(multiPostCountry) : []),
+    // Other countries' consulates, also when the person's own mission has no website (lib/missions otherMissionHosts).
+    ...otherMissionHosts(post?.domains ?? null, Boolean(post?.inAlgeria), multiPostCountry ?? namedCountry),
     // Someone living abroad goes through a consulate: a wilaya's local procedure would mislead them.
     ...(abroad ? WILAYA_PORTALS : []),
   ];
-  const hits = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics, excludeDomains });
+  const found = searchChunks(queries, LIMITS.topChunks, { boostDomains: post?.domains ?? [], topics, excludeDomains });
+  // Same off-topic filter as free search: a page that only uses the subject word in passing (the Startup label is a
+  // "passeport") is not a source. Kept when it would leave nothing, so a follow-up still gets its pages.
+  const corpusMap = corpusById();
+  const onTopic = found.filter((h) => coversTopic(question, h.title, corpusMap.get(h.docId)?.text ?? h.text));
+  const hits = onTopic.length ? onTopic : found;
 
   // Group chunks by page so each page gets one citation number.
   const byDoc = new Map<string, PromptSource>();

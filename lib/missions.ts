@@ -232,6 +232,16 @@ export function foreignMissionHosts(postDomains: string[], inAlgeria = false): s
   return [...new Set(MISSIONS.flatMap(missionHosts))].filter((h) => !keep.has(h) && h !== "mfa.gov.dz");
 }
 
+/**
+ * Mission hosts to leave out of search for this person: other countries' consulates. Falls back to the country
+ * when the person's own office has no website of its own (Ethiopia), so London / Milan rules don't fill the gap.
+ */
+export function otherMissionHosts(postDomains: string[] | null, inAlgeria: boolean, country: string | null): string[] {
+  const foreign = postDomains ? foreignMissionHosts(postDomains, inAlgeria) : [];
+  if (foreign.length) return foreign;
+  return country && !inAlgeria ? foreignMissionHostsForCountry(country) : [];
+}
+
 /** Same as foreignMissionHosts, for a country named without a city ("France", "the United States"). */
 export function foreignMissionHostsForCountry(country: string): string[] {
   const c = country.replace(/^the /, "");

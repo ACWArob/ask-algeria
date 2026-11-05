@@ -2,7 +2,7 @@ import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
 import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
-import { foreignMissionHosts, foreignMissionHostsForCountry, isMissionContactQuestion, matchMissions, MISSIONS } from "@/lib/missions";
+import { isMissionContactQuestion, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
 import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
 import { expandQuery } from "@/lib/synonyms";
@@ -117,10 +117,8 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
 
   // Other countries' consulates are left out once the country is known, also when the person's own mission
   // has no website of its own (Ethiopia): their rules are not this person's.
-  const foreign = post ? foreignMissionHosts(post.domains, Boolean(post.inAlgeria)) : [];
-  const knownCountry = country ?? (post && !post.inAlgeria ? namedCountry : null);
-  const otherMissionHosts = foreign.length ? foreign : knownCountry ? foreignMissionHostsForCountry(knownCountry) : [];
-  const excludeDomains = [...otherMissionHosts, ...(abroad ? WILAYA_PORTALS : [])];
+  const otherMissions = otherMissionHosts(post?.domains ?? null, Boolean(post?.inAlgeria), country ?? namedCountry);
+  const excludeDomains = [...otherMissions, ...(abroad ? WILAYA_PORTALS : [])];
   // Synonyms across en/fr/ar/Darija (lib/synonyms), so the page's language doesn't have to match the question's.
   const exp = expandQuery(question);
   const queries = [...new Set([question, exp.query, ...glossaryQueries(`${context} ${question}`)].filter(Boolean))];
@@ -177,7 +175,7 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
       inAlgeria: post ? Boolean(post.inAlgeria) : null,
       officeCities: [officeCity, post?.place].filter((x): x is string => Boolean(x)),
       otherCities: MISSION_CITIES,
-      skipSource: (id) => otherMissionHosts.includes((corpus.get(id)?.domain ?? "").replace(/^www\./, "")),
+      skipSource: (id) => otherMissions.includes((corpus.get(id)?.domain ?? "").replace(/^www\./, "")),
     });
     if (ga) {
       quick = {

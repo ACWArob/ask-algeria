@@ -117,5 +117,31 @@ describe("/api/ask in mock mode", () => {
     expect(lines[1]).toMatchObject({ cache: "hit", calls: 0 });
     expect(lines[2]).toMatchObject({ cache: "skip", expand: "llm" });
     expect(follow.length).toBeGreaterThan(0);
-  });
+  }, 20_000); // three full requests: slower than 5 s when the whole suite runs in parallel
+
+  it("written answers cite only on-topic pages and no other country's consulate", async () => {
+    vi.stubEnv("MOCK_LLM", "1");
+    const { setSharedKv } = await import("@/lib/kv");
+    setSharedKv(null);
+    const { POST } = await import("@/app/api/ask/route");
+    const spy = vi.spyOn(console, "log").mockImplementation(() => {});
+    const ask = async (question: string, where: Record<string, unknown>) => {
+      const res = await POST(new Request("http://x/api/ask", {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-forwarded-for": `10.1.0.${Math.floor(Math.random() * 200)}` },
+        body: JSON.stringify({ question, lang: "en", where }),
+      }));
+      const meta = JSON.parse((await res.text()).split("\n")[0]);
+      return (meta.sources ?? []) as { url: string; title: string }[];
+    };
+    // Lyon: the Startup label page (says "passeport" once) used to be a source for a passport question.
+    const lyon = await ask("How do I renew my passport?", { in: "abroad", country: "France", city: "Lyon" });
+    expect(lyon.length).toBeGreaterThan(0);
+    expect(lyon.map((s) => s.url).join(" ")).not.toMatch(/startup\.dz/);
+    // Ethiopia: the embassy has no website, so London / Milan / New York pages used to fill the sources.
+    const eth = await ask("How do I renew my passport?", { in: "abroad", country: "Ethiopia" });
+    expect(eth.length).toBeGreaterThan(0);
+    expect(eth.map((s) => s.url).join(" ")).not.toMatch(/cglondon|cgmilan|embwashington|algeria-cgny|algerian-consulate/);
+    spy.mockRestore();
+  }, 20_000);
 });
