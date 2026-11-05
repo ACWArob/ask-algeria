@@ -128,6 +128,10 @@ Format (Markdown), HARD LIMITS:
 /** Text from the visitor goes inside our tags: without < and > it can't close a tag or forge one of ours. */
 export const untag = (s: string) => s.replace(/[<>]/g, " ");
 
+/** Page text keeps ordinary < and >, but anything shaped like one of our prompt tags is broken up. */
+const OUR_TAGS = /<\s*\/?\s*(source|official_pages|question|previous_question|your_previous_answer|verification_notes|document)\b[^>]*>?/gi;
+export const defuseTags = (s: string) => s.replace(OUR_TAGS, (m) => m.replace(/[<>]/g, " "));
+
 export function answerUserPrompt(question: string, sources: PromptSource[], context = "", notes: string[] = [], prevAnswer = ""): string {
   question = untag(question);
   context = untag(context);
@@ -135,7 +139,7 @@ export function answerUserPrompt(question: string, sources: PromptSource[], cont
   const blocks = sources
     .map(
       (s) =>
-        `<source n="${s.n}" title="${escapeAttr(s.title)}" url="${escapeAttr(s.url)}"${s.checked ? ` checked="${s.checked}"` : ""}${s.archived ? ` archived_copy_from="${s.archived}"` : ""}>\n${s.excerpts.join("\n…\n")}\n</source>`,
+        `<source n="${s.n}" title="${escapeAttr(s.title)}" url="${escapeAttr(s.url)}"${s.checked ? ` checked="${s.checked}"` : ""}${s.archived ? ` archived_copy_from="${s.archived}"` : ""}>\n${s.excerpts.map(defuseTags).join("\n…\n")}\n</source>`,
     )
     .join("\n\n");
   const prev =

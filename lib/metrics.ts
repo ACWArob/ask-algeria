@@ -1,9 +1,11 @@
 /**
  * Usage counters for the daily metrics check (searches, written answers, cache hits, blocks, AI errors…). Counts
  * only: no question text, no IPs, nothing about a visitor. Buffered in memory and flushed to the shared store at
- * most once a minute per server (one request), so they cost almost nothing; a server that stops before flushing
- * loses its last minute, so treat the numbers as close, not exact. Without a shared store they stay per server.
+ * most every 10 s per server (one request), right after the response is sent (next/server `after`, so a serverless
+ * function isn't frozen mid-write). The first count on a fresh server flushes at once: short-lived servers used to
+ * lose everything. A server that stops loses at most its last 10 s. Without a shared store they stay per server.
  */
+import { after } from "next/server";
 import { sharedKv } from "@/lib/kv";
 
 export const METRICS = [
@@ -14,17 +16,24 @@ export const METRICS = [
 export type Metric = (typeof METRICS)[number];
 
 const TTL_S = 45 * 24 * 60 * 60;
-const FLUSH_MS = 60_000;
+const FLUSH_MS = 10_000;
 const day = (now: number) => new Date(now).toISOString().slice(0, 10);
 const key = (d: string, m: string) => `aa:m:${d}:${m}`;
 
 let buf = new Map<string, number>(); // "<day>|<metric>" → count
-let lastFlush = Date.now();
+let lastFlush = 0;
 
 export function count(m: Metric, n = 1, now = Date.now()) {
   const k = `${day(now)}|${m}`;
   buf.set(k, (buf.get(k) ?? 0) + n);
-  if (now - lastFlush >= FLUSH_MS) void flushMetrics(now);
+  if (now - lastFlush >= FLUSH_MS) {
+    lastFlush = now;
+    try {
+      after(() => flushMetrics(now)); // inside a request: runs once the response is sent, and is waited for
+    } catch {
+      void flushMetrics(now); // outside a request (tests, scripts)
+    }
+  }
 }
 
 /** Sends the buffered counts in one pipeline (INCRBY + EXPIRE each). Never throws. */
@@ -70,5 +79,5 @@ export async function dailyMetrics(days = 7, now = Date.now()): Promise<{ day: s
 /** For tests. */
 export function resetMetrics() {
   buf = new Map();
-  lastFlush = Date.now();
+  lastFlush = 0;
 }

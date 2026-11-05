@@ -67,6 +67,14 @@ describe("instant search (no AI)", () => {
     expect([...r.pages.map((p) => p.title), ...(r.quick?.sources ?? []).map((s) => s.title)].join(" ")).not.toMatch(/véhicule|vehicle/i);
   });
 
+  it("uses the connection's location only for location-dependent questions", () => {
+    const h = new Headers({ "x-vercel-ip-country": "US", "x-vercel-ip-country-region": "CO", "x-vercel-ip-city": "Boulder" });
+    // A stolen SIM or a CNAS question is not answered "for Boulder, Colorado" with San Francisco pages.
+    expect(instantSearch("On m'a volé mon téléphone avec ma puce, que dois-je faire ?", "fr", h).office).toBeUndefined();
+    expect(instantSearch("how much are CNAS family allowances per child", "en", h).office).toBeUndefined();
+    expect(instantSearch("How do I renew my Algerian passport?", "en", h).office?.name).toMatch(/San Francisco/);
+  });
+
   it("works in Arabic and Darija", () => {
     expect(instantSearch("كيفاش نخرج شهادة الميلاد 12 خ", "dz").guides.map((g) => g.slug)).toContain("birth-12s");
     expect(instantSearch("كيف أستخرج صحيفة السوابق العدلية", "ar").pages.length).toBeGreaterThan(0);

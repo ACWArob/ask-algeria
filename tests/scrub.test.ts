@@ -109,6 +109,7 @@ describe("Vercel geo headers", () => {
   });
 });
 
+
 describe("wilayas and 'in Algeria'", () => {
   it("every wilaya maps to its portal; plain 'in Algeria' is not a residence", () => {
     expect(detectPost("I live in Tlemcen")?.domains).toContain("wilaya-tlemcen.dz");
@@ -119,6 +120,13 @@ describe("wilayas and 'in Algeria'", () => {
     expect(detectPost("الجزائر")).toBeNull();
     expect(detectPost("أسكن في الجزائر")?.inAlgeria).toBe(true);
     expect(detectPost("rani f dzayer")?.inAlgeria).toBe(true);
+  });
+  it("'I'm in Algeria' said in Darija or Arabic counts as being in Algeria", () => {
+    expect(detectPost("كيفاش نخرج الكازيي جوديسيير وانا في دزاير")?.inAlgeria).toBe(true);
+    expect(detectPost("راني في دزاير واش لازم")?.inAlgeria).toBe(true);
+    expect(detectPost("كيف أستخرج الوثيقة وأنا في الجزائر؟")?.inAlgeria).toBe(true);
+    // the action, not the person, is in Algeria
+    expect(detectPost("عقد زواجي في بلجيكا كيف أسجله في الجزائر")?.inAlgeria).not.toBe(true);
   });
   it("wilaya names that are everyday words need 'in/à/في'", () => {
     expect(detectPost("my mascara ran out")).toBeNull();

@@ -3,6 +3,7 @@
  * (Latin, Arabic or Darija spelling). Used to (1) boost that office's pages in search and
  * (2) tell the model which office applies, so answers state it as a fact.
  */
+import { isMissionContactQuestion } from "@/lib/missions";
 
 export interface PostHint {
   /** Place the person mentioned, as we understood it (e.g. "Colorado"). */
@@ -232,7 +233,7 @@ const PLACES: [string[], string, Office][] = [
   [["bgayet", "vgayet"], "Béjaïa", ALGERIA("Béjaïa", "wilaya-bejaia.dz")],
   [["tizi", "تيزي"], "Tizi Ouzou", ALGERIA("Tizi Ouzou", "dcwtiziouzou.dz")],
   // Living in Algeria (generic). Plain "in Algeria"/"في الجزائر" is NOT here: "register my marriage in Algeria" is said from abroad.
-  [["i live in algeria", "living in algeria", "i'm in algeria", "im in algeria", "i am in algeria", "based in algeria", "j'habite en algérie", "j'habite en algerie", "je vis en algérie", "je vis en algerie", "je suis en algérie", "je suis en algerie", "أقيم في الجزائر", "أسكن في الجزائر", "اسكن في الجزائر", "ساكن في الجزائر", "نسكن في الجزائر", "أعيش في الجزائر", "اعيش في الجزائر", "راني في الدزاير", "راني فالدزاير", "rani f dzayer", "rani fi dzayer", "rani fl bled", "ana f dzayer", "nskon f dzayer"], "Algeria", ALGERIA("your wilaya")],
+  [["i live in algeria", "living in algeria", "i'm in algeria", "im in algeria", "i am in algeria", "based in algeria", "j'habite en algérie", "j'habite en algerie", "je vis en algérie", "je vis en algerie", "je suis en algérie", "je suis en algerie", "أقيم في الجزائر", "أسكن في الجزائر", "اسكن في الجزائر", "ساكن في الجزائر", "نسكن في الجزائر", "أعيش في الجزائر", "اعيش في الجزائر", "راني في الدزاير", "راني فالدزاير", "rani f dzayer", "rani fi dzayer", "rani fl bled", "ana f dzayer", "nskon f dzayer", "انا في دزاير", "أنا في دزاير", "وانا في دزاير", "وأنا في دزاير", "انا في الدزاير", "وانا في الدزاير", "راني في دزاير", "راني فدزاير", "انا في الجزائر", "أنا في الجزائر", "وانا في الجزائر", "وأنا في الجزائر"], "Algeria", ALGERIA("your wilaya")],
 ];
 
 // Countries with several Algerian posts: ask for the city instead of guessing.
@@ -272,6 +273,18 @@ export const WILAYAS: { name: string; ar: string }[] = (() => {
   return out;
 })();
 
+/** Procedures that depend on the person's office: ask where they live first (no mixed answer from random consulates). */
+export const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
+
+/**
+ * May the connection's approximate location stand in for where the person lives? Only when the answer depends on
+ * the office (procedures above, visas, "where is the consulate"). A stolen SIM or a divorce question is not
+ * answered "for Boulder, Colorado".
+ */
+export function locationDependent(topics: string[], question: string): boolean {
+  return topics.some((t) => LOCATION_FIRST.includes(t) || t === "consular_visa") || isMissionContactQuestion(question);
+}
+
 export function detectPost(text: string): PostHint | null {
   const t = text.replace(/[’']/g, "'");
   // 1. Named cities/countries (longest names first so "new york city" beats "york").
@@ -279,7 +292,7 @@ export function detectPost(text: string): PostHint | null {
     (a, b) => b[0].length - a[0].length,
   );
   // Several places named ("in Toronto, do I go to Montreal?"): the one mentioned first is where they are.
-  const found: { at: number; len: number; hint: PostHint }[] = [];
+  const found: { at: number; pos: number; len: number; hint: PostHint }[] = [];
   for (const [name, place, office] of entries) {
     if (LOCATIVE_ONLY.has(name) && !new RegExp(`(?:^|\\s)(?:in|à|a|de|from|near|f|fi|في|ف|ب)\\s*${name}(?![\\p{L}])`, "iu").test(t)) continue;
     if (name === "nice" && !/(?:^|\s)(in|à|de|from|depuis|near|près de|pres de|f|fi)\s+nice(?![\p{L}])/iu.test(t) && !/(?:^|\s)a\s+Nice(?![\p{L}])/u.test(t)) continue;
@@ -287,10 +300,12 @@ export function detectPost(text: string): PostHint | null {
       const at = t.toLowerCase().search(new RegExp(`(?<![\\p{L}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "iu"));
       const before = at > 0 ? t.slice(Math.max(0, at - 28), at) : "";
       const lives = RESIDES.test(before);
-      found.push({ at: lives ? -1 : at < 0 ? 1e9 : at, len: name.length, hint: { place, ...office } });
+      found.push({ at: lives ? -1 : at < 0 ? 1e9 : at, pos: at, len: name.length, hint: { place, ...office } });
     }
   }
-  if (found.length) return found.sort((a, b) => a.at - b.at || b.len - a.len)[0].hint;
+  // Overlapping matches ("وأنا في الجزائر" + "الجزائر العاصمة"): the one that runs further names the place more precisely.
+  const kept = found.filter((f) => !found.some((g) => g !== f && g.pos > f.pos && g.pos < f.pos + f.len && g.pos + g.len > f.pos + f.len));
+  if (kept.length) return kept.sort((a, b) => a.at - b.at || b.len - a.len)[0].hint;
   // 2. "LA" written in capitals means Los Angeles in practice.
   if (/(?<![\p{L}])LA(?![\p{L}])/u.test(t)) return { place: "Los Angeles, California", ...SF };
   // 3. US state names.

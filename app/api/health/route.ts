@@ -17,7 +17,8 @@ export const dynamic = "force-dynamic";
  * No model call, no visitor data, no spend figures.
  */
 export async function GET(req: Request) {
-  if (!rateLimit(`health:${clientIp(req.headers)}`, 30).ok) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  // Generous: the monitors and a person checking by hand share one connection; 120/min still stops a flood.
+  if (!rateLimit(`health:${clientIp(req.headers)}`, 120).ok) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   const started = Date.now();
   let search = false;
   let pages = 0;

@@ -14,7 +14,7 @@ import type { AskMeta } from "@/lib/types";
 import { freshness } from "@/lib/freshness";
 import { checkedDate, verificationNotes } from "@/lib/verification";
 import { corpusById } from "@/lib/corpus";
-import { detectPost, detectMultiPostCountry, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
+import { detectPost, detectMultiPostCountry, LOCATION_FIRST, locationDependent, postFromGeo, readGeo, type PostHint } from "@/lib/posts";
 import { askCity, askCountry, OTHER_PLACE, type Clarify } from "@/lib/clarify";
 import { makeScrubber } from "@/lib/scrub";
 import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
@@ -137,14 +137,14 @@ export async function POST(req: Request) {
   // Fall back to the approximate location of the connection (e.g. Netlify geo), but say so in the answer.
   // Never when they named a country ("France"): then we ask which city instead of using where the connection is.
   const namedCountry = detectMultiPostCountry(`${context} ${question}`) ?? whereCountry(where);
-  const geoPost = statedPost || namedCountry ? null : postFromGeo(readGeo(req.headers));
+  const topics = questionTopics(`${context} ${question}`);
+  // Only for procedures that depend on the office (a stolen SIM or a divorce question isn't "for Boulder, Colorado").
+  const geoPost = statedPost || namedCountry || !locationDependent(topics, question) ? null : postFromGeo(readGeo(req.headers));
   const post = statedPost ?? geoPost;
   const multiPostCountry = post ? null : namedCountry;
-  const topics = questionTopics(`${context} ${question}`);
 
   const quickLang = chooseAnswerLang(selected, detectLanguage(question), question);
   // Location-dependent procedure but we don't know where they are: ask first (no mixed answer from random consulates).
-  const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
   // Ask at most once per question type: if an earlier turn was already location-dependent, we already asked;
   // when the person carries on without answering, answer in general terms instead of asking again.
   const countryNow = detectMultiPostCountry(question);

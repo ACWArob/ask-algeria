@@ -41,10 +41,11 @@ describe("usage metrics", () => {
     const f = fake();
     setSharedKv(f.kv);
     const now = Date.UTC(2026, 10, 4, 12);
-    for (let i = 0; i < 50; i++) count("search", 1, now); // all within a minute: no request yet
-    expect(f.requests()).toBe(0);
-    await flushMetrics(now);
+    for (let i = 0; i < 50; i++) count("search", 1, now); // the first is sent at once, the rest wait for the interval
+    await new Promise((r) => setTimeout(r, 0));
     expect(f.requests()).toBe(1);
+    await flushMetrics(now);
+    expect(f.requests()).toBe(2);
     expect(f.data.get("aa:m:2026-11-04:search")).toBe("50");
     f.data.set("aa:m:2026-11-03:ask_answered", "7");
     const rows = await dailyMetrics(2, now);
@@ -53,6 +54,31 @@ describe("usage metrics", () => {
     expect(rows[1].counts.ask_answered).toBe(7);
     expect(JSON.stringify(rows)).not.toMatch(/spend/);
   });
+
+  it("the first count on a fresh server is sent to the store right away (short-lived servers lost everything)", async () => {
+    const f = fake();
+    setSharedKv(f.kv);
+    const now = Date.UTC(2026, 10, 5, 17);
+    count("ask_answered", 1, now);
+    await new Promise((r) => setTimeout(r, 0));
+    expect(f.data.get("aa:m:2026-11-05:ask_answered")).toBe("1");
+    count("ask_answered", 1, now + 1000); // within the flush interval: buffered
+    expect(f.requests()).toBe(1);
+    count("ask_answered", 1, now + 11_000); // interval passed: flushed with the buffered one
+    await new Promise((r) => setTimeout(r, 0));
+    expect(f.data.get("aa:m:2026-11-05:ask_answered")).toBe("3");
+  });
+
+  it("/api/health allows 120 checks a minute from one connection, then refuses", async () => {
+    vi.stubEnv("VERCEL", "1");
+    const { GET } = await import("@/app/api/health/route");
+    const req = () => new Request("http://x/api/health", { headers: { "x-vercel-forwarded-for": "203.0.113.77" } });
+    const codes: number[] = [];
+    for (let i = 0; i < 121; i++) codes.push((await GET(req())).status);
+    vi.unstubAllEnvs();
+    expect(codes.slice(0, 120).every((c) => c === 200)).toBe(true);
+    expect(codes[120]).toBe(429);
+  }, 30_000);
 
   it("/api/health?days=2 returns the daily counts", async () => {
     const { GET } = await import("@/app/api/health/route");

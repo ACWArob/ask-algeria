@@ -1,7 +1,7 @@
 import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
-import { detectMultiPostCountry, detectPost, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
+import { detectMultiPostCountry, detectPost, LOCATION_FIRST, locationDependent, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
 import { isMissionContactQuestion, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
 import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
@@ -50,7 +50,6 @@ export interface InstantResult {
 }
 
 /** Topics whose procedure, office, documents and fees depend on where the person lives (same list as /api/ask). */
-const LOCATION_FIRST = ["passport", "cni", "birth_certificate", "civil_status", "criminal_record", "nationality", "consular_registration", "legalization", "national_service", "driving_vehicle"];
 
 /** Which guide answers which question topic (topics from lib/detect questionTopics). */
 const GUIDE_TOPICS: Record<string, string[]> = {
@@ -110,7 +109,7 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
   const saved = askedCountry ? null : where;
   const stated = detectPost(question) ?? resolveWhere(saved) ?? detectPost(context);
   const namedCountry = askedCountry ?? detectMultiPostCountry(context) ?? whereCountry(saved);
-  const geo = stated || namedCountry || !headers ? null : postFromGeo(readGeo(headers));
+  const geo = stated || namedCountry || !headers || !locationDependent(topics, question) ? null : postFromGeo(readGeo(headers));
   const post: PostHint | null = stated ?? geo;
   const country = post ? null : namedCountry;
   const abroad = post ? !post.inAlgeria : Boolean(country);

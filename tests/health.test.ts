@@ -46,3 +46,13 @@ describe("/api/health", () => {
     expect(JSON.stringify(j)).not.toMatch(/key|token|password/i);
   });
 });
+
+describe("query expansion reply", () => {
+  it("a reply cut off by the token limit keeps the queries that arrived (not an AI failure)", async () => {
+    const { parseExpansion } = await import("@/lib/llm");
+    const cut = '{"lang":"ar","queries":{"fr":["renouvellement passeport","passeport biométrique"],"ar":["تجديد جواز السفر"],"en":["passport ren';
+    expect(parseExpansion(cut)).toEqual({ lang: "ar", queries: { fr: ["renouvellement passeport", "passeport biométrique"], ar: ["تجديد جواز السفر"], en: [] } });
+    expect(parseExpansion('{"lang":"en","queries":{"en":["a"]},"topic":"t"}')).toEqual({ lang: "en", queries: { en: ["a"] }, topic: "t" });
+    expect(parseExpansion("no json here")).toBeNull();
+  });
+});

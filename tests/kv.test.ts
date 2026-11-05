@@ -240,8 +240,8 @@ describe("answer cache with a shared store", () => {
   });
 });
 
-describe("free search never touches the shared store", () => {
-  it("/api/search makes no store request", async () => {
+describe("free search never depends on the shared store", () => {
+  it("/api/search reads and writes nothing there; only the usage counter is sent, after the response", async () => {
     const f = fakeUpstash();
     setSharedKv(f.kv);
     const fetchSpy = vi.spyOn(globalThis, "fetch");
@@ -250,7 +250,10 @@ describe("free search never touches the shared store", () => {
       new Request("http://x/api/search", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ question: "renew passport", lang: "en" }) }),
     );
     expect(res.status).toBe(200);
-    expect(f.fetch).not.toHaveBeenCalled();
+    await new Promise((r) => setTimeout(r, 0));
+    // Outside Next there is no "after the response", so the counter flush shows up here: it must be the only call,
+    // and only usage counters (aa:m:…), never a cache or quota read.
+    for (const r of f.requests) for (const [op, k] of r.body) expect([op, k.startsWith("aa:m:")]).toEqual([op === "INCRBY" ? "INCRBY" : "EXPIRE", true]);
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 });
