@@ -21,6 +21,8 @@ import { parseWhere, resolveWhere, whereCountry } from "@/lib/where";
 import sourcesJson from "@/data/sources.json";
 import { followUps } from "@/lib/followups";
 import { answerCacheKey, answerStore, corpusVersion, isCacheable } from "@/lib/answer-cache";
+import { aiBlockedNow, noteAiError, noteAiOk } from "@/lib/health";
+import { count, METRICS, type Metric } from "@/lib/metrics";
 import { allowAi, overBudget, recordSpend, spendSettled, type Block } from "@/lib/spend";
 import { localExpansion, localExpansionDecision } from "@/lib/expand-local";
 import { foreignMissionHosts, foreignMissionHostsForCountry, hostOf, missionHosts, isMissionContactQuestion, matchMissions, missionExcerpt } from "@/lib/missions";
@@ -111,8 +113,16 @@ export async function POST(req: Request) {
     "X-Content-Type-Options": "nosniff",
   };
   // One line per request, to measure cost: cache hit/miss/skip, how the query was expanded, model calls made.
-  const logAsk = (cache: "hit" | "miss" | "skip", expand: "llm" | "local" | "none", calls: number, extra: Record<string, unknown> = {}) =>
+  const logAsk = (cache: "hit" | "miss" | "skip", expand: "llm" | "local" | "none", calls: number, extra: Record<string, unknown> = {}) => {
     console.log(`[ask] ${JSON.stringify({ cache, expand, calls, ms: Date.now() - started, ...extra })}`);
+    // Daily usage counts for the metrics check (lib/metrics.ts): counts only, nothing about the question.
+    count("ask");
+    const blocked = typeof extra.blocked === "string" ? (`ask_blocked_${extra.blocked}` as Metric) : null;
+    if (cache === "hit") count("ask_cached");
+    else if (blocked && (METRICS as readonly string[]).includes(blocked)) count(blocked);
+    else if (extra.ok === false) count("ask_failed");
+    else if (calls > 0 || extra.mock) count("ask_answered");
+  };
   // A mission named in the question ("the consulate in Beijing") is the office they mean, even if that city
   // isn't in the place tables; it also beats the connection's location.
   const namedMission = !detectPost(question) && isMissionContactQuestion(question) ? matchMissions(question, [], 1)[0] : undefined;
@@ -171,6 +181,12 @@ export async function POST(req: Request) {
 
   // Spending guard (lib/spend.ts): kill switch, daily budget, per-visitor quota. Cached answers above stay free.
   if (!mock) {
+    // Out of API credit or a bad key a moment ago: no slow failing call, the free results stay on screen.
+    if (aiBlockedNow()) {
+      logAsk("skip", "none", 0, { blocked: "ai_unavailable" });
+      const meta: AskMeta = { type: "meta", answerLang: quickLang, detectedLang: detectLanguage(question), sources: [], redactedServer: removed };
+      return new Response(`${JSON.stringify(meta)}\n${PAUSED.disabled[quickLang]}`, { headers });
+    }
     const allowed = await allowAi(clientIp(req.headers), "ask");
     if (!allowed.ok) {
       logAsk("skip", "none", 0, { blocked: allowed.reason });
@@ -403,6 +419,7 @@ export async function POST(req: Request) {
             const fin = await stream.finalMessage().catch(() => null);
             // Real usage when the API returns it; otherwise a rough estimate (~3 characters per token).
             recordSpend(models[attempt], fin?.usage ?? { input_tokens: Math.ceil((system.length + userPrompt.length) / 3), output_tokens: Math.ceil(wrote / 3) });
+            noteAiOk();
             if (fin?.stop_reason === "max_tokens") emit(SHORTENED[answerLang]);
             else finishedNormally = true;
             return; // finished normally
@@ -423,6 +440,12 @@ export async function POST(req: Request) {
               /* a late language check can't retry any more */
             }
             flushHeld();
+            const kind = noteAiError(err);
+            // No credit or a bad key: the fallback model would fail the same way; say written answers are off.
+            if ((kind === "credit" || kind === "auth") && wrote === 0) {
+              emit(PAUSED.disabled[answerLang]);
+              return;
+            }
             const timedOut = Date.now() - started >= DEADLINE_MS - 50;
             console.error(`[ask] attempt ${attempt + 1} (${models[attempt]}) failed after ${Date.now() - started}ms:`, err instanceof Error ? err.message : err);
             if (wrote > 0) {

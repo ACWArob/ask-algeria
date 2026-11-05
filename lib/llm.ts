@@ -5,6 +5,7 @@ import { MODELS } from "@/lib/config";
 import { expandSystemPrompt } from "@/lib/prompts";
 import { detectLanguage, glossaryQueries } from "@/lib/detect";
 import { isLocale, type Locale } from "@/lib/i18n";
+import { noteAiError, noteAiOk } from "@/lib/health";
 
 let client: Anthropic | null = null;
 export function anthropic(): Anthropic {
@@ -33,6 +34,7 @@ export async function expandQuery(question: string, context = ""): Promise<Expan
       messages: [{ role: "user", content: context ? `Previous question in this conversation (context only): ${context}\n\nQuestion: ${question}` : question }],
     }, { timeout: 2200, maxRetries: 0 });
     recordSpend(MODELS.expand, res.usage);
+    noteAiOk();
     const text = res.content.map((b) => (b.type === "text" ? b.text : "")).join("");
     const json = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1)) as {
       lang?: unknown;
@@ -51,6 +53,7 @@ export async function expandQuery(question: string, context = ""): Promise<Expan
     };
   } catch (err) {
     console.error("[expand] falling back to heuristic:", err instanceof Error ? err.message : err);
+    noteAiError(err);
     recordSpend(MODELS.expand, { input_tokens: 600, output_tokens: 200 }); // a timed-out call may still be billed
     return fallback;
   }

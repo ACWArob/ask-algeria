@@ -17,7 +17,7 @@ describe("missions.json", () => {
     for (const m of MISSIONS) for (const l of ["en", "fr", "ar", "dz"] as const) expect(missionName(m, l), `${m.id} ${l}`).toBeTruthy();
   });
 
-  it("applies the 2026-10-30 tester review (Chaima, from Algeria)", () => {
+  it("applies the 2026-10-30 tester review (from inside Algeria)", () => {
     const byId = (id: string) => MISSIONS.find((m) => m.id === id)!;
     const ba = byId("embbuenosaires");
     expect(ba.website).toBe("https://embbuenosaires.mfa.gov.dz/en");

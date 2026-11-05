@@ -91,7 +91,7 @@ export function PrepareClient({ dict, locale, procedures, letters, formLabels, i
   const t = dict.prepare;
   const rtl = locale === "ar" || locale === "dz";
   const [place, setPlaceState] = useState<Place | null>(null);
-  // Only the procedures and situations for where the person lives (Chaima's test: London/Washington rules
+  // Only the procedures and situations for where the person lives (tester feedback: London/Washington rules
   // confused someone living in Algeria).
   const shown = procedures.filter((p) => p.situations.some((s) => fitsPlace(s, place)));
   const [slug, setSlug] = useState(initial ?? procedures[0]?.slug ?? "");

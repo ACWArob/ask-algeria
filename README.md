@@ -119,6 +119,15 @@ scripts/        crawl, import, refresh, cross-check
 tests/          vitest
 ```
 
+## Monitoring
+
+- `.github/workflows/uptime.yml` checks the site every 10 minutes through `/api/health`, which runs a real search, reports whether written AI answers are working (for example, out of API credit) and checks the TLS certificate. A failed run emails the owner.
+- `/api/health?days=7` adds daily usage counts (searches, written answers, cache hits, blocks, AI errors) for the daily metrics check. No visitor data and no spend figures.
+
+## License
+
+All rights reserved. The code is public to show how the project is built, not for reuse: see [LICENSE](LICENSE).
+
 ## Credits and contact
 
 Inspired by [Ask Pakistan](https://pakistangov.online/). Feedback, corrections and ideas are welcome through the contact form on the [About page](https://www.algeriagov.online/about#contact).

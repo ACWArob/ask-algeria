@@ -4,6 +4,7 @@ import { instantSearch } from "@/lib/instant";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 import { redact } from "@/lib/redact";
 import { parseWhere } from "@/lib/where";
+import { count } from "@/lib/metrics";
 
 export const runtime = "nodejs";
 
@@ -25,6 +26,7 @@ export async function POST(req: Request) {
   const lang = isLocale(body.lang) ? body.lang : "fr";
   const { text: question } = redact(raw);
   const context = typeof body.context === "string" ? redact(body.context.trim().slice(0, 500)).text : "";
+  count("search");
   const result = instantSearch(question, lang, req.headers, context, parseWhere(body.where));
   // One line per search so we can compare how often people still ask for an AI answer.
   console.log(`[search] ${JSON.stringify({ lang, pages: result.pages.length, guides: result.guides.map((g) => g.slug), office: Boolean(result.office), mission: Boolean(result.mission) })}`);

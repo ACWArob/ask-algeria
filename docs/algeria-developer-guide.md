@@ -5,8 +5,8 @@ Thank you for helping! **Ask Algeria** is an independent (non-government) assist
 Many official `.dz` sites **block visitors from outside Algeria**, so we can't read them. You can, because you're in Algeria. That's why your help matters so much.
 
 - **Demo:** https://ask-algeria.vercel.app (password shared with you separately)
-- **Spreadsheet:** https://docs.google.com/spreadsheets/d/1b6oM09R6yjt-80jXDWRK6exIzSOWHJMmVlZ98w_s4sY/edit
-- **Contact:** Adam (ACWA), on WhatsApp
+- **Spreadsheet:** the link is shared with you privately
+- **Contact:** the project owner, on WhatsApp
 
 Do the parts in order. Part 3 (the crawler) is the most valuable.
 

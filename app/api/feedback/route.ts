@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { redact, sheetSafe } from "@/lib/redact";
+import { count } from "@/lib/metrics";
 import { clientIp, rateLimit } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
@@ -31,6 +32,7 @@ export async function POST(req: Request) {
       sources: Number(j.sources ?? 0) || 0,
     };
     console.log(`[feedback] ${JSON.stringify(entry)}`);
+    count(rating === "up" ? "feedback_up" : "feedback_down");
     await forward(entry);
   } catch {
     return NextResponse.json({ ok: false }, { status: 400 });
@@ -66,6 +68,7 @@ async function contact(j: Record<string, unknown>) {
     lang: ["en", "fr", "ar", "dz"].includes(String(j.lang)) ? String(j.lang) : undefined,
   };
   console.log(`[contact] ${JSON.stringify(entry)}`);
+  count("contact");
   await forward(entry);
   return NextResponse.json({ ok: true });
 }

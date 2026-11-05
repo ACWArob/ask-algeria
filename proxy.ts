@@ -3,7 +3,8 @@ import { verifyToken } from "@/lib/auth";
 import { COOKIE } from "@/lib/config";
 import { isPublic } from "@/lib/site";
 
-const PUBLIC_PATHS = new Set(["/login", "/api/login", "/robots.txt"]);
+// /api/health is for the uptime monitor: no password, nothing private in it.
+const PUBLIC_PATHS = new Set(["/login", "/api/login", "/robots.txt", "/api/health"]);
 
 /** Next 16 "proxy" (was middleware.ts): the password gate, robots.txt in public mode and the noindex header. */
 export async function proxy(req: NextRequest) {

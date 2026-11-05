@@ -1,0 +1,65 @@
+name: Uptime check
+
+# Every 10 minutes: is the site up, does free search work (/api/health runs a real query), are AI answers
+# working (no "out of credit" or bad-key errors), is the TLS certificate fine. A failed run makes GitHub email the
+# repo owner (Settings → Notifications → Actions: "Send notifications for failed workflows only" is on by default).
+# Actions minutes are free for public repositories (if the repo goes private again, use every 30 min to stay inside
+# the free 2,000 minutes a month).
+# /api/health needs no password and has a Vercel firewall bypass rule so bot protection doesn't challenge it.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Site, search, AI and certificate
+        shell: bash
+        run: |
+          set -u
+          SITE=https://www.algeriagov.online
+          fail=0
+          code=000
+          for i in 1 2 3; do
+            code=$(curl -sS --max-time 20 -D hdr.txt -o h.json -w "%{http_code}" "$SITE/api/health" || echo 000)
+            [ "$code" = "200" ] && break
+            # Vercel bot protection challenged us: the site answered (it's up), we just can't read the details.
+            grep -qi "^x-vercel-mitigated: challenge" hdr.txt 2>/dev/null && break
+            sleep 30
+          done
+          echo "health: HTTP $code"
+          [ "$code" = "200" ] && { cat h.json; echo; }
+          if grep -qi "^x-vercel-mitigated: challenge" hdr.txt 2>/dev/null; then
+            echo "::warning::The site is up, but bot protection challenged /api/health, so search and AI status weren't checked. Add a Vercel Firewall rule: Request Path equals /api/health -> Bypass."
+          elif [ "$code" != "200" ]; then
+            echo "::error::Site health check failed 3 times (HTTP $code). The site or its search may be down. Check https://vercel.com/acwarobs-projects/ask-algeria (deployments, usage pause) and https://www.vercel-status.com"
+            fail=1
+          else
+            ai=$(jq -r '.ai.status' h.json); err=$(jq -r '.ai.lastError' h.json); paused=$(jq -r '.ai.paused' h.json); store=$(jq -r '.store' h.json)
+            if [ "$ai" = "failing" ]; then
+              echo "::error::Written AI answers are failing (last error: $err). credit = add credits at https://platform.claude.com/settings/billing ; auth = API key wrong or revoked (Vercel env ANTHROPIC_API_KEY) ; overloaded/other = Anthropic issue, see https://status.anthropic.com . Free search still works."
+              fail=1
+            fi
+            [ "$paused" = "daily_budget" ] && echo "::warning::AI answers paused for today: the daily budget (AI_DAILY_BUDGET_USD) was reached."
+            [ "$store" = "down" ] && echo "::warning::Upstash shared store unreachable; the site falls back to per-server memory."
+          fi
+          for u in "$SITE/" "https://algeriagov.online/"; do
+            c=$(curl -sS --max-time 20 -o /dev/null -w "%{http_code}" "$u" || echo 000)
+            echo "$u -> $c"
+            case "$c" in 200|301|302|307|308|403|429) ;; *) echo "::error::$u answered $c"; fail=1 ;; esac
+          done
+          end=$(echo | openssl s_client -servername www.algeriagov.online -connect www.algeriagov.online:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+          if [ -n "$end" ]; then
+            days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+            echo "TLS certificate: $days days left"
+            if [ "$days" -lt 14 ]; then echo "::error::TLS certificate expires in $days days"; fail=1; fi
+          else
+            echo "::error::Could not read the TLS certificate"; fail=1
+          fi
+          exit $fail

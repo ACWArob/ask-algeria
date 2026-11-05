@@ -9,6 +9,8 @@ import { anthropic } from "@/lib/llm";
 import { mockTranslation, streamText } from "@/lib/mock";
 import { allowAi, pdfAllowed, recordSpend, spendSettled } from "@/lib/spend";
 import { untag } from "@/lib/prompts";
+import { noteAiError, noteAiOk } from "@/lib/health";
+import { count } from "@/lib/metrics";
 
 /** Longer PDFs cost much more (each page is billed as text + image); ask people to send only the pages they need. */
 const MAX_PDF_PAGES = Number(process.env.TRANSLATE_MAX_PDF_PAGES) || 10;
@@ -85,6 +87,8 @@ export async function POST(req: Request) {
               controller.enqueue(enc.encode(ev.delta.text));
             }
           }
+          noteAiOk();
+          count("translate");
         } finally {
           // Billed even when the visitor leaves or the stream fails: real usage if available, else an estimate.
           const fin = await stream.finalMessage().catch(() => null);
@@ -92,6 +96,7 @@ export async function POST(req: Request) {
         }
       } catch (err) {
         console.error("[translate] failed:", err instanceof Error ? err.message : err);
+        noteAiError(err);
         controller.enqueue(enc.encode("\n\n\u0000ERROR"));
       } finally {
         await spendSettled(); // shared-store spend write (bounded by its short timeout) before the function can freeze
