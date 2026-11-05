@@ -147,3 +147,17 @@ describe("lib/i18n-mission strings", () => {
     expect(dz).not.toMatch(/ديال|دابا|غادي|بغيت|كنعرف|واخا/);
   });
 });
+
+describe("consulate hours and notes in the reader's language", () => {
+  it("every hours and note string has fr, ar and dz", async () => {
+    const { MISSIONS } = await import("@/lib/missions");
+    const { localHours, localNote } = await import("@/lib/mission-i18n");
+    for (const m of MISSIONS) {
+      if (m.hours) for (const l of ["fr", "ar", "dz"] as const) expect(localHours(m.hours, l), `${m.id} ${l}`).toBeTruthy();
+      if (m.hours) expect(localHours(m.hours, "ar"), m.id).not.toBe(m.hours);
+      if (m.note) expect(localNote(m.note, "ar"), m.id).not.toBe(m.note);
+    }
+    expect(localHours("anything new", "fr")).toBe("anything new");
+    expect(localHours("x", "en")).toBe("x");
+  });
+});

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EmbassiesClient, type CountryGroup, type MissionView } from "@/components/EmbassiesClient";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
+import { localHours, localNote } from "@/lib/mission-i18n";
 import { FAX_NOTE, MISSION_TYPES, PUBLIC_NOTE, safeUrl, MISSIONS, foldText, missionCountry, missionHosts, missionName, parsePhone } from "@/lib/missions";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,13 +31,13 @@ export default async function EmbassiesPage() {
       address: unverified ? "" : m.address,
       phones: unverified ? [] : m.phones.map(parsePhone),
       emails: unverified ? [] : m.emails,
-      hours: unverified ? "" : m.hours,
+      hours: unverified ? "" : localHours(m.hours, locale),
       jurisdiction: unverified ? "" : m.jurisdiction,
       appointment: unverified ? "" : safeUrl(m.appointment_url),
       sourceUrl: safeUrl(m.source_url),
       checked: m.source_url ? m.checked : "",
       faxNote: !unverified && m.phones.length > 1 && Boolean(m.note && FAX_NOTE.test(m.note)),
-      note: m.note && !FAX_NOTE.test(m.note) && PUBLIC_NOTE.test(m.note) ? m.note : "",
+      note: m.note && !FAX_NOTE.test(m.note) && PUBLIC_NOTE.test(m.note) ? localNote(m.note, locale) : "",
       haystack: foldText([m.country, m.country_fr, m.country_ar, m.city, m.name_en, m.name_fr, name].join(" ")),
     };
   });

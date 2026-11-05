@@ -8,6 +8,7 @@ import { GUIDES } from "@/lib/guides";
 import { fmt, getDict, type Locale } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 import { MISSION_STRINGS, topicLabel } from "@/lib/i18n-mission";
+import { localHours, localNote } from "@/lib/mission-i18n";
 import { findMission, groupByTopic, hasLaissezPasser, missionBadge, missionNotes, missionRecords, toPageLink } from "@/lib/mission-page";
 import { missionCountry, missionName, parsePhone, safeUrl } from "@/lib/missions";
 
@@ -149,9 +150,9 @@ export default async function MissionPage({ params }: { params: Promise<{ id: st
                     </ul>
                   </Row>
                 )}
-                {m.hours && <Row label={e.hours}><bdi>{m.hours}</bdi></Row>}
+                {m.hours && <Row label={e.hours}><bdi>{localHours(m.hours, locale)}</bdi></Row>}
                 {m.jurisdiction && <Row label={s.jurisdiction}><bdi>{m.jurisdiction}</bdi></Row>}
-                {note && <Row label={e.note}><bdi className="text-muted">{note}</bdi></Row>}
+                {note && <Row label={e.note}><bdi className="text-muted">{localNote(note, locale)}</bdi></Row>}
               </dl>
             ) : (
               <p className="mt-4 text-[0.9375rem] text-muted">{s.websiteOnly}</p>

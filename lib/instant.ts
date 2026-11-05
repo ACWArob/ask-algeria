@@ -11,6 +11,7 @@ import { GUIDES } from "@/lib/guides";
 import sourcesJson from "@/data/sources.json";
 import { resolveWhere, whereCountry, type Where } from "@/lib/where";
 import { askCity, askCountry } from "@/lib/clarify";
+import { localHours } from "@/lib/mission-i18n";
 
 /** The "Another country / city" chips: free search can't use them (the AI answer handles that case). */
 const ANOTHER = /another|autre|آخر|أخرى/i;
@@ -202,7 +203,7 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
         address: m.address || undefined,
         phones: m.phones,
         emails: m.emails,
-        hours: m.hours || undefined,
+        hours: localHours(m.hours, locale) || undefined,
         website: m.website || undefined,
         appointments: m.appointment_url || undefined,
         checked: m.checked || undefined,
