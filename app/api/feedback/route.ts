@@ -1,3 +1,4 @@
+import { readJson } from "@/lib/body";
 import { NextResponse } from "next/server";
 import { redact, sheetSafe } from "@/lib/redact";
 import { count } from "@/lib/metrics";
@@ -16,7 +17,7 @@ const clip = (v: unknown, n: number) => (typeof v === "string" ? redact(v.trim()
 export async function POST(req: Request) {
   if (!rateLimit(`fb:${clientIp(req.headers)}`, 30).ok) return NextResponse.json({ ok: false }, { status: 429 });
   try {
-    const j = (await req.json()) as Record<string, unknown>;
+    const j = await readJson<Record<string, unknown>>(req, 16_000);
     if (j.kind === "contact") return contact(j);
     const rating = j.rating === "up" || j.rating === "down" ? j.rating : null;
     if (!rating) return NextResponse.json({ ok: false }, { status: 400 });

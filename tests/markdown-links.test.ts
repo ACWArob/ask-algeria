@@ -27,3 +27,23 @@ describe("official links in answers", () => {
     expect(isOfficialUrl("javascript:alert(1)")).toBe(false);
   });
 });
+
+describe("answer rendering can't run code", () => {
+  it("raw HTML and javascript: links in a model answer render as plain text, never as markup", async () => {
+    const React = await import("react");
+    const { renderToStaticMarkup } = await import("react-dom/server");
+    const { Markdown } = await import("@/components/Markdown");
+    const evil = [
+      "Fee: 30 EUR <script>alert(1)</script>",
+      '<img src=x onerror="alert(1)">',
+      "[click](javascript:alert(1)) and [data](data:text/html;base64,PHNjcmlwdD4=)",
+      '<a href="https://evil.example">official</a> and [look-alike](https://interieur-gov.dz.evil.example/)',
+      "[proto](//evil.example/x) [slash](/\\evil.example) [rel](evil.example) [ok](/services/passport) [mail](mailto:a@b.dz)",
+    ].join("\n\n");
+    const html = renderToStaticMarkup(React.createElement(Markdown, { text: evil }));
+    expect(html).not.toMatch(/<script|<img|<a href="https:\/\/evil/i);
+    expect(html).toContain("&lt;script&gt;");
+    const hrefs = [...html.matchAll(/href="([^"]*)"/g)].map((m) => m[1]);
+    expect(hrefs).toEqual(["/services/passport", "mailto:a@b.dz"]);
+  });
+});

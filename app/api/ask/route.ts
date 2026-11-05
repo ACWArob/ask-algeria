@@ -1,3 +1,4 @@
+import { bodyError, readJson } from "@/lib/body";
 import { NextResponse } from "next/server";
 import { LIMITS, isMock } from "@/lib/config";
 import { isLocale, type Locale } from "@/lib/i18n";
@@ -90,9 +91,10 @@ export async function POST(req: Request) {
 
   let body: { question?: unknown; lang?: unknown; context?: unknown; prevAnswer?: unknown; buffer?: unknown; where?: unknown };
   try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "bad_json" }, { status: 400 });
+    body = await readJson(req, 64_000);
+  } catch (e) {
+    const { error, status } = bodyError(e);
+    return NextResponse.json({ error }, { status });
   }
   const rawQ = typeof body.question === "string" ? body.question.trim() : "";
   if (!rawQ) return NextResponse.json({ error: "empty" }, { status: 400 });

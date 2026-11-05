@@ -1,3 +1,4 @@
+import { bodyError, readJson } from "@/lib/body";
 import { NextResponse } from "next/server";
 import { isLocale } from "@/lib/i18n";
 import { instantSearch } from "@/lib/instant";
@@ -16,9 +17,10 @@ export async function POST(req: Request) {
   if (!rateLimit(`search:${clientIp(req.headers)}`, 60).ok) return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   let body: { question?: unknown; lang?: unknown; context?: unknown; where?: unknown };
   try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "bad_json" }, { status: 400 });
+    body = await readJson(req, 16_000);
+  } catch (e) {
+    const { error, status } = bodyError(e);
+    return NextResponse.json({ error }, { status });
   }
   const raw = typeof body.question === "string" ? body.question.trim() : "";
   if (!raw) return NextResponse.json({ error: "empty" }, { status: 400 });

@@ -55,10 +55,12 @@ export function Markdown({ text, cites = [] }: { text: string; cites?: CiteTarge
                 </a>
               );
             }
-            const external = Boolean(href && /^https?:/.test(href));
+            const external = Boolean(href && /^https?:/i.test(href));
             // Only official sites (.dz, known consulates, the pages cited) become links; anything else the model
             // writes stays plain text, so a manipulated answer can't hand out a clickable look-alike site.
-            if (external && !isOfficialUrl(href!) && !cites.some((c) => sameHost(c.url, href!))) return <span>{children}</span>;
+            // Non-http links: our own paths ("/x", not "//host" or "/\\host"), "#..." and mailto:/tel: only.
+            const local = Boolean(href && (/^\/(?![\/\\]|%2f|%5c)/i.test(href) || /^#/.test(href) || /^(mailto|tel):/i.test(href)));
+            if (!href || (!external && !local) || (external && !isOfficialUrl(href) && !cites.some((c) => sameHost(c.url, href)))) return <span>{children}</span>;
             return (
               <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                 {children}

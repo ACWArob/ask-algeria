@@ -1,3 +1,4 @@
+import { readJson } from "@/lib/body";
 import { NextResponse } from "next/server";
 import { COOKIE } from "@/lib/config";
 import { safeEqual, signToken } from "@/lib/auth";
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
       password = String(f.get("password") ?? "");
       next = safeNext(f.get("next"));
     } else {
-      const j = (await req.json()) as { password?: unknown; next?: unknown };
+      const j = await readJson<{ password?: unknown; next?: unknown }>(req, 8_000);
       password = typeof j.password === "string" ? j.password : "";
       next = safeNext(j.next);
     }

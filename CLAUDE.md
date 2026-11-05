@@ -53,6 +53,7 @@ lint + typecheck + affected tests pass, build passes, and you've said how you ve
 Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit secrets (ANTHROPIC_API_KEY, SITE_PASSWORD, Apify token).
 
 ## Lessons
+- 2026-11-05 — security pass: API routes accepted a 5 MB JSON body, and answer links like `//evil.example` skipped the official-site check (not `http`) — every route reads its body with lib/body.ts readJson and a size cap (413 above it); in answers only official http(s) sites, our own `/paths`, `#` and mailto:/tel: become links.
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
 - 2026-11-05 — UI pass: one import in lib/posts.ts (used by the browser) pulled all of missions.json into the embassies page bundle (+160 KB) — keep browser-side modules free of data imports (tested); Arabic fonts are not preloaded and limited to Arabic letters (en/fr pages −200 KB); French-only consulate hours get an English translation too.
 - 2026-11-05 — metrics showed 0 searches/answers for a week: counts flushed only from a fire-and-forget call a minute after a server started, so short-lived Vercel servers lost them — flush with `after()` (the platform waits for it), first count at once, then every 10 s. The /api/health limit is 120/min so monitors sharing a connection aren't refused.
