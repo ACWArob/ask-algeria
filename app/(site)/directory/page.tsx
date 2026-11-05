@@ -23,12 +23,12 @@ function domainStats() {
   return stats;
 }
 
-export function generateMetadata(): Metadata {
-  return { title: getDict(getLocale()).directory.heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: getDict((await getLocale())).directory.heading };
 }
 
-export default function DirectoryPage() {
-  const locale = getLocale();
+export default async function DirectoryPage() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   const labels = dict.categories as Record<string, string>;
   const stats = domainStats();

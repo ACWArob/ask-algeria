@@ -8,12 +8,12 @@ import { PORTALS, TIMEOUT_MS, TTL_MS } from "@/lib/portal-status";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
-  return { title: STATUS_STRINGS[getLocale()].heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: STATUS_STRINGS[(await getLocale())].heading };
 }
 
-export default function StatusPage() {
-  const locale = getLocale();
+export default async function StatusPage() {
+  const locale = await getLocale();
   const t = STATUS_STRINGS[locale];
 
   const portals: PortalView[] = PORTALS.map((p) => ({

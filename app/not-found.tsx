@@ -5,8 +5,8 @@ import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 
 /** 404 with the same independence strip, header and footer as every other page. */
-export default function NotFound() {
-  const locale = getLocale();
+export default async function NotFound() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   const n = dict.notFound;
   return (

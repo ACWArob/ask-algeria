@@ -7,13 +7,15 @@ import { getLocale } from "@/lib/i18n/server";
 // Rendered per request so the page follows the visitor's language cookie.
 export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const g = Object.hasOwn(GUIDES, params.slug) ? GUIDES[params.slug] : undefined;
-  return { title: g ? g.title[getLocale()] : undefined };
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const g = Object.hasOwn(GUIDES, slug) ? GUIDES[slug] : undefined;
+  return { title: g ? g.title[(await getLocale())] : undefined };
 }
 
-export default function GuidePage({ params }: { params: { slug: string } }) {
-  const g = Object.hasOwn(GUIDES, params.slug) ? GUIDES[params.slug] : undefined;
+export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const g = Object.hasOwn(GUIDES, slug) ? GUIDES[slug] : undefined;
   if (!g) notFound();
   return <GuideView guide={g} />;
 }

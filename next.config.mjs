@@ -2,21 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  experimental: {
-    // Make sure the corpus/index ship with the serverless function on Netlify.
-    outputFileTracingIncludes: {
-      // Server code reads these at runtime (corpus, index, page-state, accuracy report).
-      "/api/ask": ["./data/*.json"],
-      "/api/search": ["./data/*.json"],
-      "/prepare": ["./data/*.json"],
-      "/embassies/[id]": ["./data/*.json"],
-      "/glossary": ["./data/*.json"],
-      "/status": ["./data/*.json"],
-      "/services/passport": ["./data/*.json"],
-      "/services/[slug]": ["./data/*.json"],
-      "/directory": ["./data/*.json"],
-    },
+  // Make sure the corpus/index ship with the serverless functions.
+  outputFileTracingIncludes: {
+    // Server code reads these at runtime (corpus, index, page-state, accuracy report).
+    "/api/ask": ["./data/*.json"],
+    "/api/search": ["./data/*.json"],
+    "/prepare": ["./data/*.json"],
+    "/embassies/[id]": ["./data/*.json"],
+    "/glossary": ["./data/*.json"],
+    "/status": ["./data/*.json"],
+    "/services/passport": ["./data/*.json"],
+    "/services/[slug]": ["./data/*.json"],
+    "/directory": ["./data/*.json"],
   },
+
   async headers() {
     return [
       {

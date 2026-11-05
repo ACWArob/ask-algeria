@@ -8,12 +8,12 @@ import { getLocale } from "@/lib/i18n/server";
 // Reads the language cookie.
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
-  return { title: EXTRA[getLocale()].glossary.title };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: EXTRA[(await getLocale())].glossary.title };
 }
 
-export default function GlossaryPage() {
-  const locale = getLocale();
+export default async function GlossaryPage() {
+  const locale = await getLocale();
   const t = EXTRA[locale].glossary;
   return (
     <div className="pt-8 sm:pt-12">

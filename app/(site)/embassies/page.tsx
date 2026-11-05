@@ -4,13 +4,13 @@ import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 import { FAX_NOTE, MISSION_TYPES, PUBLIC_NOTE, safeUrl, MISSIONS, foldText, missionCountry, missionHosts, missionName, parsePhone } from "@/lib/missions";
 
-export function generateMetadata(): Metadata {
-  return { title: getDict(getLocale()).embassies.heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: getDict((await getLocale())).embassies.heading };
 }
 
 
-export default function EmbassiesPage() {
-  const locale = getLocale();
+export default async function EmbassiesPage() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   const sortTag = locale === "ar" || locale === "dz" ? "ar" : locale;
 

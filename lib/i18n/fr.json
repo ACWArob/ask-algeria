@@ -1,6 +1,6 @@
 {
   "brand": {
-    "name": "Demandez à l'Algérie",
+    "name": "Ask Algeria",
     "tagline": "Des réponses claires sur les services publics algériens, tirées des pages officielles."
   },
   "strip": {
@@ -76,7 +76,7 @@
     "followUp": "Posez une autre question…",
     "newChat": "Nouvelle conversation",
     "you": "Vous",
-    "assistant": "Demandez à l'Algérie",
+    "assistant": "Ask Algeria",
     "checked": "Vérifié le {date}",
     "archived": "Copie archivée, {date}",
     "archivedNote": "Certains détails viennent de copies archivées de pages officielles (dates indiquées sur chaque source). Ils ont pu changer depuis.",

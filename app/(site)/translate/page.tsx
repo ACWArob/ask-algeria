@@ -3,12 +3,12 @@ import { TranslateClient } from "@/components/TranslateClient";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 
-export function generateMetadata(): Metadata {
-  return { title: getDict(getLocale()).translate.heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: getDict((await getLocale())).translate.heading };
 }
 
-export default function TranslatePage() {
-  const locale = getLocale();
+export default async function TranslatePage() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   return (
     <div className="pt-10 sm:pt-14">

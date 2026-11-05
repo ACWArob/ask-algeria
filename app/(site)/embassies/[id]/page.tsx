@@ -23,9 +23,9 @@ const BADGE_STYLE: Record<string, string> = {
   unverified: "border border-accent/60 text-muted",
 };
 
-export function generateMetadata({ params }: { params: { id: string } }): Metadata {
-  const m = findMission(params.id);
-  return { title: m ? missionName(m, getLocale()) : undefined };
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const m = findMission((await params).id);
+  return { title: m ? missionName(m, (await getLocale())) : undefined };
 }
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -37,11 +37,11 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   );
 }
 
-export default function MissionPage({ params }: { params: { id: string } }) {
-  const m = findMission(params.id);
+export default async function MissionPage({ params }: { params: Promise<{ id: string }> }) {
+  const m = findMission((await params).id);
   if (!m) notFound();
 
-  const locale: Locale = getLocale();
+  const locale: Locale = await getLocale();
   const dict = getDict(locale);
   const e = dict.embassies;
   const s = MISSION_STRINGS[locale];

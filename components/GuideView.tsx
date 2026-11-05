@@ -12,8 +12,8 @@ import { getLocale } from "@/lib/i18n/server";
 import { sourceMeta } from "@/lib/source-meta";
 
 /** One page layout for every service guide: cited points, optional fee table, numbered official sources. Server component. */
-export function GuideView({ guide: G }: { guide: Guide }) {
-  const locale: Locale = getLocale();
+export async function GuideView({ guide: G }: { guide: Guide }) {
+  const locale: Locale = await getLocale();
   const dict = getDict(locale);
   const g = dict.guide;
   const x = EXTRA[locale].freshness;

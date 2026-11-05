@@ -1,6 +1,6 @@
 <div align="center">
 
-# Ask Algeria · سقسي على الجزائر
+# Ask Algeria
 
 **Plain answers about Algerian public services, taken only from official pages.**
 English · Français · العربية · الدارجة
@@ -55,7 +55,7 @@ Details and per-request costs are in [docs/cost.md](docs/cost.md).
 
 ## Tech
 
-Next.js 14 (App Router) · TypeScript · Tailwind · Anthropic SDK · MiniSearch · Upstash Redis (optional) · Vercel
+Next.js 16 (App Router, React 19) · TypeScript · Tailwind · Anthropic SDK · MiniSearch · Upstash Redis (optional) · Vercel
 
 ## Run it locally
 

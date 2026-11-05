@@ -3,8 +3,8 @@ import { Footer, Header, IndependenceStrip } from "@/components/Header";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 
-export default function SiteLayout({ children }: { children: React.ReactNode }) {
-  const locale = getLocale();
+export default async function SiteLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
   const dict = getDict(locale);
   return (
     <>

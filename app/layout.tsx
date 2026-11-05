@@ -5,8 +5,8 @@ import { getDict, htmlLang, isRtl } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 import { isPublic, SITE_URL } from "@/lib/site";
 
-export function generateMetadata(): Metadata {
-  const dict = getDict(getLocale());
+export async function generateMetadata(): Promise<Metadata> {
+  const dict = getDict((await getLocale()));
   return {
     title: { default: dict.brand.name, template: `%s · ${dict.brand.name}` },
     description: dict.brand.tagline,
@@ -29,8 +29,8 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = getLocale();
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
   return (
     <html lang={htmlLang(locale)} dir={isRtl(locale) ? "rtl" : "ltr"} className={fontVars}>
       <body className="min-h-screen antialiased">{children}</body>

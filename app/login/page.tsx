@@ -8,8 +8,9 @@ export const metadata: Metadata = { title: "Login" };
 
 type ErrorKey = "error" | "tooMany" | "notConfigured";
 
-export default function LoginPage({ searchParams }: { searchParams: { error?: string; next?: string } }) {
-  const locale = getLocale();
+export default async function LoginPage(props: { searchParams: Promise<{ error?: string; next?: string }> }) {
+  const searchParams = await props.searchParams;
+  const locale = await getLocale();
   const dict = getDict(locale);
   const err = (["error", "tooMany", "notConfigured"] as const).includes(searchParams.error as ErrorKey)
     ? dict.login[searchParams.error as ErrorKey]

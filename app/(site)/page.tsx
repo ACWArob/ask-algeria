@@ -4,8 +4,8 @@ import { getLocale } from "@/lib/i18n/server";
 import { SERVICES } from "@/lib/services";
 import { whereOptions } from "@/lib/where";
 
-export default function AskPage() {
-  const locale = getLocale();
+export default async function AskPage() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   return <HomeClient key={locale} dict={dict} locale={locale} services={SERVICES} places={whereOptions(locale)} />;
 }

@@ -8,12 +8,13 @@ import { prepareProcedures } from "@/lib/prepare-data";
 // Reads the language cookie on every request.
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
-  return { title: getDict(getLocale()).prepare.heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: getDict((await getLocale())).prepare.heading };
 }
 
-export default function PreparePage({ searchParams }: { searchParams: { p?: string | string[] } }) {
-  const locale = getLocale();
+export default async function PreparePage(props: { searchParams: Promise<{ p?: string | string[] }> }) {
+  const searchParams = await props.searchParams;
+  const locale = await getLocale();
   const dict = getDict(locale);
   const procedures = prepareProcedures(locale);
   const letters = Object.fromEntries(LETTER_LANGS.map((l) => [l, getDict(l).prepare.letter])) as Record<LetterLang, LetterText>;

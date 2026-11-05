@@ -4,12 +4,12 @@ import { ContactForm } from "@/components/ContactForm";
 import { getDict } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 
-export function generateMetadata(): Metadata {
-  return { title: getDict(getLocale()).about.title };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: getDict((await getLocale())).about.title };
 }
 
-export default function AboutPage() {
-  const locale = getLocale();
+export default async function AboutPage() {
+  const locale = await getLocale();
   const dict = getDict(locale);
   // Optional public address for the team (set CONTACT_EMAIL on the host); the form works without it.
   const email = process.env.CONTACT_EMAIL && /^[^\s@<>]+@[^\s@<>]+\.[a-z]{2,}$/i.test(process.env.CONTACT_EMAIL) ? process.env.CONTACT_EMAIL : null;

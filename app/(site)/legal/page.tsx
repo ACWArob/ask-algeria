@@ -7,12 +7,12 @@ import { LEGAL_STRINGS } from "@/lib/i18n-legal";
 // Reads the language cookie on every request.
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
-  return { title: LEGAL_STRINGS[getLocale()].heading };
+export async function generateMetadata(): Promise<Metadata> {
+  return { title: LEGAL_STRINGS[(await getLocale())].heading };
 }
 
-export default function LegalPage() {
-  const locale = getLocale();
+export default async function LegalPage() {
+  const locale = await getLocale();
   const L = LEGAL_STRINGS[locale];
   const dict = getDict(locale);
   return (

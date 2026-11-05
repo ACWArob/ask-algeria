@@ -5,7 +5,8 @@ import { isPublic } from "@/lib/site";
 
 const PUBLIC_PATHS = new Set(["/login", "/api/login", "/robots.txt"]);
 
-export async function middleware(req: NextRequest) {
+/** Next 16 "proxy" (was middleware.ts): the password gate, robots.txt in public mode and the noindex header. */
+export async function proxy(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
 
   // Public launch (PUBLIC_SITE=1): no password, indexable, robots.txt from /api/robots, no login page.

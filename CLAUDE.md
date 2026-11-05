@@ -1,7 +1,7 @@
 # CLAUDE.md — Ask Algeria (software)
 
 Independent Q&A site for Algerian government services (en / fr / ar Fusha / dz Darija). Answers only from official pages, with citations. Password-protected demo on Vercel (was Netlify).
-Stack: Next.js 14 App Router + TypeScript + Tailwind, Anthropic SDK, MiniSearch, Vercel (Netlify config kept as fallback). Default branch: `main`.
+Stack: Next.js 16 App Router (React 19, proxy.ts instead of middleware, async cookies/headers/params) + TypeScript + Tailwind, Anthropic SDK, MiniSearch, Vercel (Netlify config kept as fallback). Default branch: `main`.
 
 ## Commands
 ```bash
@@ -9,7 +9,7 @@ npm i
 npm run dev                         # local; MOCK mode answers without Claude calls
 npm test                            # vitest, all
 npx vitest run tests/x.test.ts      # one file ← prefer this
-npm run lint && npm run typecheck
+npm run lint && npm run typecheck   # lint = eslint . (flat config eslint.config.mjs; `next lint` is gone in 16)
 npm run build                       # prebuild rebuilds data/index.json
 npm run refresh                     # check-updates → crossref → index (weekly GitHub Action does this)
 node scripts/import-apify.mjs <dataset.json>   # add crawled pages to the corpus (Apify dataset id or local .json)
@@ -52,6 +52,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-11-04 — npm audit: Next 14 and 15 had unfixed advisories (only 16.4.5 was clean) — upgraded to Next 16 + React 19.2.9; check `npm audit --omit=dev` is 0 before each deploy (dev-only tools may still show findings).
 - 2026-11-04 — first shared-store call on a cold Vercel instance timed out at 300 ms, so the answer cache write was skipped — give the first call 1.5 s (connection setup), then the short limit.
 - 2026-11-04 — pre-launch audit: privacy text no longer matched what feedback/cache/IP counting store — any change to what is logged or stored updates About privacy + /legal in all 4 languages.
 - 2026-11-04 — tester living in Algeria saw London/Washington rules in her passport checklist — ask inside/outside Algeria before showing any procedure, and keep one consulate's rule out of everyone's list.
