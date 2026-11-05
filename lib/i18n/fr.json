@@ -216,7 +216,7 @@
         "title": "Votre vie privée",
         "body": [
           "Avant l'envoi, votre navigateur retire les numéros d'identité, de téléphone, de carte et de compte ainsi que les e-mails. Les noms, adresses et dates ne sont pas retirés : ne les indiquez pas.",
-          "Nous ne conservons pas vos conversations. Si vous notez une réponse, nous enregistrons cette question, jusqu'à 3 questions précédentes, le début de la réponse et votre commentaire (numéros personnels retirés) pour améliorer les réponses. Les messages envoyés via « Nous contacter » sont conservés pour être lus, avec votre e-mail seulement si vous l'indiquez.",
+          "Nous ne conservons pas vos conversations. Si vous notez une réponse, nous enregistrons cette question, jusqu'à 3 questions précédentes, le début de la réponse et votre commentaire (numéros personnels retirés) pour améliorer les réponses. Les messages envoyés via « Nous contacter » sont conservés pour être lus, avec votre e-mail seulement si vous l'indiquez. Ils sont aussi envoyés par e-mail à notre adresse d'assistance.",
           "Les réponses rédigées sont gardées 24 heures, sans lien avec vous, pour répondre plus vite à la même question.",
           "Les documents importés sont envoyés à notre prestataire d'IA (Anthropic) pour produire le résultat. Nous ne les conservons pas. Les numéros contenus dans un fichier importé ne sont pas retirés.",
           "Contre les abus, nous comptons les demandes par connexion pendant 2 jours, à partir d'une forme brouillée (hachée) de votre adresse IP. Votre langue, votre service et, si vous le choisissez, vos informations « Préparer mon dossier » restent dans votre navigateur."

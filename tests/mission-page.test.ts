@@ -160,4 +160,17 @@ describe("consulate hours and notes in the reader's language", () => {
     expect(localHours("anything new", "fr")).toBe("anything new");
     expect(localHours("x", "en")).toBe("x");
   });
+
+  it("every mission city is in Arabic script for ar and dz, and Arabic names use it", async () => {
+    const { MISSIONS, missionName } = await import("@/lib/missions");
+    const { localCity } = await import("@/lib/mission-i18n");
+    for (const m of MISSIONS) {
+      if (!m.city) continue;
+      for (const l of ["ar", "dz"] as const) expect(localCity(m.city, l), `${m.id} ${l}`).toMatch(/^[\u0600-\u06FF\s]+$/);
+      expect(localCity(m.city, "fr")).toBe(m.city);
+      expect(missionName(m, "ar"), m.id).not.toMatch(/[A-Za-z]/);
+    }
+    const lyon = MISSIONS.find((m) => m.id === "cglyon")!;
+    expect(missionName(lyon, "ar")).toBe("القنصلية العامة للجزائر في ليون");
+  });
 });

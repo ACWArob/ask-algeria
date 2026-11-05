@@ -49,6 +49,8 @@ const GENERIC = new Set(["renewal", "fees", "documents", "lost", "appointment", 
 
 /** Concepts that make a page about a different variant of the procedure ("emergency passport" vs "passport"). */
 const VARIANT = new Set(["laissez_passer", "emergency"]);
+/** Subjects that share a word with another ("immatriculation" consulaire / du véhicule): a page titled with one the person didn't ask about is off topic. */
+const UNASKED_SUBJECT = new Set(["vehicle"]);
 
 export function pageOnTopic(question: string, page: QuickPage): boolean {
   const exp = expandQuery(question);
@@ -71,6 +73,7 @@ export function coversTopic(question: string, title: string, text: string): bool
   const exp = expandQuery(question);
   const main = exp.concepts.map((c, i) => (GENERIC.has(c) ? -1 : i)).filter((i) => i >= 0);
   if (!main.length) return true;
+  if (expandQuery(title).concepts.some((c) => UNASKED_SUBJECT.has(c) && !exp.concepts.includes(c))) return false;
   const hit = (t: string) => {
     const toks = searchTokens(t);
     const set = new Set(toks);
@@ -154,9 +157,16 @@ export function guideAnswer(
   guide: GuideLike,
   question: string,
   locale: keyof L4,
-  opts: { inAlgeria?: boolean | null; officeCities?: string[]; otherCities?: string[]; maxPoints?: number } = {},
+  opts: {
+    inAlgeria?: boolean | null;
+    officeCities?: string[];
+    otherCities?: string[];
+    maxPoints?: number;
+    /** Sources to leave out (another country's consulate); a point left with no source is dropped. */
+    skipSource?: (id: string) => boolean;
+  } = {},
 ): GuideAnswer | null {
-  const { inAlgeria = null, officeCities = [], otherCities = [], maxPoints = 6 } = opts;
+  const { inAlgeria = null, officeCities = [], otherCities = [], maxPoints = 6, skipSource = () => false } = opts;
   const exp = expandQuery(question);
   const mine = officeCities.map(wordRe);
   const others = otherCities.filter((c) => !officeCities.some((o) => o.toLowerCase() === c.toLowerCase())).map(wordRe);
@@ -183,7 +193,9 @@ export function guideAnswer(
   const out: GuideAnswer["sections"] = [];
   let left = maxPoints;
   for (const { s } of ranked.slice(0, 2)) {
-    const pts = s.points.filter((p) => !aboutOther(p.text.en));
+    const pts = s.points
+      .map((p) => ({ ...p, cites: p.cites.filter((c) => !skipSource(c)) }))
+      .filter((p) => p.cites.length && !aboutOther(p.text.en));
     // Points about the person's own office first.
     pts.sort((a, b) => Number(mine.some((r) => r.test(b.text.en))) - Number(mine.some((r) => r.test(a.text.en))));
     const take = pts.slice(0, Math.min(left, 4));
@@ -193,7 +205,7 @@ export function guideAnswer(
     if (left <= 0) break;
   }
   if (!out.length) return null;
-  const feeRow = (guide.fees ?? []).find((f) => mine.some((r) => r.test(f.office.en)));
+  const feeRow = (guide.fees ?? []).find((f) => mine.some((r) => r.test(f.office.en)) && f.cites.some((c) => !skipSource(c)));
   return {
     sections: out,
     ...(feeRow ? { fee: { office: feeRow.office[locale], items: feeRow.items[locale], payment: feeRow.payment[locale], sources: feeRow.cites.map(num) } } : {}),

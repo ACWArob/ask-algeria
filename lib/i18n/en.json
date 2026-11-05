@@ -216,7 +216,7 @@
         "title": "Your privacy",
         "body": [
           "Before your question is sent, your browser removes ID, phone, card and account numbers and emails. Names, addresses and dates are not removed, so leave them out.",
-          "We don't keep your conversations. If you rate an answer, we save that question, up to 3 earlier questions, the start of the answer and your comment (personal numbers removed) to improve answers. Messages sent through Contact us are kept so we can read them, with your email only if you give one.",
+          "We don't keep your conversations. If you rate an answer, we save that question, up to 3 earlier questions, the start of the answer and your comment (personal numbers removed) to improve answers. Messages sent through Contact us are kept so we can read them, with your email only if you give one. They are also emailed to our support inbox.",
           "Written answers are kept for 24 hours, not linked to you, so the same question is answered faster next time.",
           "Documents you upload are sent to our AI provider (Anthropic) to produce your result. We don't store them. Numbers inside an uploaded file are not removed.",
           "To limit abuse we count requests per connection for 2 days, using a scrambled (hashed) form of your IP address. Your language, your office and, if you choose, your Prepare my file details stay in your browser."

@@ -8,7 +8,7 @@ import { GUIDES } from "@/lib/guides";
 import { fmt, getDict, type Locale } from "@/lib/i18n";
 import { getLocale } from "@/lib/i18n/server";
 import { MISSION_STRINGS, topicLabel } from "@/lib/i18n-mission";
-import { localHours, localNote } from "@/lib/mission-i18n";
+import { localCity, localHours, localNote } from "@/lib/mission-i18n";
 import { findMission, groupByTopic, hasLaissezPasser, missionBadge, missionNotes, missionRecords, toPageLink } from "@/lib/mission-page";
 import { missionCountry, missionName, parsePhone, safeUrl } from "@/lib/missions";
 
@@ -26,7 +26,12 @@ const BADGE_STYLE: Record<string, string> = {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const m = findMission((await params).id);
-  return { title: m ? missionName(m, (await getLocale())) : undefined };
+  if (!m) return {};
+  const locale = await getLocale();
+  const name = missionName(m, locale);
+  const city = localCity(m.city, locale);
+  // Embassies are named after the country, so the tab title adds the city.
+  return { title: city && !name.includes(city) ? `${name} (${city})` : name };
 }
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -77,14 +82,14 @@ export default async function MissionPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="pt-8 sm:pt-12">
-      <Link href="/embassies" className="link text-sm">{s.back}</Link>
+      <Link href="/embassies" className="link inline-flex min-h-[40px] items-center text-sm">{s.back}</Link>
 
       <header className="mt-4">
         <h1 className="display text-4xl font-semibold sm:text-5xl">{name}</h1>
         {altName && <p className="mt-2 text-lg text-muted"><bdi>{altName}</bdi></p>}
         <div className="mt-4 flex flex-wrap items-center gap-2 text-[0.9375rem]">
           <span className="text-muted">
-            <bdi>{m.city}</bdi>, <bdi>{country}</bdi>
+            <bdi>{localCity(m.city, locale)}</bdi>{locale === "ar" || locale === "dz" ? "، " : ", "}<bdi>{country}</bdi>
           </span>
           <span className="rounded-full bg-brand px-2.5 py-0.5 text-xs font-semibold text-brand-ink">{types[m.type] ?? m.type}</span>
           <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${BADGE_STYLE[badge]}`}>{s.status[badge]}</span>
@@ -160,12 +165,12 @@ export default async function MissionPage({ params }: { params: Promise<{ id: st
             {(website || appointment) && (
               <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.9375rem]">
                 {website && (
-                  <a href={website} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[32px] items-center gap-1 font-semibold">
+                  <a href={website} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[40px] items-center gap-1 font-semibold">
                     {e.website} <ExternalIcon />
                   </a>
                 )}
                 {appointment && (
-                  <a href={appointment} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[32px] items-center gap-1 font-semibold">
+                  <a href={appointment} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[40px] items-center gap-1 font-semibold">
                     {s.book} <ExternalIcon />
                   </a>
                 )}

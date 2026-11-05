@@ -405,7 +405,7 @@ export const AskClient = forwardRef<
         {form}
         {where && <WherePicker where={where} onChange={setWhere} places={places} dict={dict} below />}
         <div className="mt-1 flex justify-center">
-          <button type="button" onClick={reset} className="link text-sm">{t.newChat}</button>
+          <button type="button" onClick={reset} className="link min-h-[40px] text-sm">{t.newChat}</button>
         </div>
       </div>
     </div>
@@ -856,7 +856,11 @@ function WherePicker({
     const label =
       where.in === "dz"
         ? fmt(t.whereAlgeria, { place: places.wilayas.find((w) => w.value === where.wilaya)?.label ?? where.wilaya })
-        : [where.city, places.countries.find((c) => c.value === where.country)?.label ?? where.country].filter(Boolean).join(", ");
+        : (() => {
+            const c = places.countries.find((o) => o.value === where.country);
+            const countryName = c?.label ?? where.country;
+            return [where.city && (c?.cityLabels[where.city] ?? where.city), countryName].filter(Boolean).join(/[\u0600-\u06FF]/.test(countryName) ? "، " : ", ");
+          })();
     return (
       <p className={`${below ? "mt-2" : "mb-3"} flex w-full flex-wrap items-center justify-center gap-x-2 text-sm`}>
         <span aria-hidden="true">📍</span>
@@ -895,7 +899,7 @@ function WherePicker({
             <option value="" disabled>{t.whereWilaya}…</option>
             {places.wilayas.map((w) => <option key={w.value} value={w.value}>{w.label}</option>)}
           </select>
-          <button type="button" className="link text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
+          <button type="button" className="link min-h-[40px] text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
         </div>
       )}
       {step === "abroad" && (
@@ -932,11 +936,11 @@ function WherePicker({
                 }}
               >
                 <option value="" disabled>{t.whereCity}…</option>
-                {countryOpt.cities.map((c) => <option key={c} value={c}>{c}</option>)}
+                {countryOpt.cities.map((c) => <option key={c} value={c}>{countryOpt.cityLabels[c] ?? c}</option>)}
               </select>
             </>
           )}
-          <button type="button" className="link text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
+          <button type="button" className="link min-h-[40px] text-sm" onClick={() => setStep("idle")}>{t.whereBack}</button>
         </div>
       )}
     </div>

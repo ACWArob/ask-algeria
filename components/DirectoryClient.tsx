@@ -70,7 +70,7 @@ export function DirectoryClient({ dict, groups, locale }: { dict: Dict; groups: 
                   </div>
                   {e.evidence && (
                     <details className="group mt-1 text-xs text-muted sm:col-span-2">
-                      <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full border border-line px-2 py-0.5 hover:text-ink [&::-webkit-details-marker]:hidden">
+                      <summary className="inline-flex min-h-[40px] cursor-pointer list-none items-center gap-1 rounded-full border border-line px-3 hover:text-ink [&::-webkit-details-marker]:hidden">
                         <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-muted" />
                         {t.unverified}
                       </summary>

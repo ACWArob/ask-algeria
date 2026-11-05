@@ -4,6 +4,7 @@
  */
 import raw from "@/data/missions.json";
 import type { Locale } from "@/lib/i18n";
+import { localCity } from "@/lib/mission-i18n";
 
 export type MissionType = "Embassy" | "Consulate General" | "Consulate" | "Permanent Mission";
 export type MissionStatus = "verified" | "website-only" | "unverified";
@@ -66,9 +67,9 @@ export const MISSION_TYPES: MissionType[] = ["Embassy", "Consulate General", "Co
 
 const AR_TYPE: Record<string, (m: Mission) => string> = {
   Embassy: (m) => `سفارة الجزائر في ${m.country_ar}`,
-  "Consulate General": (m) => `القنصلية العامة للجزائر في ${m.city}`,
-  Consulate: (m) => `قنصلية الجزائر في ${m.city}`,
-  "Permanent Mission": (m) => `البعثة الدائمة للجزائر في ${m.city}`,
+  "Consulate General": (m) => `القنصلية العامة للجزائر في ${localCity(m.city, "ar")}`,
+  Consulate: (m) => `قنصلية الجزائر في ${localCity(m.city, "ar")}`,
+  "Permanent Mission": (m) => `البعثة الدائمة للجزائر في ${localCity(m.city, "ar")}`,
 };
 
 export function missionName(m: Mission, locale: Locale): string {
@@ -234,7 +235,9 @@ export function foreignMissionHosts(postDomains: string[], inAlgeria = false): s
 /** Same as foreignMissionHosts, for a country named without a city ("France", "the United States"). */
 export function foreignMissionHostsForCountry(country: string): string[] {
   const c = country.replace(/^the /, "");
-  const keep = new Set(MISSIONS.filter((m) => m.country === c).flatMap(missionHosts));
-  if (!keep.size) return [];
+  const own = MISSIONS.filter((m) => m.country === c);
+  if (!own.length) return [];
+  // A country whose mission has no website still excludes every other country's (keep is then empty).
+  const keep = new Set(own.flatMap(missionHosts));
   return [...new Set(MISSIONS.flatMap(missionHosts))].filter((h) => !keep.has(h) && h !== "mfa.gov.dz");
 }

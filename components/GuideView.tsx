@@ -49,7 +49,7 @@ export async function GuideView({ guide: G }: { guide: Guide }) {
 
   return (
     <div className="pt-8 sm:pt-12">
-      <Link href="/#popular" className="link text-sm">{g.back}</Link>
+      <Link href="/#popular" className="link inline-flex min-h-[40px] items-center text-sm">{g.back}</Link>
       <h1 className="display mt-4 text-4xl font-semibold sm:text-5xl">{G.title[locale]}</h1>
       <p className="mt-3 max-w-prose text-lg text-muted">{G.lead[locale]}</p>
       {checked && (

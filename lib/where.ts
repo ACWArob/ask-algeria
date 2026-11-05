@@ -4,13 +4,15 @@
  */
 import type { Locale } from "@/lib/i18n";
 import { detectPost, WILAYAS, type PostHint } from "@/lib/posts";
+import { localCity } from "@/lib/mission-i18n";
 import { MISSIONS, missionHosts } from "@/lib/missions";
 
 export type Where = { in: "dz"; wilaya: string } | { in: "abroad"; country: string; city?: string };
 
 export interface WhereOptions {
   wilayas: { value: string; label: string }[];
-  countries: { value: string; label: string; cities: string[] }[];
+  /** cities are the values (official names); cityLabels shows them in the reader's script. */
+  countries: { value: string; label: string; cities: string[]; cityLabels: Record<string, string> }[];
 }
 
 const OFFICES = MISSIONS.filter((m) => m.type !== "Permanent Mission");
@@ -29,7 +31,11 @@ export function whereOptions(locale: Locale): WhereOptions {
   return {
     wilayas: WILAYAS.map((w) => ({ value: w.name, label: arabic ? w.ar : w.name })),
     countries: [...byCountry.entries()]
-      .map(([value, e]) => ({ value, label: e.label, cities: e.cities.size > 1 ? [...e.cities].sort(coll.compare) : [] }))
+      .map(([value, e]) => {
+        const cities = e.cities.size > 1 ? [...e.cities] : [];
+        const cityLabels = Object.fromEntries(cities.map((c) => [c, localCity(c, locale)]));
+        return { value, label: e.label, cities: cities.sort((a, b) => coll.compare(cityLabels[a], cityLabels[b])), cityLabels };
+      })
       .sort((a, b) => coll.compare(a.label, b.label)),
   };
 }

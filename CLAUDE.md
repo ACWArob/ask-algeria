@@ -54,6 +54,7 @@ Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit se
 
 ## Lessons
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
+- 2026-11-04 — Ethiopia's quick answer quoted London/Milan/New York rules: its embassy has no website, so no other mission was excluded — exclude other countries' missions by country even when the person's own has no hosts; "immatriculation" also pulled vehicle pages into consular registration.
 - 2026-11-04 — npm audit: Next 14 and 15 had unfixed advisories (only 16.4.5 was clean) — upgraded to Next 16 + React 19.2.9; check `npm audit --omit=dev` is 0 before each deploy (dev-only tools may still show findings).
 - 2026-11-04 — first shared-store call on a cold Vercel instance timed out at 300 ms, so the answer cache write was skipped — give the first call 1.5 s (connection setup), then the short limit.
 - 2026-11-04 — pre-launch audit: privacy text no longer matched what feedback/cache/IP counting store — any change to what is logged or stored updates About privacy + /legal in all 4 languages.

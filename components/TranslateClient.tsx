@@ -157,7 +157,7 @@ export function TranslateClient({ dict, locale }: { dict: Dict; locale: Locale }
             {file && (
               <button
                 type="button"
-                className="link text-sm"
+                className="link min-h-[40px] text-sm"
                 onClick={() => {
                   setFile(null);
                   if (fileRef.current) fileRef.current.value = "";

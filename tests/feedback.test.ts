@@ -33,6 +33,21 @@ describe("contact us", () => {
   });
 });
 
+describe("webhook", () => {
+  it("forwards contact messages with the shared key, and formulas defused", async () => {
+    vi.spyOn(console, "log").mockImplementation(() => {});
+    const sent: Record<string, unknown>[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (_u: string, init: RequestInit) => { sent.push(JSON.parse(String(init.body))); return new Response("ok"); }));
+    vi.stubEnv("FEEDBACK_WEBHOOK_URL", "https://script.google.com/macros/s/x/exec");
+    vi.stubEnv("FEEDBACK_WEBHOOK_KEY", "k123");
+    const r = await POST(req({ kind: "contact", message: "=1+1 hello", replyTo: "a@b.co" }, "203.0.113.30"));
+    expect(r.status).toBe(200);
+    expect(sent[0]).toMatchObject({ kind: "contact", key: "k123", message: "'=1+1 hello", replyTo: "a@b.co" });
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+  });
+});
+
 describe("contact abuse", () => {
   it("quietly drops honeypot posts and defuses spreadsheet formulas sent to the webhook", async () => {
     const { sheetSafe } = await import("@/lib/redact");

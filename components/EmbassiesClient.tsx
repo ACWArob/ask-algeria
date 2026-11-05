@@ -272,12 +272,12 @@ function MissionCard({ m, dict, locale }: { m: MissionView; dict: Dict; locale: 
       {(m.website || m.appointment) && !m.unverified && (
         <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {m.website && (
-            <a href={m.website} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[32px] items-center gap-1 font-semibold">
+            <a href={m.website} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[40px] items-center gap-1 font-semibold">
               {t.website} <ExternalIcon />
             </a>
           )}
           {m.appointment && (
-            <a href={m.appointment} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[32px] items-center gap-1 font-semibold">
+            <a href={m.appointment} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-[40px] items-center gap-1 font-semibold">
               {t.appointment} <ExternalIcon />
             </a>
           )}

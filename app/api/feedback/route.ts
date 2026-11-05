@@ -43,7 +43,9 @@ export async function POST(req: Request) {
 async function forward(entry: Record<string, unknown>) {
   const hook = process.env.FEEDBACK_WEBHOOK_URL;
   if (hook && /^https:\/\//.test(hook)) {
-    const safe = Object.fromEntries(Object.entries(entry).map(([k, v]) => [k, sheetSafe(v)]));
+    const safe: Record<string, unknown> = Object.fromEntries(Object.entries(entry).map(([k, v]) => [k, sheetSafe(v)]));
+    // Shared key so only this site can post to the script (it emails contact messages to the support inbox).
+    if (process.env.FEEDBACK_WEBHOOK_KEY) safe.key = process.env.FEEDBACK_WEBHOOK_KEY;
     await fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(safe), signal: AbortSignal.timeout(5000) }).catch(() => {});
   }
 }

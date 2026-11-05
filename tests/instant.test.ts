@@ -51,6 +51,22 @@ describe("instant search (no AI)", () => {
     expect(instantSearch("how do I renew my passport?", "en", undefined, "I live in Algeria").office?.inAlgeria).toBe(true);
   });
 
+  it("someone in a country whose embassy has no website gets no other country's consulate rules", () => {
+    // Ethiopia: the embassy has no site of its own, so London / Milan / New York pages used to fill the answer.
+    const ethiopia = { in: "abroad" as const, country: "Ethiopia" };
+    for (const q of ["how do I renew my passport", "consular registration"]) {
+      const r = instantSearch(q, "en", undefined, "", ethiopia);
+      const domains = [...(r.quick?.sources ?? []).map((s) => s.domain), ...r.pages.map((p) => p.domain)];
+      expect(domains.length, q).toBeGreaterThan(0);
+      expect(domains.filter((d) => /cglondon|cgmilan|embwashington|algeria-cgny|algerian-consulate/.test(d)), q).toEqual([]);
+    }
+  });
+
+  it("consular registration doesn't bring up vehicle registration pages", () => {
+    const r = instantSearch("consular registration", "en", undefined, "", { in: "abroad", country: "Ethiopia" });
+    expect([...r.pages.map((p) => p.title), ...(r.quick?.sources ?? []).map((s) => s.title)].join(" ")).not.toMatch(/véhicule|vehicle/i);
+  });
+
   it("works in Arabic and Darija", () => {
     expect(instantSearch("كيفاش نخرج شهادة الميلاد 12 خ", "dz").guides.map((g) => g.slug)).toContain("birth-12s");
     expect(instantSearch("كيف أستخرج صحيفة السوابق العدلية", "ar").pages.length).toBeGreaterThan(0);

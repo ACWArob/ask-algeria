@@ -52,7 +52,7 @@ export function HomeClient({ dict, locale, services, places }: { dict: Dict; loc
                   <button
                     type="button"
                     onClick={() => askRef.current?.ask(svc.question[locale])}
-                    className="min-h-[36px] rounded-full bg-brand px-3.5 font-semibold text-brand-ink hover:bg-brand/90"
+                    className="min-h-[40px] rounded-full bg-brand px-3.5 font-semibold text-brand-ink hover:bg-brand/90"
                   >
                     {s.askAbout}
                   </button>
@@ -62,7 +62,7 @@ export function HomeClient({ dict, locale, services, places }: { dict: Dict; loc
                       href={p.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link inline-flex min-h-[36px] items-center gap-1 font-semibold"
+                      className="link inline-flex min-h-[40px] items-center gap-1 font-semibold"
                     >
                       {s.portal}
                       {p.label ? ` · ${p.label[locale]}` : ""}
@@ -84,7 +84,7 @@ export function HomeClient({ dict, locale, services, places }: { dict: Dict; loc
               </h3>
               <p className="mt-0.5 text-[0.9375rem] text-muted">{dict.embassies.homeLine}</p>
               <div className="mt-3 text-sm">
-                <Link href="/embassies" className="inline-flex min-h-[36px] items-center rounded-full bg-brand px-3.5 font-semibold text-brand-ink hover:bg-brand/90">
+                <Link href="/embassies" className="inline-flex min-h-[40px] items-center rounded-full bg-brand px-3.5 font-semibold text-brand-ink hover:bg-brand/90">
                   {dict.embassies.homeCta}
                 </Link>
               </div>

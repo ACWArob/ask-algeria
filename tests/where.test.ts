@@ -11,6 +11,9 @@ describe("where do you live", () => {
     const ar = whereOptions("ar");
     expect(ar.wilayas.find((w) => w.value === "Oran")?.label).toBe("وهران");
     expect(ar.countries.find((c) => c.value === "France")?.cities).toContain("Lyon");
+    // Values stay the official names (they are sent to the server); labels are in the reader's script.
+    expect(ar.countries.find((c) => c.value === "France")?.cityLabels.Lyon).toBe("ليون");
+    expect(whereOptions("fr").countries.find((c) => c.value === "France")?.cityLabels.Lyon).toBe("Lyon");
     expect(whereOptions("en").countries.find((c) => c.value === "Japan")?.cities).toEqual([]);
   });
 

@@ -85,7 +85,8 @@ npm run build                # also rebuilds the search index
 | `AI_DAILY_BUDGET_USD` | optional | Daily AI budget across all servers (default 5) |
 | `AI_DAILY_PER_IP`, `TRANSLATE_DAILY_PER_IP` | optional | Daily quotas per visitor (defaults 40 and 10) |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | optional | Upstash Redis for the shared budget, quotas and answer cache (added automatically by the Vercel integration) |
-| `FEEDBACK_WEBHOOK_URL` | optional | Forwards feedback and contact messages (for example, to a Google Sheet) |
+| `FEEDBACK_WEBHOOK_URL` | optional | Forwards feedback and contact messages to a Google Apps Script that saves them to a Sheet and emails contact messages ([scripts/feedback-webhook.gs](scripts/feedback-webhook.gs)) |
+| `FEEDBACK_WEBHOOK_KEY` | optional | Shared key the script checks, so only the site can post to it |
 | `CONTACT_EMAIL` | optional | Shows a contact email on the About page |
 | `APIFY_TOKEN` | crawl only | Used by `npm run crawl` to fetch new official pages |
 
