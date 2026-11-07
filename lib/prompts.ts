@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import { stripInvisible } from "@/lib/redact";
 
 export const LANGUAGE_INSTRUCTION: Record<Locale, string> = {
   en: "Write in clear, plain English.",
@@ -126,7 +127,8 @@ Format (Markdown), HARD LIMITS:
 }
 
 /** Text from the visitor goes inside our tags: without < and > it can't close a tag or forge one of ours. */
-export const untag = (s: string) => s.replace(/[<>]/g, " ");
+export { stripInvisible };
+export const untag = (s: string) => stripInvisible(s).replace(/[<>]/g, " ");
 
 /** Page text keeps ordinary < and >, but anything shaped like one of our prompt tags is broken up. */
 const OUR_TAGS = /<\s*\/?\s*(source|official_pages|question|previous_question|your_previous_answer|verification_notes|document)\b[^>]*>?/gi;

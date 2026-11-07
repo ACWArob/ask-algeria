@@ -27,6 +27,8 @@ export async function POST(req: Request) {
   const rl = rateLimit(`tr:${clientIp(req.headers)}`, 10);
   if (!rl.ok) return NextResponse.json({ error: "rate_limited" }, { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
 
+  // Refuse an oversized upload from its declared size, before the whole body is read into memory.
+  if (Number(req.headers.get("content-length") ?? 0) > LIMITS.uploadMaxBytes + 64_000) return NextResponse.json({ error: "too_large" }, { status: 413 });
   let form: FormData;
   try {
     form = await req.formData();

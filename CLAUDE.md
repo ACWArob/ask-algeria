@@ -53,6 +53,7 @@ lint + typecheck + affected tests pass, build passes, and you've said how you ve
 Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit secrets (ANTHROPIC_API_KEY, SITE_PASSWORD, Apify token).
 
 ## Lessons
+- 2026-11-05 — security pass 2: hidden Unicode tag characters could ride along with a normal question (the cache key drops them, the model reads them), so one visitor could cache a poisoned answer for everyone; zero-width spaces could also split an ID past redaction — lib/redact.ts stripInvisible runs first on all visitor text. Login form and translate uploads are size-capped too.
 - 2026-11-05 — security pass: API routes accepted a 5 MB JSON body, and answer links like `//evil.example` skipped the official-site check (not `http`) — every route reads its body with lib/body.ts readJson and a size cap (413 above it); in answers only official http(s) sites, our own `/paths`, `#` and mailto:/tel: become links.
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
 - 2026-11-05 — UI pass: one import in lib/posts.ts (used by the browser) pulled all of missions.json into the embassies page bundle (+160 KB) — keep browser-side modules free of data imports (tested); Arabic fonts are not preloaded and limited to Arabic letters (en/fr pages −200 KB); French-only consulate hours get an English translation too.

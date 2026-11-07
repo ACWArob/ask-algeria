@@ -46,7 +46,18 @@ const PATTERNS: { kind: RedactionKind; re: RegExp }[] = [
   },
 ];
 
-export function redact(input: string): RedactionResult {
+/**
+ * Invisible characters a model can still read: Unicode tag characters (hidden "ASCII smuggling" text),
+ * variation selectors used to encode data, zero-width spaces, soft hyphens and direction overrides. Removed from
+ * all visitor text first, so a hidden instruction can't ride along with an ordinary question (and its answer be
+ * cached for everyone asking it), and an ID number broken up with zero-width spaces is still redacted.
+ * Joiners (U+200C/U+200D) and emoji presentation (U+FE0F) stay: real Arabic, Persian and emoji text uses them.
+ */
+const INVISIBLE = /[\u{E0000}-\u{E007F}\u{E0100}-\u{E01EF}\uFE00-\uFE0E\u200B\u2060-\u2064\uFEFF\u202A-\u202E\u2066-\u2069\u00AD]/gu;
+export const stripInvisible = (s: string) => s.replace(INVISIBLE, "");
+
+export function redact(raw: string): RedactionResult {
+  const input = stripInvisible(raw);
   let text = input;
   let norm = normalizeDigits(input);
   let removed = 0;

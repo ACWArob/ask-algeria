@@ -4,12 +4,15 @@
  */
 export class BodyTooLarge extends Error {}
 
-export async function readJson<T = unknown>(req: Request, max: number): Promise<T> {
+export async function readText(req: Request, max: number): Promise<string> {
   const declared = Number(req.headers.get("content-length") ?? 0);
   if (declared > max) throw new BodyTooLarge();
   const text = await req.text();
   if (text.length > max) throw new BodyTooLarge();
-  return JSON.parse(text) as T;
+  return text;
+}
+export async function readJson<T = unknown>(req: Request, max: number): Promise<T> {
+  return JSON.parse(await readText(req, max)) as T;
 }
 
 /** The error response for a body that couldn't be read. */

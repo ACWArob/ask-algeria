@@ -1,4 +1,4 @@
-import { readJson } from "@/lib/body";
+import { readJson, readText } from "@/lib/body";
 import { NextResponse } from "next/server";
 import { COOKIE } from "@/lib/config";
 import { safeEqual, signToken } from "@/lib/auth";
@@ -20,7 +20,8 @@ export async function POST(req: Request) {
   let next = "/";
   try {
     if (isForm) {
-      const f = await req.formData();
+      // The login page posts a plain urlencoded form; read it with the same size cap as JSON.
+      const f = new URLSearchParams(await readText(req, 8_000));
       password = String(f.get("password") ?? "");
       next = safeNext(f.get("next"));
     } else {
