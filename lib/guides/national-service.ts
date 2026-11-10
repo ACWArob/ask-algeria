@@ -50,16 +50,26 @@ export const GUIDE = {
       id: "rule",
       title: { en: "The obligation and who handles it", fr: "L'obligation et qui s'en occupe", ar: "الواجب والجهة المكلّفة به", dz: "الواجب وشكون يتكلف بيه" },
       points: [
-        { cites: [MDN, PC, LU], text: {
-          en: "The Ministry of National Defence says that under Ordinance 76-110 national service lasts 12 months for citizens over 19, followed by availability (5 years), first reserve (10 years) and second reserve (10 years). Paris and London also describe national service as compulsory from 19 and require citizens abroad to be entered on the census at their mission.",
-          fr: "Le ministère de la Défense nationale indique qu'en vertu de l'ordonnance 76-110, le service national dure 12 mois pour les citoyens de plus de 19 ans, suivi de la disponibilité (5 ans), de la première réserve (10 ans) et de la deuxième réserve (10 ans). Paris et Londres décrivent aussi le service national comme obligatoire à partir de 19 ans et exigent que les citoyens à l'étranger soient inscrits au recensement de leur poste.",
-          ar: "تذكر وزارة الدفاع الوطني أنه بموجب الأمر 76-110 تدوم الخدمة الوطنية 12 شهرًا للمواطنين فوق 19 سنة، ثم فترة الاستعداد (5 سنوات) والاحتياط الأول (10 سنوات) والاحتياط الثاني (10 سنوات). وتصف قنصليتا باريس ولندن الخدمة الوطنية بأنها إجبارية ابتداءً من 19 سنة وتشترطان تسجيل المواطنين بالخارج في قوائم الإحصاء لدى ممثليتهم.",
-          dz: "وزارة الدفاع الوطني تقول حسب الأمر 76-110 الخدمة الوطنية 12 شهر للمواطنين فوق 19 سنة، ومن بعد الاستعداد (5 سنين)، الاحتياط الأول (10 سنين) والاحتياط الثاني (10 سنين). باريس ولندن يقولو حتى هما الخدمة الوطنية إجبارية من 19 سنة ولازم المواطنين في الغربة يتسجلو في الإحصاء تاع ممثليتهم." } },
-        { cites: [MDO, RY], text: {
-          en: "The Ministry of National Defence says that abroad, the national service is handled by the diplomatic or consular representations. Riyadh says census, deferment and exemption requests go to the consular authority, which forwards them to the competent authorities in Algeria, and applicants are told when answers arrive.",
-          fr: "Le ministère de la Défense nationale indique qu'à l'étranger, le service national est géré par les représentations diplomatiques ou consulaires. Riyad précise que les demandes de recensement, de sursis et de dispense sont remises à l'autorité consulaire, qui les transmet aux autorités compétentes en Algérie, et que les intéressés sont avisés à l'arrivée des réponses.",
-          ar: "تذكر وزارة الدفاع الوطني أنه في الخارج تتولى التمثيليات الدبلوماسية أو القنصلية تسيير الخدمة الوطنية. وتذكر سفارة الرياض أن طلبات الإحصاء والتأجيل والإعفاء تُقدَّم إلى السلطة القنصلية التي تحيلها إلى السلطات المختصة في الجزائر، ويُبلَّغ المعنيون عند وصول الردود.",
-          dz: "وزارة الدفاع الوطني تقول في الغربة السفارات والقنصليات هي لي تسير الخدمة الوطنية. الرياض تقول طلبات الإحصاء، التأجيل والإعفاء تتقدم للسلطة القنصلية وهي تبعثها للسلطات المختصة في الدزاير، والمعنيين يتعلمو كي توصل الردود." } },
+        { cites: [MDN], text: {
+          en: "The Ministry of National Defence says that under Ordinance 76-110 national service lasts 12 months for citizens over 19, followed by availability (5 years), first reserve (10 years) and second reserve (10 years).",
+          fr: "Le ministère de la Défense nationale indique qu'en vertu de l'ordonnance 76-110, le service national dure 12 mois pour les citoyens de plus de 19 ans, suivi de la disponibilité (5 ans), de la première réserve (10 ans) et de la deuxième réserve (10 ans).",
+          ar: "تذكر وزارة الدفاع الوطني أنه بموجب الأمر 76-110 تدوم الخدمة الوطنية 12 شهرًا للمواطنين فوق 19 سنة، ثم فترة الاستعداد (5 سنوات) والاحتياط الأول (10 سنوات) والاحتياط الثاني (10 سنوات).",
+          dz: "وزارة الدفاع الوطني تقول حسب الأمر 76-110 الخدمة الوطنية 12 شهر للمواطنين فوق 19 سنة، ومن بعد الاستعداد (5 سنين)، الاحتياط الأول (10 سنين) والاحتياط الثاني (10 سنين)." } },
+        { cites: [PC, LU], text: {
+          en: "Paris and London also describe national service as compulsory from 19 and require citizens abroad to be entered on the census at their mission.",
+          fr: "Paris et Londres décrivent aussi le service national comme obligatoire à partir de 19 ans et exigent que les citoyens à l'étranger soient inscrits au recensement de leur poste.",
+          ar: "تصف قنصليتا باريس ولندن الخدمة الوطنية بأنها إجبارية ابتداءً من 19 سنة وتشترطان تسجيل المواطنين بالخارج في قوائم الإحصاء لدى ممثليتهم.",
+          dz: "باريس ولندن يقولو حتى هما الخدمة الوطنية إجبارية من 19 سنة ولازم المواطنين في الغربة يتسجلو في الإحصاء تاع ممثليتهم." } },
+        { cites: [MDO], text: {
+          en: "The Ministry of National Defence says that abroad, the national service is handled by the diplomatic or consular representations.",
+          fr: "Le ministère de la Défense nationale indique qu'à l'étranger, le service national est géré par les représentations diplomatiques ou consulaires.",
+          ar: "تذكر وزارة الدفاع الوطني أنه في الخارج تتولى التمثيليات الدبلوماسية أو القنصلية تسيير الخدمة الوطنية.",
+          dz: "وزارة الدفاع الوطني تقول في الغربة السفارات والقنصليات هي لي تسير الخدمة الوطنية." } },
+        { cites: [RY], text: {
+          en: "Riyadh says census, deferment and exemption requests go to the consular authority, which forwards them to the competent authorities in Algeria, and applicants are told when answers arrive.",
+          fr: "Riyad précise que les demandes de recensement, de sursis et de dispense sont remises à l'autorité consulaire, qui les transmet aux autorités compétentes en Algérie, et que les intéressés sont avisés à l'arrivée des réponses.",
+          ar: "تذكر سفارة الرياض أن طلبات الإحصاء والتأجيل والإعفاء تُقدَّم إلى السلطة القنصلية التي تحيلها إلى السلطات المختصة في الجزائر، ويُبلَّغ المعنيون عند وصول الردود.",
+          dz: "الرياض تقول طلبات الإحصاء، التأجيل والإعفاء تتقدم للسلطة القنصلية وهي تبعثها للسلطات المختصة في الدزاير، والمعنيين يتعلمو كي توصل الردود." } },
         { cites: [PC, LE], text: {
           en: "Paris and London both cite the Algerian-French agreement of 11 October 1983: Paris says it lets dual nationals choose to serve in Algeria or in France, and London says dual nationals can seek exemption with a \"Déclaration d'Option\" and a \"Certificat des Services\" issued by the French military authorities.",
           fr: "Paris et Londres citent toutes deux l'accord algéro-français du 11 octobre 1983 : Paris indique qu'il laisse aux binationaux le choix d'effectuer le service en Algérie ou en France, et Londres que les binationaux peuvent demander la dispense avec la « Déclaration d'Option » et le « Certificat des Services » délivrés par les autorités militaires françaises.",

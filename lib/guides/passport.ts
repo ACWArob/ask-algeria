@@ -97,6 +97,35 @@ export const PASSPORT_GUIDE = {
       ],
     },
     {
+      // The Ministry's own list for every Algerian abroad (PN, "Pour les citoyens résidents à l'étranger"), so people
+      // whose consulate has no page here (Lyon, Montreal, Dubai...) still get the documents in their language: the
+      // points above cite US/UK/Italy consulates and are left out for other countries.
+      id: "abroad-documents",
+      title: { en: "Documents for Algerians abroad (Ministry of the Interior)", fr: "Dossier des Algériens résidant à l'étranger (ministère de l'Intérieur)", ar: "ملف الجزائريين المقيمين في الخارج (وزارة الداخلية)", dz: "الدوسي تاع الجزايريين لي ساكنين برّا (وزارة الداخلية)" },
+      points: [
+        { cites: [PN], text: {
+          en: "Algerians living abroad submit the passport file to the consular service where they live.",
+          fr: "Les Algériens résidant à l'étranger déposent le dossier de passeport auprès du service consulaire de leur lieu de résidence.",
+          ar: "يودع الجزائريون المقيمون في الخارج ملف جواز السفر لدى المصلحة القنصلية لمكان إقامتهم.",
+          dz: "الجزايريين لي ساكنين برّا يديپوزيو الدوسي تاع الباسبور في المصلحة القنصلية تاع البلاصة لي ساكنين فيها." } },
+        { cites: [PN], text: {
+          en: "The application form, completed and signed by you (or by the legal guardian for a minor), your special birth certificate no. 12-S and a valid consular registration card.",
+          fr: "Le formulaire de demande renseigné et signé par l'intéressé (ou par le tuteur légal pour un mineur), l'extrait d'acte de naissance spécial n°12-S et la carte d'immatriculation consulaire en cours de validité.",
+          ar: "استمارة الطلب مملوءة وموقّعة من المعني (أو من الولي الشرعي بالنسبة للقاصر)، ومستخرج عقد الميلاد الخاص رقم 12 خ، وبطاقة التسجيل القنصلي سارية المفعول.",
+          dz: "الاستمارة معمّرة وممضية منك (ولا من الولي الشرعي إذا كان صغير)، شهادة الميلاد 12S، وكارطة التسجيل القنصلي صالحة." } },
+        { cites: [PN], text: {
+          en: "Proof of residence abroad, and a work certificate (or a school certificate for students and schoolchildren).",
+          fr: "Le justificatif de séjour à l'étranger, et l'attestation de travail (ou le certificat de scolarité pour les étudiants et enfants scolarisés).",
+          ar: "إثبات الإقامة في الخارج، وشهادة عمل (أو شهادة مدرسية للطلبة والأطفال المتمدرسين).",
+          dz: "ورقة الإقامة برّا، وشهادة العمل (ولا شهادة القراية للطلبة والصغار لي يقراو)." } },
+        { cites: [PN], text: {
+          en: "Recent, identical colour ID photos on a plain white background (the Ministry's list says two; your consulate may ask for more), and a tax receipt for the amount that matches the document requested.",
+          fr: "Des photos d'identité couleur récentes et identiques, fond uni blanc sans contour (la liste du ministère en prévoit deux ; votre consulat peut en demander plus), et une quittance fiscale du montant correspondant au document demandé.",
+          ar: "صور شمسية ملونة حديثة ومتطابقة بخلفية بيضاء موحدة (تنص قائمة الوزارة على صورتين، وقد تطلب قنصليتك أكثر)، ووصل جبائي بالمبلغ الموافق للوثيقة المطلوبة.",
+          dz: "تصاور ملوّنين جداد وكيف كيف، الخلفية بيضاء (القائمة تاع الوزارة تقول جوج؛ القنصلية تاعك تقدر تطلب كثر)، ووصل الضريبة بالمبلغ تاع الوثيقة لي طالبها." } },
+      ],
+    },
+    {
       id: "minors",
       title: { en: "Minors", fr: "Mineurs", ar: "القُصّر", dz: "الصغار" },
       points: [

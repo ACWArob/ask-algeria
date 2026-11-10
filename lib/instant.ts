@@ -128,7 +128,10 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
   const pages: InstantPage[] = [];
   const quickPages: QuickPage[] = [];
   const seen = new Set<string>();
-  const officeHosts = new Set((post?.domains ?? []).map((d) => d.replace(/^www\./, "")));
+  // The person's own office. In Algeria the place's domains also list a few well-covered wilaya portals as search
+  // examples (lib/posts ALGERIA); those help search but are not this person's office (Oran's pages for Algiers).
+  const ownDomains = (post?.domains ?? []).map((d) => d.replace(/^www\./, ""));
+  const officeHosts = new Set(post?.inAlgeria ? ownDomains.filter((d, i) => i === 0 || !WILAYA_PORTALS.includes(d)) : ownDomains);
   for (const h of hits) {
     if (seen.has(h.docId)) continue;
     seen.add(h.docId);
@@ -159,12 +162,25 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
   const gslug0 = guides[0]?.slug;
   const guideForAlgeria = Boolean(post?.inAlgeria && gslug0 && GUIDES[gslug0].sections.some((x) => /in-algeria/.test(x.id)));
   const officePages = guideForAlgeria ? [] : quickPages.filter((p) => p.office && pageOnTopic(question, p));
+  // The office's own facts in another language than the reader's: kept in case the guide has nothing for them.
+  let officeFallback: InstantQuick | undefined;
   if (officePages.length) {
-    const qa = quickAnswer(question, officePages, 6);
+    // The question's own words first; a question in another language than the pages (Arabic question, English
+    // consulate pages) also tries the cross-language synonyms (lib/synonyms), so the office's facts are still found.
+    const direct = quickAnswer(question, officePages, 6);
+    const qa = direct && direct.facts.length >= 2 ? direct : quickAnswer(`${question} ${exp.query}`, officePages, 6) ?? direct;
     // Facts in another script than the reader's (French page, Arabic reader) lose to a guide in their language.
     const arabicShare = qa ? (qa.facts.map((f) => f.text).join(" ").match(/[\u0600-\u06FF]/g) ?? []).length / Math.max(1, qa.facts.map((f) => f.text).join(" ").length) : 0;
-    const wrongScript = (locale === "ar" || locale === "dz") ? arabicShare < 0.3 : arabicShare > 0.5;
-    if (qa && qa.facts.length >= 2 && !(wrongScript && guides.length)) quick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
+    // English readers: French page text (most official pages) also loses to a guide in English; the office's own
+    // pages stay right below as links. French readers keep the office's own words.
+    const factText = qa ? qa.facts.map((f) => f.text).join(" ") : "";
+    const frenchShare = (factText.match(/(?<![\p{L}])(le|la|les|des|du|est|pour|aux|une|et|vous|votre)(?![\p{L}])/giu) ?? []).length / Math.max(1, factText.split(/\s+/).length);
+    const wrongScript = (locale === "ar" || locale === "dz") ? arabicShare < 0.3 : arabicShare > 0.5 || (locale === "en" && frenchShare > 0.06);
+    if (qa && qa.facts.length >= 2) {
+      const own: InstantQuick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
+      if (!(wrongScript && guides.length)) quick = own;
+      else officeFallback = own;
+    }
   }
   // 2. Else the matching guide (curated, in the reader's language), keeping points that fit their office.
   const gslug = guides[0]?.slug;
@@ -189,12 +205,15 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
       };
     }
   }
+  // 2b. The guide had nothing for this person: their own office's facts, even in another language, beat nothing.
+  if (!quick && officeFallback) quick = officeFallback;
   if (!quick) {
     // 3. Best lines of the top pages. Once the person's office abroad is known, another consulate's page is not
     // quoted here ("the Bordeaux consulate invites residents of its district...", shown to someone in Marseille):
     // each consulate writes for its own district. National pages stay; other consulates still appear as links.
-    const missionHostSet = post && !post.inAlgeria ? allMissionHosts() : null;
-    const fallbackPages = missionHostSet ? quickPages.filter((p) => p.office || !missionHostSet.has(p.domain)) : quickPages;
+    // Same inside Algeria: another wilaya's portal (Oran's page for someone in Algiers) is not quoted.
+    const notMine = post ? (post.inAlgeria ? new Set(WILAYA_PORTALS) : allMissionHosts()) : null;
+    const fallbackPages = notMine ? quickPages.filter((p) => p.office || !notMine.has(p.domain)) : quickPages;
     const qa = quickAnswer(question, fallbackPages);
     if (qa) quick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
   }

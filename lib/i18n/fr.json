@@ -139,7 +139,13 @@
     "voiceListening": "Je vous écoute… parlez, puis vérifiez le texte avant d'envoyer.",
     "voiceDenied": "Le micro est bloqué ou absent. Autorisez-le dans les réglages du navigateur, ou tapez votre question.",
     "voiceNoSpeech": "Nous n'avons rien entendu. Réessayez, ou tapez votre question.",
-    "voiceError": "La saisie vocale n'a pas fonctionné. Tapez votre question."
+    "voiceError": "La saisie vocale n'a pas fonctionné. Tapez votre question.",
+    "coverage": "Recherche dans {pages} pages officielles de {sites} sites publics",
+    "exampleMixed": [
+      "kifach nsajel f l'CNAS?",
+      "كيفاش نطلب الكازيي جوديسيير؟"
+    ],
+    "anyLanguage": "Posez votre question en français, anglais, arabe ou darija, même en lettres latines (arabizi)."
   },
   "translate": {
     "heading": "Comprendre un document officiel",

@@ -42,7 +42,7 @@ const GLOSSARY: [RegExp, string][] = [
   [/12\s?s|12\s?خ|s12|ميلاد|naissance|birth/i, "12S birth certificate extrait de naissance شهادة الميلاد"],
   [/كازي|السوابق|casier|criminal|judiciaire/i, "criminal record casier judiciaire bulletin صحيفة السوابق العدلية"],
   [/جنسي|nationalit/i, "nationality certificate certificat de nationalité شهادة الجنسية"],
-  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|\bcni\b/i, "national identity card CNIBE carte d'identité بطاقة التعريف"],
+  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|(?<![\p{L}\p{N}])id[ -]?cards?(?![\p{L}\p{N}])|\bcni\b/iu, "national identity card CNIBE carte d'identité بطاقة التعريف"],
   [/صغار|قاصر|قُصّر|القصر|mineur|minor|enfant|child/i, "minors children parental authorization"],
   [/تجديد|نجدد|renouvel|renew/i, "renewal renouvellement"],
   [/كناس|cnas|ضمان|شفاء|chifa/i, "CNAS social security assurance sociale"],
@@ -52,7 +52,7 @@ const GLOSSARY: [RegExp, string][] = [
   [/ذهبية|edahabia|ذهبيه|بوسطة|poste/i, "Edahabia Algérie Poste carte"],
   [/أوطو|auto.?entrepreneur|مقاول|anae/i, "auto-entrepreneur ANAE"],
   [/قنصل|consul|تسجيل قنصلي|immatricul/i, "consular registration immatriculation"],
-  [/خدمة وطنية|service national|military/i, "national military service"],
+  [/(?:ال)?خدمة (?:ال)?وطنية|(?:ال)?خدمة (?:ال)?عسكرية|service national|service militaire|national service|military|sarvis|سرفيس|سورسي/i, "national military service"],
   [/فيزا|visa|تأشيرة/i, "entry visa"],
 ];
 
@@ -64,14 +64,14 @@ export function glossaryQueries(text: string): string[] {
 /** Corpus topic slugs that the question is about (used to boost matching pages). */
 const TOPIC_RULES: [RegExp, string[]][] = [
   [/باسبور|جواز|passe?port|passpor|laissez/i, ["passport"]],
-  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|\bcni/i, ["cni"]],
+  [/لاكارط|بطاقة التعريف|ديدونتيتي|identit|(?<![\p{L}\p{N}])id[ -]?cards?(?![\p{L}\p{N}])|\bcni/iu, ["cni"]],
   [/12\s?s|12\s?خ|s12|ميلاد|naissance|birth/i, ["birth_certificate", "civil_status"]],
   [/زواج|mariage|marriage|طلاق|divorce|وفاة|décès|deces|death|livret|دفتر العائلة|état civil|etat civil|حالة مدنية/i, ["civil_status"]],
   [/كازي|السوابق|casier|criminal|judiciaire/i, ["criminal_record", "justice"]],
   [/جنسي|nationalit/i, ["nationality"]],
   [/تسجيل قنصلي|التسجيل القنصلي|بطاقة قنصلية|البطاقة القنصلية|(?:أسجل|اسجل|نسجل|نتسجل|تسجيل)\s*(?:نفسي|روحي)?\s*(?:في|ف|فى)\s*(?:ال)?قنصلي|immatricul|consular (?:card|registration)|carte consulaire|regist\w* (?:\w+ ){0,3}(?:at|with) (?:the )?(?:\w+ )?(?:consulate|embassy)|inscri\w* (?:\w+ ){0,2}(?:au |à l'|a l')(?:consulat|ambassade)|ns[ae]jj?el (?:rouhi |rohi )?(?:f |fel )?(?:l)?consulat|karta? consulaire|l?carte consulaire/i, ["consular_registration"]],
   [/توكيل|وكالة|procuration|power of attorney|légalis|legalis|apostil|تصديق|مصادقة|أصادق|اصادق|نصادق|authenticat|certif\w* conforme/i, ["legalization"]],
-  [/خدمة وطنية|service national|military|sarvis|سرفيس/i, ["national_service"]],
+  [/(?:ال)?خدمة (?:ال)?وطنية|(?:ال)?خدمة (?:ال)?عسكرية|service national|service militaire|national service|military|sarvis|سرفيس|سورسي/i, ["national_service"]],
   [/فيزا|visa|تأشيرة/i, ["consular_visa"]],
   [/permis|رخصة|driving|carte grise|كارط غريز|immatriculation (de|du) v|véhicule|vehicle|car\b|طوموبيل/i, ["driving_vehicle"]],
   [/ضراي?ب|ضرائب|impôt|impot|tax|جبايت|jibayat|nif\b/i, ["tax"]],

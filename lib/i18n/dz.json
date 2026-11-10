@@ -139,7 +139,13 @@
     "voiceListening": "راني نسمع فيك… هدر، ومن بعد شوف الكتابة قبل ما تبعث.",
     "voiceDenied": "الميكرو محبوس ولا ماكانش. سرّحو من إعدادات المتصفح، ولا اكتب سؤالك.",
     "voiceNoSpeech": "ما سمعنا والو. عاود، ولا اكتب سؤالك.",
-    "voiceError": "الصوت ما خدمش. اكتب سؤالك من فضلك."
+    "voiceError": "الصوت ما خدمش. اكتب سؤالك من فضلك.",
+    "coverage": "نحوّسو في {pages} صفحة رسمية من {sites} سيت تاع الدولة",
+    "exampleMixed": [
+      "kifach nsajel f l'CNAS?",
+      "Comment demander un extrait de casier judiciaire ?"
+    ],
+    "anyLanguage": "سقسي بالدارجة، بالعربية، بالفرنسية ولا بالإنجليزية، حتى بالحروف اللاتينية (عربيزي)."
   },
   "translate": {
     "heading": "فهّمني وثيقة رسمية",

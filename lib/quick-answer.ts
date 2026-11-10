@@ -181,7 +181,7 @@ export function guideAnswer(
       let place = 0;
       if (inAlgeria === true) place = /in-algeria|online/.test(s.id) ? 3 : /abroad/.test(s.id) ? -4 : 0;
       if (inAlgeria === false) place = /abroad|first|how/.test(s.id) ? 2 : /in-algeria/.test(s.id) ? -4 : 0;
-      return { s, score: cov + titleHit + place - i * 0.2 };
+      return { s, place, score: cov + titleHit + place - i * 0.2 };
     })
     .sort((a, b) => b.score - a.score);
   const ids: string[] = [];
@@ -192,7 +192,13 @@ export function guideAnswer(
   };
   const out: GuideAnswer["sections"] = [];
   let left = maxPoints;
-  for (const { s } of ranked.slice(0, 2)) {
+  // The two best sections that still have points once other consulates' points are left out, so an empty top
+  // section doesn't leave the person with nothing (Lyon: the documents points cite US/UK consulates; the Ministry's
+  // list for everyone abroad comes next). Past the first two, a section for the other side (in Algeria vs abroad)
+  // is skipped; word match isn't required there, since an Arabic question matches the sections' words less.
+  for (const [rank, { s, place }] of ranked.entries()) {
+    if (out.length >= 2 || left <= 0) break;
+    if (rank >= 2 && place < 0) continue;
     const pts = s.points
       .map((p) => ({ ...p, cites: p.cites.filter((c) => !skipSource(c)) }))
       .filter((p) => p.cites.length && !aboutOther(p.text.en));
@@ -202,7 +208,6 @@ export function guideAnswer(
     if (!take.length) continue;
     out.push({ title: s.title[locale], points: take.map((p) => ({ text: p.text[locale], sources: p.cites.map(num) })) });
     left -= take.length;
-    if (left <= 0) break;
   }
   if (!out.length) return null;
   const feeRow = (guide.fees ?? []).find((f) => mine.some((r) => r.test(f.office.en)) && f.cites.some((c) => !skipSource(c)));

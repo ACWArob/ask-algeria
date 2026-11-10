@@ -2,14 +2,26 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import type { Dict, Locale } from "@/lib/i18n";
+import { fmt, type Dict, type Locale } from "@/lib/i18n";
 import type { Service } from "@/lib/services";
 import type { WhereOptions } from "@/lib/where";
 import { AskClient, type AskHandle } from "./AskClient";
 import { HeroBackdrop } from "./Backdrop";
 import { ExternalIcon, Icon } from "./Icon";
 
-export function HomeClient({ dict, locale, services, places }: { dict: Dict; locale: Locale; services: Service[]; places: WhereOptions }) {
+export function HomeClient({
+  dict,
+  locale,
+  services,
+  places,
+  coverage,
+}: {
+  dict: Dict;
+  locale: Locale;
+  services: Service[];
+  places: WhereOptions;
+  coverage?: { pages: string; sites: string };
+}) {
   const askRef = useRef<AskHandle>(null);
   const [active, setActive] = useState(false);
   const s = dict.services;
@@ -24,6 +36,7 @@ export function HomeClient({ dict, locale, services, places }: { dict: Dict; loc
           <div className="mb-6 text-center sm:mb-8">
             <h1 className="display text-[2.25rem] font-semibold sm:text-5xl">{dict.ask.greeting}</h1>
             <p className="mx-auto mt-3 max-w-xl text-muted">{dict.ask.sub}</p>
+            {coverage && <p className="mt-2 text-sm text-muted">{fmt(dict.ask.coverage, coverage)}</p>}
           </div>
         )}
         <AskClient ref={askRef} dict={dict} locale={locale} places={places} onActiveChange={setActive} />

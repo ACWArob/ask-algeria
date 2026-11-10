@@ -415,10 +415,12 @@ export const AskClient = forwardRef<
         {picker}
         {form}
         <ul className="mt-5 flex flex-wrap justify-center gap-2 sm:mt-6" aria-label={t.examples}>
-          {t.exampleList.slice(0, 4).map((ex, i) => (
+          {/* Two in the page language, then two in other languages or Arabizi: "ask the way you speak". */}
+          {[...t.exampleList.slice(0, 2), ...t.exampleMixed].map((ex, i) => (
             <li key={ex} className={i >= 3 ? "hidden sm:block" : undefined}>
               <button
                 type="button"
+                dir="auto"
                 onClick={() => void ask(ex)}
                 className="min-h-[40px] rounded-full border border-line bg-paper px-4 py-1.5 text-[0.9375rem] text-ink transition-colors hover:border-brand hover:bg-brand-soft"
               >
@@ -427,6 +429,7 @@ export const AskClient = forwardRef<
             </li>
           ))}
         </ul>
+        <p className="mt-3 text-center text-[0.8125rem] text-muted">{t.anyLanguage}</p>
       </div>
     );
   }

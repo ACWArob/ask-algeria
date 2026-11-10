@@ -91,3 +91,65 @@ describe("quick answer never quotes another consulate's own notice", () => {
     // Other consulates' pages may still be listed as links below the answer.
   });
 });
+
+describe("passport steps for Algerians abroad whose consulate has no page of its own", () => {
+  it("Lyon and Montreal get the Ministry's checklist in the reader's language, not raw French page text", async () => {
+    const { instantSearch } = await import("@/lib/instant");
+    const { parseWhere } = await import("@/lib/where");
+    for (const [city, country] of [["Lyon", "France"], ["Montreal", "Canada"]]) {
+      const w = parseWhere({ in: "abroad", country, city });
+      const en = instantSearch("How do I renew my passport?", "en", new Headers(), "", w);
+      expect(en.quick?.from).toBe("guide");
+      expect(en.quick?.sources.map((s) => s.domain)).toContain("interieur.gov.dz");
+      expect(JSON.stringify(en.quick)).toMatch(/Algerians living abroad/);
+      const dz = instantSearch("kifach njaded el passeport?", "dz", new Headers(), "", w);
+      expect(dz.quick?.from).toBe("guide");
+      expect(dz.quick?.sections[0].points[0].text).toMatch(/[؀-ۿ]/);
+    }
+  });
+  it("someone in Algeria never gets the abroad checklist", async () => {
+    const { instantSearch } = await import("@/lib/instant");
+    const { parseWhere } = await import("@/lib/where");
+    const w = parseWhere({ in: "dz", wilaya: "Alger" });
+    expect(w).not.toBeNull();
+    const r = instantSearch("How do I renew my passport?", "en", new Headers(), "", w);
+    expect(JSON.stringify(r.quick ?? {})).not.toMatch(/Algerians living abroad/);
+  });
+});
+
+describe("ID card questions and wilaya portals", () => {
+  it("English 'ID card' is the ID card topic and gets the guide in English", async () => {
+    const { questionTopics } = await import("@/lib/detect");
+    expect(questionTopics("How do I get the biometric ID card?")).toContain("cni");
+    expect(questionTopics("renew my id-card")).toContain("cni");
+    expect(questionTopics("I did it, can I pay online?")).not.toContain("cni");
+    const { instantSearch } = await import("@/lib/instant");
+    const { parseWhere } = await import("@/lib/where");
+    const r = instantSearch("How do I get the biometric ID card?", "en", new Headers(), "", parseWhere({ in: "abroad", country: "Canada", city: "Montreal" }));
+    expect(r.quick?.from).toBe("guide");
+  });
+  it("someone in Algiers isn't quoted Oran's wilaya pages", async () => {
+    const { instantSearch } = await import("@/lib/instant");
+    const { parseWhere } = await import("@/lib/where");
+    const w = parseWhere({ in: "dz", wilaya: "Alger" });
+    expect(w).not.toBeNull();
+    for (const q of ["How do I get a marriage certificate?", "How do I get the biometric ID card?"]) {
+      const r = instantSearch(q, "en", new Headers(), "", w);
+      // Oran's raw page text is never quoted as the answer (a curated guide point may still credit Oran's page).
+      const quotedOran = r.quick?.from === "pages" && r.quick.sources.some((x) => x.domain === "wilayaoran.dz");
+      expect(quotedOran, q).toBe(false);
+    }
+  });
+});
+
+describe("wilaya portals in Algeria", () => {
+  it("someone in Oran still gets Oran's own pages", async () => {
+    const { instantSearch } = await import("@/lib/instant");
+    const { parseWhere } = await import("@/lib/where");
+    const w = parseWhere({ in: "dz", wilaya: "Oran" });
+    expect(w).not.toBeNull();
+    const r = instantSearch("How do I get a marriage certificate?", "fr", new Headers(), "", w);
+    expect(r.quick).toBeTruthy();
+    expect(JSON.stringify(r.quick)).toMatch(/wilayaoran|civil|état civil|mariage/i);
+  });
+});

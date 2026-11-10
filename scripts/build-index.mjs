@@ -22,4 +22,7 @@ await writeFile(
   outPath,
   JSON.stringify({ version: INDEX_VERSION, builtAt: new Date().toISOString(), docs: records.length, chunks: chunks.length, index: ms.toJSON() }),
 );
+// Tiny summary for the homepage ("Searching N official pages from M websites"), so it never loads the corpus.
+const sites = new Set(records.map((r) => (r.domain || new URL(r.url).hostname).replace(/^www\./, ""))).size;
+await writeFile(path.join(root, "data", "corpus-stats.json"), JSON.stringify({ pages: records.length, sites }) + "\n");
 console.log(`Indexed ${records.length} documents into ${chunks.length} chunks -> ${path.relative(root, outPath)}`);

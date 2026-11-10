@@ -139,7 +139,13 @@
     "voiceListening": "Listening… speak now, then check the text before sending.",
     "voiceDenied": "The microphone is blocked or missing. Allow it in your browser's settings, or type your question.",
     "voiceNoSpeech": "We didn't hear anything. Try again, or type your question.",
-    "voiceError": "Voice input didn't work. Please type your question."
+    "voiceError": "Voice input didn't work. Please type your question.",
+    "coverage": "Searching {pages} official pages from {sites} government websites",
+    "exampleMixed": [
+      "kifach nsajel f l'CNAS?",
+      "Comment demander un extrait de casier judiciaire ?"
+    ],
+    "anyLanguage": "Ask in English, French, Arabic or Darija, even in Latin letters (Arabizi)."
   },
   "translate": {
     "heading": "Understand an official document",
