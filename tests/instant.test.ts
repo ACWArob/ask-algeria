@@ -80,3 +80,14 @@ describe("instant search (no AI)", () => {
     expect(instantSearch("كيف أستخرج صحيفة السوابق العدلية", "ar").pages.length).toBeGreaterThan(0);
   });
 });
+
+describe("quick answer never quotes another consulate's own notice", () => {
+  it("someone in Marseille doesn't get the Bordeaux consulate's text as the answer", async () => {
+    const { instantSearch } = await import("@/lib/instant");
+    const r = instantSearch("renouvellement passeport, j'habite à Marseille", "fr", new Headers(), "", null);
+    expect(r.office?.name ?? "").toMatch(/Marseille/);
+    const quoted = JSON.stringify(r.quick ?? {});
+    expect(quoted).not.toMatch(/consulat-bordeaux|Bordeaux/i);
+    // Other consulates' pages may still be listed as links below the answer.
+  });
+});

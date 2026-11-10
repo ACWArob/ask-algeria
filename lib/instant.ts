@@ -2,7 +2,7 @@ import "server-only";
 import type { Locale } from "@/lib/i18n";
 import { glossaryQueries, questionTopics } from "@/lib/detect";
 import { detectMultiPostCountry, detectPost, LOCATION_FIRST, postFromGeo, readGeo, WILAYAS, type PostHint } from "@/lib/posts";
-import { isMissionContactQuestion, locationDependent, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
+import { allMissionHosts, isMissionContactQuestion, locationDependent, matchMissions, MISSIONS, otherMissionHosts } from "@/lib/missions";
 import { coversTopic, guideAnswer, pageOnTopic, quickAnswer, type QuickPage } from "@/lib/quick-answer";
 import { searchChunks } from "@/lib/search";
 import { expandQuery } from "@/lib/synonyms";
@@ -190,7 +190,12 @@ export function instantSearch(question: string, locale: Locale, headers?: Header
     }
   }
   if (!quick) {
-    const qa = quickAnswer(question, quickPages);
+    // 3. Best lines of the top pages. Once the person's office abroad is known, another consulate's page is not
+    // quoted here ("the Bordeaux consulate invites residents of its district...", shown to someone in Marseille):
+    // each consulate writes for its own district. National pages stay; other consulates still appear as links.
+    const missionHostSet = post && !post.inAlgeria ? allMissionHosts() : null;
+    const fallbackPages = missionHostSet ? quickPages.filter((p) => p.office || !missionHostSet.has(p.domain)) : quickPages;
+    const qa = quickAnswer(question, fallbackPages);
     if (qa) quick = { from: "pages", sections: [{ points: qa.facts.map((f) => ({ text: f.text, sources: [f.source] })) }], sources: qa.sources };
   }
 

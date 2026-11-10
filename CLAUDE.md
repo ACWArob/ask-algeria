@@ -53,6 +53,7 @@ lint + typecheck + affected tests pass, build passes, and you've said how you ve
 Conventional commits: `feat|fix|refactor|test|docs: what + why`. Never commit secrets (ANTHROPIC_API_KEY, SITE_PASSWORD, Apify token).
 
 ## Lessons
+- 2026-11-09 — podcast check: a Marseille passport question got the Bordeaux consulate's notice ("invites residents of its district") as the quick answer — once the person's office abroad is known, the best-lines fallback never quotes another consulate's page (national pages only; other consulates stay as links).
 - 2026-11-05 — security pass 2: hidden Unicode tag characters could ride along with a normal question (the cache key drops them, the model reads them), so one visitor could cache a poisoned answer for everyone; zero-width spaces could also split an ID past redaction — lib/redact.ts stripInvisible runs first on all visitor text. Login form and translate uploads are size-capped too.
 - 2026-11-05 — security pass: API routes accepted a 5 MB JSON body, and answer links like `//evil.example` skipped the official-site check (not `http`) — every route reads its body with lib/body.ts readJson and a size cap (413 above it); in answers only official http(s) sites, our own `/paths`, `#` and mailto:/tel: become links.
 <!-- date — what broke — the rule. Newest at top. Prune past ~25 lines. -->
