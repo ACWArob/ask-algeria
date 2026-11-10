@@ -133,7 +133,13 @@
     "quickFromGuide": "Tiré de notre guide pas à pas, fait uniquement à partir de pages officielles. Vérifiez auprès de votre bureau avant de vous déplacer.",
     "quickFee": "Tarifs",
     "quickSources": "Sources",
-    "morePages": "Autres pages officielles"
+    "morePages": "Autres pages officielles",
+    "voiceStart": "Poser la question à voix haute",
+    "voiceStop": "Arrêter l'écoute",
+    "voiceListening": "Je vous écoute… parlez, puis vérifiez le texte avant d'envoyer.",
+    "voiceDenied": "Le micro est bloqué ou absent. Autorisez-le dans les réglages du navigateur, ou tapez votre question.",
+    "voiceNoSpeech": "Nous n'avons rien entendu. Réessayez, ou tapez votre question.",
+    "voiceError": "La saisie vocale n'a pas fonctionné. Tapez votre question."
   },
   "translate": {
     "heading": "Comprendre un document officiel",
@@ -219,6 +225,7 @@
           "Nous ne conservons pas vos conversations. Si vous notez une réponse, nous enregistrons cette question, jusqu'à 3 questions précédentes, le début de la réponse et votre commentaire (numéros personnels retirés) pour améliorer les réponses. Les messages envoyés via « Nous contacter » sont conservés pour être lus, avec votre e-mail seulement si vous l'indiquez. Ils sont aussi envoyés par e-mail à notre adresse d'assistance.",
           "Les réponses rédigées sont gardées 24 heures, sans lien avec vous, pour répondre plus vite à la même question.",
           "Les documents importés sont envoyés à notre prestataire d'IA (Anthropic) pour produire le résultat. Nous ne les conservons pas. Les numéros contenus dans un fichier importé ne sont pas retirés.",
+          "Si vous utilisez le bouton micro, votre navigateur transforme votre voix en texte avec son propre service de reconnaissance vocale (Google dans Chrome, Apple dans Safari). Nous ne recevons jamais l'audio, seulement le texte que vous choisissez ensuite d'envoyer.",
           "Contre les abus, nous comptons les demandes par connexion pendant 2 jours, à partir d'une forme brouillée (hachée) de votre adresse IP. Votre langue, votre service et, si vous le choisissez, vos informations « Préparer mon dossier » restent dans votre navigateur."
         ]
       },

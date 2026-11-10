@@ -36,3 +36,12 @@ export function SendIcon({ className = "h-5 w-5" }: { className?: string }) {
     </svg>
   );
 }
+
+export function MicIcon({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="7.5" y="2.5" width="5" height="9" rx="2.5" />
+      <path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5M7.5 17.5h5" />
+    </svg>
+  );
+}

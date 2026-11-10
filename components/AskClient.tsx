@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState, useSyncExternalStore } from "react";
 import { fmt, LANGUAGE_NAMES, type Dict, type Locale } from "@/lib/i18n";
 import { redact } from "@/lib/redact";
 import type { AskMeta } from "@/lib/types";
@@ -8,9 +8,12 @@ import type { InstantResult } from "@/lib/instant";
 import type { Where, WhereOptions } from "@/lib/where";
 import Link from "next/link";
 import { formatDate } from "@/lib/dates";
-import { SendIcon } from "./Icon";
+import { MicIcon, SendIcon } from "./Icon";
+import { listen, speechCtor } from "@/lib/voice";
 import { Markdown } from "./Markdown";
 import { ERROR_MARK, readStream } from "./stream";
+
+const noSubscribe = () => () => {};
 
 const MAX = 1000;
 
@@ -310,12 +313,43 @@ export const AskClient = forwardRef<
   const busy = turns.some((x) => x.status === "loading" || x.status === "streaming");
   const started = turns.length > 0;
 
+  // Voice questions: the browser's own speech recognition fills the box; the person checks it and sends.
+  const voiceOk = useSyncExternalStore(noSubscribe, () => Boolean(speechCtor(window)), () => false);
+  const [listening, setListening] = useState(false);
+  const stopVoice = useRef<(() => void) | null>(null);
+  useEffect(() => () => stopVoice.current?.(), []);
+  function toggleVoice() {
+    if (listening) {
+      stopVoice.current?.();
+      return;
+    }
+    const Ctor = speechCtor(window);
+    if (!Ctor) return;
+    const before = q.trim();
+    setFormError(null);
+    setListening(true);
+    stopVoice.current = listen(Ctor, {
+      locale,
+      onText: (text) => setQ(before ? `${before} ${text}` : text),
+      onError: (kind) => setFormError(kind === "denied" ? t.voiceDenied : kind === "noSpeech" ? t.voiceNoSpeech : t.voiceError),
+      onEnd: () => {
+        setListening(false);
+        stopVoice.current = null;
+        inputRef.current?.focus();
+      },
+    });
+  }
+  function send() {
+    stopVoice.current?.();
+    void ask(q);
+  }
+
   const form = (
     <form
       ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        void ask(q);
+        send();
       }}
       className="w-full"
     >
@@ -329,7 +363,7 @@ export const AskClient = forwardRef<
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
               e.preventDefault();
-              void ask(q);
+              send();
             }
           }}
           rows={1}
@@ -339,6 +373,19 @@ export const AskClient = forwardRef<
           aria-describedby="q-hint q-count"
           className="block max-h-[220px] min-h-[44px] w-full resize-none bg-transparent py-2.5 text-[1.0625rem] leading-relaxed text-ink placeholder:text-muted focus:outline-none focus-visible:outline-none"
         />
+        {voiceOk && (
+          <button
+            type="button"
+            onClick={toggleVoice}
+            disabled={busy}
+            aria-pressed={listening}
+            aria-label={listening ? t.voiceStop : t.voiceStart}
+            title={listening ? t.voiceStop : t.voiceStart}
+            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition-colors disabled:opacity-35 ${listening ? "animate-pulse border-alert bg-alert text-white" : "border-line text-muted hover:border-brand hover:text-brand"}`}
+          >
+            <MicIcon />
+          </button>
+        )}
         <button
           type="submit"
           disabled={busy || !q.trim()}
@@ -350,7 +397,7 @@ export const AskClient = forwardRef<
         </button>
       </div>
       <div className="mt-2 flex items-start justify-between gap-3 px-2">
-        <p id="q-hint" className="text-[0.8125rem] text-muted">{t.privacyHint}</p>
+        <p id="q-hint" className={`text-[0.8125rem] ${listening ? "font-semibold text-alert" : "text-muted"}`} aria-live="polite">{listening ? t.voiceListening : t.privacyHint}</p>
         <span id="q-count" className={`shrink-0 text-xs tabular-nums ${q.length > MAX ? "font-bold text-alert" : "text-muted"}`} aria-live="polite">
           {q.length > MAX * 0.8 ? fmt(t.chars, { n: q.length, max: MAX }) : ""}
         </span>

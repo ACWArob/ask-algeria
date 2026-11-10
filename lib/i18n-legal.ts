@@ -20,7 +20,7 @@ const HOST = "Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA (verc
 const en: LegalStrings = {
   nav: "Legal & privacy",
   heading: "Legal notice, privacy and terms",
-  updated: "Last updated: 4 November 2026",
+  updated: "Last updated: 10 November 2026",
   notice: {
     title: "Legal notice",
     body: [
@@ -33,7 +33,7 @@ const en: LegalStrings = {
     title: "Privacy",
     body: [
       "What we process: the questions you ask, documents you upload for translation, ratings and comments you choose to send, and messages sent through Contact us. ID, phone, card and account numbers and emails are removed from questions before they are sent.",
-      "Who processes it for us: Vercel (hosting and logs), Anthropic (writes answers and translations when you ask for them), Upstash (a 24-hour answer cache and request counters) and, for feedback and contact messages, a private Google spreadsheet. Contact messages are also emailed to our support inbox.",
+      "Who processes it for us: Vercel (hosting and logs), Anthropic (writes answers and translations when you ask for them), Upstash (a 24-hour answer cache and request counters) and, for feedback and contact messages, a private Google spreadsheet. Contact messages are also emailed to our support inbox. If you use the microphone button, your browser's own speech service (Google in Chrome, Apple in Safari) turns your voice into text; we never receive the audio.",
       "How long: written answers 24 hours; request counters 2 days, stored with a scrambled (hashed) form of your IP address; server logs as long as the host keeps them; feedback and contact messages until they have been reviewed. Uploaded documents are not stored.",
       "In your browser only: your language, where you live, and your Prepare my file details if you choose to remember them. You can clear them at any time.",
       "No ads, no tracking cookies, no selling of data. To ask what we hold about you or to have it deleted, write to us through the contact form.",
@@ -52,7 +52,7 @@ const en: LegalStrings = {
 const fr: LegalStrings = {
   nav: "Mentions légales",
   heading: "Mentions légales, confidentialité et conditions",
-  updated: "Dernière mise à jour : 4 novembre 2026",
+  updated: "Dernière mise à jour : 10 novembre 2026",
   notice: {
     title: "Mentions légales",
     body: [
@@ -65,7 +65,7 @@ const fr: LegalStrings = {
     title: "Confidentialité",
     body: [
       "Ce que nous traitons : les questions posées, les documents importés pour traduction, les avis et commentaires que vous choisissez d'envoyer, et les messages envoyés via « Nous contacter ». Les numéros d'identité, de téléphone, de carte et de compte ainsi que les e-mails sont retirés des questions avant l'envoi.",
-      "Sous-traitants : Vercel (hébergement et journaux), Anthropic (rédige les réponses et traductions quand vous les demandez), Upstash (cache des réponses de 24 heures et compteurs de demandes) et, pour les avis et messages, un tableur Google privé. Les messages « Nous contacter » sont aussi envoyés par e-mail à notre adresse d'assistance.",
+      "Sous-traitants : Vercel (hébergement et journaux), Anthropic (rédige les réponses et traductions quand vous les demandez), Upstash (cache des réponses de 24 heures et compteurs de demandes) et, pour les avis et messages, un tableur Google privé. Les messages « Nous contacter » sont aussi envoyés par e-mail à notre adresse d'assistance. Si vous utilisez le bouton micro, le service de reconnaissance vocale de votre navigateur (Google dans Chrome, Apple dans Safari) transforme votre voix en texte ; nous ne recevons jamais l'audio.",
       "Durées : réponses rédigées 24 heures ; compteurs de demandes 2 jours, avec une forme brouillée (hachée) de votre adresse IP ; journaux du serveur selon la durée de l'hébergeur ; avis et messages jusqu'à leur examen. Les documents importés ne sont pas conservés.",
       "Uniquement dans votre navigateur : votre langue, votre lieu de résidence et, si vous le choisissez, vos informations « Préparer mon dossier ». Vous pouvez les effacer à tout moment.",
       "Pas de publicité, pas de cookies de suivi, aucune revente de données. Pour savoir ce que nous détenons sur vous ou le faire supprimer, écrivez-nous via le formulaire de contact.",
@@ -84,7 +84,7 @@ const fr: LegalStrings = {
 const ar: LegalStrings = {
   nav: "إشعار قانوني وخصوصية",
   heading: "الإشعار القانوني والخصوصية وشروط الاستخدام",
-  updated: "آخر تحديث: 4 نوفمبر 2026",
+  updated: "آخر تحديث: 10 نوفمبر 2026",
   notice: {
     title: "إشعار قانوني",
     body: [
@@ -97,7 +97,7 @@ const ar: LegalStrings = {
     title: "الخصوصية",
     body: [
       "ما نعالجه: الأسئلة التي تطرحها، والوثائق التي تحمّلها للترجمة، والتقييمات والتعليقات التي تختار إرسالها، والرسائل المرسلة عبر «اتصل بنا». تُحذف أرقام التعريف والهاتف والبطاقات والحسابات وعناوين البريد من الأسئلة قبل إرسالها.",
-      "من يعالجها لحسابنا: Vercel (الاستضافة والسجلات)، وAnthropic (تكتب الإجابات والترجمات عند طلبها)، وUpstash (ذاكرة مؤقتة للإجابات لمدة 24 ساعة وعدّادات الطلبات)، وجدول Google خاص للتقييمات والرسائل. وتُرسَل رسائل «اتصل بنا» أيضًا إلى بريد الدعم الخاص بنا.",
+      "من يعالجها لحسابنا: Vercel (الاستضافة والسجلات)، وAnthropic (تكتب الإجابات والترجمات عند طلبها)، وUpstash (ذاكرة مؤقتة للإجابات لمدة 24 ساعة وعدّادات الطلبات)، وجدول Google خاص للتقييمات والرسائل. وتُرسَل رسائل «اتصل بنا» أيضًا إلى بريد الدعم الخاص بنا. إذا استخدمت زر الميكروفون، تحوّل خدمة التعرّف على الكلام في متصفحك (Google في Chrome، وApple في Safari) صوتك إلى نص؛ ولا نتلقى التسجيل الصوتي أبدًا.",
       "المدة: الإجابات المكتوبة 24 ساعة؛ عدّادات الطلبات يومان بصيغة مشفّرة (hash) من عنوان IP؛ سجلات الخادم حسب مدة المستضيف؛ التقييمات والرسائل إلى حين مراجعتها. لا تُحفظ الوثائق المحمّلة.",
       "في متصفحك فقط: لغتك ومكان إقامتك، ومعلومات «تحضير ملفي» إن اخترت حفظها، ويمكنك مسحها متى شئت.",
       "لا إعلانات ولا ملفات تعريف للتتبع ولا بيع للبيانات. لمعرفة ما نحتفظ به عنك أو لحذفه، راسلنا عبر استمارة الاتصال.",
@@ -116,7 +116,7 @@ const ar: LegalStrings = {
 const dz: LegalStrings = {
   nav: "القانوني والخصوصية",
   heading: "الإشعار القانوني، الخصوصية وشروط الاستعمال",
-  updated: "آخر تحديث: 4 نوفمبر 2026",
+  updated: "آخر تحديث: 10 نوفمبر 2026",
   notice: {
     title: "الإشعار القانوني",
     body: [
@@ -129,7 +129,7 @@ const dz: LegalStrings = {
     title: "الخصوصية",
     body: [
       "واش نعالجو: الأسئلة لي تسقسيها، الوثائق لي تحمّلها للترجمة، الرأي والتعليقات لي تختار تبعثهم، والرسائل لي تبعثها من «تواصل معانا». نمرو البطاقة، التيليفون، الكارطة، الحساب والإيمايل يتنحّاو من الأسئلة قبل ما يتبعثو.",
-      "شكون يعالجها معانا: Vercel (الاستضافة والسجلات)، Anthropic (تكتب الأجوبة والترجمات كي تطلبهم)، Upstash (ذاكرة للأجوبة 24 ساعة وعدّادات الطلبات)، وجدول Google خاص للرأي والرسائل. والرسائل تاع «تواصل معانا» تتبعث تاني للإيمايل تاع الدعم تاعنا.",
+      "شكون يعالجها معانا: Vercel (الاستضافة والسجلات)، Anthropic (تكتب الأجوبة والترجمات كي تطلبهم)، Upstash (ذاكرة للأجوبة 24 ساعة وعدّادات الطلبات)، وجدول Google خاص للرأي والرسائل. والرسائل تاع «تواصل معانا» تتبعث تاني للإيمايل تاع الدعم تاعنا. إذا استعملت زر الميكرو، الخدمة تاع المتصفح (Google في Chrome، وApple في Safari) تحوّل صوتك لكتابة؛ وحنا ما يوصلناش الصوت.",
       "قداش: الأجوبة المكتوبة 24 ساعة؛ عدّادات الطلبات يومين بنسخة مشفّرة (hash) من الـIP تاعك؛ سجلات السيرفور حسب المستضيف؛ الرأي والرسائل حتى نقراوهم. الوثائق لي تحمّلها ما تتحفظش.",
       "في البراوزر تاعك برك: اللغة، وين ساكن، والمعلومات تاع «وجّد الدوسي تاعي» إذا حبيت تحفظها. تقدر تمسحهم وقتما حبيت.",
       "لا إشهار، لا كوكيز تاع التتبع، وما نبيعوش البيانات. باش تعرف واش عندنا عليك ولا باش نمسحوه، اكتبلنا من استمارة التواصل.",

@@ -133,7 +133,13 @@
     "quickFromGuide": "From our step-by-step guide, built only from official pages. Check with your office before you go.",
     "quickFee": "Fees",
     "quickSources": "Sources",
-    "morePages": "More official pages"
+    "morePages": "More official pages",
+    "voiceStart": "Speak your question",
+    "voiceStop": "Stop listening",
+    "voiceListening": "Listening… speak now, then check the text before sending.",
+    "voiceDenied": "The microphone is blocked or missing. Allow it in your browser's settings, or type your question.",
+    "voiceNoSpeech": "We didn't hear anything. Try again, or type your question.",
+    "voiceError": "Voice input didn't work. Please type your question."
   },
   "translate": {
     "heading": "Understand an official document",
@@ -219,6 +225,7 @@
           "We don't keep your conversations. If you rate an answer, we save that question, up to 3 earlier questions, the start of the answer and your comment (personal numbers removed) to improve answers. Messages sent through Contact us are kept so we can read them, with your email only if you give one. They are also emailed to our support inbox.",
           "Written answers are kept for 24 hours, not linked to you, so the same question is answered faster next time.",
           "Documents you upload are sent to our AI provider (Anthropic) to produce your result. We don't store them. Numbers inside an uploaded file are not removed.",
+          "If you use the microphone button, your browser turns your voice into text with its own speech service (Google in Chrome, Apple in Safari). We never receive the audio, only the text you then choose to send.",
           "To limit abuse we count requests per connection for 2 days, using a scrambled (hashed) form of your IP address. Your language, your office and, if you choose, your Prepare my file details stay in your browser."
         ]
       },
