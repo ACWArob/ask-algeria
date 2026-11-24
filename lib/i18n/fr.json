@@ -43,6 +43,7 @@
   "ask": {
     "heading": "Quelle démarche voulez-vous faire ?",
     "sub": "Posez votre question sur un service public algérien. Les réponses viennent uniquement de pages officielles, avec leurs sources.",
+    "inspired": "Inspiré par",
     "label": "Votre question",
     "placeholder": "Par exemple : comment renouveler mon passeport ?",
     "submit": "Demander",

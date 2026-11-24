@@ -57,3 +57,12 @@ describe("legal page strings", () => {
     }
   });
 });
+
+describe("footer credit", () => {
+  it("credits Ask Pakistan in every language", async () => {
+    for (const l of ["en", "fr", "ar", "dz"]) {
+      const d = (await import(`@/lib/i18n/${l}.json`)).default;
+      expect(d.ask.inspired, l).toBeTruthy();
+    }
+  });
+});

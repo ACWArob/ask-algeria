@@ -43,6 +43,7 @@
   "ask": {
     "heading": "What do you need to sort out?",
     "sub": "Ask about any Algerian public service. Answers come only from official pages, with sources.",
+    "inspired": "Inspired by",
     "label": "Your question",
     "placeholder": "For example: how do I renew my passport?",
     "submit": "Ask",

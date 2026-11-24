@@ -35,7 +35,10 @@ export function HomeClient({
         {!active && (
           <div className="mb-6 text-center sm:mb-8">
             <h1 className="display text-[2.25rem] font-semibold sm:text-5xl">{dict.ask.greeting}</h1>
-            <p className="mx-auto mt-3 max-w-xl text-muted">{dict.ask.sub}</p>
+            <p className="mx-auto mt-3 max-w-xl text-muted">
+              {dict.ask.sub} {dict.ask.inspired}{" "}
+              <a href="https://pakistangov.online/" className="link" target="_blank" rel="noopener noreferrer" dir="ltr">Ask Pakistan</a>.
+            </p>
             {coverage && <p className="mt-2 text-sm text-muted">{fmt(dict.ask.coverage, coverage)}</p>}
           </div>
         )}
